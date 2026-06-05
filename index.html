@@ -3,26 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Collectif — L'Avenir en Soi</title>
+<title>NORIA — Élever les potentiels</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Zen+Old+Mincho:wght@400;700&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --sumi: #0d0d0b;
-  --washi: #f2ead8;
-  --washi-dark: #e8dcc4;
-  --urushi: #8b1a1a;
-  --kin: #c4973a;
-  --kin-light: #d4ac5a;
-  --mist: #f7f2e8;
-  --stone: #9a9186;
-  --matcha: #4a5c44;
-  --jade: #3d7a5f;
-  --jade-light: #5a9e7a;
-  --bambou: #8ab89a;
-  --mousse: #c8dcc8;
-  --shoji: rgba(242,234,216,0.92);
-  --font-jp: 'Zen Old Mincho', 'Noto Serif JP', serif;
+  /* Palette NORIA */
+  --noria-deep:   #234B5E;   /* bleu profond — confiance, profondeur */
+  --noria-teal:   #3B7A78;   /* vert-bleu — mouvement, croissance   */
+  --noria-sand:   #E8DCC9;   /* sable chaud — douceur, fond         */
+  --noria-copper: #B86F4C;   /* cuivre — chaleur, accent fort       */
+  --noria-mist:   #F4EFE6;   /* brume — fond principal              */
+  --noria-white:  #FDFAF5;   /* blanc chaud                         */
+
+  /* Alias legacy pour compatibilité partielle */
+  --sumi:      #1a2e38;
+  --washi:     #F4EFE6;
+  --washi-dark:#EDE5D8;
+  --urushi:    #B86F4C;
+  --kin:       #3B7A78;
+  --kin-light: #5a9e9c;
+  --mist:      #F4EFE6;
+  --stone:     #7a8e96;
+  --jade:      #3B7A78;
+  --jade-light:#5a9e9c;
+  --bambou:    #8ab8b6;
+  --mousse:    #c8dde0;
+  --shoji:     rgba(244,239,230,0.94);
+  --font-jp:   'Zen Old Mincho', 'Noto Serif JP', serif;
   --font-body: 'Noto Sans JP', sans-serif;
 }
 
@@ -277,6 +285,7 @@ nav {
   opacity: 0;
 }
 
+@keyframes wheelSpin { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
 @keyframes fadeRight {
   from { opacity:0; transform:translateX(-20px); }
   to { opacity:1; transform:translateX(0); }
@@ -1122,6 +1131,110 @@ footer {
   }
 }
 
+
+/* ─── ANIMATION SÉQUENTIELLE ÉTAPES ─── */
+
+/* Reset reveal pour les step-cards — on gère nous-mêmes */
+.steps-grid .step-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    background 0.3s,
+    opacity 0.6s ease,
+    transform 0.6s ease,
+    box-shadow 0.4s ease,
+    border-left 0.3s ease;
+  border-left: 3px solid transparent;
+  position: relative;
+}
+
+/* Allumage séquentiel au chargement de la section */
+.step-card.illumine {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Numéro japonais — s'intensifie à l'illumination */
+.step-card .step-num {
+  transition: color 0.4s ease, letter-spacing 0.4s ease;
+}
+
+/* Ligne de progression entre les étapes */
+.steps-grid {
+  position: relative;
+}
+.steps-grid::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(to right, var(--jade), var(--urushi), var(--kin));
+  transition: width 1.8s ease;
+  z-index: 2;
+}
+.steps-grid.sequence-done::after {
+  width: 100%;
+}
+
+/* Hover sur chaque carte */
+.step-card:hover {
+  background: var(--washi) !important;
+  border-left: 3px solid var(--urushi);
+  box-shadow:
+    -4px 0 0 0 var(--urushi),
+    0 12px 40px rgba(13,13,11,0.08);
+  transform: translateY(-4px) !important;
+}
+
+.step-card:hover .step-num {
+  color: var(--urushi);
+  letter-spacing: 0.45em;
+}
+
+.step-card:hover h3 {
+  color: var(--urushi);
+}
+
+/* Halo lumineux au survol */
+.step-card::before {
+  content: attr(data-jp);
+  position: absolute;
+  top: 20px; right: 24px;
+  font-family: var(--font-jp);
+  font-size: 4rem;
+  color: var(--urushi);
+  opacity: 0;
+  line-height: 1;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transform: scale(0.8);
+}
+
+.step-card:hover::before {
+  opacity: 0.12;
+  transform: scale(1);
+}
+
+/* Indicateur de connexion entre étapes */
+.step-connector {
+  position: absolute;
+  top: 50%;
+  right: -1px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--urushi);
+  transform: translateY(-50%) scale(0);
+  transition: transform 0.4s ease 0.3s;
+  z-index: 3;
+}
+.step-card.illumine .step-connector {
+  transform: translateY(-50%) scale(1);
+}
+.step-card:last-child .step-connector {
+  display: none;
+}
+
 </style>
 </head>
 <body>
@@ -1348,17 +1461,31 @@ footer {
 <!-- NAV -->
 <nav>
   <a href="#hero" class="nav-mon">
-    <!-- Mon circulaire SVG -->
-    <svg class="mon-svg" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="30" cy="30" r="28" stroke="#8b1a1a" stroke-width="1.2"/>
-      <circle cx="30" cy="30" r="22" stroke="#c4973a" stroke-width="0.6"/>
-      <circle cx="30" cy="30" r="5" fill="#8b1a1a"/>
-      <path d="M30 8 L30 22 M30 38 L30 52 M8 30 L22 30 M38 30 L52 30" stroke="#8b1a1a" stroke-width="0.8"/>
-      <path d="M14.6 14.6 L24.2 24.2 M35.8 35.8 L45.4 45.4 M45.4 14.6 L35.8 24.2 M24.2 35.8 L14.6 45.4" stroke="#c4973a" stroke-width="0.5"/>
+    <!-- ROUE NORIA SVG -->
+    <svg class="mon-svg noria-wheel" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:wheelSpin 12s linear infinite;">
+      <!-- Jante extérieure -->
+      <circle cx="30" cy="30" r="27" stroke="#234B5E" stroke-width="1.8"/>
+      <!-- Jante intérieure -->
+      <circle cx="30" cy="30" r="19" stroke="#3B7A78" stroke-width="1"/>
+      <!-- Moyeu -->
+      <circle cx="30" cy="30" r="4.5" fill="#B86F4C"/>
+      <circle cx="30" cy="30" r="2.5" fill="#234B5E"/>
+      <!-- 8 rayons -->
+      <line x1="30" y1="3" x2="30" y2="57" stroke="#234B5E" stroke-width="0.9" opacity="0.6"/>
+      <line x1="3" y1="30" x2="57" y2="30" stroke="#234B5E" stroke-width="0.9" opacity="0.6"/>
+      <line x1="10.1" y1="10.1" x2="49.9" y2="49.9" stroke="#3B7A78" stroke-width="0.7" opacity="0.5"/>
+      <line x1="49.9" y1="10.1" x2="10.1" y2="49.9" stroke="#3B7A78" stroke-width="0.7" opacity="0.5"/>
+      <!-- Aubes de la noria (godets) -->
+      <path d="M30 3 C27 7 27 11 30 11 C33 11 33 7 30 3Z" fill="#B86F4C" opacity="0.7"/>
+      <path d="M57 30 C53 27 49 27 49 30 C49 33 53 33 57 30Z" fill="#B86F4C" opacity="0.7"/>
+      <path d="M30 57 C33 53 33 49 30 49 C27 49 27 53 30 57Z" fill="#B86F4C" opacity="0.7"/>
+      <path d="M3 30 C7 33 11 33 11 30 C11 27 7 27 3 30Z" fill="#B86F4C" opacity="0.7"/>
+      <!-- Petit point eau sur le cuivre -->
+      <circle cx="30" cy="6" r="1.5" fill="#3B7A78" opacity="0.8"/>
     </svg>
     <div class="nav-title">
-      L'Avenir en Soi
-      <small>Collectif d'accompagnement</small>
+      NORIA
+      <small>Élever les potentiels</small>
     </div>
   </a>
   <ul class="nav-links">
@@ -1386,13 +1513,13 @@ footer {
   </svg>
 
   <div class="hero-content">
-    <span class="hero-jp">道　— 　collectif</span>
+    <span class="hero-jp">NORIA　— 　Élever les potentiels</span>
     <h1 class="hero-title">
       Ce que tu cherches,<br>
-      <em>tu le portes déjà.</em>
+      <em>Élever les potentiels.</em>
     </h1>
     <p class="hero-sub">
-      Nous réunissons des experts de l'accompagnement humain pour t'aider à révéler, amplifier et construire ce que tu es vraiment capable d'être.
+      Mettre en mouvement les transformations. Un collectif d'experts au service de chaque trajectoire humaine et professionnelle — pour révéler, développer et élever ce que vous portez.
     </p>
     <div class="hero-actions">
       <a href="#tunnel" class="btn-urushi">Découvrir mon expert</a>
@@ -1401,7 +1528,7 @@ footer {
   </div>
 
   <!-- Kanji verticaux décoratifs -->
-  <div class="hero-kanji-stack">心　身　志</div>
+  <div class="hero-kanji-stack">道　水　輪</div>
 </section>
 
 <!-- COMMENT ÇA MARCHE -->
@@ -1531,18 +1658,18 @@ footer {
       </div>
     </div>
 
-    <div class="team-card reveal" onclick="openModal('expert2')">
+    <div class="team-card reveal" onclick="openModal('melanie')">
       <div class="team-photo">
-        <span class="team-emoji">🎭</span>
+        <span class="team-emoji">🎯</span>
         <div class="team-overlay">
           <span class="team-overlay-jp">詳細　— Voir la fiche</span>
-          <p>Formateur théâtre · Prise de parole</p>
+          <p>Consultante emploi · Carrière · 20 ans d'expérience</p>
         </div>
       </div>
       <div class="team-info">
-        <div class="team-name">Expert 2</div>
-        <span class="team-role">Formateur · Prise de parole</span>
-        <span class="team-location">📍 Lyon</span>
+        <div class="team-name">Mélanie Allard</div>
+        <span class="team-role">Consultante Carrière · Emploi</span>
+        <span class="team-location">📍 Vendée</span>
         <div class="team-contacts">
           <a href="#" onclick="event.stopPropagation()">📞 Tél.</a>
           <a href="#" onclick="event.stopPropagation()">✉ Mail</a>
@@ -1550,18 +1677,18 @@ footer {
       </div>
     </div>
 
-    <div class="team-card reveal" onclick="openModal('expert3')">
+    <div class="team-card reveal" onclick="openModal('florian')">
       <div class="team-photo">
-        <span class="team-emoji">🧘</span>
+        <span class="team-emoji">⚡</span>
         <div class="team-overlay">
           <span class="team-overlay-jp">詳細　— Voir la fiche</span>
-          <p>Coach bien-être · Corps & Mental</p>
+          <p>Formateur Management · Consultant RH</p>
         </div>
       </div>
       <div class="team-info">
-        <div class="team-name">Expert 3</div>
-        <span class="team-role">Coach Bien-être · Corps</span>
-        <span class="team-location">📍 Paris</span>
+        <div class="team-name">Florian Dhaussy</div>
+        <span class="team-role">Formateur Management · RH</span>
+        <span class="team-location">📍 Hauts-de-France</span>
         <div class="team-contacts">
           <a href="#" onclick="event.stopPropagation()">📞 Tél.</a>
           <a href="#" onclick="event.stopPropagation()">✉ Mail</a>
@@ -1569,18 +1696,18 @@ footer {
       </div>
     </div>
 
-    <div class="team-card reveal" onclick="openModal('expert4')">
+    <div class="team-card reveal" onclick="openModal('marc')">
       <div class="team-photo">
-        <span class="team-emoji">💼</span>
+        <span class="team-emoji">🌿</span>
         <div class="team-overlay">
           <span class="team-overlay-jp">詳細　— Voir la fiche</span>
-          <p>Coach pro · Leadership</p>
+          <p>Copywriter · Consultant · Bien-être holistique</p>
         </div>
       </div>
       <div class="team-info">
-        <div class="team-name">Expert 4</div>
-        <span class="team-role">Coach Pro · Leadership</span>
-        <span class="team-location">📍 Bordeaux</span>
+        <div class="team-name">Marc Vandrepotte</div>
+        <span class="team-role">Copywriter · Consultant</span>
+        <span class="team-location">📍 France</span>
         <div class="team-contacts">
           <a href="#" onclick="event.stopPropagation()">📞 Tél.</a>
           <a href="#" onclick="event.stopPropagation()">✉ Mail</a>
@@ -1603,16 +1730,16 @@ footer {
   <div class="mission-grid">
     <div>
       <span class="section-jp">志　— Notre raison d'être</span>
-      <h2 class="section-title">Catalyseurs, amplificateurs, révélateurs</h2>
+      <h2 class="section-title">Un cycle vertueux — Comprendre · Révéler · Élever · Agir</h2>
       <div class="sumi-divider"></div>
-      <p class="section-sub">Nous ne t'apprenons pas à être quelqu'un d'autre. Nous t'aidons à devenir pleinement celui que tu es déjà.</p>
+      <p class="section-sub">Accompagner chaque trajectoire humaine et professionnelle pour révéler, développer et élever les potentiels. Mettre en mouvement les transformations.</p>
 
       <div class="mission-pillars">
         <div class="pillar reveal">
           <div class="pillar-mark"></div>
           <div>
             <h4>Pourquoi nous existons</h4>
-            <p>Parce que trop de potentiels restent enfouis, étouffés par les croyances héritées, les urgences du quotidien et le manque d'un regard juste.</p>
+            <p>La NORIA est une roue qui élève l'eau — inlassablement, avec méthode. Nous faisons de même avec les potentiels humains : un mouvement continu, une élévation qui ne s'arrête pas.</p>
           </div>
         </div>
         <div class="pillar reveal">
@@ -1642,11 +1769,36 @@ footer {
         <div class="orbit-dot"></div>
         <div class="orbit-dot"></div>
       </div>
-      <!-- Enso (cercle zen) SVG -->
-      <svg viewBox="0 0 200 200" style="position:absolute;width:200px;opacity:0.12;" fill="none">
-        <path d="M100 15 C145 15 180 50 180 95 C180 145 145 182 100 185 C55 188 18 153 15 108 C12 63 45 20 90 15" stroke="#8b1a1a" stroke-width="8" stroke-linecap="round"/>
+      <!-- GRANDE ROUE NORIA centrale animée -->
+      <svg class="noria-grande" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"
+           style="position:absolute;width:220px;height:220px;animation:wheelSpin 20s linear infinite;">
+        <!-- Jante -->
+        <circle cx="100" cy="100" r="90" stroke="#234B5E" stroke-width="3" opacity="0.35"/>
+        <circle cx="100" cy="100" r="68" stroke="#3B7A78" stroke-width="1.5" opacity="0.25" stroke-dasharray="4 4"/>
+        <!-- 12 rayons -->
+        <line x1="100" y1="10" x2="100" y2="190" stroke="#234B5E" stroke-width="1.2" opacity="0.2"/>
+        <line x1="10" y1="100" x2="190" y2="100" stroke="#234B5E" stroke-width="1.2" opacity="0.2"/>
+        <line x1="27" y1="27" x2="173" y2="173" stroke="#3B7A78" stroke-width="0.9" opacity="0.18"/>
+        <line x1="173" y1="27" x2="27" y2="173" stroke="#3B7A78" stroke-width="0.9" opacity="0.18"/>
+        <line x1="10" y1="65" x2="190" y2="135" stroke="#234B5E" stroke-width="0.7" opacity="0.12"/>
+        <line x1="10" y1="135" x2="190" y2="65" stroke="#234B5E" stroke-width="0.7" opacity="0.12"/>
+        <line x1="65" y1="10" x2="135" y2="190" stroke="#234B5E" stroke-width="0.7" opacity="0.12"/>
+        <line x1="135" y1="10" x2="65" y2="190" stroke="#234B5E" stroke-width="0.7" opacity="0.12"/>
+        <!-- Godets/aubes aux 8 positions cardinales -->
+        <path d="M100 10 C95 18 95 24 100 24 C105 24 105 18 100 10Z" fill="#B86F4C" opacity="0.5"/>
+        <path d="M190 100 C182 95 176 95 176 100 C176 105 182 105 190 100Z" fill="#B86F4C" opacity="0.5"/>
+        <path d="M100 190 C105 182 105 176 100 176 C95 176 95 182 100 190Z" fill="#B86F4C" opacity="0.5"/>
+        <path d="M10 100 C18 105 24 105 24 100 C24 95 18 95 10 100Z" fill="#B86F4C" opacity="0.5"/>
+        <path d="M173 27 C167 33 167 39 171 41 C175 43 179 39 173 27Z" fill="#3B7A78" opacity="0.4"/>
+        <path d="M173 173 C179 167 179 161 175 159 C171 157 167 161 173 173Z" fill="#3B7A78" opacity="0.4"/>
+        <path d="M27 173 C33 179 39 179 41 175 C43 171 39 167 27 173Z" fill="#3B7A78" opacity="0.4"/>
+        <path d="M27 27 C21 33 21 39 25 41 C29 43 33 39 27 27Z" fill="#3B7A78" opacity="0.4"/>
+        <!-- Moyeu central -->
+        <circle cx="100" cy="100" r="14" stroke="#B86F4C" stroke-width="2" opacity="0.5"/>
+        <circle cx="100" cy="100" r="7" fill="#234B5E" opacity="0.4"/>
+        <circle cx="100" cy="100" r="3" fill="#B86F4C" opacity="0.7"/>
       </svg>
-      <div class="mission-kanji">心<br>道<br>志</div>
+      <div class="mission-kanji" style="color:var(--noria-deep);opacity:0.1;">水<br>輪<br>道</div>
     </div>
   </div>
 </section>
@@ -1746,7 +1898,7 @@ footer {
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-brand">L'Avenir en Soi　道</span>
+  <span class="footer-brand">NORIA　· Élever les potentiels</span>
   <ul class="footer-links">
     <li><a href="#comment">Parcours</a></li>
     <li><a href="#equipe">Experts</a></li>
@@ -1762,7 +1914,7 @@ const experts = {
   denis: {
     emoji:'🧭',
     name:'Denis Deblevid',
-    role:'Coach Philosophique · Stoïcisme',
+    role:'Coach Philosophique · Méthode 4P',
     location:'Marseille',
     phone:'+33 6 00 00 00 00',
     email:'denisdeblevidcontact@gmail.com',
@@ -1772,44 +1924,44 @@ const experts = {
     ],
     tags:['Stoïcisme','Méthode 4P','Identité','Sens','Résilience','Corps & Mental','Philosophie pratique']
   },
-  expert2: {
-    emoji:'🎭',
-    name:'Expert 2',
-    role:'Formateur · Prise de parole',
-    location:'Lyon',
+  melanie: {
+    emoji:'🎯',
+    name:'Mélanie Allard',
+    role:'Consultante Emploi · Carrière · Développement',
+    location:'Vendée (visio & présentiel)',
     phone:'+33 6 00 00 00 00',
-    email:'expert2@collectif.fr',
+    email:'melanie.allard@noria-collectif.fr',
     bio:[
-      `Formateur en théâtre et prise de parole en public depuis plus de 15 ans, [Prénom] aide dirigeants, managers et individus à trouver leur voix juste — celle qui convainc sans forcer, qui touche sans manipuler.`,
-      `Son approche mêle techniques scéniques, travail corporel et connaissance de soi. Prendre la parole, c'est d'abord prendre sa place.`
+      `Forte de 20 ans d'expérience en intérim, recrutement et gestion d'agence, Mélanie accompagne particuliers et professionnels à clarifier leur situation, structurer leurs démarches et avancer de manière alignée dans leurs projets professionnels.`,
+      `Pour les particuliers : transitions professionnelles, orientation, repositionnement, diagnostic CV, préparation aux entretiens. Pour les professionnels : audit business, structuration et développement de TPE/PME, Google My Business. Une approche pragmatique, simple et orientée solutions.`
     ],
-    tags:['Théâtre','Prise de parole','Leadership','Communication','Confiance','Présence']
+    tags:['Carrière','Reconversion','CV & Entretiens','Audit business','TPE·PME','Transitions pro','Bilan carrière']
   },
-  expert3: {
-    emoji:'🧘',
-    name:'Expert 3',
-    role:'Coach Bien-être · Corps',
-    location:'Paris',
+  florian: {
+    emoji:'⚡',
+    name:'Florian Dhaussy',
+    role:'Formateur Management · Consultant RH',
+    location:'Hauts-de-France (France entière)',
     phone:'+33 6 00 00 00 00',
-    email:'expert3@collectif.fr',
+    email:'florian.dhaussy@noria-collectif.fr',
     bio:[
-      `Spécialiste du lien corps-mental, [Prénom] travaille à l'intersection du mouvement, de la nutrition et de la psychologie somatique. Son conviction : la transformation durable commence par une réappropriation du corps.`,
-      `Elle intervient auprès de personnes épuisées, déconnectées d'elles-mêmes, en quête d'un équilibre réel entre performance et santé.`
+      `Consultant en développement des compétences, manager d'une équipe de consultants, formateur et coach certifié SEVEN NATURAL SKILLS®, Florian intervient à la croisée des enjeux humains et stratégiques. Sa conviction : la réussite durable repose sur la capacité à développer les compétences, révéler les potentiels et faire grandir les talents.`,
+      `Il accompagne dirigeants, équipes RH, managers et collaborateurs dans la construction de solutions concrètes favorisant l'engagement, la montée en compétences et la performance collective. Actif sur l'ensemble du territoire, en présentiel comme à distance.`
     ],
-    tags:['Corps','Santé','Énergie','Somatique','Nutrition','Bien-être','Gestion du stress']
+    tags:['Management','Formation','Leadership','RH','Compétences','Performance collective','Seven Natural Skills®']
   },
-  expert4: {
-    emoji:'💼',
-    name:'Expert 4',
-    role:'Coach Pro · Leadership',
-    location:'Bordeaux',
+  marc: {
+    emoji:'🌿',
+    name:'Marc Vandrepotte',
+    role:'Copywriter · Consultant · Compléments alimentaires',
+    location:'France',
     phone:'+33 6 00 00 00 00',
-    email:'expert4@collectif.fr',
+    email:'marc.vandrepotte@noria-collectif.fr',
     bio:[
-      `Coach certifié et ancien directeur commercial, [Prénom] accompagne dirigeants et managers qui veulent allier performance et sens. Son terrain : les décisions difficiles, la posture de leader, la construction d'une vision qui fédère.`,
-      `Il croit que le leadership authentique est un acte d'humilité autant que de courage.`
+      `Freelance polyvalent, Marc conjugue expertise en compléments alimentaires, copywriting et conseil en développement de compétences. Une approche qui lie le corps, la communication et la progression personnelle.`,
+      `En parallèle de ses activités de conseil, Marc pratique et propose la magnétothérapie — une dimension complémentaire pour ceux qui cherchent un accompagnement holistique de leur bien-être.`
     ],
-    tags:['Leadership','Management','Vision','BtoB','Transformation pro','Courage managérial']
+    tags:['Copywriting','Compléments alimentaires','Bien-être','Magnétisme','Développement de compétences']
   }
 };
 
@@ -1867,6 +2019,63 @@ const obs = new IntersectionObserver(entries=>{
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+// ── Animation séquentielle des étapes ──
+(function() {
+  const grid = document.querySelector('.steps-grid');
+  if (!grid) return;
+
+  const cards = grid.querySelectorAll('.step-card');
+
+  // Ajouter connecteurs entre étapes
+  cards.forEach((card, i) => {
+    if (i < cards.length - 1) {
+      const dot = document.createElement('div');
+      dot.className = 'step-connector';
+      card.appendChild(dot);
+    }
+  });
+
+  let sequenceDone = false;
+
+  const runSequence = () => {
+    if (sequenceDone) return;
+    sequenceDone = true;
+
+    cards.forEach((card, i) => {
+      // Allumage en cascade
+      setTimeout(() => {
+        card.classList.add('illumine');
+      }, i * 380);
+
+      // Extinction après 900ms puis ré-allumage final
+      setTimeout(() => {
+        card.classList.remove('illumine');
+      }, i * 380 + 900);
+
+      setTimeout(() => {
+        card.classList.add('illumine');
+        // Ligne de progression à la fin
+        if (i === cards.length - 1) {
+          setTimeout(() => grid.classList.add('sequence-done'), 200);
+        }
+      }, i * 380 + 1400);
+    });
+  };
+
+  // Déclencher quand la section est visible
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        setTimeout(runSequence, 300);
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  obs.observe(grid);
+})();
+
 </script>
 </body>
 </html>
