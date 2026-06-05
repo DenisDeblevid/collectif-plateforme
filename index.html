@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collectif — L'Avenir en Soi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Zen+Old+Mincho:wght@400;700&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sumi: #0d0d0b;
+  --washi: #f2ead8;
+  --washi-dark: #e8dcc4;
+  --urushi: #8b1a1a;
+  --kin: #c4973a;
+  --kin-light: #d4ac5a;
+  --mist: #f7f2e8;
+  --stone: #9a9186;
+  --matcha: #4a5c44;
+  --shoji: rgba(242,234,216,0.92);
+  --font-jp: 'Zen Old Mincho', 'Noto Serif JP', serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--washi);
+  color: var(--sumi);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.75;
+  overflow-x: hidden;
+  /* Washi paper texture via SVG noise */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* ─── KANJI WATERMARK ─── */
+.kanji-bg {
+  position: fixed;
+  top: 0; right: -60px;
+  font-family: var(--font-jp);
+  font-size: 28vw;
+  line-height: 1;
+  color: var(--sumi);
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 0;
+  writing-mode: vertical-rl;
+  letter-spacing: 0.1em;
+  user-select: none;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  padding: 18px 64px;
+  display: flex; justify-content:space-between; align-items:center;
+  background: var(--shoji);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(196,151,58,0.2);
+}
+
+.nav-mon {
+  display: flex; align-items:center; gap:14px;
+  text-decoration: none;
+}
+
+/* Mon (emblème circulaire) en SVG inline */
+.mon-svg { width:38px; height:38px; flex-shrink:0; }
+
+.nav-title {
+  font-family: var(--font-jp);
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  color: var(--sumi);
+  line-height: 1.2;
+}
+.nav-title small {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  opacity: 0.45;
+  font-family: var(--font-body);
+}
+
+.nav-links { display:flex; gap:32px; list-style:none; }
+.nav-links a {
+  text-decoration:none;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sumi);
+  opacity: 0.5;
+  transition: opacity 0.3s, color 0.3s;
+}
+.nav-links a:hover { opacity:1; color:var(--urushi); }
+
+.nav-cta {
+  background: var(--sumi) !important;
+  color: var(--washi) !important;
+  opacity: 1 !important;
+  padding: 9px 22px;
+  border-radius: 1px;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.2em !important;
+  position: relative;
+  overflow: hidden;
+}
+.nav-cta::after {
+  content:'';
+  position:absolute; bottom:0; left:0; right:0; height:2px;
+  background: var(--urushi);
+}
+.nav-cta:hover { background: var(--urushi) !important; }
+
+/* ─── HERO ─── */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 64px 80px;
+}
+
+/* Fond sumi-e : encre qui s'étale */
+.hero-ink {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 70% at 78% 45%, rgba(139,26,26,0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 50% at 90% 80%, rgba(196,151,58,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 20% 30% at 15% 15%, rgba(13,13,11,0.04) 0%, transparent 60%);
+}
+
+/* Traits de pinceau SVG */
+.brushstroke {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.06;
+}
+.brushstroke-1 {
+  bottom: 10%;
+  right: 5%;
+  width: 420px;
+}
+.brushstroke-2 {
+  top: 8%;
+  right: 15%;
+  width: 280px;
+  transform: rotate(-15deg);
+}
+
+/* Ligne verticale rouge laque */
+.hero-line {
+  position: absolute;
+  left: 50px;
+  top: 120px;
+  bottom: 80px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--urushi) 20%, var(--urushi) 80%, transparent);
+  opacity: 0.35;
+}
+
+.hero-content {
+  position: relative; z-index:2;
+  max-width: 680px;
+  padding-left: 40px;
+}
+
+.hero-jp {
+  font-family: var(--font-jp);
+  font-size: 0.78rem;
+  letter-spacing: 0.5em;
+  color: var(--urushi);
+  margin-bottom: 28px;
+  display: block;
+  opacity: 0;
+  animation: fadeRight 0.9s ease forwards 0.2s;
+}
+
+.hero-title {
+  font-family: var(--font-jp);
+  font-size: clamp(3rem, 5.5vw, 5rem);
+  line-height: 1.15;
+  color: var(--sumi);
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeRight 0.9s ease forwards 0.4s;
+  font-weight: 700;
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--urushi);
+  display: block;
+}
+
+.hero-sub {
+  font-size: 1rem;
+  color: var(--sumi);
+  opacity: 0;
+  animation: fadeRight 0.9s ease forwards 0.6s;
+  margin-bottom: 52px;
+  max-width: 500px;
+  line-height: 1.9;
+  border-left: 2px solid var(--kin);
+  padding-left: 20px;
+}
+
+.hero-actions {
+  display: flex; gap:16px; flex-wrap:wrap;
+  opacity:0;
+  animation: fadeRight 0.9s ease forwards 0.8s;
+}
+
+.btn-urushi {
+  background: var(--urushi);
+  color: var(--washi);
+  padding: 15px 38px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: none; cursor:pointer;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.btn-urushi::before {
+  content:'';
+  position:absolute; inset:0;
+  background: rgba(255,255,255,0.1);
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+}
+.btn-urushi:hover::before { transform:translateX(0); }
+.btn-urushi:hover { transform:translateY(-2px); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--sumi);
+  padding: 15px 38px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid rgba(13,13,11,0.3);
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-block;
+  transition: all 0.3s;
+}
+.btn-outline:hover { border-color:var(--urushi); color:var(--urushi); transform:translateY(-2px); }
+
+/* Kanji décoratifs hero */
+.hero-kanji-stack {
+  position: absolute;
+  right: 7%;
+  top: 50%;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  font-family: var(--font-jp);
+  font-size: 5rem;
+  letter-spacing: 0.15em;
+  color: var(--sumi);
+  opacity: 0.07;
+  z-index: 1;
+  animation: fadeRight 1.2s ease forwards 1s;
+  opacity: 0;
+}
+
+@keyframes fadeRight {
+  from { opacity:0; transform:translateX(-20px); }
+  to { opacity:1; transform:translateX(0); }
+}
+
+/* ─── SECTIONS ─── */
+section { padding: 110px 64px; position:relative; }
+
+.section-jp {
+  font-family: var(--font-jp);
+  font-size: 0.72rem;
+  letter-spacing: 0.45em;
+  color: var(--urushi);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.section-title {
+  font-family: var(--font-jp);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.25;
+  color: var(--sumi);
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+
+.section-sub {
+  font-size: 0.95rem;
+  opacity: 0.6;
+  max-width: 560px;
+  line-height: 1.85;
+}
+
+/* Séparateur sumi */
+.sumi-divider {
+  width: 48px;
+  height: 3px;
+  background: var(--urushi);
+  margin-bottom: 28px;
+  position: relative;
+}
+.sumi-divider::after {
+  content:'';
+  position:absolute;
+  left: 56px; top:1px;
+  width: 120px; height:1px;
+  background: var(--kin);
+  opacity:0.4;
+}
+
+/* ─── COMMENT ─── */
+#comment { background: var(--washi-dark); }
+
+#comment .section-sub { margin: 0 0 60px; }
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(13,13,11,0.08);
+  max-width: 1100px;
+}
+
+.step-card {
+  background: var(--washi-dark);
+  padding: 56px 44px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.step-card:hover { background: var(--washi); }
+
+.step-card::before {
+  content: attr(data-jp);
+  position: absolute;
+  top: 20px; right: 24px;
+  font-family: var(--font-jp);
+  font-size: 4rem;
+  color: var(--sumi);
+  opacity: 0.05;
+  line-height: 1;
+}
+
+.step-num {
+  font-family: var(--font-jp);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--urushi);
+  display: block;
+  margin-bottom: 20px;
+}
+
+.step-card h3 {
+  font-family: var(--font-jp);
+  font-size: 1.2rem;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+.step-card p { font-size:0.88rem; opacity:0.65; line-height:1.8; }
+
+/* ─── TUNNEL ─── */
+#tunnel {
+  background: var(--sumi);
+  color: var(--washi);
+  overflow: hidden;
+}
+
+/* Motif asanoha (chanvre) japonais en fond */
+#tunnel::before {
+  content:'';
+  position:absolute; inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30Z' fill='none' stroke='rgba(196,151,58,0.04)' stroke-width='1'/%3E%3Cpath d='M30 10 L50 30 L30 50 L10 30Z' fill='none' stroke='rgba(196,151,58,0.03)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 60px 60px;
+}
+
+#tunnel .section-title { color: var(--washi); }
+#tunnel .section-sub { color: var(--washi); opacity:0.5; }
+
+.tunnel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 90px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative; z-index:2;
+}
+
+.tunnel-steps { display:flex; flex-direction:column; gap:28px; margin-top:48px; }
+
+.tunnel-step { display:flex; gap:22px; align-items:flex-start; }
+
+.tunnel-step-circle {
+  width: 38px; height:38px;
+  border:1px solid var(--urushi);
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family: var(--font-jp);
+  font-size:0.8rem;
+  color: var(--urushi);
+  flex-shrink:0;
+}
+
+.tunnel-step-text h4 {
+  font-family: var(--font-jp);
+  font-size:1rem;
+  color:var(--washi);
+  margin-bottom:5px;
+}
+.tunnel-step-text p { font-size:0.85rem; opacity:0.45; line-height:1.7; }
+
+/* Formulaire */
+.tunnel-form {
+  background: rgba(242,234,216,0.04);
+  border: 1px solid rgba(196,151,58,0.18);
+  padding: 48px 44px;
+  position: relative;
+}
+
+/* Coin décoratif */
+.tunnel-form::before, .tunnel-form::after {
+  content:'';
+  position:absolute;
+  width:20px; height:20px;
+  border-color: var(--urushi);
+  border-style:solid;
+  opacity:0.5;
+}
+.tunnel-form::before { top:12px; left:12px; border-width:2px 0 0 2px; }
+.tunnel-form::after { bottom:12px; right:12px; border-width:0 2px 2px 0; }
+
+.tunnel-form h3 {
+  font-family:var(--font-jp);
+  font-size:1.5rem;
+  color:var(--washi);
+  margin-bottom:8px;
+}
+.tunnel-form > p { font-size:0.82rem; opacity:0.4; margin-bottom:32px; color:var(--washi); }
+
+.form-group { margin-bottom:20px; }
+
+.form-group label {
+  display:block;
+  font-size:0.7rem;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  opacity:0.4;
+  margin-bottom:8px;
+  color:var(--washi);
+}
+
+.form-group input, .form-group select {
+  width:100%;
+  background: rgba(242,234,216,0.05);
+  border:1px solid rgba(196,151,58,0.18);
+  border-bottom: 1px solid rgba(196,151,58,0.4);
+  padding:12px 0 12px 4px;
+  font-family:var(--font-body);
+  font-size:0.9rem;
+  color:var(--washi);
+  outline:none;
+  transition:border-color 0.3s;
+}
+.form-group input:focus, .form-group select:focus { border-bottom-color:var(--urushi); }
+.form-group select option { background:var(--sumi); }
+
+.btn-urushi-full {
+  width:100%;
+  background:var(--urushi);
+  color:var(--washi);
+  padding:15px;
+  font-family:var(--font-body);
+  font-size:0.78rem;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  border:none; cursor:pointer;
+  margin-top:8px;
+  transition: opacity 0.3s, transform 0.2s;
+}
+.btn-urushi-full:hover { opacity:0.85; transform:translateY(-2px); }
+
+/* ─── ÉQUIPE ─── */
+#equipe { }
+
+.equipe-header { max-width:600px; margin-bottom:64px; }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid rgba(13,13,11,0.1);
+}
+
+.team-card {
+  cursor: pointer;
+  position: relative;
+  border-right: 1px solid rgba(13,13,11,0.1);
+  transition: background 0.3s;
+  overflow: hidden;
+}
+.team-card:last-child { border-right:none; }
+.team-card:hover { background: var(--washi-dark); }
+
+/* Ligne rouge sur hover */
+.team-card::after {
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0; height:3px;
+  background:var(--urushi);
+  transform:scaleX(0);
+  transition:transform 0.3s;
+}
+.team-card:hover::after { transform:scaleX(1); }
+
+.team-photo {
+  width:100%;
+  aspect-ratio:1;
+  background:var(--stone);
+  display:flex; align-items:center; justify-content:center;
+  font-size:3.5rem;
+  background: linear-gradient(135deg, var(--washi-dark), var(--stone) 100%);
+  position:relative;
+  overflow:hidden;
+}
+
+/* Motif japonais en fond de photo */
+.team-photo::before {
+  content:'';
+  position:absolute; inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='18' fill='none' stroke='rgba(13,13,11,0.06)' stroke-width='1'/%3E%3Ccircle cx='20' cy='20' r='10' fill='none' stroke='rgba(13,13,11,0.04)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size:40px 40px;
+}
+
+.team-emoji { font-size:3rem; position:relative; z-index:1; }
+
+.team-overlay {
+  position:absolute; inset:0;
+  background:rgba(13,13,11,0.8);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  opacity:0;
+  transition:opacity 0.3s;
+  padding:20px;
+}
+.team-card:hover .team-overlay { opacity:1; }
+
+.team-overlay-jp {
+  font-family:var(--font-jp);
+  font-size:0.7rem;
+  letter-spacing:0.35em;
+  color:var(--urushi);
+  margin-bottom:10px;
+}
+.team-overlay p { color:var(--washi); font-size:0.8rem; text-align:center; opacity:0.75; }
+
+.team-info { padding:24px 22px 28px; }
+.team-name { font-family:var(--font-jp); font-size:1rem; font-weight:600; margin-bottom:4px; }
+.team-role { font-size:0.75rem; color:var(--stone); letter-spacing:0.06em; display:block; margin-bottom:6px; }
+.team-location { font-size:0.72rem; opacity:0.4; margin-bottom:12px; display:block; }
+.team-contacts { display:flex; gap:10px; }
+.team-contacts a { font-size:0.7rem; color:var(--urushi); text-decoration:none; opacity:0.8; transition:opacity 0.2s; }
+.team-contacts a:hover { opacity:1; }
+
+/* ─── MODAL ─── */
+.modal-overlay {
+  display:none;
+  position:fixed; inset:0; z-index:200;
+  background:rgba(13,13,11,0.88);
+  backdrop-filter:blur(10px);
+  align-items:center; justify-content:center;
+  padding:40px;
+}
+.modal-overlay.open { display:flex; }
+
+.modal {
+  background:var(--washi);
+  max-width:720px; width:100%;
+  max-height:88vh;
+  overflow-y:auto;
+  padding:64px;
+  position:relative;
+  animation:modalIn 0.35s ease;
+}
+
+/* Coins décoratifs modal */
+.modal::before, .modal::after {
+  content:'';
+  position:absolute;
+  width:30px; height:30px;
+  border-color: var(--urushi);
+  border-style:solid;
+  opacity:0.4;
+}
+.modal::before { top:16px; left:16px; border-width:2px 0 0 2px; }
+.modal::after { bottom:16px; right:16px; border-width:0 2px 2px 0; }
+
+@keyframes modalIn {
+  from { opacity:0; transform:scale(0.96) translateY(16px); }
+  to { opacity:1; transform:scale(1) translateY(0); }
+}
+
+.modal-close {
+  position:absolute; top:20px; right:24px;
+  background:none; border:none; cursor:pointer;
+  font-size:1.2rem; color:var(--sumi); opacity:0.3;
+  transition:opacity 0.2s;
+  font-family:var(--font-jp);
+}
+.modal-close:hover { opacity:1; }
+
+.modal-header { display:flex; gap:32px; align-items:flex-start; margin-bottom:40px; }
+
+.modal-photo {
+  width:90px; height:90px;
+  background:linear-gradient(135deg, var(--washi-dark), var(--stone));
+  display:flex; align-items:center; justify-content:center;
+  font-size:2.4rem;
+  flex-shrink:0;
+  border:1px solid rgba(13,13,11,0.1);
+}
+
+.modal-info h2 { font-family:var(--font-jp); font-size:1.7rem; margin-bottom:6px; }
+
+.role-badge {
+  display:inline-block;
+  background:var(--urushi);
+  color:var(--washi);
+  font-size:0.68rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  padding:4px 12px;
+  margin-bottom:12px;
+}
+
+.modal-info .contact-links { display:flex; gap:16px; flex-wrap:wrap; }
+.modal-info .contact-links a {
+  font-size:0.8rem; color:var(--stone); text-decoration:none; transition:color 0.2s;
+}
+.modal-info .contact-links a:hover { color:var(--urushi); }
+
+.modal-bio {
+  font-size:0.93rem; line-height:1.85; opacity:0.75; margin-bottom:24px;
+  border-left:2px solid var(--kin);
+  padding-left:18px;
+}
+
+.modal-tags { display:flex; flex-wrap:wrap; gap:8px; }
+.modal-tag {
+  background:var(--washi-dark);
+  border:1px solid rgba(13,13,11,0.1);
+  font-size:0.72rem;
+  padding:5px 14px;
+  letter-spacing:0.08em;
+  color:var(--sumi);
+}
+
+/* ─── MISSION ─── */
+#mission { background: var(--washi-dark); }
+
+.mission-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:90px;
+  align-items:center;
+  max-width:1100px;
+  margin:0 auto;
+}
+
+.mission-visual {
+  position:relative;
+  height:420px;
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* Torii gate SVG */
+.torii {
+  position:absolute;
+  opacity:0.12;
+}
+
+.mission-rings { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+
+/* Anneaux orbitaux */
+.m-ring {
+  position:absolute;
+  border-radius:50%;
+  border:1px solid var(--urushi);
+  transform-origin: center center;
+}
+
+/* Anneau 1 — grand, lent, respiration */
+.m-ring:nth-child(1) {
+  width:360px; height:360px;
+  opacity:0;
+  border-color: var(--urushi);
+  animation: ringBreath1 12s ease-in-out infinite, ringFadeIn 2s ease forwards 0.2s;
+}
+/* Anneau 2 — moyen, rotation douce */
+.m-ring:nth-child(2) {
+  width:260px; height:260px;
+  opacity:0;
+  border-color: var(--kin);
+  border-style: dashed;
+  animation: orbitSpin 35s linear infinite, ringFadeIn 2s ease forwards 0.6s;
+}
+/* Anneau 3 — petit, contre-rotation */
+.m-ring:nth-child(3) {
+  width:160px; height:160px;
+  opacity:0;
+  border-color: var(--urushi);
+  animation: orbitSpinRev 22s linear infinite, ringFadeIn 2s ease forwards 1s;
+}
+/* Anneau 4 — très grand, ultra lent, respiration inversée */
+.m-ring:nth-child(4) {
+  width:460px; height:460px;
+  opacity:0;
+  border-color: var(--kin);
+  border-style: dotted;
+  animation: ringBreath2 18s ease-in-out infinite, ringFadeIn 2.5s ease forwards 0.4s;
+}
+
+/* Point central pulsant */
+.m-ring:nth-child(5) {
+  width:14px; height:14px;
+  background: var(--urushi);
+  border:none;
+  opacity:0;
+  animation: pulse 4s ease-in-out infinite, ringFadeIn 2s ease forwards 1.2s;
+}
+
+/* Particules orbitales */
+.orbit-dot {
+  position:absolute;
+  width:5px; height:5px;
+  border-radius:50%;
+  background: var(--kin);
+  opacity:0;
+  transform-origin: 0 0;
+}
+.orbit-dot:nth-child(6) {
+  animation: orbitDot1 18s linear infinite, ringFadeIn 2s ease forwards 1.4s;
+}
+.orbit-dot:nth-child(7) {
+  animation: orbitDot2 28s linear infinite, ringFadeIn 2s ease forwards 1.8s;
+  background: var(--urushi);
+  width:4px; height:4px;
+}
+
+@keyframes ringFadeIn {
+  to { opacity: var(--target-opacity, 0.18); }
+}
+.m-ring:nth-child(1) { --target-opacity: 0.14; }
+.m-ring:nth-child(2) { --target-opacity: 0.20; }
+.m-ring:nth-child(3) { --target-opacity: 0.26; }
+.m-ring:nth-child(4) { --target-opacity: 0.08; }
+.m-ring:nth-child(5) { --target-opacity: 0.6; }
+.orbit-dot:nth-child(6) { --target-opacity: 0.7; }
+.orbit-dot:nth-child(7) { --target-opacity: 0.55; }
+
+/* Respiration — expansion et contraction douces */
+@keyframes ringBreath1 {
+  0%,100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
+@keyframes ringBreath2 {
+  0%,100% { transform: scale(1.04); }
+  50%      { transform: scale(0.96); }
+}
+
+/* Rotations orbitales */
+@keyframes orbitSpin    { from{transform:rotate(0deg);}   to{transform:rotate(360deg);} }
+@keyframes orbitSpinRev { from{transform:rotate(0deg);}   to{transform:rotate(-360deg);} }
+
+/* Pulsation du centre */
+@keyframes pulse {
+  0%,100% { transform:scale(1);   box-shadow:0 0 0 0 rgba(139,26,26,0.4); }
+  50%      { transform:scale(1.4); box-shadow:0 0 0 12px rgba(139,26,26,0); }
+}
+
+/* Particules en orbite */
+@keyframes orbitDot1 {
+  from { transform: rotate(0deg)   translateX(130px) rotate(0deg);   }
+  to   { transform: rotate(360deg) translateX(130px) rotate(-360deg); }
+}
+@keyframes orbitDot2 {
+  from { transform: rotate(180deg) translateX(180px) rotate(-180deg); }
+  to   { transform: rotate(540deg) translateX(180px) rotate(-540deg); }
+}
+
+.mission-kanji {
+  position:relative; z-index:2;
+  font-family:var(--font-jp);
+  font-size:3.5rem;
+  color:var(--sumi);
+  opacity:0.15;
+  text-align:center;
+  line-height:1.2;
+  writing-mode:vertical-rl;
+}
+
+.mission-pillars { display:flex; flex-direction:column; gap:0; margin-top:48px; }
+
+.pillar {
+  display:flex; gap:24px; align-items:flex-start;
+  padding:28px 0;
+  border-bottom:1px solid rgba(13,13,11,0.08);
+  transition:padding-left 0.25s;
+}
+.pillar:last-child { border-bottom:none; }
+.pillar:hover { padding-left:10px; }
+
+.pillar-mark {
+  width:3px; height:40px;
+  background:var(--urushi);
+  flex-shrink:0;
+  margin-top:4px;
+}
+
+.pillar h4 { font-family:var(--font-jp); font-size:1.05rem; margin-bottom:6px; font-weight:600; }
+.pillar p { font-size:0.87rem; opacity:0.6; line-height:1.75; }
+
+/* ─── SERVICES ─── */
+#services { }
+
+.services-header { text-align:center; margin-bottom:64px; }
+.services-header .section-sub { margin:0 auto; }
+
+.services-grid {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:1px;
+  background:rgba(13,13,11,0.08);
+  max-width:1100px;
+  margin:0 auto;
+}
+
+.service-card {
+  background:var(--washi);
+  padding:48px 38px;
+  position:relative;
+  overflow:hidden;
+  transition:background 0.3s;
+}
+.service-card:hover { background:var(--mist); }
+
+.service-card::after {
+  content:'';
+  position:absolute;
+  left:0; top:0; bottom:0; width:3px;
+  background:var(--urushi);
+  transform:scaleY(0);
+  transform-origin:bottom;
+  transition:transform 0.35s;
+}
+.service-card:hover::after { transform:scaleY(1); }
+
+.service-jp {
+  font-family:var(--font-jp);
+  font-size:2rem;
+  opacity:0.06;
+  position:absolute;
+  bottom:16px; right:20px;
+  color:var(--sumi);
+  pointer-events:none;
+}
+
+.service-icon { font-size:1.8rem; margin-bottom:20px; display:block; }
+.service-card h3 { font-family:var(--font-jp); font-size:1.05rem; margin-bottom:12px; font-weight:600; }
+.service-card p { font-size:0.87rem; opacity:0.6; line-height:1.75; }
+
+/* ─── PARTENAIRES ─── */
+#partenaires { background:var(--washi-dark); text-align:center; }
+#partenaires .section-sub { margin:0 auto; }
+
+.partners-grid {
+  display:flex; gap:40px; align-items:center;
+  justify-content:center; flex-wrap:wrap;
+  max-width:900px;
+  margin:56px auto 0;
+}
+
+.partner-logo {
+  width:130px; height:56px;
+  background:var(--washi);
+  border:1px solid rgba(13,13,11,0.08);
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.72rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  opacity:0.45;
+  transition:all 0.3s;
+  cursor:pointer;
+  font-weight:400;
+}
+.partner-logo:hover { opacity:1; border-color:var(--urushi); }
+.partner-note { margin-top:36px; font-size:0.8rem; opacity:0.4; font-style:italic; }
+
+/* ─── CONTACT ─── */
+#contact {
+  background:var(--sumi);
+  color:var(--washi);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+#contact::before {
+  content:'縁';
+  position:absolute;
+  font-family:var(--font-jp);
+  font-size:30vw;
+  color:rgba(255,255,255,0.02);
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+
+#contact .section-title { color:var(--washi); }
+#contact .section-sub { color:var(--washi); opacity:0.4; margin:0 auto 52px; }
+
+.contact-inner {
+  max-width:560px;
+  margin:0 auto;
+  position:relative; z-index:2;
+}
+
+.contact-inner .form-group { margin-bottom:20px; text-align:left; }
+.contact-inner .form-group label { color:var(--washi); }
+.contact-inner .form-group input,
+.contact-inner .form-group textarea {
+  width:100%;
+  background:rgba(242,234,216,0.04);
+  border:none;
+  border-bottom:1px solid rgba(196,151,58,0.25);
+  padding:12px 0 12px 4px;
+  font-family:var(--font-body);
+  font-size:0.9rem;
+  color:var(--washi);
+  outline:none;
+  resize:none;
+  transition:border-color 0.3s;
+}
+.contact-inner .form-group input:focus,
+.contact-inner .form-group textarea:focus { border-bottom-color:var(--urushi); }
+
+.koalendar-link {
+  display:block;
+  margin-top:24px;
+  font-size:0.8rem;
+  opacity:0.4;
+  color:var(--washi);
+}
+.koalendar-link a { color:var(--kin); text-decoration:none; }
+.koalendar-link a:hover { opacity:0.7; }
+
+/* ─── FOOTER ─── */
+footer {
+  background:#080807;
+  color:var(--washi);
+  padding:36px 64px;
+  display:flex; justify-content:space-between; align-items:center;
+}
+
+.footer-brand {
+  font-family:var(--font-jp);
+  font-size:0.9rem;
+  letter-spacing:0.2em;
+  color:var(--kin);
+}
+
+.footer-links { display:flex; gap:28px; list-style:none; }
+.footer-links a { text-decoration:none; font-size:0.72rem; opacity:0.3; color:var(--washi); letter-spacing:0.1em; transition:opacity 0.2s; }
+.footer-links a:hover { opacity:0.7; }
+
+.footer-copy { font-size:0.7rem; opacity:0.2; letter-spacing:0.08em; }
+
+/* ─── SCROLL FADE ─── */
+.reveal {
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  nav { padding:14px 24px; }
+  .nav-links { display:none; }
+  section { padding:70px 24px; }
+  #hero { padding:100px 24px 60px; }
+  .hero-content { padding-left:20px; }
+  .steps-grid { grid-template-columns:1fr; gap:1px; }
+  .tunnel-grid { grid-template-columns:1fr; gap:48px; }
+  .team-grid { grid-template-columns:repeat(2,1fr); }
+  .mission-grid { grid-template-columns:1fr; }
+  .mission-visual { height:220px; }
+  .services-grid { grid-template-columns:1fr; }
+  footer { flex-direction:column; gap:20px; text-align:center; }
+  .footer-links { display:none; }
+  .modal { padding:32px 22px; }
+  .modal-header { flex-direction:column; }
+  .hero-kanji-stack { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- KANJI EN FILIGRANE GLOBAL -->
+<div class="kanji-bg">道　心　行</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-mon">
+    <!-- Mon circulaire SVG -->
+    <svg class="mon-svg" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="30" cy="30" r="28" stroke="#8b1a1a" stroke-width="1.2"/>
+      <circle cx="30" cy="30" r="22" stroke="#c4973a" stroke-width="0.6"/>
+      <circle cx="30" cy="30" r="5" fill="#8b1a1a"/>
+      <path d="M30 8 L30 22 M30 38 L30 52 M8 30 L22 30 M38 30 L52 30" stroke="#8b1a1a" stroke-width="0.8"/>
+      <path d="M14.6 14.6 L24.2 24.2 M35.8 35.8 L45.4 45.4 M45.4 14.6 L35.8 24.2 M24.2 35.8 L14.6 45.4" stroke="#c4973a" stroke-width="0.5"/>
+    </svg>
+    <div class="nav-title">
+      L'Avenir en Soi
+      <small>Collectif d'accompagnement</small>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#comment">Parcours</a></li>
+    <li><a href="#equipe">Experts</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#partenaires">Partenaires</a></li>
+    <li><a href="#tunnel" class="nav-cta">Commencer</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-ink"></div>
+  <div class="hero-line"></div>
+
+  <!-- Trait de pinceau SVG -->
+  <svg class="brushstroke brushstroke-1" viewBox="0 0 400 120" fill="none">
+    <path d="M10 60 Q80 20 160 55 Q240 90 320 40 Q370 15 390 50" stroke="#0d0d0b" stroke-width="28" stroke-linecap="round" fill="none" opacity="0.9"/>
+    <path d="M10 60 Q80 20 160 55 Q240 90 320 40 Q370 15 390 50" stroke="#1a1a16" stroke-width="10" stroke-linecap="round" fill="none"/>
+  </svg>
+  <svg class="brushstroke brushstroke-2" viewBox="0 0 260 60" fill="none">
+    <path d="M5 30 Q60 10 130 28 Q200 46 255 25" stroke="#0d0d0b" stroke-width="14" stroke-linecap="round" fill="none"/>
+  </svg>
+
+  <div class="hero-content">
+    <span class="hero-jp">道　— 　collectif</span>
+    <h1 class="hero-title">
+      Ce que tu cherches,<br>
+      <em>tu le portes déjà.</em>
+    </h1>
+    <p class="hero-sub">
+      Nous réunissons des experts de l'accompagnement humain pour t'aider à révéler, amplifier et construire ce que tu es vraiment capable d'être.
+    </p>
+    <div class="hero-actions">
+      <a href="#tunnel" class="btn-urushi">Découvrir mon expert</a>
+      <a href="#equipe" class="btn-outline">Rencontrer l'équipe</a>
+    </div>
+  </div>
+
+  <!-- Kanji verticaux décoratifs -->
+  <div class="hero-kanji-stack">心　身　志</div>
+</section>
+
+<!-- COMMENT ÇA MARCHE -->
+<section id="comment">
+  <span class="section-jp">一 二 三　— Le parcours</span>
+  <h2 class="section-title">Un chemin pensé pour toi</h2>
+  <div class="sumi-divider"></div>
+  <p class="section-sub">Un triage intelligent pour te mettre face à l'expert qui correspond à là où tu en es. Pas de standardisation. Pas de jargon.</p>
+
+  <div class="steps-grid" style="margin-top:56px;">
+    <div class="step-card reveal" data-jp="道">
+      <span class="step-num">一 — Étape 01</span>
+      <h3>Tu remplis ton profil</h3>
+      <p>Un questionnaire court pour cerner tes priorités du moment — pro, perso, ou les deux. Quelques minutes, un cap clair.</p>
+    </div>
+    <div class="step-card reveal" data-jp="心">
+      <span class="step-num">二 — Étape 02</span>
+      <h3>Tu reçois 3 vidéos clés</h3>
+      <p>Des experts s'adressent à ta situation. Tu vois, tu ressens, tu décides. Sans engagement, sans pression.</p>
+    </div>
+    <div class="step-card reveal" data-jp="縁">
+      <span class="step-num">三 — Étape 03</span>
+      <h3>Un entretien offert</h3>
+      <p>45 minutes avec l'expert choisi. Une conversation réelle pour voir si le chemin est juste — ensemble.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TUNNEL -->
+<section id="tunnel">
+  <div class="tunnel-grid">
+    <div>
+      <span class="section-jp">始　— Commencer</span>
+      <h2 class="section-title" style="color:var(--washi);">Par où commencer ?</h2>
+      <div class="sumi-divider" style="background:var(--urushi);"></div>
+      <p class="section-sub">Réponds à quelques questions. On s'occupe du reste. Chaque réponse nous aide à t'orienter vers les bonnes personnes.</p>
+
+      <div class="tunnel-steps">
+        <div class="tunnel-step">
+          <div class="tunnel-step-circle">一</div>
+          <div class="tunnel-step-text">
+            <h4>Inscription</h4>
+            <p>Ton prénom et ton mail — c'est tout ce qu'il faut pour commencer.</p>
+          </div>
+        </div>
+        <div class="tunnel-step">
+          <div class="tunnel-step-circle">二</div>
+          <div class="tunnel-step-text">
+            <h4>3 vidéos dans ta boîte mail</h4>
+            <p>Chacune pose une question différente. Tu avances à ton rythme.</p>
+          </div>
+        </div>
+        <div class="tunnel-step">
+          <div class="tunnel-step-circle">三</div>
+          <div class="tunnel-step-text">
+            <h4>Tu choisis ce qui compte</h4>
+            <p>Une question décisive : qu'est-ce qui est le plus important pour toi aujourd'hui ?</p>
+          </div>
+        </div>
+        <div class="tunnel-step">
+          <div class="tunnel-step-circle">四</div>
+          <div class="tunnel-step-text">
+            <h4>Ton expert t'attend</h4>
+            <p>L'entretien de 45 minutes est offert. Sans condition. Sans pression.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tunnel-form">
+      <h3>始める — Commencer</h3>
+      <p>Inscription sécurisée · Aucun spam</p>
+
+      <div class="form-group">
+        <label>Prénom</label>
+        <input type="text" placeholder="Ton prénom">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="ton@email.com">
+      </div>
+      <div class="form-group">
+        <label>Ce qui te touche le plus en ce moment</label>
+        <select>
+          <option value="" disabled selected>Choisis une direction</option>
+          <option>Ma vie professionnelle · sens au travail</option>
+          <option>Mes relations · communication</option>
+          <option>Ma confiance · identité</option>
+          <option>Mon énergie · santé · corps</option>
+          <option>Mes finances · projets de vie</option>
+          <option>Ma spiritualité · profondeur intérieure</option>
+        </select>
+      </div>
+
+      <button class="btn-urushi-full" onclick="handleFormSubmit(event)">Recevoir les 3 vidéos →</button>
+      <p style="font-size:0.72rem;opacity:0.3;margin-top:14px;color:var(--washi);text-align:center;">Intégration Brevo · RGPD</p>
+    </div>
+  </div>
+</section>
+
+<!-- ÉQUIPE -->
+<section id="equipe">
+  <div class="equipe-header">
+    <span class="section-jp">人　— Les experts</span>
+    <h2 class="section-title">Ceux qui marchent à tes côtés</h2>
+    <div class="sumi-divider"></div>
+    <p class="section-sub">Des professionnels de l'humain, chacun avec son chemin, sa méthode, sa singularité. Clique pour en savoir plus.</p>
+  </div>
+
+  <div class="team-grid">
+    <div class="team-card reveal" onclick="openModal('denis')">
+      <div class="team-photo">
+        <span class="team-emoji">🧭</span>
+        <div class="team-overlay">
+          <span class="team-overlay-jp">詳細　— Voir la fiche</span>
+          <p>Coach philosophique · Méthode 4P · Stoïcisme</p>
+        </div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Denis Deblevid</div>
+        <span class="team-role">Coach Philosophique · Stoïcisme</span>
+        <span class="team-location">📍 Marseille</span>
+        <div class="team-contacts">
+          <a href="tel:+33600000000" onclick="event.stopPropagation()">📞 Tél.</a>
+          <a href="mailto:denisdeblevidcontact@gmail.com" onclick="event.stopPropagation()">✉ Mail</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-card reveal" onclick="openModal('expert2')">
+      <div class="team-photo">
+        <span class="team-emoji">🎭</span>
+        <div class="team-overlay">
+          <span class="team-overlay-jp">詳細　— Voir la fiche</span>
+          <p>Formateur théâtre · Prise de parole</p>
+        </div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Expert 2</div>
+        <span class="team-role">Formateur · Prise de parole</span>
+        <span class="team-location">📍 Lyon</span>
+        <div class="team-contacts">
+          <a href="#" onclick="event.stopPropagation()">📞 Tél.</a>
+          <a href="#" onclick="event.stopPropagation()">✉ Mail</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-card reveal" onclick="openModal('expert3')">
+      <div class="team-photo">
+        <span class="team-emoji">🧘</span>
+        <div class="team-overlay">
+          <span class="team-overlay-jp">詳細　— Voir la fiche</span>
+          <p>Coach bien-être · Corps & Mental</p>
+        </div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Expert 3</div>
+        <span class="team-role">Coach Bien-être · Corps</span>
+        <span class="team-location">📍 Paris</span>
+        <div class="team-contacts">
+          <a href="#" onclick="event.stopPropagation()">📞 Tél.</a>
+          <a href="#" onclick="event.stopPropagation()">✉ Mail</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-card reveal" onclick="openModal('expert4')">
+      <div class="team-photo">
+        <span class="team-emoji">💼</span>
+        <div class="team-overlay">
+          <span class="team-overlay-jp">詳細　— Voir la fiche</span>
+          <p>Coach pro · Leadership</p>
+        </div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Expert 4</div>
+        <span class="team-role">Coach Pro · Leadership</span>
+        <span class="team-location">📍 Bordeaux</span>
+        <div class="team-contacts">
+          <a href="#" onclick="event.stopPropagation()">📞 Tél.</a>
+          <a href="#" onclick="event.stopPropagation()">✉ Mail</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
+  <div class="modal" id="modalContent">
+    <button class="modal-close" onclick="closeModal()">✕ 閉じる</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="mission-grid">
+    <div>
+      <span class="section-jp">志　— Notre raison d'être</span>
+      <h2 class="section-title">Catalyseurs, amplificateurs, révélateurs</h2>
+      <div class="sumi-divider"></div>
+      <p class="section-sub">Nous ne t'apprenons pas à être quelqu'un d'autre. Nous t'aidons à devenir pleinement celui que tu es déjà.</p>
+
+      <div class="mission-pillars">
+        <div class="pillar reveal">
+          <div class="pillar-mark"></div>
+          <div>
+            <h4>Pourquoi nous existons</h4>
+            <p>Parce que trop de potentiels restent enfouis, étouffés par les croyances héritées, les urgences du quotidien et le manque d'un regard juste.</p>
+          </div>
+        </div>
+        <div class="pillar reveal">
+          <div class="pillar-mark"></div>
+          <div>
+            <h4>Comment nous travaillons</h4>
+            <p>En synergie. Chaque expert apporte sa discipline — ensemble nous créons un écosystème de progression cohérent et sur-mesure.</p>
+          </div>
+        </div>
+        <div class="pillar reveal">
+          <div class="pillar-mark"></div>
+          <div>
+            <h4>Avec qui nous avançons</h4>
+            <p>Des femmes et des hommes qui ont soif de sens, d'exigence et d'une vie construite — pas subie. Des chercheurs, pas des attentistes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mission-visual">
+      <div class="mission-rings">
+        <div class="m-ring"></div>
+        <div class="m-ring"></div>
+        <div class="m-ring"></div>
+        <div class="m-ring"></div>
+        <div class="m-ring"></div>
+        <div class="orbit-dot"></div>
+        <div class="orbit-dot"></div>
+      </div>
+      <!-- Enso (cercle zen) SVG -->
+      <svg viewBox="0 0 200 200" style="position:absolute;width:200px;opacity:0.12;" fill="none">
+        <path d="M100 15 C145 15 180 50 180 95 C180 145 145 182 100 185 C55 188 18 153 15 108 C12 63 45 20 90 15" stroke="#8b1a1a" stroke-width="8" stroke-linecap="round"/>
+      </svg>
+      <div class="mission-kanji">心<br>道<br>志</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <span class="section-jp">技　— Ce que nous proposons</span>
+    <h2 class="section-title">Des leviers de transformation réelle</h2>
+    <div class="sumi-divider" style="margin:0 auto 28px;"></div>
+    <p class="section-sub">Coaching individuel, stages, formations, ateliers collectifs — nous agissons là où ça compte vraiment.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-jp">心</span>
+      <span class="service-icon">🎯</span>
+      <h3>Coaching individuel</h3>
+      <p>Un accompagnement sur-mesure avec l'expert qui correspond à ta réalité. Travail en profondeur, progression mesurable.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-jp">行</span>
+      <span class="service-icon">⚡</span>
+      <h3>Stages & Ateliers</h3>
+      <p>Des immersions intenses — nature, survie, théâtre, philosophie pratique. Apprendre par l'expérience qui transforme.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-jp">業</span>
+      <span class="service-icon">🏢</span>
+      <h3>Formations entreprises</h3>
+      <p>Interventions en organisation pour développer talents, leadership et cohésion. Synergies à l'échelle d'une équipe.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-jp">知</span>
+      <span class="service-icon">📚</span>
+      <h3>Ressources & Outils</h3>
+      <p>Guides, supports, contenus pédagogiques pour continuer à avancer entre les sessions. Le chemin ne s'arrête pas.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-jp">縁</span>
+      <span class="service-icon">🤝</span>
+      <h3>Accompagnement collectif</h3>
+      <p>Groupes de pairs, cercles de progression. L'intelligence collective au service de ta montée en compétence.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-jp">道</span>
+      <span class="service-icon">🌐</span>
+      <h3>Parcours digitaux</h3>
+      <p>Séquences email, vidéos, questionnaires. Un tunnel pédagogique qui commence bien avant le premier entretien.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PARTENAIRES -->
+<section id="partenaires">
+  <span class="section-jp">縁　— Synergies & Partenariats</span>
+  <h2 class="section-title">Ceux qui avancent avec nous</h2>
+  <div class="sumi-divider"></div>
+  <p class="section-sub">Entreprises, structures et organisations qui partagent nos valeurs et avec qui nous créons, formons et agissons.</p>
+
+  <div class="partners-grid">
+    <div class="partner-logo">Partenaire A</div>
+    <div class="partner-logo">Partenaire B</div>
+    <div class="partner-logo">Partenaire C</div>
+    <div class="partner-logo">Partenaire D</div>
+    <div class="partner-logo">Partenaire E</div>
+    <div class="partner-logo">Partenaire F</div>
+  </div>
+
+  <p class="partner-note">Rejoindre l'écosystème ? <a href="#contact" style="color:var(--urushi);text-decoration:none;">Parlons-en →</a></p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <span class="section-jp">縁　— Nous contacter</span>
+  <h2 class="section-title">Une question ? Un projet ?</h2>
+  <div class="sumi-divider" style="margin:0 auto 20px; background:var(--urushi);"></div>
+  <p class="section-sub">On répond vite et bien. Ou réservez directement un créneau via le calendrier en ligne.</p>
+
+  <div class="contact-inner">
+    <div class="form-group">
+      <label>Nom & Prénom</label>
+      <input type="text" placeholder="Votre identité">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" placeholder="votre@email.com">
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea rows="4" placeholder="Ce que vous souhaitez nous dire..."></textarea>
+    </div>
+    <button class="btn-urushi-full" style="margin-top:4px;">Envoyer</button>
+    <span class="koalendar-link">Ou réservez directement → <a href="#">Calendrier Koalendar</a></span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">L'Avenir en Soi　道</span>
+  <ul class="footer-links">
+    <li><a href="#comment">Parcours</a></li>
+    <li><a href="#equipe">Experts</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#partenaires">Partenaires</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 — Collectif · Tous droits réservés</span>
+</footer>
+
+<script>
+const experts = {
+  denis: {
+    emoji:'🧭',
+    name:'Denis Deblevid',
+    role:'Coach Philosophique · Stoïcisme',
+    location:'Marseille',
+    phone:'+33 6 00 00 00 00',
+    email:'denisdeblevidcontact@gmail.com',
+    bio:[
+      `Coach philosophique et fondateur de la Méthode 4P (Psychologique, Physique, Philosophique, Pneuma), Denis accompagne ceux qui portent une soif profonde de sens et de transformation. Son approche s'enracine dans le stoïcisme pratique — une philosophie vécue, incarnée, qui ne reste pas dans les livres.`,
+      `Ancien pratiquant d'arts martiaux pendant dix ans, Denis a traversé ses propres ruptures pour construire une méthode qui touche l'être dans toutes ses dimensions. Il marche à tes côtés, non au-dessus de toi.`
+    ],
+    tags:['Stoïcisme','Méthode 4P','Identité','Sens','Résilience','Corps & Mental','Philosophie pratique']
+  },
+  expert2: {
+    emoji:'🎭',
+    name:'Expert 2',
+    role:'Formateur · Prise de parole',
+    location:'Lyon',
+    phone:'+33 6 00 00 00 00',
+    email:'expert2@collectif.fr',
+    bio:[
+      `Formateur en théâtre et prise de parole en public depuis plus de 15 ans, [Prénom] aide dirigeants, managers et individus à trouver leur voix juste — celle qui convainc sans forcer, qui touche sans manipuler.`,
+      `Son approche mêle techniques scéniques, travail corporel et connaissance de soi. Prendre la parole, c'est d'abord prendre sa place.`
+    ],
+    tags:['Théâtre','Prise de parole','Leadership','Communication','Confiance','Présence']
+  },
+  expert3: {
+    emoji:'🧘',
+    name:'Expert 3',
+    role:'Coach Bien-être · Corps',
+    location:'Paris',
+    phone:'+33 6 00 00 00 00',
+    email:'expert3@collectif.fr',
+    bio:[
+      `Spécialiste du lien corps-mental, [Prénom] travaille à l'intersection du mouvement, de la nutrition et de la psychologie somatique. Son conviction : la transformation durable commence par une réappropriation du corps.`,
+      `Elle intervient auprès de personnes épuisées, déconnectées d'elles-mêmes, en quête d'un équilibre réel entre performance et santé.`
+    ],
+    tags:['Corps','Santé','Énergie','Somatique','Nutrition','Bien-être','Gestion du stress']
+  },
+  expert4: {
+    emoji:'💼',
+    name:'Expert 4',
+    role:'Coach Pro · Leadership',
+    location:'Bordeaux',
+    phone:'+33 6 00 00 00 00',
+    email:'expert4@collectif.fr',
+    bio:[
+      `Coach certifié et ancien directeur commercial, [Prénom] accompagne dirigeants et managers qui veulent allier performance et sens. Son terrain : les décisions difficiles, la posture de leader, la construction d'une vision qui fédère.`,
+      `Il croit que le leadership authentique est un acte d'humilité autant que de courage.`
+    ],
+    tags:['Leadership','Management','Vision','BtoB','Transformation pro','Courage managérial']
+  }
+};
+
+function openModal(id){
+  const e = experts[id];
+  if(!e) return;
+  const bioHTML = e.bio.map(p=>`<p class="modal-bio">${p}</p>`).join('');
+  const tagsHTML = e.tags.map(t=>`<span class="modal-tag">${t}</span>`).join('');
+  document.getElementById('modalBody').innerHTML = `
+    <div class="modal-header">
+      <div class="modal-photo">${e.emoji}</div>
+      <div class="modal-info">
+        <h2>${e.name}</h2>
+        <span class="role-badge">${e.role}</span><br>
+        <small style="opacity:.45;font-size:.8rem;display:block;margin-bottom:12px;">📍 ${e.location}</small>
+        <div class="contact-links">
+          <a href="tel:${e.phone}">📞 ${e.phone}</a>
+          <a href="mailto:${e.email}">✉ ${e.email}</a>
+        </div>
+      </div>
+    </div>
+    ${bioHTML}
+    <div class="modal-tags">${tagsHTML}</div>
+  `;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function closeModalOnBg(e){
+  if(e.target===document.getElementById('modalOverlay')) closeModal();
+}
+
+function handleFormSubmit(e){
+  const btn=e.target;
+  btn.textContent='✓ Vérifie ton mail — les vidéos arrivent';
+  btn.style.background='var(--matcha)';
+  setTimeout(()=>{
+    btn.textContent='Recevoir les 3 vidéos →';
+    btn.style.background='var(--urushi)';
+  },3500);
+}
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting) en.target.classList.add('visible');
+  });
+},{threshold:0.1});
+
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+</script>
+</body>
+</html>
