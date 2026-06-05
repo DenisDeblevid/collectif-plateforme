@@ -49,20 +49,6 @@ body {
 }
 
 /* ─── KANJI WATERMARK ─── */
-.kanji-bg {
-  position: fixed;
-  top: 0; right: -60px;
-  font-family: var(--font-jp);
-  font-size: 28vw;
-  line-height: 1;
-  color: var(--sumi);
-  opacity: 0.025;
-  pointer-events: none;
-  z-index: 0;
-  writing-mode: vertical-rl;
-  letter-spacing: 0.1em;
-  user-select: none;
-}
 
 /* ─── NAV ─── */
 nav {
@@ -269,21 +255,6 @@ nav {
 .btn-outline:hover { border-color:var(--jade); color:var(--jade); transform:translateY(-2px); }
 
 /* Kanji décoratifs hero */
-.hero-kanji-stack {
-  position: absolute;
-  right: 7%;
-  top: 50%;
-  transform: translateY(-50%);
-  writing-mode: vertical-rl;
-  font-family: var(--font-jp);
-  font-size: 5rem;
-  letter-spacing: 0.15em;
-  color: var(--sumi);
-  opacity: 0.07;
-  z-index: 1;
-  animation: fadeRight 1.2s ease forwards 1s;
-  opacity: 0;
-}
 
 @keyframes wheelSpin { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
 @keyframes fadeRight {
@@ -573,13 +544,6 @@ section { padding: 110px 64px; position:relative; }
 }
 .team-card:hover .team-overlay { opacity:1; }
 
-.team-overlay-jp {
-  font-family:var(--font-jp);
-  font-size:0.7rem;
-  letter-spacing:0.35em;
-  color:var(--urushi);
-  margin-bottom:10px;
-}
 .team-overlay p { color:var(--washi); font-size:0.8rem; text-align:center; opacity:0.75; }
 
 .team-info { padding:24px 22px 28px; }
@@ -816,16 +780,6 @@ section { padding: 110px 64px; position:relative; }
   to   { transform: rotate(540deg) translateX(180px) rotate(-540deg); }
 }
 
-.mission-kanji {
-  position:relative; z-index:2;
-  font-family:var(--font-jp);
-  font-size:3.5rem;
-  color:var(--sumi);
-  opacity:0.15;
-  text-align:center;
-  line-height:1.2;
-  writing-mode:vertical-rl;
-}
 
 .mission-pillars { display:flex; flex-direction:column; gap:0; margin-top:48px; }
 
@@ -883,15 +837,6 @@ section { padding: 110px 64px; position:relative; }
 }
 .service-card:hover::after { transform:scaleY(1); }
 
-.service-jp {
-  font-family:var(--font-jp);
-  font-size:2rem;
-  opacity:0.12;
-  position:absolute;
-  bottom:16px; right:20px;
-  color:var(--jade);
-  pointer-events:none;
-}
 
 .service-icon { font-size:1.8rem; margin-bottom:20px; display:block; }
 .service-card h3 { font-family:var(--font-jp); font-size:1.05rem; margin-bottom:12px; font-weight:600; }
@@ -1028,8 +973,7 @@ footer {
   .footer-links { display:none; }
   .modal { padding:32px 22px; }
   .modal-header { flex-direction:column; }
-  .hero-kanji-stack { display:none; }
-}
+  }
 
   5% {
     opacity: 0.7;
@@ -1063,44 +1007,6 @@ footer {
 }
 
 
-/* ─── PÉTALES DE CERISIER SAKURA ─── */
-.sakura-container {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 50;
-  overflow: hidden;
-}
-
-.petale {
-  position: absolute;
-  top: -30px;
-  opacity: 0;
-  animation: volerPetale ease-in-out infinite;
-  will-change: transform, opacity;
-}
-
-/* SVG pétale inline via background — chaque pétale est un SVG */
-.petale svg {
-  display: block;
-}
-
-/* 9 pétales — rares, décalés */
-.petale:nth-child(1)  { left:  6%;  animation-duration:14s; animation-delay: 1s;  width:18px; }
-.petale:nth-child(2)  { left: 19%;  animation-duration:18s; animation-delay: 8s;  width:14px; }
-.petale:nth-child(3)  { left: 34%;  animation-duration:12s; animation-delay:16s;  width:20px; }
-.petale:nth-child(4)  { left: 50%;  animation-duration:16s; animation-delay: 4s;  width:16px; }
-.petale:nth-child(5)  { left: 63%;  animation-duration:20s; animation-delay:11s;  width:22px; }
-.petale:nth-child(6)  { left: 77%;  animation-duration:13s; animation-delay: 6s;  width:15px; }
-.petale:nth-child(7)  { left: 88%;  animation-duration:17s; animation-delay:22s;  width:18px; }
-.petale:nth-child(8)  { left: 28%;  animation-duration:15s; animation-delay:30s;  width:13px; }
-.petale:nth-child(9)  { left: 72%;  animation-duration:19s; animation-delay:18s;  width:17px; }
-
-@keyframes volerPetale {
-  0% {
-    opacity: 0;
-    transform: translateY(0) translateX(0) rotate(0deg) rotateY(0deg);
-  }
   6% {
     opacity: 0.9;
   }
@@ -1235,212 +1141,267 @@ footer {
   display: none;
 }
 
+
+/* ─── GOUTTES D'EAU NORIA ─── */
+.eau-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.goutte-eau {
+  position: absolute;
+  top: -30px;
+  opacity: 0;
+  animation: tomberEau ease-in linear infinite;
+  will-change: transform, opacity;
+}
+
+/* 8 gouttes — rares, décalées */
+.goutte-eau:nth-child(1)  { left:  7%;  animation-duration:8s;  animation-delay: 1s;  width:10px; }
+.goutte-eau:nth-child(2)  { left: 20%;  animation-duration:11s; animation-delay:10s;  width: 7px; }
+.goutte-eau:nth-child(3)  { left: 36%;  animation-duration: 9s; animation-delay:18s;  width:12px; }
+.goutte-eau:nth-child(4)  { left: 51%;  animation-duration:10s; animation-delay: 5s;  width: 8px; }
+.goutte-eau:nth-child(5)  { left: 65%;  animation-duration: 8s; animation-delay:24s;  width:11px; }
+.goutte-eau:nth-child(6)  { left: 78%;  animation-duration:12s; animation-delay: 7s;  width: 9px; }
+.goutte-eau:nth-child(7)  { left: 88%;  animation-duration: 9s; animation-delay:32s;  width:10px; }
+.goutte-eau:nth-child(8)  { left: 44%;  animation-duration:11s; animation-delay:15s;  width: 7px; }
+
+@keyframes tomberEau {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scaleY(1);
+  }
+  5% { opacity: 0.75; }
+  /* Légère dérive — l'eau suit le vent */
+  40% {
+    transform: translateY(40vh) translateX(8px) scaleY(1.15);
+    opacity: 0.65;
+  }
+  75% {
+    transform: translateY(75vh) translateX(-5px) scaleY(1.1);
+    opacity: 0.45;
+  }
+  92% { opacity: 0.2; }
+  100% {
+    opacity: 0;
+    transform: translateY(108vh) translateX(4px) scaleY(1);
+  }
+}
+
+
+/* ─── ROUE COSMIQUE FILIGRANE ─── */
+.roue-cosmique {
+  position: fixed;
+  right: -15vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80vw;
+  height: 80vw;
+  max-width: 900px;
+  max-height: 900px;
+  pointer-events: none;
+  z-index: 0;
+  animation: roueCosmiqueRotation 90s linear infinite;
+  opacity: 1;
+}
+
+@keyframes roueCosmiqueRotation {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to   { transform: translateY(-50%) rotate(360deg); }
+}
+
 </style>
 </head>
 <body>
 
-<!-- PÉTALES DE CERISIER SAKURA -->
-<div class="sakura-container">
-  <div class="petale"><svg viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
-  <!-- Pétale principal -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="#e8b4c0" opacity="0.88"/>
-  <!-- Reflet lumineux -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="url(#pg)" opacity="0.4"/>
-  <!-- Nervure centrale -->
-  <path d="M20 42 C20 42 20 20 20 4" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
-  <!-- Nervures latérales -->
-  <path d="M20 28 C14 24 8 20 6 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 28 C26 24 32 20 34 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 20 C15 17 10 14 8 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <path d="M20 20 C25 17 30 14 32 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <!-- Encoche du pétale en haut -->
-  <path d="M16 3 C18 6 20 2 20 2 C20 2 22 6 24 3" fill="none" stroke="#e8b4c0" stroke-width="1"/>
+<!-- ROUE COSMIQUE FILIGRANE -->
+<svg class="roue-cosmique" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="white"/>
-      <stop offset="100%" stop-color="transparent"/>
+    <!-- Dégradé vertical : eau (bleu) → terre (cuivre) → ciel (teal clair) -->
+    <linearGradient id="cosmicGrad" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%"   stop-color="#234B5E" stop-opacity="0.18"/>
+      <stop offset="35%"  stop-color="#B86F4C" stop-opacity="0.10"/>
+      <stop offset="70%"  stop-color="#3B7A78" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#E8DCC9" stop-opacity="0.06"/>
+    </linearGradient>
+    <linearGradient id="rayonGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#234B5E" stop-opacity="0.14"/>
+      <stop offset="50%"  stop-color="#3B7A78" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#234B5E" stop-opacity="0.14"/>
     </linearGradient>
   </defs>
-</svg></div><div class="petale"><svg viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
-  <!-- Pétale principal -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="#e8b4c0" opacity="0.88"/>
-  <!-- Reflet lumineux -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="url(#pg)" opacity="0.4"/>
-  <!-- Nervure centrale -->
-  <path d="M20 42 C20 42 20 20 20 4" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
-  <!-- Nervures latérales -->
-  <path d="M20 28 C14 24 8 20 6 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 28 C26 24 32 20 34 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 20 C15 17 10 14 8 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <path d="M20 20 C25 17 30 14 32 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <!-- Encoche du pétale en haut -->
-  <path d="M16 3 C18 6 20 2 20 2 C20 2 22 6 24 3" fill="none" stroke="#e8b4c0" stroke-width="1"/>
+
+  <!-- ── JANTES ── -->
+  <!-- Jante extérieure — l'horizon, la limite du monde -->
+  <circle cx="250" cy="250" r="240" stroke="url(#cosmicGrad)" stroke-width="2.5"/>
+  <!-- Jante médiane — la surface de la terre -->
+  <circle cx="250" cy="250" r="175" stroke="url(#cosmicGrad)" stroke-width="1.5" stroke-dasharray="6 3"/>
+  <!-- Jante intérieure — le cœur, le feu -->
+  <circle cx="250" cy="250" r="110" stroke="url(#cosmicGrad)" stroke-width="1"/>
+  <!-- Jante âme — le noyau -->
+  <circle cx="250" cy="250" r="50" stroke="url(#cosmicGrad)" stroke-width="1" stroke-dasharray="3 4"/>
+  <!-- Moyeu -->
+  <circle cx="250" cy="250" r="18" stroke="#B86F4C" stroke-width="1.5" stroke-opacity="0.2"/>
+  <circle cx="250" cy="250" r="7"  fill="#234B5E" fill-opacity="0.15"/>
+
+  <!-- ── 12 RAYONS — les heures, les mois, les cycles ── -->
+  <line x1="250" y1="10"  x2="250" y2="490" stroke="url(#rayonGrad)" stroke-width="1.2"/>
+  <line x1="10"  y1="250" x2="490" y2="250" stroke="url(#rayonGrad)" stroke-width="1.2"/>
+  <line x1="47"  y1="47"  x2="453" y2="453" stroke="url(#rayonGrad)" stroke-width="0.9"/>
+  <line x1="453" y1="47"  x2="47"  y2="453" stroke="url(#rayonGrad)" stroke-width="0.9"/>
+  <line x1="10"  y1="153" x2="490" y2="347" stroke="url(#rayonGrad)" stroke-width="0.6"/>
+  <line x1="10"  y1="347" x2="490" y2="153" stroke="url(#rayonGrad)" stroke-width="0.6"/>
+  <line x1="153" y1="10"  x2="347" y2="490" stroke="url(#rayonGrad)" stroke-width="0.6"/>
+  <line x1="347" y1="10"  x2="153" y2="490" stroke="url(#rayonGrad)" stroke-width="0.6"/>
+  <!-- 4 rayons supplémentaires — les saisons intermédiaires -->
+  <line x1="77"  y1="20"  x2="423" y2="480" stroke="url(#rayonGrad)" stroke-width="0.4" stroke-opacity="0.5"/>
+  <line x1="423" y1="20"  x2="77"  y2="480" stroke="url(#rayonGrad)" stroke-width="0.4" stroke-opacity="0.5"/>
+  <line x1="20"  y1="77"  x2="480" y2="423" stroke="url(#rayonGrad)" stroke-width="0.4" stroke-opacity="0.5"/>
+  <line x1="20"  y1="423" x2="480" y2="77"  stroke="url(#rayonGrad)" stroke-width="0.4" stroke-opacity="0.5"/>
+
+  <!-- ── GODETS / AUBES — l'eau qui monte ── -->
+  <!-- 8 godets sur la jante extérieure -->
+  <path d="M250 10 C244 20 244 30 250 30 C256 30 256 20 250 10Z" fill="#234B5E" fill-opacity="0.15"/>
+  <path d="M490 250 C480 244 470 244 470 250 C470 256 480 256 490 250Z" fill="#234B5E" fill-opacity="0.15"/>
+  <path d="M250 490 C256 480 256 470 250 470 C244 470 244 480 250 490Z" fill="#234B5E" fill-opacity="0.15"/>
+  <path d="M10 250 C20 256 30 256 30 250 C30 244 20 244 10 250Z" fill="#234B5E" fill-opacity="0.15"/>
+  <path d="M453 47 C445 54 443 63 449 67 C455 71 462 65 453 47Z" fill="#3B7A78" fill-opacity="0.12"/>
+  <path d="M453 453 C462 441 458 432 452 434 C446 436 443 445 453 453Z" fill="#3B7A78" fill-opacity="0.12"/>
+  <path d="M47 453 C55 462 64 460 66 454 C68 448 62 441 47 453Z" fill="#3B7A78" fill-opacity="0.12"/>
+  <path d="M47 47 C38 59 42 68 48 66 C54 64 57 55 47 47Z" fill="#3B7A78" fill-opacity="0.12"/>
+
+  <!-- ── ONDULATIONS EAU en bas ── -->
+  <path d="M100 420 Q160 408 220 420 Q280 432 340 420 Q400 408 440 416" stroke="#234B5E" stroke-opacity="0.12" stroke-width="1.5" fill="none"/>
+  <path d="M80 435 Q150 421 230 435 Q310 449 380 435 Q430 424 450 430" stroke="#234B5E" stroke-opacity="0.08" stroke-width="1" fill="none"/>
+
+  <!-- ── ÉTOILES / POINTS ciel en haut ── -->
+  <circle cx="250" cy="35"  r="2" fill="#3B7A78" fill-opacity="0.25"/>
+  <circle cx="220" cy="50"  r="1.2" fill="#3B7A78" fill-opacity="0.18"/>
+  <circle cx="280" cy="48"  r="1.5" fill="#3B7A78" fill-opacity="0.2"/>
+  <circle cx="195" cy="70"  r="1" fill="#234B5E" fill-opacity="0.15"/>
+  <circle cx="305" cy="65"  r="1" fill="#234B5E" fill-opacity="0.15"/>
+
+  <!-- ── RACINES / TERRE en bas (symétrique) ── -->
+  <path d="M250 460 C240 468 235 475 240 480" stroke="#B86F4C" stroke-opacity="0.12" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  <path d="M250 460 C260 470 264 477 258 482" stroke="#B86F4C" stroke-opacity="0.10" stroke-width="1" fill="none" stroke-linecap="round"/>
+  <path d="M250 460 C250 472 248 480 250 488" stroke="#B86F4C" stroke-opacity="0.08" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+</svg>
+
+
+<!-- GOUTTES D'EAU NORIA -->
+<div class="eau-container">
+<div class="goutte-eau"><svg viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="white"/>
-      <stop offset="100%" stop-color="transparent"/>
-    </linearGradient>
+    <radialGradient id="geau0" cx="38%" cy="32%" r="60%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.7"/>
+      <stop offset="40%"  stop-color="#3B7A78" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#234B5E" stop-opacity="0.6"/>
+    </radialGradient>
   </defs>
-</svg></div><div class="petale"><svg viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
-  <!-- Pétale principal -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="#e8b4c0" opacity="0.88"/>
-  <!-- Reflet lumineux -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="url(#pg)" opacity="0.4"/>
-  <!-- Nervure centrale -->
-  <path d="M20 42 C20 42 20 20 20 4" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
-  <!-- Nervures latérales -->
-  <path d="M20 28 C14 24 8 20 6 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 28 C26 24 32 20 34 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 20 C15 17 10 14 8 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <path d="M20 20 C25 17 30 14 32 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <!-- Encoche du pétale en haut -->
-  <path d="M16 3 C18 6 20 2 20 2 C20 2 22 6 24 3" fill="none" stroke="#e8b4c0" stroke-width="1"/>
+  <path d="M12 2 C12 2 2 14 2 21 C2 27.6 6.5 32 12 32 C17.5 32 22 27.6 22 21 C22 14 12 2 12 2Z"
+        fill="url(#geau0)" stroke="rgba(59,122,120,0.25)" stroke-width="0.5"/>
+  <path d="M8 9 C9 7 11 6 12 7 C11 8 9 9 8 9Z" fill="rgba(255,255,255,0.55)"/>
+  <ellipse cx="9" cy="13" rx="1.2" ry="2" fill="rgba(255,255,255,0.28)" transform="rotate(-15 9 13)"/>
+</svg></div>
+<div class="goutte-eau"><svg viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="white"/>
-      <stop offset="100%" stop-color="transparent"/>
-    </linearGradient>
+    <radialGradient id="geau1" cx="38%" cy="32%" r="60%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.7"/>
+      <stop offset="40%"  stop-color="#3B7A78" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#234B5E" stop-opacity="0.6"/>
+    </radialGradient>
   </defs>
-</svg></div><div class="petale"><svg viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
-  <!-- Pétale principal -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="#e8b4c0" opacity="0.88"/>
-  <!-- Reflet lumineux -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="url(#pg)" opacity="0.4"/>
-  <!-- Nervure centrale -->
-  <path d="M20 42 C20 42 20 20 20 4" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
-  <!-- Nervures latérales -->
-  <path d="M20 28 C14 24 8 20 6 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 28 C26 24 32 20 34 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 20 C15 17 10 14 8 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <path d="M20 20 C25 17 30 14 32 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <!-- Encoche du pétale en haut -->
-  <path d="M16 3 C18 6 20 2 20 2 C20 2 22 6 24 3" fill="none" stroke="#e8b4c0" stroke-width="1"/>
+  <path d="M12 2 C12 2 2 14 2 21 C2 27.6 6.5 32 12 32 C17.5 32 22 27.6 22 21 C22 14 12 2 12 2Z"
+        fill="url(#geau1)" stroke="rgba(59,122,120,0.25)" stroke-width="0.5"/>
+  <path d="M8 9 C9 7 11 6 12 7 C11 8 9 9 8 9Z" fill="rgba(255,255,255,0.55)"/>
+  <ellipse cx="9" cy="13" rx="1.2" ry="2" fill="rgba(255,255,255,0.28)" transform="rotate(-15 9 13)"/>
+</svg></div>
+<div class="goutte-eau"><svg viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="white"/>
-      <stop offset="100%" stop-color="transparent"/>
-    </linearGradient>
+    <radialGradient id="geau2" cx="38%" cy="32%" r="60%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.7"/>
+      <stop offset="40%"  stop-color="#3B7A78" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#234B5E" stop-opacity="0.6"/>
+    </radialGradient>
   </defs>
-</svg></div><div class="petale"><svg viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
-  <!-- Pétale principal -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="#e8b4c0" opacity="0.88"/>
-  <!-- Reflet lumineux -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="url(#pg)" opacity="0.4"/>
-  <!-- Nervure centrale -->
-  <path d="M20 42 C20 42 20 20 20 4" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
-  <!-- Nervures latérales -->
-  <path d="M20 28 C14 24 8 20 6 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 28 C26 24 32 20 34 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 20 C15 17 10 14 8 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <path d="M20 20 C25 17 30 14 32 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <!-- Encoche du pétale en haut -->
-  <path d="M16 3 C18 6 20 2 20 2 C20 2 22 6 24 3" fill="none" stroke="#e8b4c0" stroke-width="1"/>
+  <path d="M12 2 C12 2 2 14 2 21 C2 27.6 6.5 32 12 32 C17.5 32 22 27.6 22 21 C22 14 12 2 12 2Z"
+        fill="url(#geau2)" stroke="rgba(59,122,120,0.25)" stroke-width="0.5"/>
+  <path d="M8 9 C9 7 11 6 12 7 C11 8 9 9 8 9Z" fill="rgba(255,255,255,0.55)"/>
+  <ellipse cx="9" cy="13" rx="1.2" ry="2" fill="rgba(255,255,255,0.28)" transform="rotate(-15 9 13)"/>
+</svg></div>
+<div class="goutte-eau"><svg viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="white"/>
-      <stop offset="100%" stop-color="transparent"/>
-    </linearGradient>
+    <radialGradient id="geau3" cx="38%" cy="32%" r="60%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.7"/>
+      <stop offset="40%"  stop-color="#3B7A78" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#234B5E" stop-opacity="0.6"/>
+    </radialGradient>
   </defs>
-</svg></div><div class="petale"><svg viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
-  <!-- Pétale principal -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="#e8b4c0" opacity="0.88"/>
-  <!-- Reflet lumineux -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="url(#pg)" opacity="0.4"/>
-  <!-- Nervure centrale -->
-  <path d="M20 42 C20 42 20 20 20 4" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
-  <!-- Nervures latérales -->
-  <path d="M20 28 C14 24 8 20 6 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 28 C26 24 32 20 34 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 20 C15 17 10 14 8 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <path d="M20 20 C25 17 30 14 32 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <!-- Encoche du pétale en haut -->
-  <path d="M16 3 C18 6 20 2 20 2 C20 2 22 6 24 3" fill="none" stroke="#e8b4c0" stroke-width="1"/>
+  <path d="M12 2 C12 2 2 14 2 21 C2 27.6 6.5 32 12 32 C17.5 32 22 27.6 22 21 C22 14 12 2 12 2Z"
+        fill="url(#geau3)" stroke="rgba(59,122,120,0.25)" stroke-width="0.5"/>
+  <path d="M8 9 C9 7 11 6 12 7 C11 8 9 9 8 9Z" fill="rgba(255,255,255,0.55)"/>
+  <ellipse cx="9" cy="13" rx="1.2" ry="2" fill="rgba(255,255,255,0.28)" transform="rotate(-15 9 13)"/>
+</svg></div>
+<div class="goutte-eau"><svg viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="white"/>
-      <stop offset="100%" stop-color="transparent"/>
-    </linearGradient>
+    <radialGradient id="geau4" cx="38%" cy="32%" r="60%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.7"/>
+      <stop offset="40%"  stop-color="#3B7A78" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#234B5E" stop-opacity="0.6"/>
+    </radialGradient>
   </defs>
-</svg></div><div class="petale"><svg viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
-  <!-- Pétale principal -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="#e8b4c0" opacity="0.88"/>
-  <!-- Reflet lumineux -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="url(#pg)" opacity="0.4"/>
-  <!-- Nervure centrale -->
-  <path d="M20 42 C20 42 20 20 20 4" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
-  <!-- Nervures latérales -->
-  <path d="M20 28 C14 24 8 20 6 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 28 C26 24 32 20 34 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 20 C15 17 10 14 8 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <path d="M20 20 C25 17 30 14 32 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <!-- Encoche du pétale en haut -->
-  <path d="M16 3 C18 6 20 2 20 2 C20 2 22 6 24 3" fill="none" stroke="#e8b4c0" stroke-width="1"/>
+  <path d="M12 2 C12 2 2 14 2 21 C2 27.6 6.5 32 12 32 C17.5 32 22 27.6 22 21 C22 14 12 2 12 2Z"
+        fill="url(#geau4)" stroke="rgba(59,122,120,0.25)" stroke-width="0.5"/>
+  <path d="M8 9 C9 7 11 6 12 7 C11 8 9 9 8 9Z" fill="rgba(255,255,255,0.55)"/>
+  <ellipse cx="9" cy="13" rx="1.2" ry="2" fill="rgba(255,255,255,0.28)" transform="rotate(-15 9 13)"/>
+</svg></div>
+<div class="goutte-eau"><svg viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="white"/>
-      <stop offset="100%" stop-color="transparent"/>
-    </linearGradient>
+    <radialGradient id="geau5" cx="38%" cy="32%" r="60%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.7"/>
+      <stop offset="40%"  stop-color="#3B7A78" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#234B5E" stop-opacity="0.6"/>
+    </radialGradient>
   </defs>
-</svg></div><div class="petale"><svg viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
-  <!-- Pétale principal -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="#e8b4c0" opacity="0.88"/>
-  <!-- Reflet lumineux -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="url(#pg)" opacity="0.4"/>
-  <!-- Nervure centrale -->
-  <path d="M20 42 C20 42 20 20 20 4" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
-  <!-- Nervures latérales -->
-  <path d="M20 28 C14 24 8 20 6 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 28 C26 24 32 20 34 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 20 C15 17 10 14 8 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <path d="M20 20 C25 17 30 14 32 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <!-- Encoche du pétale en haut -->
-  <path d="M16 3 C18 6 20 2 20 2 C20 2 22 6 24 3" fill="none" stroke="#e8b4c0" stroke-width="1"/>
+  <path d="M12 2 C12 2 2 14 2 21 C2 27.6 6.5 32 12 32 C17.5 32 22 27.6 22 21 C22 14 12 2 12 2Z"
+        fill="url(#geau5)" stroke="rgba(59,122,120,0.25)" stroke-width="0.5"/>
+  <path d="M8 9 C9 7 11 6 12 7 C11 8 9 9 8 9Z" fill="rgba(255,255,255,0.55)"/>
+  <ellipse cx="9" cy="13" rx="1.2" ry="2" fill="rgba(255,255,255,0.28)" transform="rotate(-15 9 13)"/>
+</svg></div>
+<div class="goutte-eau"><svg viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="white"/>
-      <stop offset="100%" stop-color="transparent"/>
-    </linearGradient>
+    <radialGradient id="geau6" cx="38%" cy="32%" r="60%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.7"/>
+      <stop offset="40%"  stop-color="#3B7A78" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#234B5E" stop-opacity="0.6"/>
+    </radialGradient>
   </defs>
-</svg></div><div class="petale"><svg viewBox="0 0 40 48" xmlns="http://www.w3.org/2000/svg">
-  <!-- Pétale principal -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="#e8b4c0" opacity="0.88"/>
-  <!-- Reflet lumineux -->
-  <path d="M20 44 C8 38 2 26 4 14 C6 4 14 1 20 2 C26 1 34 4 36 14 C38 26 32 38 20 44Z"
-        fill="url(#pg)" opacity="0.4"/>
-  <!-- Nervure centrale -->
-  <path d="M20 42 C20 42 20 20 20 4" stroke="rgba(255,255,255,0.5)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
-  <!-- Nervures latérales -->
-  <path d="M20 28 C14 24 8 20 6 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 28 C26 24 32 20 34 16" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" fill="none"/>
-  <path d="M20 20 C15 17 10 14 8 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <path d="M20 20 C25 17 30 14 32 11" stroke="rgba(255,255,255,0.2)" stroke-width="0.4" fill="none"/>
-  <!-- Encoche du pétale en haut -->
-  <path d="M16 3 C18 6 20 2 20 2 C20 2 22 6 24 3" fill="none" stroke="#e8b4c0" stroke-width="1"/>
+  <path d="M12 2 C12 2 2 14 2 21 C2 27.6 6.5 32 12 32 C17.5 32 22 27.6 22 21 C22 14 12 2 12 2Z"
+        fill="url(#geau6)" stroke="rgba(59,122,120,0.25)" stroke-width="0.5"/>
+  <path d="M8 9 C9 7 11 6 12 7 C11 8 9 9 8 9Z" fill="rgba(255,255,255,0.55)"/>
+  <ellipse cx="9" cy="13" rx="1.2" ry="2" fill="rgba(255,255,255,0.28)" transform="rotate(-15 9 13)"/>
+</svg></div>
+<div class="goutte-eau"><svg viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="white"/>
-      <stop offset="100%" stop-color="transparent"/>
-    </linearGradient>
+    <radialGradient id="geau7" cx="38%" cy="32%" r="60%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.7"/>
+      <stop offset="40%"  stop-color="#3B7A78" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#234B5E" stop-opacity="0.6"/>
+    </radialGradient>
   </defs>
+  <path d="M12 2 C12 2 2 14 2 21 C2 27.6 6.5 32 12 32 C17.5 32 22 27.6 22 21 C22 14 12 2 12 2Z"
+        fill="url(#geau7)" stroke="rgba(59,122,120,0.25)" stroke-width="0.5"/>
+  <path d="M8 9 C9 7 11 6 12 7 C11 8 9 9 8 9Z" fill="rgba(255,255,255,0.55)"/>
+  <ellipse cx="9" cy="13" rx="1.2" ry="2" fill="rgba(255,255,255,0.28)" transform="rotate(-15 9 13)"/>
 </svg></div>
 </div>
+</div>
+
+
+</div>
 
 
   <div class="goutte"></div>
@@ -1455,8 +1416,7 @@ footer {
 </div>
 
 
-<!-- KANJI EN FILIGRANE GLOBAL -->
-<div class="kanji-bg">道　心　行</div>
+
 
 <!-- NAV -->
 <nav>
@@ -1533,23 +1493,23 @@ footer {
 
 <!-- COMMENT ÇA MARCHE -->
 <section id="comment">
-  <span class="section-jp">一 二 三　— Le parcours</span>
+  <span class="section-jp">Le parcours</span>
   <h2 class="section-title">Un chemin pensé pour toi</h2>
   <div class="sumi-divider"></div>
   <p class="section-sub">Un triage intelligent pour te mettre face à l'expert qui correspond à là où tu en es. Pas de standardisation. Pas de jargon.</p>
 
   <div class="steps-grid" style="margin-top:56px;">
-    <div class="step-card reveal" data-jp="道">
+    <div class="step-card reveal">
       <span class="step-num">一 — Étape 01</span>
       <h3>Tu remplis ton profil</h3>
       <p>Un questionnaire court pour cerner tes priorités du moment — pro, perso, ou les deux. Quelques minutes, un cap clair.</p>
     </div>
-    <div class="step-card reveal" data-jp="心">
+    <div class="step-card reveal">
       <span class="step-num">二 — Étape 02</span>
       <h3>Tu reçois 3 vidéos clés</h3>
       <p>Des experts s'adressent à ta situation. Tu vois, tu ressens, tu décides. Sans engagement, sans pression.</p>
     </div>
-    <div class="step-card reveal" data-jp="縁">
+    <div class="step-card reveal">
       <span class="step-num">三 — Étape 03</span>
       <h3>Un entretien offert</h3>
       <p>45 minutes avec l'expert choisi. Une conversation réelle pour voir si le chemin est juste — ensemble.</p>
@@ -1561,7 +1521,7 @@ footer {
 <section id="tunnel">
   <div class="tunnel-grid">
     <div>
-      <span class="section-jp">始　— Commencer</span>
+      <span class="section-jp">Commencer</span>
       <h2 class="section-title" style="color:var(--washi);">Par où commencer ?</h2>
       <div class="sumi-divider" style="background:var(--urushi);"></div>
       <p class="section-sub">Réponds à quelques questions. On s'occupe du reste. Chaque réponse nous aide à t'orienter vers les bonnes personnes.</p>
@@ -1599,7 +1559,7 @@ footer {
     </div>
 
     <div class="tunnel-form">
-      <h3>始める — Commencer</h3>
+      <h3>Commencer maintenant</h3>
       <p>Inscription sécurisée · Aucun spam</p>
 
       <div class="form-group">
@@ -1632,7 +1592,7 @@ footer {
 <!-- ÉQUIPE -->
 <section id="equipe">
   <div class="equipe-header">
-    <span class="section-jp">人　— Les experts</span>
+    <span class="section-jp">Les experts</span>
     <h2 class="section-title">Ceux qui marchent à tes côtés</h2>
     <div class="sumi-divider"></div>
     <p class="section-sub">Des professionnels de l'humain, chacun avec son chemin, sa méthode, sa singularité. Clique pour en savoir plus.</p>
@@ -1643,8 +1603,7 @@ footer {
       <div class="team-photo">
         <span class="team-emoji">🧭</span>
         <div class="team-overlay">
-          <span class="team-overlay-jp">詳細　— Voir la fiche</span>
-          <p>Coach philosophique · Méthode 4P · Stoïcisme</p>
+                    <p>Coach philosophique · Méthode 4P · Stoïcisme</p>
         </div>
       </div>
       <div class="team-info">
@@ -1662,8 +1621,7 @@ footer {
       <div class="team-photo">
         <span class="team-emoji">🎯</span>
         <div class="team-overlay">
-          <span class="team-overlay-jp">詳細　— Voir la fiche</span>
-          <p>Consultante emploi · Carrière · 20 ans d'expérience</p>
+                    <p>Consultante emploi · Carrière · 20 ans d'expérience</p>
         </div>
       </div>
       <div class="team-info">
@@ -1681,8 +1639,7 @@ footer {
       <div class="team-photo">
         <span class="team-emoji">⚡</span>
         <div class="team-overlay">
-          <span class="team-overlay-jp">詳細　— Voir la fiche</span>
-          <p>Formateur Management · Consultant RH</p>
+                    <p>Formateur Management · Consultant RH</p>
         </div>
       </div>
       <div class="team-info">
@@ -1700,8 +1657,7 @@ footer {
       <div class="team-photo">
         <span class="team-emoji">🌿</span>
         <div class="team-overlay">
-          <span class="team-overlay-jp">詳細　— Voir la fiche</span>
-          <p>Copywriter · Consultant · Bien-être holistique</p>
+                    <p>Copywriter · Consultant · Bien-être holistique</p>
         </div>
       </div>
       <div class="team-info">
@@ -1720,7 +1676,7 @@ footer {
 <!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
   <div class="modal" id="modalContent">
-    <button class="modal-close" onclick="closeModal()">✕ 閉じる</button>
+    <button class="modal-close" onclick="closeModal()">✕</button>
     <div id="modalBody"></div>
   </div>
 </div>
@@ -1729,7 +1685,7 @@ footer {
 <section id="mission">
   <div class="mission-grid">
     <div>
-      <span class="section-jp">志　— Notre raison d'être</span>
+      <span class="section-jp">Notre raison d'être</span>
       <h2 class="section-title">Un cycle vertueux — Comprendre · Révéler · Élever · Agir</h2>
       <div class="sumi-divider"></div>
       <p class="section-sub">Accompagner chaque trajectoire humaine et professionnelle pour révéler, développer et élever les potentiels. Mettre en mouvement les transformations.</p>
@@ -1798,7 +1754,7 @@ footer {
         <circle cx="100" cy="100" r="7" fill="#234B5E" opacity="0.4"/>
         <circle cx="100" cy="100" r="3" fill="#B86F4C" opacity="0.7"/>
       </svg>
-      <div class="mission-kanji" style="color:var(--noria-deep);opacity:0.1;">水<br>輪<br>道</div>
+      
     </div>
   </div>
 </section>
@@ -1806,7 +1762,7 @@ footer {
 <!-- SERVICES -->
 <section id="services">
   <div class="services-header">
-    <span class="section-jp">技　— Ce que nous proposons</span>
+    <span class="section-jp">Ce que nous proposons</span>
     <h2 class="section-title">Des leviers de transformation réelle</h2>
     <div class="sumi-divider" style="margin:0 auto 28px;"></div>
     <p class="section-sub">Coaching individuel, stages, formations, ateliers collectifs — nous agissons là où ça compte vraiment.</p>
@@ -1814,38 +1770,32 @@ footer {
 
   <div class="services-grid">
     <div class="service-card reveal">
-      <span class="service-jp">心</span>
-      <span class="service-icon">🎯</span>
+            <span class="service-icon">🎯</span>
       <h3>Coaching individuel</h3>
       <p>Un accompagnement sur-mesure avec l'expert qui correspond à ta réalité. Travail en profondeur, progression mesurable.</p>
     </div>
     <div class="service-card reveal">
-      <span class="service-jp">行</span>
-      <span class="service-icon">⚡</span>
+            <span class="service-icon">⚡</span>
       <h3>Stages & Ateliers</h3>
       <p>Des immersions intenses — nature, survie, théâtre, philosophie pratique. Apprendre par l'expérience qui transforme.</p>
     </div>
     <div class="service-card reveal">
-      <span class="service-jp">業</span>
-      <span class="service-icon">🏢</span>
+            <span class="service-icon">🏢</span>
       <h3>Formations entreprises</h3>
       <p>Interventions en organisation pour développer talents, leadership et cohésion. Synergies à l'échelle d'une équipe.</p>
     </div>
     <div class="service-card reveal">
-      <span class="service-jp">知</span>
-      <span class="service-icon">📚</span>
+            <span class="service-icon">📚</span>
       <h3>Ressources & Outils</h3>
       <p>Guides, supports, contenus pédagogiques pour continuer à avancer entre les sessions. Le chemin ne s'arrête pas.</p>
     </div>
     <div class="service-card reveal">
-      <span class="service-jp">縁</span>
-      <span class="service-icon">🤝</span>
+            <span class="service-icon">🤝</span>
       <h3>Accompagnement collectif</h3>
       <p>Groupes de pairs, cercles de progression. L'intelligence collective au service de ta montée en compétence.</p>
     </div>
     <div class="service-card reveal">
-      <span class="service-jp">道</span>
-      <span class="service-icon">🌐</span>
+            <span class="service-icon">🌐</span>
       <h3>Parcours digitaux</h3>
       <p>Séquences email, vidéos, questionnaires. Un tunnel pédagogique qui commence bien avant le premier entretien.</p>
     </div>
@@ -1854,7 +1804,7 @@ footer {
 
 <!-- PARTENAIRES -->
 <section id="partenaires">
-  <span class="section-jp">縁　— Synergies & Partenariats</span>
+  <span class="section-jp">Synergies & Partenariats</span>
   <h2 class="section-title">Ceux qui avancent avec nous</h2>
   <div class="sumi-divider"></div>
   <p class="section-sub">Entreprises, structures et organisations qui partagent nos valeurs et avec qui nous créons, formons et agissons.</p>
@@ -1873,7 +1823,7 @@ footer {
 
 <!-- CONTACT -->
 <section id="contact">
-  <span class="section-jp">縁　— Nous contacter</span>
+  <span class="section-jp">Nous contacter</span>
   <h2 class="section-title">Une question ? Un projet ?</h2>
   <div class="sumi-divider" style="margin:0 auto 20px; background:var(--urushi);"></div>
   <p class="section-sub">On répond vite et bien. Ou réservez directement un créneau via le calendrier en ligne.</p>
@@ -1898,7 +1848,7 @@ footer {
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-brand">NORIA　· Élever les potentiels</span>
+  <span class="footer-brand">NORIA · Élever les potentiels</span>
   <ul class="footer-links">
     <li><a href="#comment">Parcours</a></li>
     <li><a href="#equipe">Experts</a></li>
