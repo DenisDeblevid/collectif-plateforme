@@ -302,18 +302,7 @@ section { padding:100px 60px; position:relative; z-index:1; }
 .step-card:hover .step-num { color:var(--copper); }
 .step-card:hover h3 { color:var(--copper); }
 
-.step-connector {
-  position:absolute;
-  top:50%; right:-6px;
-  width:12px; height:12px; border-radius:50%;
-  background:var(--copper);
-  transform:translateY(-50%) scale(0);
-  transition:transform 0.4s ease 0.3s;
-  z-index:3;
-  box-shadow:0 0 0 3px var(--sand);
-}
-.step-card.illumine .step-connector { transform:translateY(-50%) scale(1); }
-.step-card:last-child .step-connector { display:none; }
+
 
 .step-num {
   font-size:0.68rem;
@@ -328,14 +317,41 @@ section { padding:100px 60px; position:relative; z-index:1; }
 /* Point étape 03 */
 .step-dot {
   display:inline-block;
-  width:6px; height:6px; border-radius:50%;
+  width:7px; height:7px; border-radius:50%;
   background:var(--copper);
-  margin-left:8px; vertical-align:middle;
-  animation:dotPulse 2s ease-in-out infinite;
+  margin-left:10px; vertical-align:middle;
+  opacity:0.5;
+  box-shadow:0 0 0 0 rgba(184,111,76,0);
+  transition:opacity 0.3s;
 }
-@keyframes dotPulse {
-  0%,100% { transform:scale(1); opacity:0.7; }
-  50%     { transform:scale(1.6); opacity:1; }
+
+/* Pulse en canon — chaque point à son tour, délai décalé */
+.sd-1 { animation:canonPulse 6s ease-in-out infinite 0s; }
+.sd-2 { animation:canonPulse 6s ease-in-out infinite 2s; }
+.sd-3 { animation:canonPulse 6s ease-in-out infinite 4s; }
+
+@keyframes canonPulse {
+  0%,30%,100% {
+    transform:scale(1);
+    opacity:0.45;
+    box-shadow:0 0 0 0 rgba(184,111,76,0);
+  }
+  15% {
+    transform:scale(1.8);
+    opacity:1;
+    box-shadow:0 0 0 6px rgba(184,111,76,0);
+  }
+  20% {
+    box-shadow:0 0 0 8px rgba(184,111,76,0.15);
+  }
+}
+
+/* Au survol de la carte — le point s'illumine fort */
+.step-card:hover .step-dot {
+  opacity:1;
+  transform:scale(1.6);
+  box-shadow:0 0 0 5px rgba(184,111,76,0.2);
+  animation:none;
 }
 
 .step-card h3 {
@@ -929,17 +945,17 @@ footer {
 
   <div class="steps-grid" style="margin-top:56px;">
     <div class="step-card reveal">
-      <span class="step-num">— Étape 01</span>
+      <span class="step-num">— Étape 01 <span class="step-dot sd-1"></span></span>
       <h3>Tu remplis ton profil</h3>
       <p>Un questionnaire court pour cerner tes priorités du moment — pro, perso, ou les deux. Quelques minutes, un cap clair.</p>
     </div>
     <div class="step-card reveal">
-      <span class="step-num">— Étape 02</span>
+      <span class="step-num">— Étape 02 <span class="step-dot sd-2"></span></span>
       <h3>Tu reçois 3 vidéos clés</h3>
       <p>Des experts s'adressent à ta situation. Tu vois, tu ressens, tu décides. Sans engagement, sans pression.</p>
     </div>
     <div class="step-card reveal">
-      <span class="step-num">— Étape 03 <span class="step-dot"></span></span>
+      <span class="step-num">— Étape 03 <span class="step-dot sd-3"></span></span>
       <h3>Un entretien offert</h3>
       <p>45 minutes avec l'expert choisi. Une conversation réelle pour voir si le chemin est juste — ensemble.</p>
     </div>
@@ -1401,12 +1417,7 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 (function(){
   const grid=document.querySelector('.steps-grid'); if(!grid) return;
   const cards=grid.querySelectorAll('.step-card');
-  cards.forEach((card,i)=>{
-    if(i<cards.length-1){
-      const dot=document.createElement('div');
-      dot.className='step-connector'; card.appendChild(dot);
-    }
-  });
+
   let done=false;
   const run=()=>{
     if(done) return; done=true;
