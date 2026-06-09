@@ -1122,6 +1122,82 @@ footer {
   }
 }
 
+
+/* ─── IMPACT GOUTTE — perturbation occasionnelle ─── */
+
+/* Frémissement quand une goutte touche */
+@keyframes dropHit {
+  0%    { transform: translateY(0px) scale(1); }
+  8%    { transform: translateY(-8px) scale(1.03); }
+  16%   { transform: translateY(4px) scale(0.98); }
+  24%   { transform: translateY(-4px) scale(1.01); }
+  35%   { transform: translateY(2px) scale(0.99); }
+  45%   { transform: translateY(-2px) scale(1.005); }
+  55%   { transform: translateY(0px) scale(1); }
+  100%  { transform: translateY(0px) scale(1); }
+}
+
+/* Onde de surface autour de l'élément touché */
+@keyframes surfaceRipple {
+  0%   { box-shadow: 0 0 0 0px rgba(59,122,120,0.4); opacity:1; }
+  60%  { box-shadow: 0 0 0 18px rgba(59,122,120,0); opacity:0; }
+  100% { box-shadow: 0 0 0 0px rgba(59,122,120,0); opacity:0; }
+}
+
+/* Team cards — goutte toutes les ~12s, décalée par carte */
+.team-card:nth-child(1) {
+  animation: drift1 10s ease-in-out infinite 0s,
+             dropHit 12s ease-in-out infinite 3s;
+}
+.team-card:nth-child(2) {
+  animation: drift2 11s ease-in-out infinite 1s,
+             dropHit 12s ease-in-out infinite 6.5s;
+}
+.team-card:nth-child(3) {
+  animation: drift1 10.5s ease-in-out infinite 2s,
+             dropHit 12s ease-in-out infinite 9.5s;
+}
+.team-card:nth-child(4) {
+  animation: drift3 12s ease-in-out infinite 0.5s,
+             dropHit 12s ease-in-out infinite 1.5s;
+}
+
+/* Piliers mission — goutte toutes les ~10s */
+.pillar:nth-child(1) {
+  animation: drift1 7s ease-in-out infinite,
+             dropHit 11s ease-in-out infinite 2s;
+}
+.pillar:nth-child(2) {
+  animation: drift2 9s ease-in-out infinite 1.5s,
+             dropHit 11s ease-in-out infinite 5.5s;
+}
+.pillar:nth-child(3) {
+  animation: drift3 8s ease-in-out infinite 3s,
+             dropHit 11s ease-in-out infinite 8.5s;
+}
+
+/* Onde visible sur la pillar-mark au moment de l'impact */
+.pillar:nth-child(1) .pillar-mark {
+  animation: borderBreath 5s ease-in-out infinite,
+             surfaceRipple 11s ease-out infinite 2s;
+}
+.pillar:nth-child(2) .pillar-mark {
+  animation: borderBreath 5s ease-in-out infinite 1.8s,
+             surfaceRipple 11s ease-out infinite 5.5s;
+}
+.pillar:nth-child(3) .pillar-mark {
+  animation: borderBreath 5s ease-in-out infinite 3.5s,
+             surfaceRipple 11s ease-out infinite 8.5s;
+}
+
+.team-card:hover,
+.pillar:hover {
+  animation: none !important;
+}
+.pillar:hover .pillar-mark {
+  animation: none !important;
+}
+
 </style>
 </head>
 <body>
