@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NORIA HORIZON — Révèle ton potentiel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep:   #234B5E;
+  --teal:   #3B7A78;
+  --sand:   #E8DCC9;
+  --copper: #B86F4C;
+  --mist:   #F4EFE6;
+  --white:  #FDFAF5;
+  --ink:    #1a2e38;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body:    'DM Sans', sans-serif;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--deep);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 300;
+  min-height: 100vh;
+  padding: 60px 24px;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* ── HEADER ── */
+.page-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--copper);
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+.back-link:hover { opacity: 1; }
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.page-title strong { color: var(--copper); font-weight: 600; }
+.page-sub {
+  font-size: 0.92rem;
+  opacity: 0.45;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* ── PROGRESS ── */
+.progress-wrap {
+  width: 100%;
+  height: 3px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  margin-bottom: 52px;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, var(--copper), var(--teal));
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+/* ── QUESTION ── */
+#quiz-block { transition: opacity 0.25s ease; }
+
+.q-num {
+  font-size: 0.68rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--copper);
+  opacity: 0.6;
+  display: block;
+  margin-bottom: 18px;
+}
+.q-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: 40px;
+  color: var(--white);
+}
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.opt {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(184,111,76,0.18);
+  padding: 20px 24px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--white);
+  opacity: 0.75;
+  text-align: left;
+  line-height: 1.55;
+  transition: all 0.22s;
+}
+.opt:hover {
+  background: rgba(184,111,76,0.14);
+  border-color: var(--copper);
+  opacity: 1;
+  transform: translateX(5px);
+}
+
+/* ── RÉSULTAT ── */
+#result-block { display: none; }
+
+.result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 52px;
+  align-items: start;
+  margin-bottom: 48px;
+}
+
+.radar-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.profile-badge {
+  display: inline-block;
+  background: var(--copper);
+  color: var(--white);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  margin-bottom: 16px;
+}
+.profile-letter {
+  font-family: var(--font-display);
+  font-size: 5.5rem;
+  font-weight: 600;
+  color: var(--copper);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.profile-name {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+.profile-desc {
+  font-size: 0.9rem;
+  opacity: 0.65;
+  line-height: 1.85;
+  margin-bottom: 24px;
+}
+.profile-section { margin-bottom: 20px; }
+.profile-section h4 {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--copper);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.profile-section ul { list-style: none; }
+.profile-section ul li {
+  font-size: 0.85rem;
+  opacity: 0.6;
+  padding: 4px 0 4px 16px;
+  position: relative;
+  line-height: 1.5;
+}
+.profile-section ul li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 12px;
+  width: 7px; height: 1px;
+  background: var(--copper);
+}
+.expert-rec {
+  background: rgba(184,111,76,0.1);
+  border-left: 3px solid var(--copper);
+  padding: 18px 22px;
+  margin-top: 24px;
+}
+.expert-rec p { font-size: 0.85rem; opacity: 0.7; line-height: 1.7; }
+.expert-rec strong { color: var(--copper); }
+
+/* Email block */
+.email-block {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(184,111,76,0.2);
+  padding: 40px;
+  margin-bottom: 28px;
+  position: relative;
+}
+.email-block::before, .email-block::after {
+  content: '';
+  position: absolute;
+  width: 16px; height: 16px;
+  border-color: var(--copper); border-style: solid; opacity: 0.4;
+}
+.email-block::before { top:10px; left:10px; border-width:2px 0 0 2px; }
+.email-block::after  { bottom:10px; right:10px; border-width:0 2px 2px 0; }
+
+.email-block h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 300;
+  margin-bottom: 6px;
+}
+.email-block p { font-size: 0.8rem; opacity: 0.35; margin-bottom: 24px; }
+.email-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.email-input {
+  flex: 1;
+  background: rgba(255,255,255,0.06);
+  border: none;
+  border-bottom: 1px solid rgba(184,111,76,0.4);
+  padding: 12px 4px;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  min-width: 200px;
+  transition: border-color 0.3s;
+}
+.email-input:focus { border-bottom-color: var(--copper); }
+.email-confirm {
+  font-size: 0.8rem;
+  color: var(--teal);
+  margin-top: 12px;
+  display: none;
+}
+
+.btn-copper {
+  background: var(--copper);
+  color: var(--white);
+  border: none;
+  padding: 13px 28px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+.btn-copper:hover { opacity: 0.85; }
+
+.btn-reset {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--white);
+  padding: 10px 22px;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.45;
+  transition: opacity 0.3s;
+  margin-right: 14px;
+}
+.btn-reset:hover { opacity: 1; }
+
+.btn-cta {
+  display: inline-block;
+  background: var(--deep);
+  border: 1px solid var(--teal);
+  color: var(--white);
+  padding: 14px 32px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+.btn-cta:hover { background: var(--teal); }
+
+/* Vague fond */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Cpath d='M0 20 Q30 5 60 20 Q90 35 120 20' fill='none' stroke='rgba(184,111,76,0.04)' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-size: 120px 40px;
+  pointer-events: none;
+}
+.container { position: relative; z-index: 1; }
+
+@media(max-width:700px){
+  .options { grid-template-columns: 1fr; }
+  .result-grid { grid-template-columns: 1fr; gap: 36px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="page-header">
+    <a href="index.html" class="back-link">← Retour NORIA HORIZON</a>
+    <h1 class="page-title">Révèle <strong>ton potentiel</strong></h1>
+    <p class="page-sub">12 questions · 5 minutes · Un profil personnalisé et l'expert qui correspond à qui tu es vraiment.</p>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz-section">
+    <div class="progress-wrap">
+      <div class="progress-fill" id="prog"></div>
+    </div>
+    <div id="quiz-block"></div>
+  </div>
+
+  <!-- RÉSULTAT -->
+  <div id="result-block">
+    <div class="result-grid">
+      <div>
+        <span class="radar-label">Ton graphique de profil</span>
+        <canvas id="radar" width="360" height="360" style="max-width:100%;"></canvas>
+      </div>
+      <div id="profile-card"></div>
+    </div>
+
+    <div class="email-block">
+      <h3>Recevoir mon profil par mail</h3>
+      <p>Radar · Profil complet · Expert recommandé — dans ta boîte en 2 minutes.</p>
+      <div class="email-row">
+        <input type="email" class="email-input" id="email-in" placeholder="ton@email.com">
+        <button class="btn-copper" onclick="sendEmail()">Envoyer →</button>
+      </div>
+      <p class="email-confirm" id="email-ok">✓ Profil envoyé — vérifie ta boîte mail !</p>
+    </div>
+
+    <div>
+      <button class="btn-reset" onclick="resetTest()">Refaire le test</button>
+      <a href="index.html#tunnel" class="btn-cta">Rencontrer mon expert →</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+var questions = [
+  { text: "Face à un projet urgent, tu as tendance à...", opts: [
+    { t: "Prendre les décisions rapidement et avancer sans attendre", d: "D" },
+    { t: "Motiver l'équipe et créer de l'enthousiasme autour du projet", d: "I" },
+    { t: "T'assurer que tout le monde est à l'aise et bien soutenu", d: "S" },
+    { t: "Analyser les risques avant de te lancer", d: "C" }
+  ]},
+  { text: "Ce qui te motive le plus dans ton travail, c'est...", opts: [
+    { t: "Obtenir des résultats concrets et relever des défis", d: "D" },
+    { t: "Les échanges humains et créer du lien", d: "I" },
+    { t: "La stabilité et contribuer à une équipe soudée", d: "S" },
+    { t: "La précision, la qualité et le travail bien fait", d: "C" }
+  ]},
+  { text: "En situation de conflit, tu...", opts: [
+    { t: "Prends position fermement et vas droit au but", d: "D" },
+    { t: "Cherches à apaiser et trouves un terrain commun", d: "I" },
+    { t: "Prends du recul et évites l'affrontement direct", d: "S" },
+    { t: "Analyses la situation avec des faits avant de répondre", d: "C" }
+  ]},
+  { text: "Les autres te décrivent souvent comme...", opts: [
+    { t: "Déterminé et direct", d: "D" },
+    { t: "Enthousiaste et communicatif", d: "I" },
+    { t: "Fiable et patient", d: "S" },
+    { t: "Rigoureux et réfléchi", d: "C" }
+  ]},
+  { text: "Pour toi, prendre une décision importante c'est...", opts: [
+    { t: "Agir vite — l'inaction est pire que l'erreur", d: "D" },
+    { t: "En parler avec des personnes de confiance d'abord", d: "I" },
+    { t: "Prendre le temps qu'il faut pour ne pas brusquer les choses", d: "S" },
+    { t: "Rassembler toutes les données nécessaires avant de choisir", d: "C" }
+  ]},
+  { text: "Dans une réunion, tu es plutôt celui qui...", opts: [
+    { t: "Oriente les débats et pousse à l'action", d: "D" },
+    { t: "Anime l'échange et fait participer tout le monde", d: "I" },
+    { t: "Écoute attentivement et intervient avec mesure", d: "S" },
+    { t: "Prend des notes et vérifie les détails", d: "C" }
+  ]},
+  { text: "Ton plus grand atout professionnel selon toi ?", opts: [
+    { t: "Ta capacité à te dépasser et à atteindre tes objectifs", d: "D" },
+    { t: "Ta capacité à convaincre et à fédérer", d: "I" },
+    { t: "Ta loyauté et ta constance dans l'effort", d: "S" },
+    { t: "Ton sens du détail et ta rigueur", d: "C" }
+  ]},
+  { text: "Face à un changement inattendu, tu...", opts: [
+    { t: "T'adaptes immédiatement et vois l'opportunité", d: "D" },
+    { t: "Restes positif et entraînes les autres avec toi", d: "I" },
+    { t: "As besoin de temps pour t'y faire", d: "S" },
+    { t: "Cherches à comprendre les causes avant d'avancer", d: "C" }
+  ]},
+  { text: "Ce qui t'irrite le plus au travail, c'est...", opts: [
+    { t: "La lenteur et l'indécision", d: "D" },
+    { t: "Le manque de reconnaissance et l'isolement", d: "I" },
+    { t: "Les conflits et l'instabilité", d: "S" },
+    { t: "Le manque de rigueur et les erreurs répétées", d: "C" }
+  ]},
+  { text: "Tu apprends mieux en...", opts: [
+    { t: "Testant directement — tu apprends en faisant", d: "D" },
+    { t: "Échangeant avec d'autres et en partageant des expériences", d: "I" },
+    { t: "Avançant à ton rythme dans un cadre sécurisant", d: "S" },
+    { t: "Lisant, analysant et comprenant en profondeur", d: "C" }
+  ]},
+  { text: "Dans une relation de coaching, tu attends avant tout...", opts: [
+    { t: "Des défis concrets et des résultats mesurables", d: "D" },
+    { t: "De l'énergie, de l'inspiration et de la connexion humaine", d: "I" },
+    { t: "De la bienveillance, de la patience et de l'écoute", d: "S" },
+    { t: "Une méthode claire, structurée et rigoureuse", d: "C" }
+  ]},
+  { text: "Quand tu penses à ton avenir professionnel, tu vois...", opts: [
+    { t: "Un leader qui trace sa voie et crée son propre chemin", d: "D" },
+    { t: "Quelqu'un qui inspire et influence positivement son entourage", d: "I" },
+    { t: "Une personne épanouie dans un environnement stable et harmonieux", d: "S" },
+    { t: "Un expert reconnu pour son excellence et sa rigueur", d: "C" }
+  ]}
+];
+
+var profiles = {
+  D: {
+    letter: "D", name: "Le Dominant",
+    color: "#B86F4C",
+    desc: "Tu es orienté résultats, direct et déterminé. Tu n'attends pas que les choses se fassent — tu les fais. Face au challenge, tu avances. Face à l'obstacle, tu trouves le contournement. Ta force est dans l'action, ton risque est dans l'impatience.",
+    strengths: ["Leadership naturel", "Prise de décision rapide", "Orientation résultats", "Résilience face aux obstacles", "Capacité à ouvrir la voie"],
+    axes: ["Écouter avant d'agir", "Accepter la lenteur des autres", "Nuancer ses positions", "Prendre en compte les émotions"],
+    expert: { name: "Florian Dhaussy", role: "Formateur Management · Leadership", text: "Florian travaille avec des profils comme le tien — des personnes qui veulent aller plus loin, plus vite, et qui ont besoin d'un cadre pour canaliser leur énergie sans la brider." }
+  },
+  I: {
+    letter: "I", name: "L'Influent",
+    color: "#3B7A78",
+    desc: "Tu rayonnes. Les gens gravitent autour de toi naturellement. Tu communiques avec aisance, tu inspires et tu entraînes. Ton énergie est contagieuse — et c'est ton plus grand atout.",
+    strengths: ["Communication naturelle", "Capacité à fédérer", "Créativité et enthousiasme", "Influence positive", "Adaptabilité sociale"],
+    axes: ["Structurer ses idées", "Aller jusqu'au bout des projets", "Gérer les priorités", "Travailler sa rigueur"],
+    expert: { name: "Denis Deblevid", role: "Coach Philosophique · Méthode 4P", text: "Denis accompagne les profils Influents à ancrer leur énergie dans une philosophie de vie solide — pour que l'enthousiasme devienne une force durable." }
+  },
+  S: {
+    letter: "S", name: "Le Stable",
+    color: "#5a9e9c",
+    desc: "Tu es la colonne vertébrale de chaque équipe. Fiable, constant, profondément humain — tu crées la sécurité autour de toi. Ta fidélité et ta patience sont des forces rares dans un monde qui s'agite.",
+    strengths: ["Fiabilité et constance", "Écoute profonde", "Sens du collectif", "Patience et persévérance", "Loyauté"],
+    axes: ["Affirmer ses besoins", "Accepter le changement", "Sortir de sa zone de confort", "Développer son leadership"],
+    expert: { name: "Mélanie Allard", role: "Consultante Carrière · Emploi", text: "Mélanie accompagne les profils Stables dans leurs transitions — avec la douceur et la structure dont tu as besoin pour avancer sans te brusquer." }
+  },
+  C: {
+    letter: "C", name: "Le Consciencieux",
+    color: "#234B5E",
+    desc: "Tu es l'expert de la précision. Ta capacité d'analyse et ton exigence de qualité font de toi quelqu'un sur qui on peut vraiment compter. Tu ne t'engages pas à la légère — mais quand tu t'engages, c'est pour de vrai.",
+    strengths: ["Analyse et rigueur", "Souci du détail", "Fiabilité dans l'exécution", "Pensée systématique", "Standards de qualité élevés"],
+    axes: ["Accepter l'imperfection", "Décider sans toutes les données", "Déléguer et faire confiance", "Aller à l'essentiel"],
+    expert: { name: "Marc Vandrepotte", role: "Copywriter · Consultant · Développement", text: "Marc travaille avec les profils Consciencieux sur la clarté de leur communication et la structuration de leur expertise." }
+  }
+};
+
+// État
+var scores = {D:0, I:0, S:0, C:0};
+var current = 0;
+
+function shuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length-1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i+1));
+    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
+
+function renderQuestion() {
+  var q = questions[current];
+  var pct = Math.round((current / questions.length) * 100);
+  document.getElementById('prog').style.width = pct + '%';
+
+  var opts = shuffle(q.opts);
+  var html = '<span class="q-num">Question ' + (current+1) + ' / ' + questions.length + '</span>';
+  html += '<p class="q-text">' + q.text + '</p>';
+  html += '<div class="options">';
+  for (var i=0; i<opts.length; i++) {
+    html += '<button class="opt" onclick="pick(\'' + opts[i].d + '\')">' + opts[i].t + '</button>';
+  }
+  html += '</div>';
+  document.getElementById('quiz-block').innerHTML = html;
+}
+
+function pick(type) {
+  scores[type]++;
+  current++;
+  if (current >= questions.length) {
+    showResult();
+  } else {
+    var block = document.getElementById('quiz-block');
+    block.style.opacity = '0';
+    setTimeout(function() {
+      renderQuestion();
+      block.style.opacity = '1';
+    }, 220);
+  }
+}
+
+function showResult() {
+  document.getElementById('prog').style.width = '100%';
+  setTimeout(function() {
+    document.getElementById('quiz-section').style.display = 'none';
+    document.getElementById('result-block').style.display = 'block';
+
+    // Profil dominant
+    var keys = Object.keys(scores);
+    keys.sort(function(a,b){ return scores[b]-scores[a]; });
+    var dom = keys[0];
+    var p = profiles[dom];
+
+    // Carte profil
+    var strList = '';
+    for (var i=0; i<p.strengths.length; i++) strList += '<li>'+p.strengths[i]+'</li>';
+    var axList = '';
+    for (var i=0; i<p.axes.length; i++) axList += '<li>'+p.axes[i]+'</li>';
+
+    document.getElementById('profile-card').innerHTML =
+      '<span class="profile-badge">Ton profil NORIA HORIZON</span>' +
+      '<div class="profile-letter">'+p.letter+'</div>' +
+      '<div class="profile-name">'+p.name+'</div>' +
+      '<p class="profile-desc">'+p.desc+'</p>' +
+      '<div class="profile-section"><h4>Points forts</h4><ul>'+strList+'</ul></div>' +
+      '<div class="profile-section"><h4>Axes de progression</h4><ul>'+axList+'</ul></div>' +
+      '<div class="expert-rec"><p>Expert recommandé : <strong>'+p.expert.name+'</strong> · '+p.expert.role+'</p>' +
+      '<p style="margin-top:8px;">'+p.expert.text+'</p></div>';
+
+    drawRadar();
+  }, 350);
+}
+
+function drawRadar() {
+  var canvas = document.getElementById('radar');
+  var ctx = canvas.getContext('2d');
+  var W = canvas.width, H = canvas.height;
+  var cx = W/2, cy = H/2, R = W*0.37;
+  var labels = ['D','I','S','C'];
+  var colors = ['#B86F4C','#3B7A78','#5a9e9c','#234B5E'];
+  var max = 5;
+  var angles = [];
+  for (var i=0; i<4; i++) angles.push(i * Math.PI*2/4 - Math.PI/2);
+
+  ctx.clearRect(0,0,W,H);
+
+  // Grilles
+  for (var lv=1; lv<=4; lv++) {
+    ctx.beginPath();
+    for (var i=0; i<4; i++) {
+      var r = R*lv/4;
+      var x = cx + r*Math.cos(angles[i]);
+      var y = cy + r*Math.sin(angles[i]);
+      if (i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(255,255,255,0.07)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Axes
+  for (var i=0; i<4; i++) {
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + R*Math.cos(angles[i]), cy + R*Math.sin(angles[i]));
+    ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Zone données
+  ctx.beginPath();
+  for (var i=0; i<4; i++) {
+    var val = scores[labels[i]];
+    var r = R * Math.min(val/max, 1);
+    var x = cx + r*Math.cos(angles[i]);
+    var y = cy + r*Math.sin(angles[i]);
+    if (i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(184,111,76,0.15)';
+  ctx.fill();
+  ctx.strokeStyle = '#B86F4C';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Points
+  for (var i=0; i<4; i++) {
+    var val = scores[labels[i]];
+    var r = R * Math.min(val/max, 1);
+    ctx.beginPath();
+    ctx.arc(cx + r*Math.cos(angles[i]), cy + r*Math.sin(angles[i]), 5, 0, Math.PI*2);
+    ctx.fillStyle = colors[i];
+    ctx.fill();
+  }
+
+  // Labels
+  for (var i=0; i<4; i++) {
+    var lx = cx + (R+30)*Math.cos(angles[i]);
+    var ly = cy + (R+30)*Math.sin(angles[i]);
+    ctx.font = 'bold 15px sans-serif';
+    ctx.fillStyle = colors[i];
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(labels[i], lx, ly);
+    ctx.font = '11px sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    ctx.fillText(scores[labels[i]], lx, ly+17);
+  }
+}
+
+function sendEmail() {
+  var email = document.getElementById('email-in').value;
+  if (!email || email.indexOf('@') < 0) {
+    document.getElementById('email-in').style.borderBottomColor = '#B86F4C';
+    return;
+  }
+  // TODO : brancher Brevo API ici
+  document.getElementById('email-ok').style.display = 'block';
+  document.getElementById('email-in').value = '';
+}
+
+function resetTest() {
+  scores = {D:0, I:0, S:0, C:0};
+  current = 0;
+  document.getElementById('result-block').style.display = 'none';
+  document.getElementById('quiz-section').style.display = 'block';
+  document.getElementById('prog').style.width = '0%';
+  document.getElementById('email-ok').style.display = 'none';
+  renderQuestion();
+}
+
+// Lancer au chargement
+renderQuestion();
+</script>
+</body>
+</html>
