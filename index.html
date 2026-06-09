@@ -1542,7 +1542,7 @@ footer {
 </section>
 
 
-<!-- ─── SECTION DISC ─── -->
+<!-- ─── SECTION RÉVÈLE TON POTENTIEL ─── -->
 <section id="disc" style="background:var(--deep); color:var(--white); position:relative; overflow:hidden;">
 
   <!-- Fond vagues -->
@@ -1555,21 +1555,19 @@ footer {
     <p class="section-sub" style="color:var(--white);opacity:0.5;margin-bottom:56px;">12 questions. 5 minutes. Un profil personnalisé et l'expert NORIA HORIZON qui correspond à qui tu es vraiment.</p>
 
     <!-- QUESTIONNAIRE -->
-    <div style="margin-bottom:48px;">
-      <button onclick="document.getElementById('disc-quiz-inner').style.display='block'; this.parentElement.style.display='none'; discInit();"
-        class="btn-primary" style="font-size:0.88rem;padding:18px 48px;letter-spacing:0.2em;">
+    <div id="disc-cta-btn" style="margin-bottom:48px;text-align:center;">
+      <button onclick="startQuiz()" class="btn-primary" style="font-size:0.9rem;padding:18px 52px;letter-spacing:0.2em;">
         Révèle ton potentiel →
       </button>
+      <p style="font-size:0.78rem;color:var(--white);opacity:0.35;margin-top:14px;">12 questions · 5 minutes · Profil personnalisé</p>
     </div>
-    <div id="disc-quiz">
-      <div id="disc-quiz-inner" style="display:none;">
+    <div id="disc-quiz" style="display:none;">
       <div id="disc-progress-bar" style="width:100%;height:3px;background:rgba(255,255,255,0.1);margin-bottom:48px;border-radius:2px;">
         <div id="disc-progress-fill" style="height:100%;width:0%;background:linear-gradient(to right,var(--copper),var(--teal));transition:width 0.4s ease;border-radius:2px;"></div>
       </div>
       <div id="disc-question-block">
         <!-- Injecté par JS -->
       </div>
-    </div>
     </div>
 
     <!-- RÉSULTAT -->
@@ -1612,7 +1610,7 @@ footer {
 </section>
 
 <style>
-/* DISC question */
+/* Question profil */
 .disc-q-text {
   font-family:var(--font-display);
   font-size:clamp(1.3rem,2.5vw,1.8rem);
@@ -1745,7 +1743,7 @@ footer {
 </style>
 
 <script>
-// ─── DONNÉES DISC ───
+// ─── DONNÉES PROFIL ───
 const discQuestions = [
   {
     text: "Face à un projet urgent, tu as tendance à...",
@@ -1905,12 +1903,18 @@ let discScores = { D:0, I:0, S:0, C:0 };
 let discCurrent = 0;
 let discAnswers = [];
 
+function startQuiz() {
+  document.getElementById('disc-cta-btn').style.display = 'none';
+  document.getElementById('disc-quiz').style.display = 'block';
+  discInit();
+}
+
 function discInit() {
   discScores = { D:0, I:0, S:0, C:0 };
   discCurrent = 0;
   discAnswers = [];
   document.getElementById('disc-result').style.display = 'none';
-  document.getElementById('disc-quiz-inner').style.display = 'block';
+  document.getElementById('disc-quiz').style.display = 'block';
   document.getElementById('disc-email-confirm').style.display = 'none';
   renderDiscQuestion();
 }
@@ -1955,7 +1959,7 @@ function discAnswer(type) {
 function showDiscResult() {
   document.getElementById('disc-progress-fill').style.width = '100%';
   setTimeout(() => {
-    document.getElementById('disc-quiz-inner').style.display = 'none';
+    document.getElementById('disc-quiz').style.display = 'none';
     document.getElementById('disc-result').style.display = 'block';
 
     // Profil dominant
@@ -1980,7 +1984,7 @@ function showDiscResult() {
         <p>Ton expert recommandé : <strong>\${profile.expert.name}</strong> · \${profile.expert.role}</p>
         <p style="margin-top:8px;">\${profile.expert.text}</p>
       </div>
-      <button onclick="discInit()" style="margin-top:20px;background:transparent;border:1px solid rgba(255,255,255,0.2);color:var(--white);padding:8px 18px;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;opacity:0.5;font-family:var(--font-body);transition:opacity 0.3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">
+      <button onclick="document.getElementById('disc-cta-btn').style.display='block'; document.getElementById('disc-quiz').style.display='none'; document.getElementById('disc-result').style.display='none';" style="margin-top:20px;background:transparent;border:1px solid rgba(255,255,255,0.2);color:var(--white);padding:8px 18px;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;opacity:0.5;font-family:var(--font-body);transition:opacity 0.3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">
         Refaire le test
       </button>
     \`;
