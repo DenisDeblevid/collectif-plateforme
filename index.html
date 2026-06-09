@@ -847,6 +847,137 @@ footer {
   .modal { padding:30px 20px; }
   .modal-header { flex-direction:column; }
 }
+
+/* ─── ANIMATION GOUTTE 3D TUNNEL ─── */
+
+/* Cercles en chute 3D — perspective */
+.tunnel-step-circle {
+  width:36px; height:36px;
+  border:1px solid var(--teal);
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.78rem; color:var(--teal); flex-shrink:0;
+  font-family:var(--font-display);
+  position:relative;
+  transform-style:preserve-3d;
+  perspective:200px;
+}
+
+/* Cercle 1 — tombe en 3D, s aplatit en descendant */
+.tunnel-step:nth-child(1) .tunnel-step-circle {
+  animation:drop3d 4s ease-in-out infinite 0s;
+}
+.tunnel-step:nth-child(2) .tunnel-step-circle {
+  animation:drop3d 4s ease-in-out infinite 0.7s;
+}
+.tunnel-step:nth-child(3) .tunnel-step-circle {
+  animation:drop3d 4s ease-in-out infinite 1.4s;
+}
+.tunnel-step:nth-child(4) .tunnel-step-circle {
+  animation:impact3d 4s ease-in-out infinite 2.1s;
+  border-color:var(--copper);
+  color:var(--copper);
+}
+
+/* Onde 1 autour du cercle 4 */
+.tunnel-step:nth-child(4) .tunnel-step-circle::before {
+  content:"";
+  position:absolute;
+  width:36px; height:36px;
+  border-radius:50%;
+  border:1.5px solid var(--copper);
+  animation:ripple 4s ease-out infinite 2.1s;
+  opacity:0;
+}
+
+/* Onde 2 — décalée */
+.tunnel-step:nth-child(4) .tunnel-step-circle::after {
+  content:"";
+  position:absolute;
+  width:36px; height:36px;
+  border-radius:50%;
+  border:1px solid var(--teal);
+  animation:ripple 4s ease-out infinite 2.5s;
+  opacity:0;
+}
+
+/* Chute 3D — le cercle s aplatit en perspective comme une goutte qui tombe */
+@keyframes drop3d {
+  0%, 60%, 100% {
+    transform:rotateX(0deg) scale(1);
+    opacity:0.5;
+    border-color:var(--teal);
+    color:var(--teal);
+    box-shadow:none;
+  }
+  /* Début de chute — inclinaison */
+  10% {
+    transform:rotateX(25deg) scaleY(0.85) translateY(-3px);
+    opacity:0.7;
+  }
+  /* Milieu — s aplatit davantage, accélère */
+  20% {
+    transform:rotateX(50deg) scaleY(0.6) translateY(-1px);
+    opacity:0.9;
+    border-color:var(--copper);
+    color:var(--copper);
+  }
+  /* Impact — très plat */
+  28% {
+    transform:rotateX(70deg) scaleY(0.3) scaleX(1.2);
+    opacity:1;
+    box-shadow:0 4px 12px rgba(184,111,76,0.3);
+  }
+  /* Rebond léger */
+  35% {
+    transform:rotateX(0deg) scale(1.15);
+    opacity:1;
+    border-color:var(--copper);
+    box-shadow:0 0 0 4px rgba(184,111,76,0.15);
+  }
+  45% {
+    transform:rotateX(0deg) scale(1);
+    opacity:0.6;
+    border-color:var(--teal);
+    box-shadow:none;
+  }
+}
+
+/* Impact eau — pulse 2D fort + ondes */
+@keyframes impact3d {
+  0%, 15%, 100% {
+    transform:scale(1);
+    opacity:0.5;
+    border-color:var(--copper);
+    box-shadow:none;
+  }
+  /* Reçoit l onde des cercles du dessus */
+  30% {
+    transform:scale(1.3);
+    opacity:1;
+    box-shadow:0 0 0 6px rgba(184,111,76,0.2), 0 0 0 12px rgba(184,111,76,0.08);
+  }
+  40% {
+    transform:scale(0.9);
+    opacity:0.8;
+  }
+  50% {
+    transform:scale(1.1);
+    opacity:1;
+  }
+  60% {
+    transform:scale(1);
+    opacity:0.7;
+  }
+}
+
+/* Ondes concentriques autour du 4 */
+@keyframes ripple {
+  0%   { transform:scale(1);   opacity:0.8; }
+  70%  { transform:scale(3.5); opacity:0; }
+  100% { transform:scale(3.5); opacity:0; }
+}
+
 </style>
 </head>
 <body>
