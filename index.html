@@ -978,6 +978,150 @@ footer {
   100% { transform:scale(3.5); opacity:0; }
 }
 
+
+/* ═══════════════════════════════════════
+   AMBIANCE AQUATIQUE — BOUCLE INFINIE
+   Tout flotte, tout ondule, rien ne s'arrête
+   ═══════════════════════════════════════ */
+
+/* ─── Keyframes de base ─── */
+
+/* Flottaison verticale douce */
+@keyframes float1 {
+  0%,100% { transform: translateY(0px); }
+  50%     { transform: translateY(-5px); }
+}
+@keyframes float2 {
+  0%,100% { transform: translateY(-3px); }
+  50%     { transform: translateY(3px); }
+}
+@keyframes float3 {
+  0%,100% { transform: translateY(0px); }
+  33%     { transform: translateY(-4px); }
+  66%     { transform: translateY(2px); }
+}
+
+/* Ondulation horizontale — courant */
+@keyframes drift1 {
+  0%,100% { transform: translateX(0px) translateY(0px); }
+  25%     { transform: translateX(3px)  translateY(-2px); }
+  75%     { transform: translateX(-2px) translateY(2px); }
+}
+@keyframes drift2 {
+  0%,100% { transform: translateX(0px)  translateY(0px); }
+  33%     { transform: translateX(-3px) translateY(-3px); }
+  66%     { transform: translateX(2px)  translateY(1px); }
+}
+@keyframes drift3 {
+  0%,100% { transform: translateX(0px) translateY(0px); }
+  40%     { transform: translateX(2px) translateY(-4px); }
+  80%     { transform: translateX(-3px) translateY(2px); }
+}
+
+/* Respiration de bordure — la ligne teal qui pulse */
+@keyframes borderBreath {
+  0%,100% { border-left-color: var(--teal); opacity: 1; }
+  50%     { border-left-color: var(--copper); opacity: 0.85; }
+}
+
+/* Onde sur le séparateur */
+@keyframes waveSepAnim {
+  0%   { transform: scaleX(1)   translateX(0); }
+  50%  { transform: scaleX(1.08) translateX(4px); }
+  100% { transform: scaleX(1)   translateX(0); }
+}
+
+/* Montée de bulle — pour valeurs */
+@keyframes bubbleUp {
+  0%,100% { transform: translateY(0px) scale(1); }
+  50%     { transform: translateY(-6px) scale(1.01); }
+}
+
+/* ─── PILIERS MISSION — herbes aquatiques ─── */
+.pillar:nth-child(1) {
+  animation: drift1 7s ease-in-out infinite;
+}
+.pillar:nth-child(2) {
+  animation: drift2 9s ease-in-out infinite 1.5s;
+}
+.pillar:nth-child(3) {
+  animation: drift3 8s ease-in-out infinite 3s;
+}
+
+/* Bordure qui respire */
+.pillar {
+  transition: padding-left 0.25s;
+}
+.pillar-mark {
+  animation: borderBreath 5s ease-in-out infinite;
+}
+.pillar:nth-child(2) .pillar-mark { animation-delay: 1.8s; }
+.pillar:nth-child(3) .pillar-mark { animation-delay: 3.5s; }
+
+/* ─── VALEURS — nénuphars qui flottent ─── */
+.valeur-card:nth-child(1) { animation: bubbleUp 6s ease-in-out infinite 0s; }
+.valeur-card:nth-child(2) { animation: bubbleUp 7s ease-in-out infinite 1.2s; }
+.valeur-card:nth-child(3) { animation: bubbleUp 6.5s ease-in-out infinite 2.4s; }
+.valeur-card:nth-child(4) { animation: bubbleUp 7.5s ease-in-out infinite 0.8s; }
+.valeur-card:nth-child(5) { animation: bubbleUp 6s ease-in-out infinite 3s; }
+
+/* ─── SERVICES — vague de gauche à droite ─── */
+.service-card:nth-child(1) { animation: float1 7s ease-in-out infinite 0s; }
+.service-card:nth-child(2) { animation: float2 8s ease-in-out infinite 0.8s; }
+.service-card:nth-child(3) { animation: float1 7.5s ease-in-out infinite 1.6s; }
+.service-card:nth-child(4) { animation: float3 9s ease-in-out infinite 0.4s; }
+.service-card:nth-child(5) { animation: float2 7s ease-in-out infinite 1.2s; }
+.service-card:nth-child(6) { animation: float1 8.5s ease-in-out infinite 2s; }
+
+/* ─── SÉPARATEURS wave-sep — ondulent ─── */
+.wave-sep {
+  animation: waveSepAnim 5s ease-in-out infinite;
+  transform-origin: left center;
+}
+.wave-sep::after {
+  animation: waveSepAnim 6s ease-in-out infinite 1s;
+  transform-origin: left center;
+}
+
+/* ─── STEP-CARDS — légère houle — seulement après illumination ─── */
+.step-card.illumine:nth-child(1) { animation: float1 8s ease-in-out infinite 0s; }
+.step-card.illumine:nth-child(2) { animation: float3 9s ease-in-out infinite 1.5s; }
+.step-card.illumine:nth-child(3) { animation: float2 7.5s ease-in-out infinite 3s; }
+
+/* Sauf au survol — on stoppe la flottaison */
+.step-card:hover,
+.service-card:hover,
+.valeur-card:hover {
+  animation: none !important;
+}
+
+/* ─── TEAM CARDS — courant latéral doux ─── */
+.team-card:nth-child(1) { animation: drift1 10s ease-in-out infinite 0s; }
+.team-card:nth-child(2) { animation: drift2 11s ease-in-out infinite 1s; }
+.team-card:nth-child(3) { animation: drift1 10.5s ease-in-out infinite 2s; }
+.team-card:nth-child(4) { animation: drift3 12s ease-in-out infinite 0.5s; }
+
+.team-card:hover { animation: none !important; }
+
+/* ─── PARTENAIRES — bulles lentes ─── */
+.partner-logo:nth-child(odd)  { animation: float1 9s ease-in-out infinite; }
+.partner-logo:nth-child(even) { animation: float2 10s ease-in-out infinite 2s; }
+.partner-logo:hover { animation: none !important; }
+
+/* ─── SECTION LABELS — micro ondulation ─── */
+.section-label {
+  animation: drift1 12s ease-in-out infinite;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .pillar, .valeur-card, .service-card, .step-card,
+  .team-card, .partner-logo, .wave-sep, .section-label,
+  .pillar-mark {
+    animation: none !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1036,7 +1180,7 @@ footer {
     <li><a href="#equipe">Experts</a></li>
     <li><a href="#mission">Mission</a></li>
     <li><a href="#valeurs">Valeurs</a></li>
-    <li><a href="#disc">Profil DISC</a></li>
+    <li><a href="#disc">Mon profil</a></li>
     <li><a href="#partenaires">Partenaires</a></li>
     <li><a href="#tunnel" class="nav-cta">Commencer</a></li>
   </ul>
@@ -1405,19 +1549,27 @@ footer {
   <div style="position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Cpath d='M0 20 Q30 5 60 20 Q90 35 120 20' fill='none' stroke='rgba(184,111,76,0.04)' stroke-width='1.5'/%3E%3C/svg%3E");background-size:120px 40px;pointer-events:none;"></div>
 
   <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto;">
-    <span class="section-label" style="color:var(--copper);">Outil de connaissance de soi</span>
-    <h2 class="section-title" style="color:var(--white);">Découvre ton profil <strong style="color:var(--copper);">DISC</strong></h2>
+    <span class="section-label" style="color:var(--copper);">Connaissance de soi</span>
+    <h2 class="section-title" style="color:var(--white);">Révèle <strong style="color:var(--copper);">ton potentiel</strong></h2>
     <div class="wave-sep"></div>
     <p class="section-sub" style="color:var(--white);opacity:0.5;margin-bottom:56px;">12 questions. 5 minutes. Un profil personnalisé et l'expert NORIA HORIZON qui correspond à qui tu es vraiment.</p>
 
     <!-- QUESTIONNAIRE -->
+    <div style="margin-bottom:48px;">
+      <button onclick="document.getElementById('disc-quiz-inner').style.display='block'; this.parentElement.style.display='none'; discInit();"
+        class="btn-primary" style="font-size:0.88rem;padding:18px 48px;letter-spacing:0.2em;">
+        Révèle ton potentiel →
+      </button>
+    </div>
     <div id="disc-quiz">
+      <div id="disc-quiz-inner" style="display:none;">
       <div id="disc-progress-bar" style="width:100%;height:3px;background:rgba(255,255,255,0.1);margin-bottom:48px;border-radius:2px;">
         <div id="disc-progress-fill" style="height:100%;width:0%;background:linear-gradient(to right,var(--copper),var(--teal));transition:width 0.4s ease;border-radius:2px;"></div>
       </div>
       <div id="disc-question-block">
         <!-- Injecté par JS -->
       </div>
+    </div>
     </div>
 
     <!-- RÉSULTAT -->
@@ -1426,7 +1578,7 @@ footer {
 
         <!-- Radar -->
         <div>
-          <p style="font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--copper);margin-bottom:24px;">Ton graphique DISC</p>
+          <p style="font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--copper);margin-bottom:24px;">Ton graphique</p>
           <canvas id="disc-radar" width="360" height="360" style="max-width:100%;"></canvas>
         </div>
 
@@ -1758,7 +1910,7 @@ function discInit() {
   discCurrent = 0;
   discAnswers = [];
   document.getElementById('disc-result').style.display = 'none';
-  document.getElementById('disc-quiz').style.display = 'block';
+  document.getElementById('disc-quiz-inner').style.display = 'block';
   document.getElementById('disc-email-confirm').style.display = 'none';
   renderDiscQuestion();
 }
@@ -1803,7 +1955,7 @@ function discAnswer(type) {
 function showDiscResult() {
   document.getElementById('disc-progress-fill').style.width = '100%';
   setTimeout(() => {
-    document.getElementById('disc-quiz').style.display = 'none';
+    document.getElementById('disc-quiz-inner').style.display = 'none';
     document.getElementById('disc-result').style.display = 'block';
 
     // Profil dominant
@@ -1812,7 +1964,7 @@ function showDiscResult() {
 
     // Carte profil
     document.getElementById('disc-card').innerHTML = \`
-      <span class="disc-profile-badge">Ton profil NORIA</span>
+      <span class="disc-profile-badge">Ton profil</span>
       <div class="disc-profile-letter">\${profile.letter}</div>
       <div class="disc-profile-name">\${profile.name}</div>
       <p class="disc-profile-text">\${profile.description}</p>
@@ -1981,7 +2133,7 @@ document.addEventListener('DOMContentLoaded', discInit);
     <li><a href="#equipe">Experts</a></li>
     <li><a href="#mission">Mission</a></li>
     <li><a href="#valeurs">Valeurs</a></li>
-    <li><a href="#disc">Profil DISC</a></li>
+    <li><a href="#disc">Mon profil</a></li>
     <li><a href="#partenaires">Partenaires</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
