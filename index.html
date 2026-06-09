@@ -1396,7 +1396,7 @@ footer {
     <div class="team-card reveal" onclick="openModal('florian')">
       <div class="team-photo">
         <span class="founder-badge">Co-fondateur</span>
-        <span class="team-emoji">⚡</span>
+        <img src="images/Florian-Dhaussy.png" alt="Florian Dhaussy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.style.display='none'">
         <div class="team-overlay"><p>Formateur Management · Consultant RH · Co-fondateur</p></div>
       </div>
       <div class="team-info">
@@ -1414,7 +1414,7 @@ footer {
     <div class="team-card reveal" onclick="openModal('denis')">
       <div class="team-photo">
         <span class="founder-badge">Co-fondateur</span>
-        <span class="team-emoji">🧭</span>
+        <img src="images/Denis-Deblevid.png" alt="Denis Deblevid" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.style.display='none'">
         <div class="team-overlay"><p>Coach philosophique · Méthode 4P · Co-fondateur</p></div>
       </div>
       <div class="team-info">
@@ -1431,7 +1431,7 @@ footer {
     <!-- 3. Mélanie -->
     <div class="team-card reveal" onclick="openModal('melanie')">
       <div class="team-photo">
-        <span class="team-emoji">🎯</span>
+        <img src="images/Melanie-Allard.png" alt="Mélanie Allard" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.style.display='none'">
         <div class="team-overlay"><p>Consultante emploi · Carrière · 20 ans d'expérience</p></div>
       </div>
       <div class="team-info">
@@ -1448,7 +1448,7 @@ footer {
     <!-- 4. Marc -->
     <div class="team-card reveal" onclick="openModal('marc')">
       <div class="team-photo">
-        <span class="team-emoji">🌿</span>
+        <img src="images/Marc-Vandrepotte.png" alt="Marc Vandrepotte" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.style.display='none'">
         <div class="team-overlay"><p>Copywriter · Consultant · Bien-être holistique</p></div>
       </div>
       <div class="team-info">
@@ -1460,6 +1460,22 @@ footer {
           <a href="#" onclick="event.stopPropagation()">✉ Mail</a>
         </div>
       </div>
+    <!-- 5. Laurence -->
+    <div class="team-card reveal" onclick="openModal('laurence')">
+      <div class="team-photo">
+        <img src="images/Laurence-Brouet.png" alt="Laurence Brouet" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.style.display='none'">
+        <div class="team-overlay"><p>Consultante RH · Formation · E-learning · Toulouse</p></div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Laurence Brouet</div>
+        <span class="team-role">Consultante RH · Formation</span>
+        <span class="team-location">📍 Toulouse</span>
+        <div class="team-contacts">
+          <a href="tel:+33671825739" onclick="event.stopPropagation()">📞 Tél.</a>
+          <a href="mailto:brouet.laurence@orange.fr" onclick="event.stopPropagation()">✉ Mail</a>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 </section>
@@ -2266,6 +2282,19 @@ const experts = {
     email:'marc.vandrepotte@noria-horizon.fr',
     bio:["Freelance polyvalent, Marc conjugue expertise en compléments alimentaires, copywriting et conseil en développement de compétences. Une approche qui lie le corps, la communication et la progression personnelle.","En parallèle de ses activités de conseil, Marc pratique et propose la magnétothérapie — une dimension complémentaire pour ceux qui cherchent un accompagnement holistique de leur bien-être."],
     tags:['Copywriting','Compléments alimentaires','Bien-être','Magnétisme','Développement de compétences']
+  },
+  laurence: {
+    emoji:'',
+    name:'Laurence Brouet',
+    role:'Consultante RH · Formation · E-learning',
+    location:'Toulouse (distanciel & présentiel)',
+    phone:'+33 6 71 82 57 39',
+    email:'brouet.laurence@orange.fr',
+    bio:[
+      "Consultante dans les activités RH et dans le secteur de la formation, Laurence apporte des solutions concrètes aux dirigeants en recherche de talents, aux salariés désireux de développer leurs compétences professionnelles, aux personnes en reconversion et aux jeunes en contrat d'apprentissage.",
+      "Avec un parcours professionnel riche et une connaissance approfondie du monde de l'entreprise, elle a développé polyvalence, sens de l'organisation, forte adaptabilité et une aptitude fine à la détection des attentes et des besoins. Disponible pour des interventions ponctuelles ou récurrentes, en distanciel ou sur site dans le secteur toulousain."
+    ],
+    tags:['RH','Formation','E-learning','Éducation','Reconversion','Apprentissage','Développement des compétences','Recrutement']
   }
 };
 
