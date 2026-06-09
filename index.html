@@ -1256,7 +1256,6 @@ footer {
     <li><a href="#equipe">Experts</a></li>
     <li><a href="#mission">Mission</a></li>
     <li><a href="#valeurs">Valeurs</a></li>
-    <li><a href="#disc">Mon profil</a></li>
     <li><a href="#partenaires">Partenaires</a></li>
     <li><a href="#tunnel" class="nav-cta">Commencer</a></li>
   </ul>
@@ -2002,26 +2001,7 @@ function discInit() {
   renderDiscQuestion();
 }
 
-function renderDiscQuestion() {
-  const q = discQuestions[discCurrent];
-  const pct = (discCurrent / discQuestions.length) * 100;
-  document.getElementById('disc-progress-fill').style.width = pct + '%';
 
-  // Mélanger les options
-  const opts = [...q.options].sort(() => Math.random() - 0.5);
-
-  document.getElementById('disc-question-block').innerHTML = \`
-    <span class="disc-q-num">Question \${discCurrent + 1} / \${discQuestions.length}</span>
-    <p class="disc-q-text">\${q.text}</p>
-    <div class="disc-options">
-      \${opts.map((o,i) => \`
-        <button class="disc-option" onclick="discAnswer('\${o.disc}')" style="animation:fadeUp 0.4s ease forwards \${i*0.08}s; opacity:0;">
-          \${o.text}
-        </button>
-      \`).join('')}
-    </div>
-  \`;
-}
 
 function discAnswer(type) {
   discScores[type]++;
@@ -2039,43 +2019,7 @@ function discAnswer(type) {
   }
 }
 
-function showDiscResult() {
-  document.getElementById('disc-progress-fill').style.width = '100%';
-  setTimeout(() => {
-    document.getElementById('disc-quiz').style.display = 'none';
-    document.getElementById('disc-result').style.display = 'block';
 
-    // Profil dominant
-    const dominant = Object.entries(discScores).sort((a,b) => b[1]-a[1])[0][0];
-    const profile = discProfiles[dominant];
-
-    // Carte profil
-    document.getElementById('disc-card').innerHTML = \`
-      <span class="disc-profile-badge">Ton profil</span>
-      <div class="disc-profile-letter">\${profile.letter}</div>
-      <div class="disc-profile-name">\${profile.name}</div>
-      <p class="disc-profile-text">\${profile.description}</p>
-      <div class="disc-profile-section">
-        <h4>Tes points forts</h4>
-        <ul>\${profile.strengths.map(s=>\`<li>\${s}</li>\`).join('')}</ul>
-      </div>
-      <div class="disc-profile-section">
-        <h4>Axes de progression</h4>
-        <ul>\${profile.axes.map(a=>\`<li>\${a}</li>\`).join('')}</ul>
-      </div>
-      <div class="disc-expert-rec">
-        <p>Ton expert recommandé : <strong>\${profile.expert.name}</strong> · \${profile.expert.role}</p>
-        <p style="margin-top:8px;">\${profile.expert.text}</p>
-      </div>
-      <button onclick="document.getElementById('disc-cta-btn').style.display='block'; document.getElementById('disc-quiz').style.display='none'; document.getElementById('disc-result').style.display='none';" style="margin-top:20px;background:transparent;border:1px solid rgba(255,255,255,0.2);color:var(--white);padding:8px 18px;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;opacity:0.5;font-family:var(--font-body);transition:opacity 0.3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">
-        Refaire le test
-      </button>
-    \`;
-
-    // Radar Chart
-    drawDiscRadar(discScores);
-  }, 400);
-}
 
 function drawDiscRadar(scores) {
   const canvas = document.getElementById('disc-radar');
@@ -2282,7 +2226,6 @@ function resetQuiz() {
     <li><a href="#equipe">Experts</a></li>
     <li><a href="#mission">Mission</a></li>
     <li><a href="#valeurs">Valeurs</a></li>
-    <li><a href="#disc">Mon profil</a></li>
     <li><a href="#partenaires">Partenaires</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -2298,10 +2241,7 @@ const experts = {
     location:'Hauts-de-France (France entière)',
     phone:'+33 6 00 00 00 00',
     email:'florian.dhaussy@noria-horizon.fr',
-    bio:[
-      `Consultant en développement des compétences, manager d'une équipe de consultants, formateur et coach certifié SEVEN NATURAL SKILLS®, Florian intervient à la croisée des enjeux humains et stratégiques. Sa conviction : la réussite durable repose sur la capacité à développer les compétences, révéler les potentiels et faire grandir les talents.`,
-      `Il accompagne dirigeants, équipes RH, managers et collaborateurs dans la construction de solutions concrètes favorisant l'engagement, la montée en compétences et la performance collective.`
-    ],
+    bio:["Consultant en développement des compétences, manager d'une équipe de consultants, formateur et coach certifié SEVEN NATURAL SKILLS®, Florian intervient à la croisée des enjeux humains et stratégiques. Sa conviction : la réussite durable repose sur la capacité à développer les compétences, révéler les potentiels et faire grandir les talents.","Il accompagne dirigeants, équipes RH, managers et collaborateurs dans la construction de solutions concrètes favorisant l'engagement, la montée en compétences et la performance collective."],
     tags:['Management','Formation','Leadership','RH','Compétences','Performance collective','Seven Natural Skills®']
   },
   denis: {
@@ -2311,10 +2251,7 @@ const experts = {
     location:'Marseille',
     phone:'+33 6 00 00 00 00',
     email:'denisdeblevidcontact@gmail.com',
-    bio:[
-      `Coach philosophique et fondateur de la Méthode 4P (Psychologique, Physique, Philosophique, Pneuma), Denis accompagne ceux qui portent une soif profonde de sens et de transformation. Son approche s'enracine dans le stoïcisme pratique — une philosophie vécue, incarnée, qui ne reste pas dans les livres.`,
-      `Ancien pratiquant d'arts martiaux pendant dix ans, Denis a traversé ses propres ruptures pour construire une méthode qui touche l'être dans toutes ses dimensions. Il marche à tes côtés, non au-dessus de toi.`
-    ],
+    bio:["Coach philosophique et fondateur de la Méthode 4P (Psychologique, Physique, Philosophique, Pneuma), Denis accompagne ceux qui portent une soif profonde de sens et de transformation. Son approche s'enracine dans le stoïcisme pratique — une philosophie vécue, incarnée, qui ne reste pas dans les livres.","Ancien pratiquant d'arts martiaux pendant dix ans, Denis a traversé ses propres ruptures pour construire une méthode qui touche l'être dans toutes ses dimensions. Il marche à tes côtés, non au-dessus de toi."],
     tags:['Stoïcisme','Méthode 4P','Identité','Sens','Résilience','Corps & Mental','Philosophie pratique']
   },
   melanie: {
@@ -2324,10 +2261,7 @@ const experts = {
     location:'Vendée (visio & présentiel)',
     phone:'+33 6 00 00 00 00',
     email:'melanie.allard@noria-horizon.fr',
-    bio:[
-      `Forte de 20 ans d'expérience en intérim, recrutement et gestion d'agence, Mélanie accompagne particuliers et professionnels à clarifier leur situation, structurer leurs démarches et avancer de manière alignée dans leurs projets professionnels.`,
-      `Pour les particuliers : transitions professionnelles, orientation, repositionnement, diagnostic CV, préparation aux entretiens. Pour les professionnels : audit business, structuration et développement de TPE/PME. Une approche pragmatique, simple et orientée solutions.`
-    ],
+    bio:["Forte de 20 ans d'expérience en intérim, recrutement et gestion d'agence, Mélanie accompagne particuliers et professionnels à clarifier leur situation, structurer leurs démarches et avancer de manière alignée dans leurs projets professionnels.","Pour les particuliers : transitions professionnelles, orientation, repositionnement, diagnostic CV, préparation aux entretiens. Pour les professionnels : audit business, structuration et développement de TPE/PME. Une approche pragmatique, simple et orientée solutions."],
     tags:['Carrière','Reconversion','CV & Entretiens','Audit business','TPE·PME','Transitions pro','Bilan carrière']
   },
   marc: {
@@ -2337,34 +2271,28 @@ const experts = {
     location:'France',
     phone:'+33 6 00 00 00 00',
     email:'marc.vandrepotte@noria-horizon.fr',
-    bio:[
-      `Freelance polyvalent, Marc conjugue expertise en compléments alimentaires, copywriting et conseil en développement de compétences. Une approche qui lie le corps, la communication et la progression personnelle.`,
-      `En parallèle de ses activités de conseil, Marc pratique et propose la magnétothérapie — une dimension complémentaire pour ceux qui cherchent un accompagnement holistique de leur bien-être.`
-    ],
+    bio:["Freelance polyvalent, Marc conjugue expertise en compléments alimentaires, copywriting et conseil en développement de compétences. Une approche qui lie le corps, la communication et la progression personnelle.","En parallèle de ses activités de conseil, Marc pratique et propose la magnétothérapie — une dimension complémentaire pour ceux qui cherchent un accompagnement holistique de leur bien-être."],
     tags:['Copywriting','Compléments alimentaires','Bien-être','Magnétisme','Développement de compétences']
   }
 };
 
 function openModal(id){
-  const e=experts[id]; if(!e) return;
-  const bioHTML=e.bio.map(p=>`<p class="modal-bio">${p}</p>`).join('');
-  const tagsHTML=e.tags.map(t=>`<span class="modal-tag">${t}</span>`).join('');
-  document.getElementById('modalBody').innerHTML=`
-    <div class="modal-header">
-      <div class="modal-photo">${e.emoji}</div>
-      <div class="modal-info">
-        <h2>${e.name}</h2>
-        <span class="role-badge">${e.role}</span><br>
-        <small style="opacity:.4;font-size:.78rem;display:block;margin-bottom:10px;">📍 ${e.location}</small>
-        <div class="contact-links">
-          <a href="tel:${e.phone}">📞 ${e.phone}</a>
-          <a href="mailto:${e.email}">✉ ${e.email}</a>
-        </div>
-      </div>
-    </div>
-    ${bioHTML}
-    <div class="modal-tags">${tagsHTML}</div>
-  `;
+  var e=experts[id]; if(!e) return;
+  var bioHTML=e.bio.map(function(p){ return '<p class="modal-bio">'+p+'</p>'; }).join('');
+  var tagsHTML=e.tags.map(function(t){ return '<span class="modal-tag">'+t+'</span>'; }).join('');
+  document.getElementById('modalBody').innerHTML=
+    '<div class="modal-header">' +
+    '<div class="modal-photo">'+e.emoji+'</div>' +
+    '<div class="modal-info">' +
+    '<h2>'+e.name+'</h2>' +
+    '<span class="role-badge">'+e.role+'</span><br>' +
+    '<small style="opacity:.4;font-size:.78rem;display:block;margin-bottom:10px;">📍 '+e.location+'</small>' +
+    '<div class="contact-links">' +
+    '<a href="tel:'+e.phone+'">📞 '+e.phone+'</a>' +
+    '<a href="mailto:'+e.email+'">✉ '+e.email+'</a>' +
+    '</div></div></div>' +
+    bioHTML +
+    '<div class="modal-tags">'+tagsHTML+'</div>';
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow='hidden';
 }
