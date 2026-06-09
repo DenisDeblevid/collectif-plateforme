@@ -485,6 +485,15 @@ section { padding:100px 60px; position:relative; z-index:1; }
   background:linear-gradient(135deg, var(--sand), #c8d8e0);
   position:relative; overflow:hidden;
 }
+.team-photo img {
+  width:100%; height:100%;
+  object-fit:cover;
+  object-position:center top;
+  position:absolute; inset:0;
+  transition:transform 0.4s ease;
+  z-index:1;
+}
+.team-card:hover .team-photo img { transform:scale(1.04); }
 .team-photo::before {
   content:''; position:absolute; inset:0;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='28' fill='none' stroke='rgba(35,75,94,0.06)' stroke-width='1'/%3E%3C/svg%3E");
@@ -2244,7 +2253,7 @@ function resetQuiz() {
 <script>
 const experts = {
   florian: {
-    emoji:'⚡',
+    photo:'Florian-Dhaussy.png',
     name:'Florian Dhaussy',
     role:'Formateur Management · Consultant RH · Co-fondateur',
     location:'Hauts-de-France (France entière)',
@@ -2254,7 +2263,7 @@ const experts = {
     tags:['Management','Formation','Leadership','RH','Compétences','Performance collective','Seven Natural Skills®']
   },
   denis: {
-    emoji:'🧭',
+    photo:'Denis-Deblevid.png',
     name:'Denis Deblevid',
     role:'Coach Philosophique · Méthode 4P · Co-fondateur',
     location:'Marseille',
@@ -2264,7 +2273,7 @@ const experts = {
     tags:['Stoïcisme','Méthode 4P','Identité','Sens','Résilience','Corps & Mental','Philosophie pratique']
   },
   melanie: {
-    emoji:'🎯',
+    photo:'Melanie-Allard.png',
     name:'Mélanie Allard',
     role:'Consultante Emploi · Carrière · Développement',
     location:'Vendée (visio & présentiel)',
@@ -2274,7 +2283,7 @@ const experts = {
     tags:['Carrière','Reconversion','CV & Entretiens','Audit business','TPE·PME','Transitions pro','Bilan carrière']
   },
   marc: {
-    emoji:'🌿',
+    photo:'Marc-Vandrepotte.png',
     name:'Marc Vandrepotte',
     role:'Copywriter · Consultant · Compléments alimentaires',
     location:'France',
@@ -2284,7 +2293,7 @@ const experts = {
     tags:['Copywriting','Compléments alimentaires','Bien-être','Magnétisme','Développement de compétences']
   },
   laurence: {
-    emoji:'',
+    photo:'Laurence-Brouet.png',
     name:'Laurence Brouet',
     role:'Consultante RH · Formation · E-learning',
     location:'Toulouse (distanciel & présentiel)',
@@ -2304,7 +2313,7 @@ function openModal(id){
   var tagsHTML=e.tags.map(function(t){ return '<span class="modal-tag">'+t+'</span>'; }).join('');
   document.getElementById('modalBody').innerHTML=
     '<div class="modal-header">' +
-    '<div class="modal-photo">'+e.emoji+'</div>' +
+    '<div class="modal-photo" style="overflow:hidden;padding:0;">'+(e.photo ? '<img src="'+e.photo+'" alt="'+e.name+'" style="width:100%;height:100%;object-fit:cover;object-position:center top;">' : '')+'</div>' +
     '<div class="modal-info">' +
     '<h2>'+e.name+'</h2>' +
     '<span class="role-badge">'+e.role+'</span><br>' +
