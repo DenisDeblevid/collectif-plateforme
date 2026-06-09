@@ -1632,7 +1632,14 @@ footer {
 
     <!-- QUESTIONNAIRE -->
     <div id="disc-cta-btn" style="margin-bottom:48px;text-align:center;">
-      <button onclick="startQuiz()" class="btn-primary" style="font-size:0.9rem;padding:18px 52px;letter-spacing:0.2em;">
+      <button onclick="
+  document.getElementById('disc-cta-btn').style.display='none';
+  document.getElementById('disc-quiz').style.display='block';
+  var s={D:0,I:0,S:0,C:0}; window._ds=s; window._dc=0; window._da=[];
+  window._df=document.getElementById('disc-progress-fill');
+  window._dq=document.getElementById('disc-question-block');
+  renderQ();
+" class="btn-primary" style="font-size:0.9rem;padding:18px 52px;letter-spacing:0.2em;">
         Révèle ton potentiel →
       </button>
       <p style="font-size:0.78rem;color:var(--white);opacity:0.35;margin-top:14px;">12 questions · 5 minutes · Profil personnalisé</p>
@@ -2168,6 +2175,68 @@ function sendDiscByEmail() {
 
 // Init au chargement
 // Le questionnaire s'initialise au clic sur le bouton
+
+function renderQ() {
+  var q = discQuestions[window._dc];
+  var pct = (window._dc / discQuestions.length) * 100;
+  window._df.style.width = pct + '%';
+  var opts = q.options.slice().sort(function(){ return Math.random()-0.5; });
+  var html = '<span class="disc-q-num">Question ' + (window._dc+1) + ' / ' + discQuestions.length + '</span>';
+  html += '<p class="disc-q-text">' + q.text + '</p>';
+  html += '<div class="disc-options">';
+  opts.forEach(function(o) {
+    html += '<button class="disc-option" onclick="pickAnswer('' + o.disc + '')">' + o.text + '</button>';
+  });
+  html += '</div>';
+  window._dq.innerHTML = html;
+}
+
+function pickAnswer(type) {
+  window._ds[type]++;
+  window._dc++;
+  if (window._dc >= discQuestions.length) {
+    showResult();
+  } else {
+    window._dq.style.opacity = '0';
+    setTimeout(function() {
+      window._dq.style.opacity = '1';
+      renderQ();
+    }, 200);
+  }
+}
+
+function showResult() {
+  window._df.style.width = '100%';
+  setTimeout(function() {
+    document.getElementById('disc-quiz').style.display = 'none';
+    document.getElementById('disc-result').style.display = 'block';
+    var scores = window._ds;
+    var dominant = Object.keys(scores).sort(function(a,b){ return scores[b]-scores[a]; })[0];
+    var profile = discProfiles[dominant];
+    document.getElementById('disc-card').innerHTML =
+      '<span class="disc-profile-badge">Ton profil</span>' +
+      '<div class="disc-profile-letter">' + profile.letter + '</div>' +
+      '<div class="disc-profile-name">' + profile.name + '</div>' +
+      '<p class="disc-profile-text">' + profile.description + '</p>' +
+      '<div class="disc-profile-section"><h4>Tes points forts</h4><ul>' +
+        profile.strengths.map(function(s){ return '<li>'+s+'</li>'; }).join('') +
+      '</ul></div>' +
+      '<div class="disc-profile-section"><h4>Axes de progression</h4><ul>' +
+        profile.axes.map(function(a){ return '<li>'+a+'</li>'; }).join('') +
+      '</ul></div>' +
+      '<div class="disc-expert-rec"><p>Ton expert recommandé : <strong>' + profile.expert.name + '</strong> · ' + profile.expert.role + '</p>' +
+      '<p style="margin-top:8px;">' + profile.expert.text + '</p></div>' +
+      '<button onclick="resetQuiz()" style="margin-top:20px;background:transparent;border:1px solid rgba(255,255,255,0.2);color:var(--white);padding:8px 18px;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;opacity:0.5;font-family:var(--font-body);">Refaire le test</button>';
+    drawDiscRadar(scores);
+  }, 400);
+}
+
+function resetQuiz() {
+  document.getElementById('disc-cta-btn').style.display = 'block';
+  document.getElementById('disc-quiz').style.display = 'none';
+  document.getElementById('disc-result').style.display = 'none';
+  document.getElementById('disc-email-confirm').style.display = 'none';
+}
 </script>
 
 <!-- PARTENAIRES -->
