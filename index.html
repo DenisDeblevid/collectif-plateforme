@@ -1219,6 +1219,46 @@ footer {
 .service-card h3 { font-family:var(--font-display); font-size:1.1rem; font-weight:600; margin-bottom:10px; color:var(--deep); }
 .service-card p { font-size:0.86rem; opacity:0.6; line-height:1.75; }
 
+
+/* ─── HERO BANDES FLUIDES ─── */
+.hero-bands {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 42%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-bands a {
+  pointer-events: all;
+  position: absolute;
+  left: 0; right: 0;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: filter 0.3s;
+}
+.hero-bands a:hover { filter: brightness(1.1); }
+.band-label {
+  padding-left: 44px;
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+}
+.band-label strong {
+  display: block;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+.band-label span {
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+@media(max-width:900px){ .hero-bands { display:none; } }
+
 </style>
 </head>
 <body>
@@ -1295,9 +1335,47 @@ footer {
     <p class="hero-sub">
       Mettre en mouvement les transformations pour révéler, développer et élever les personnes, les équipes et les organisations.
     </p>
-    <div class="hero-actions">
-      <a href="#tunnel" class="btn-primary">Découvrir mon expert</a>
-      <a href="#equipe" class="btn-ghost">Rencontrer l'équipe</a>
+    <!-- BANDES FLUIDES -->
+    <div class="hero-bands">
+      <svg viewBox="0 0 500 900" preserveAspectRatio="none"
+           style="position:absolute;inset:0;width:100%;height:100%;"
+           fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0 L500 0 L500 178 Q400 200 300 182 Q200 164 100 188 Q50 198 0 188 Z" fill="#234B5E" opacity="0.85"/>
+        <path d="M0 178 Q50 168 100 178 Q200 196 300 176 Q400 158 500 178 L500 356 Q400 374 300 356 Q200 338 100 360 Q50 370 0 356 Z" fill="#3B7A78" opacity="0.80"/>
+        <path d="M0 346 Q50 336 100 348 Q200 364 300 344 Q400 326 500 346 L500 524 Q400 542 300 524 Q200 506 100 528 Q50 538 0 524 Z" fill="#B86F4C" opacity="0.75"/>
+        <path d="M0 514 Q50 504 100 516 Q200 532 300 512 Q400 494 500 514 L500 692 Q400 710 300 692 Q200 674 100 696 Q50 706 0 692 Z" fill="#234B5E" opacity="0.68"/>
+        <path d="M0 682 Q50 672 100 684 Q200 698 300 680 Q400 664 500 682 L500 900 L0 900 Z" fill="#3B7A78" opacity="0.62"/>
+      </svg>
+      <a href="#tunnel" style="top:0;height:178px;">
+        <div class="band-label" style="color:#E8DCC9;">
+          <span>Tunnel de vente</span>
+          <strong>Découvrir mon expert</strong>
+        </div>
+      </a>
+      <a href="#equipe" style="top:178px;height:178px;">
+        <div class="band-label" style="color:#FDFAF5;">
+          <span>Le collectif</span>
+          <strong>Découvrir l'équipe</strong>
+        </div>
+      </a>
+      <a href="#services" style="top:356px;height:168px;">
+        <div class="band-label" style="color:#FDFAF5;">
+          <span>Nos services</span>
+          <strong>Ce que nous proposons</strong>
+        </div>
+      </a>
+      <a href="test-profil.html" style="top:524px;height:168px;">
+        <div class="band-label" style="color:#E8DCC9;">
+          <span>Test · Connaissance de soi</span>
+          <strong>Révèle ton potentiel</strong>
+        </div>
+      </a>
+      <a href="#contact" style="top:692px;height:208px;">
+        <div class="band-label" style="color:#FDFAF5;">
+          <span>Contact · Devis</span>
+          <strong>Une question ? Un projet ?</strong>
+        </div>
+      </a>
     </div>
   </div>
 
