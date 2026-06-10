@@ -487,6 +487,13 @@ section { padding:100px 60px; position:relative; z-index:1; }
 }
 .team-photo img {
   width:100%; height:100%;
+  object-fit:cover; object-position:center top;
+  position:absolute; inset:0; z-index:1;
+  transition:transform 0.4s ease;
+}
+.team-card:hover .team-photo img { transform:scale(1.04); }
+.team-photo img {
+  width:100%; height:100%;
   object-fit:cover;
   object-position:center top;
   position:absolute; inset:0;
@@ -1401,11 +1408,29 @@ footer {
   </div>
 
   <div class="team-grid">
-    <!-- 1. Florian — co-fondateur -->
+
+    <!-- 1. Laurence -->
+    <div class="team-card reveal" style="order:4;" onclick="openModal('laurence')">
+      <div class="team-photo">
+        <img src="Laurence-Brouet.png" alt="Laurence Brouet">
+        <div class="team-overlay"><p>Consultante RH · Formation · E-learning · Toulouse</p></div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Laurence Brouet</div>
+        <span class="team-role">Consultante RH · Formation</span>
+        <span class="team-location">📍 Toulouse</span>
+        <div class="team-contacts">
+          <a href="tel:+33671825739" onclick="event.stopPropagation()">📞 Tél.</a>
+          <a href="mailto:brouet.laurence@orange.fr" onclick="event.stopPropagation()">✉ Mail</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Florian — co-fondateur -->
     <div class="team-card reveal" onclick="openModal('florian')">
       <div class="team-photo">
         <span class="founder-badge">Co-fondateur</span>
-        <img src="Florian-Dhaussy.png" alt="Florian Dhaussy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.style.display='none'">
+        <img src="Florian-Dhaussy.png" alt="Florian Dhaussy">
         <div class="team-overlay"><p>Formateur Management · Consultant RH · Co-fondateur</p></div>
       </div>
       <div class="team-info">
@@ -1419,11 +1444,11 @@ footer {
       </div>
     </div>
 
-    <!-- 2. Denis — co-fondateur -->
+    <!-- 3. Denis — co-fondateur -->
     <div class="team-card reveal" onclick="openModal('denis')">
       <div class="team-photo">
         <span class="founder-badge">Co-fondateur</span>
-        <img src="Denis-Deblevid.png" alt="Denis Deblevid" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.style.display='none'">
+        <img src="Denis-Deblevid.png" alt="Denis Deblevid">
         <div class="team-overlay"><p>Coach philosophique · Méthode 4P · Co-fondateur</p></div>
       </div>
       <div class="team-info">
@@ -1437,10 +1462,10 @@ footer {
       </div>
     </div>
 
-    <!-- 3. Mélanie -->
+    <!-- 4. Mélanie -->
     <div class="team-card reveal" onclick="openModal('melanie')">
       <div class="team-photo">
-        <img src="Melanie-Allard.png" alt="Mélanie Allard" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.style.display='none'">
+        <img src="Melanie-Allard.png" alt="Mélanie Allard">
         <div class="team-overlay"><p>Consultante emploi · Carrière · 20 ans d'expérience</p></div>
       </div>
       <div class="team-info">
@@ -1454,10 +1479,10 @@ footer {
       </div>
     </div>
 
-    <!-- 4. Marc -->
+    <!-- 5. Marc -->
     <div class="team-card reveal" onclick="openModal('marc')">
       <div class="team-photo">
-        <img src="Marc-Vandrepotte.png" alt="Marc Vandrepotte" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.style.display='none'">
+        <img src="Marc-Vandrepotte.png" alt="Marc Vandrepotte">
         <div class="team-overlay"><p>Copywriter · Consultant · Bien-être holistique</p></div>
       </div>
       <div class="team-info">
@@ -1469,23 +1494,9 @@ footer {
           <a href="#" onclick="event.stopPropagation()">✉ Mail</a>
         </div>
       </div>
-    <!-- 5. Laurence -->
-    <div class="team-card reveal" onclick="openModal('laurence')">
-      <div class="team-photo">
-        <img src="Laurence-Brouet.png" alt="Laurence Brouet" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.style.display='none'">
-        <div class="team-overlay"><p>Consultante RH · Formation · E-learning · Toulouse</p></div>
-      </div>
-      <div class="team-info">
-        <div class="team-name">Laurence Brouet</div>
-        <span class="team-role">Consultante RH · Formation</span>
-        <span class="team-location">📍 Toulouse</span>
-        <div class="team-contacts">
-          <a href="tel:+33671825739" onclick="event.stopPropagation()">📞 Tél.</a>
-          <a href="mailto:brouet.laurence@orange.fr" onclick="event.stopPropagation()">✉ Mail</a>
-        </div>
-      </div>
     </div>
-    </div>
+
+  </div>
   </div>
 </section>
 
