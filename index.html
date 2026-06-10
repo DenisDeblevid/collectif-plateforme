@@ -1214,40 +1214,51 @@ footer {
 .service-card p { font-size:0.86rem; opacity:0.6; line-height:1.75; }
 
 
-/* ─── HERO BANDES ONDES ─── */
+/* ─── HERO REFAIT ─── */
 #hero {
-  padding-right: 0 !important;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 130px 0 80px 60px;
 }
+
 .hero-content {
-  width: 50%;
-  max-width: 580px;
   position: relative;
   z-index: 2;
+  max-width: 580px;
+  padding-right: 40px;
 }
+
 .hero-bands {
-  position: absolute;
-  right: 0; top: 0; bottom: 0;
-  width: 50%;
-  pointer-events: none;
+  position: relative;
+  height: 100%;
+  min-height: 100vh;
   overflow: hidden;
 }
+
 .hero-bands svg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
 }
+
 .hero-bands a {
-  pointer-events: all;
   position: absolute;
   left: 0; right: 0;
   display: flex;
   align-items: center;
   text-decoration: none;
   z-index: 2;
+  transition: opacity 0.3s;
+  opacity: 0.9;
 }
+.hero-bands a:hover { opacity: 1; }
+
 .band-label {
-  position: relative;
   padding-left: 44px;
   font-family: var(--font-display);
   font-weight: 300;
@@ -1263,9 +1274,13 @@ footer {
   font-size: 0.6rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  opacity: 0.6;
+  opacity: 0.65;
 }
-@media(max-width:900px){ .hero-bands { display:none; } .hero-content { width:100% !important; } }
+
+@media(max-width:900px){
+  #hero { grid-template-columns: 1fr; padding: 100px 22px 60px; }
+  .hero-bands { display: none; }
+}
 
 </style>
 </head>
@@ -1332,6 +1347,8 @@ footer {
 
 <!-- HERO -->
 <section id="hero">
+
+  <!-- GAUCHE — contenu -->
   <div class="hero-content">
     <span class="hero-eyebrow">Intelligence collective · Développement humain</span>
     <h1 class="hero-title">
@@ -1341,99 +1358,78 @@ footer {
     <p class="hero-sub">
       Mettre en mouvement les transformations pour révéler, développer et élever les personnes, les équipes et les organisations.
     </p>
-    <!-- BANDES ONDES -->
-    <div class="hero-bands">
-      <svg viewBox="0 0 500 900" preserveAspectRatio="none"
-           fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <!-- Dégradé horizontal : disparaît aux extrémités -->
-          <linearGradient id="fade1" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%"   stop-color="#F4EFE6" stop-opacity="0"/>
-            <stop offset="20%"  stop-color="#234B5E" stop-opacity="0.5"/>
-            <stop offset="80%"  stop-color="#234B5E" stop-opacity="0.5"/>
-            <stop offset="100%" stop-color="#F4EFE6" stop-opacity="0"/>
-          </linearGradient>
-          <linearGradient id="fade2" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%"   stop-color="#F4EFE6" stop-opacity="0"/>
-            <stop offset="20%"  stop-color="#3B7A78" stop-opacity="0.45"/>
-            <stop offset="80%"  stop-color="#3B7A78" stop-opacity="0.45"/>
-            <stop offset="100%" stop-color="#F4EFE6" stop-opacity="0"/>
-          </linearGradient>
-          <linearGradient id="fade3" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%"   stop-color="#F4EFE6" stop-opacity="0"/>
-            <stop offset="20%"  stop-color="#B86F4C" stop-opacity="0.42"/>
-            <stop offset="80%"  stop-color="#B86F4C" stop-opacity="0.42"/>
-            <stop offset="100%" stop-color="#F4EFE6" stop-opacity="0"/>
-          </linearGradient>
-          <linearGradient id="fade4" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%"   stop-color="#F4EFE6" stop-opacity="0"/>
-            <stop offset="20%"  stop-color="#234B5E" stop-opacity="0.38"/>
-            <stop offset="80%"  stop-color="#234B5E" stop-opacity="0.38"/>
-            <stop offset="100%" stop-color="#F4EFE6" stop-opacity="0"/>
-          </linearGradient>
-          <linearGradient id="fade5" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%"   stop-color="#F4EFE6" stop-opacity="0"/>
-            <stop offset="20%"  stop-color="#3B7A78" stop-opacity="0.35"/>
-            <stop offset="80%"  stop-color="#3B7A78" stop-opacity="0.35"/>
-            <stop offset="100%" stop-color="#F4EFE6" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-
-        <!-- Onde 1 — bleu profond -->
-        <path d="M-20 20 Q100 0 250 30 Q400 60 520 20 L520 200 Q400 240 250 210 Q100 180 -20 200 Z"
-              fill="url(#fade1)"/>
-        <!-- Onde 2 — teal -->
-        <path d="M-20 190 Q100 165 250 195 Q400 225 520 185 L520 375 Q400 415 250 385 Q100 355 -20 375 Z"
-              fill="url(#fade2)"/>
-        <!-- Onde 3 — cuivre -->
-        <path d="M-20 365 Q100 340 250 368 Q400 396 520 358 L520 548 Q400 588 250 558 Q100 528 -20 548 Z"
-              fill="url(#fade3)"/>
-        <!-- Onde 4 — bleu profond -->
-        <path d="M-20 538 Q100 514 250 542 Q400 570 520 530 L520 720 Q400 758 250 728 Q100 698 -20 720 Z"
-              fill="url(#fade4)"/>
-        <!-- Onde 5 — teal -->
-        <path d="M-20 710 Q100 686 250 714 Q400 742 520 702 L520 920 L-20 920 Z"
-              fill="url(#fade5)"/>
-      </svg>
-
-      <a href="#tunnel" style="top:0;height:20%;">
-        <div class="band-label" style="color:var(--deep);">
-          <span>Tunnel de vente</span>
-          <strong>Découvrir mon expert</strong>
-        </div>
-      </a>
-      <a href="#equipe" style="top:20%;height:20%;">
-        <div class="band-label" style="color:var(--deep);">
-          <span>Le collectif</span>
-          <strong>Découvrir l'équipe</strong>
-        </div>
-      </a>
-      <a href="#services" style="top:40%;height:20%;">
-        <div class="band-label" style="color:var(--deep);">
-          <span>Nos services</span>
-          <strong>Ce que nous proposons</strong>
-        </div>
-      </a>
-      <a href="test-profil.html" style="top:60%;height:20%;">
-        <div class="band-label" style="color:var(--deep);">
-          <span>Test · Connaissance de soi</span>
-          <strong>Révèle ton potentiel</strong>
-        </div>
-      </a>
-      <a href="#contact" style="top:80%;height:20%;">
-        <div class="band-label" style="color:var(--deep);">
-          <span>Contact · Devis</span>
-          <strong>Une question ? Un projet ?</strong>
-        </div>
-      </a>
-    </div>
   </div>
 
-  <!-- Vague bas hero -->
-  <svg class="hero-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <path d="M0 40 Q180 0 360 40 Q540 80 720 40 Q900 0 1080 40 Q1260 80 1440 40 L1440 80 L0 80Z" fill="#E8DCC9" opacity="0.5"/>
-    <path d="M0 55 Q200 20 400 55 Q600 90 800 55 Q1000 20 1200 55 Q1320 75 1440 55" stroke="#3B7A78" stroke-width="1" fill="none" opacity="0.25"/>
-  </svg>
+  <!-- DROITE — bandes ondes -->
+  <div class="hero-bands">
+    <svg viewBox="0 0 600 1000" preserveAspectRatio="none"
+         fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#F4EFE6" stop-opacity="0"/>
+          <stop offset="25%"  stop-color="#234B5E" stop-opacity="0.55"/>
+          <stop offset="100%" stop-color="#234B5E" stop-opacity="0.65"/>
+        </linearGradient>
+        <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#F4EFE6" stop-opacity="0"/>
+          <stop offset="25%"  stop-color="#3B7A78" stop-opacity="0.50"/>
+          <stop offset="100%" stop-color="#3B7A78" stop-opacity="0.60"/>
+        </linearGradient>
+        <linearGradient id="g3" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#F4EFE6" stop-opacity="0"/>
+          <stop offset="25%"  stop-color="#B86F4C" stop-opacity="0.48"/>
+          <stop offset="100%" stop-color="#B86F4C" stop-opacity="0.58"/>
+        </linearGradient>
+        <linearGradient id="g4" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#F4EFE6" stop-opacity="0"/>
+          <stop offset="25%"  stop-color="#234B5E" stop-opacity="0.44"/>
+          <stop offset="100%" stop-color="#234B5E" stop-opacity="0.54"/>
+        </linearGradient>
+        <linearGradient id="g5" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#F4EFE6" stop-opacity="0"/>
+          <stop offset="25%"  stop-color="#3B7A78" stop-opacity="0.40"/>
+          <stop offset="100%" stop-color="#3B7A78" stop-opacity="0.50"/>
+        </linearGradient>
+      </defs>
+      <path d="M0 0 L600 0 L600 210 Q480 232 360 212 Q200 188 0 208 Z" fill="url(#g1)"/>
+      <path d="M0 200 Q200 178 360 198 Q480 214 600 195 L600 405 Q480 428 360 408 Q200 384 0 404 Z" fill="url(#g2)"/>
+      <path d="M0 396 Q200 375 360 394 Q480 410 600 391 L600 600 Q480 622 360 602 Q200 578 0 598 Z" fill="url(#g3)"/>
+      <path d="M0 591 Q200 570 360 589 Q480 605 600 586 L600 795 Q480 817 360 797 Q200 773 0 793 Z" fill="url(#g4)"/>
+      <path d="M0 786 Q200 765 360 784 Q480 800 600 781 L600 1000 L0 1000 Z" fill="url(#g5)"/>
+    </svg>
+
+    <a href="#tunnel" style="top:0;height:20%;">
+      <div class="band-label" style="color:#E8DCC9;">
+        <span>Tunnel de vente</span>
+        <strong>Découvrir mon expert</strong>
+      </div>
+    </a>
+    <a href="#equipe" style="top:20%;height:20%;">
+      <div class="band-label" style="color:#FDFAF5;">
+        <span>Le collectif</span>
+        <strong>Découvrir l'équipe</strong>
+      </div>
+    </a>
+    <a href="#services" style="top:40%;height:20%;">
+      <div class="band-label" style="color:#FDFAF5;">
+        <span>Nos services</span>
+        <strong>Ce que nous proposons</strong>
+      </div>
+    </a>
+    <a href="test-profil.html" style="top:60%;height:20%;">
+      <div class="band-label" style="color:#F4EFE6;">
+        <span>Test · Connaissance de soi</span>
+        <strong>Révèle ton potentiel</strong>
+      </div>
+    </a>
+    <a href="#contact" style="top:80%;height:20%;">
+      <div class="band-label" style="color:#FDFAF5;">
+        <span>Contact · Devis</span>
+        <strong>Une question ? Un projet ?</strong>
+      </div>
+    </a>
+  </div>
+
 </section>
 
 <!-- COMMENT ÇA MARCHE -->
@@ -2506,4 +2502,36 @@ function handleFormSubmit(e){
   const btn=e.target;
   btn.textContent='✓ Vérifie ton mail — les vidéos arrivent';
   btn.style.background='var(--teal)';
-  setTimeout(()=>{ btn.textContent='Recevoir les 3 vidéos →'; btn.style.backgr
+  setTimeout(()=>{ btn.textContent='Recevoir les 3 vidéos →'; btn.style.background='var(--copper)'; },3500);
+}
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('visible'); });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Animation séquentielle étapes
+(function(){
+  const grid=document.querySelector('.steps-grid'); if(!grid) return;
+  const cards=grid.querySelectorAll('.step-card');
+
+  let done=false;
+  const run=()=>{
+    if(done) return; done=true;
+    cards.forEach((card,i)=>{
+      setTimeout(()=>card.classList.add('illumine'), i*380);
+      setTimeout(()=>card.classList.remove('illumine'), i*380+900);
+      setTimeout(()=>{
+        card.classList.add('illumine');
+        if(i===cards.length-1) setTimeout(()=>grid.classList.add('sequence-done'),200);
+      }, i*380+1400);
+    });
+  };
+  const o=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{ if(en.isIntersecting){ setTimeout(run,300); o.disconnect(); } });
+  },{threshold:0.3});
+  o.observe(grid);
+})();
+
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModa
