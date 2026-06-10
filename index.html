@@ -1365,65 +1365,71 @@ footer {
     <svg viewBox="0 0 600 1000" preserveAspectRatio="none"
          fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stop-color="#F4EFE6" stop-opacity="0"/>
-          <stop offset="25%"  stop-color="#234B5E" stop-opacity="0.55"/>
-          <stop offset="100%" stop-color="#234B5E" stop-opacity="0.65"/>
+        <linearGradient id="w1" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#F4EFE6" stop-opacity="0"/>
+          <stop offset="40%" stop-color="#234B5E" stop-opacity="0.12"/>
+          <stop offset="100%" stop-color="#234B5E" stop-opacity="0.18"/>
         </linearGradient>
-        <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stop-color="#F4EFE6" stop-opacity="0"/>
-          <stop offset="25%"  stop-color="#3B7A78" stop-opacity="0.50"/>
-          <stop offset="100%" stop-color="#3B7A78" stop-opacity="0.60"/>
+        <linearGradient id="w2" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#F4EFE6" stop-opacity="0"/>
+          <stop offset="40%" stop-color="#3B7A78" stop-opacity="0.10"/>
+          <stop offset="100%" stop-color="#3B7A78" stop-opacity="0.16"/>
         </linearGradient>
-        <linearGradient id="g3" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stop-color="#F4EFE6" stop-opacity="0"/>
-          <stop offset="25%"  stop-color="#B86F4C" stop-opacity="0.48"/>
-          <stop offset="100%" stop-color="#B86F4C" stop-opacity="0.58"/>
+        <linearGradient id="w3" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#F4EFE6" stop-opacity="0"/>
+          <stop offset="40%" stop-color="#B86F4C" stop-opacity="0.10"/>
+          <stop offset="100%" stop-color="#B86F4C" stop-opacity="0.14"/>
         </linearGradient>
-        <linearGradient id="g4" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stop-color="#F4EFE6" stop-opacity="0"/>
-          <stop offset="25%"  stop-color="#234B5E" stop-opacity="0.44"/>
-          <stop offset="100%" stop-color="#234B5E" stop-opacity="0.54"/>
+        <linearGradient id="w4" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#F4EFE6" stop-opacity="0"/>
+          <stop offset="40%" stop-color="#234B5E" stop-opacity="0.09"/>
+          <stop offset="100%" stop-color="#234B5E" stop-opacity="0.13"/>
         </linearGradient>
-        <linearGradient id="g5" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stop-color="#F4EFE6" stop-opacity="0"/>
-          <stop offset="25%"  stop-color="#3B7A78" stop-opacity="0.40"/>
-          <stop offset="100%" stop-color="#3B7A78" stop-opacity="0.50"/>
+        <linearGradient id="w5" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#F4EFE6" stop-opacity="0"/>
+          <stop offset="40%" stop-color="#3B7A78" stop-opacity="0.08"/>
+          <stop offset="100%" stop-color="#3B7A78" stop-opacity="0.12"/>
         </linearGradient>
       </defs>
-      <path d="M0 0 L600 0 L600 210 Q480 232 360 212 Q200 188 0 208 Z" fill="url(#g1)"/>
-      <path d="M0 200 Q200 178 360 198 Q480 214 600 195 L600 405 Q480 428 360 408 Q200 384 0 404 Z" fill="url(#g2)"/>
-      <path d="M0 396 Q200 375 360 394 Q480 410 600 391 L600 600 Q480 622 360 602 Q200 578 0 598 Z" fill="url(#g3)"/>
-      <path d="M0 591 Q200 570 360 589 Q480 605 600 586 L600 795 Q480 817 360 797 Q200 773 0 793 Z" fill="url(#g4)"/>
-      <path d="M0 786 Q200 765 360 784 Q480 800 600 781 L600 1000 L0 1000 Z" fill="url(#g5)"/>
+      <!-- Vague 1 -->
+      <path d="M0 0 Q150 30 300 10 Q450 -10 600 20 L600 215 Q450 185 300 205 Q150 225 0 195 Z" fill="url(#w1)"/>
+      <!-- Vague 2 -->
+      <path d="M0 188 Q150 218 300 198 Q450 178 600 208 L600 408 Q450 378 300 398 Q150 418 0 388 Z" fill="url(#w2)"/>
+      <!-- Vague 3 -->
+      <path d="M0 382 Q150 412 300 392 Q450 372 600 400 L600 600 Q450 572 300 590 Q150 610 0 582 Z" fill="url(#w3)"/>
+      <!-- Vague 4 -->
+      <path d="M0 575 Q150 604 300 584 Q450 564 600 592 L600 792 Q450 764 300 782 Q150 802 0 774 Z" fill="url(#w4)"/>
+      <!-- Vague 5 -->
+      <path d="M0 768 Q150 796 300 776 Q450 756 600 784 L600 1000 L0 1000 Z" fill="url(#w5)"/>
     </svg>
 
+
     <a href="#tunnel" style="top:0;height:20%;">
-      <div class="band-label" style="color:#E8DCC9;">
+      <div class="band-label" style="color:#234B5E;">
         <span>Tunnel de vente</span>
         <strong>Découvrir mon expert</strong>
       </div>
     </a>
     <a href="#equipe" style="top:20%;height:20%;">
-      <div class="band-label" style="color:#FDFAF5;">
+      <div class="band-label" style="color:#234B5E;">
         <span>Le collectif</span>
         <strong>Découvrir l'équipe</strong>
       </div>
     </a>
     <a href="#services" style="top:40%;height:20%;">
-      <div class="band-label" style="color:#FDFAF5;">
+      <div class="band-label" style="color:#234B5E;">
         <span>Nos services</span>
         <strong>Ce que nous proposons</strong>
       </div>
     </a>
     <a href="test-profil.html" style="top:60%;height:20%;">
-      <div class="band-label" style="color:#F4EFE6;">
+      <div class="band-label" style="color:#234B5E;">
         <span>Test · Connaissance de soi</span>
         <strong>Révèle ton potentiel</strong>
       </div>
     </a>
     <a href="#contact" style="top:80%;height:20%;">
-      <div class="band-label" style="color:#FDFAF5;">
+      <div class="band-label" style="color:#234B5E;">
         <span>Contact · Devis</span>
         <strong>Une question ? Un projet ?</strong>
       </div>
@@ -2529,9 +2535,4 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
     });
   };
   const o=new IntersectionObserver(entries=>{
-    entries.forEach(en=>{ if(en.isIntersecting){ setTimeout(run,300); o.disconnect(); } });
-  },{threshold:0.3});
-  o.observe(grid);
-})();
-
-document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModa
+    entries.forEach(en=>{ if(en.isIntersecting){ setTimeout(run,300); o.disconnect(); 
