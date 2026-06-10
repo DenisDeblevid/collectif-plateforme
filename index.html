@@ -1280,6 +1280,92 @@ footer {
   border-color: var(--copper);
 }
 
+
+/* ─── SERVICE MODAL ─── */
+.service-overlay {
+  display:none; position:fixed; inset:0; z-index:250;
+  background:rgba(26,46,56,0.88); backdrop-filter:blur(10px);
+  align-items:center; justify-content:center; padding:40px;
+}
+.service-overlay.open { display:flex; }
+.service-modal {
+  background:var(--white); max-width:680px; width:100%;
+  max-height:88vh; overflow-y:auto;
+  padding:56px; position:relative; animation:modalIn 0.35s ease;
+}
+.service-modal::before, .service-modal::after {
+  content:''; position:absolute;
+  width:26px; height:26px;
+  border-color:var(--copper); border-style:solid; opacity:0.35;
+}
+.service-modal::before { top:14px; left:14px; border-width:2px 0 0 2px; }
+.service-modal::after  { bottom:14px; right:14px; border-width:0 2px 2px 0; }
+.service-modal-img { width:100%; height:200px; object-fit:cover; margin-bottom:28px; filter:saturate(0.7); }
+.service-modal h2 { font-family:var(--font-display); font-size:1.9rem; font-weight:300; color:var(--deep); margin-bottom:14px; }
+.service-modal-desc { font-size:0.92rem; line-height:1.85; opacity:0.7; margin-bottom:24px; border-left:2px solid var(--teal); padding-left:16px; }
+.service-prix { display:inline-block; background:var(--sand); border:1px solid rgba(184,111,76,0.3); padding:10px 18px; font-family:var(--font-display); font-size:1.1rem; color:var(--deep); margin-bottom:24px; }
+.service-prix span { font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; opacity:0.5; display:block; margin-bottom:3px; }
+.service-details { list-style:none; margin-bottom:28px; }
+.service-details li { font-size:0.85rem; opacity:0.65; padding:5px 0 5px 16px; position:relative; }
+.service-details li::before { content:''; position:absolute; left:0; top:13px; width:6px; height:1px; background:var(--copper); }
+.svc-close { position:absolute; top:18px; right:22px; background:none; border:none; cursor:pointer; font-size:1.2rem; color:var(--ink); opacity:0.3; transition:opacity 0.2s; }
+.svc-close:hover { opacity:1; }
+
+/* ─── DEVIS MODAL ─── */
+.devis-overlay {
+  display:none; position:fixed; inset:0; z-index:300;
+  background:rgba(26,46,56,0.92); backdrop-filter:blur(10px);
+  align-items:center; justify-content:center; padding:40px;
+}
+.devis-overlay.open { display:flex; }
+.devis-modal {
+  background:var(--white); max-width:620px; width:100%;
+  max-height:90vh; overflow-y:auto;
+  padding:52px; position:relative; animation:modalIn 0.35s ease;
+}
+.devis-modal::before, .devis-modal::after {
+  content:''; position:absolute;
+  width:26px; height:26px;
+  border-color:var(--copper); border-style:solid; opacity:0.35;
+}
+.devis-modal::before { top:14px; left:14px; border-width:2px 0 0 2px; }
+.devis-modal::after  { bottom:14px; right:14px; border-width:0 2px 2px 0; }
+.devis-modal h2 { font-family:var(--font-display); font-size:1.9rem; font-weight:300; color:var(--deep); margin-bottom:6px; }
+.devis-modal .sub { font-size:0.82rem; opacity:0.4; margin-bottom:32px; }
+.devis-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.devis-field { margin-bottom:16px; }
+.devis-field label { display:block; font-size:0.66rem; letter-spacing:0.2em; text-transform:uppercase; opacity:0.4; margin-bottom:7px; }
+.devis-field input, .devis-field select, .devis-field textarea {
+  width:100%; background:transparent; border:none;
+  border-bottom:1px solid rgba(35,75,94,0.2);
+  padding:10px 0 10px 2px; font-family:var(--font-body);
+  font-size:0.9rem; color:var(--ink); outline:none; resize:none;
+  transition:border-color 0.3s;
+}
+.devis-field input:focus, .devis-field select:focus, .devis-field textarea:focus { border-bottom-color:var(--copper); }
+.devis-close { position:absolute; top:18px; right:22px; background:none; border:none; cursor:pointer; font-size:1.2rem; color:var(--ink); opacity:0.3; transition:opacity 0.2s; }
+.devis-close:hover { opacity:1; }
+.devis-confirm { font-size:0.8rem; color:var(--teal); margin-top:12px; display:none; text-align:center; }
+
+/* ─── CONTACT 3 NIVEAUX ─── */
+.contact-levels {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:22px; max-width:960px; margin:0 auto;
+  position:relative; z-index:2;
+}
+.contact-level {
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(184,111,76,0.15);
+  padding:30px 26px; text-align:center;
+}
+.contact-level.highlight { border-color:var(--copper); background:rgba(184,111,76,0.08); }
+.contact-level-tag { font-size:0.62rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--copper); display:block; margin-bottom:12px; }
+.contact-level h3 { font-family:var(--font-display); font-size:1.15rem; font-weight:300; color:var(--white); margin-bottom:10px; }
+.contact-level p { font-size:0.8rem; opacity:0.4; color:var(--white); margin-bottom:20px; line-height:1.6; }
+.contact-form-simple { display:none; margin-top:18px; text-align:left; }
+.contact-form-simple .form-group label { color:var(--white); }
+@media(max-width:900px){ .contact-levels { grid-template-columns:1fr; } .devis-row { grid-template-columns:1fr; } }
+
 </style>
 </head>
 <body>
@@ -1339,6 +1425,7 @@ footer {
     <li><a href="#mission">Mission</a></li>
     <li><a href="#valeurs">Valeurs</a></li>
     <li><a href="#partenaires">Partenaires</a></li>
+    <li><a href="test-profil.html">Test</a></li>
     <li><a href="#tunnel" class="nav-cta">Commencer</a></li>
   </ul>
 </nav>
@@ -1569,6 +1656,64 @@ footer {
   </div>
 </section>
 
+
+<!-- SERVICE OVERLAY -->
+<div class="service-overlay" id="serviceOverlay" onclick="if(event.target===this)closeService()">
+  <div class="service-modal">
+    <button class="svc-close" onclick="closeService()">✕</button>
+    <div id="serviceBody"></div>
+  </div>
+</div>
+
+<!-- DEVIS OVERLAY -->
+<div class="devis-overlay" id="devisOverlay" onclick="if(event.target===this)closeDevis()">
+  <div class="devis-modal">
+    <button class="devis-close" onclick="closeDevis()">✕</button>
+    <h2>Demander un devis</h2>
+    <p class="sub">Réponse sous 48h · <a href="mailto:noriahorizon.contact@gmail.com" style="color:var(--copper);">noriahorizon.contact@gmail.com</a></p>
+    <div class="devis-row">
+      <div class="devis-field"><label>Prénom</label><input type="text" placeholder="Votre prénom"></div>
+      <div class="devis-field"><label>Nom</label><input type="text" placeholder="Votre nom"></div>
+    </div>
+    <div class="devis-row">
+      <div class="devis-field"><label>Email</label><input type="email" placeholder="votre@email.com"></div>
+      <div class="devis-field"><label>Téléphone</label><input type="tel" placeholder="06 00 00 00 00"></div>
+    </div>
+    <div class="devis-field">
+      <label>Service concerné</label>
+      <select id="devis-service">
+        <option value="" disabled selected>Choisissez un service</option>
+        <option>Coaching individuel</option>
+        <option>Stages & Ateliers</option>
+        <option>Formations entreprises</option>
+        <option>Ressources & Outils</option>
+        <option>Accompagnement collectif</option>
+        <option>Parcours digitaux</option>
+        <option>Autre / Plusieurs services</option>
+      </select>
+    </div>
+    <div class="devis-field">
+      <label>Budget indicatif</label>
+      <select>
+        <option value="" disabled selected>Fourchette budgétaire</option>
+        <option>Moins de 500€</option>
+        <option>500€ – 1 500€</option>
+        <option>1 500€ – 5 000€</option>
+        <option>5 000€ – 10 000€</option>
+        <option>Plus de 10 000€</option>
+        <option>À définir ensemble</option>
+      </select>
+    </div>
+    <div class="devis-field">
+      <label>Votre message</label>
+      <textarea rows="4" placeholder="Décrivez votre besoin, votre contexte..."></textarea>
+    </div>
+    <button class="btn-primary" style="width:100%;padding:14px;" onclick="submitDevis()">Envoyer ma demande →</button>
+    <p class="devis-confirm" id="devis-confirm">✓ Demande envoyée — nous vous répondons sous 48h !</p>
+    <p style="font-size:0.68rem;opacity:0.3;margin-top:10px;text-align:center;">RGPD · Données confidentielles</p>
+  </div>
+</div>
+
 <!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
   <div class="modal" id="modalContent">
@@ -1688,61 +1833,62 @@ footer {
     <p class="section-sub">Coaching individuel, stages, formations, ateliers collectifs — nous agissons là où ça compte vraiment.</p>
   </div>
   <div class="services-grid">
-    <div class="service-card reveal">
+    <div class="service-card reveal" onclick="openService('coaching')" style="cursor:pointer;">
       <div class="service-img-wrap">
         <img class="service-img" src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&q=80" alt="Coaching individuel">
       </div>
       <div class="service-content">
         <h3>Coaching individuel</h3>
-        <p>Un accompagnement sur-mesure avec l'expert qui correspond à ta réalité. Travail en profondeur, progression mesurable.</p>
+        <p>Un accompagnement sur-mesure, en profondeur, avec l'expert qui correspond exactement ...</p>
       </div>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card reveal" onclick="openService('stages')" style="cursor:pointer;">
       <div class="service-img-wrap">
-        <img class="service-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Stages et Ateliers">
+        <img class="service-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Stages & Ateliers">
       </div>
       <div class="service-content">
         <h3>Stages & Ateliers</h3>
-        <p>Des immersions intenses — nature, dépassement de soi, philosophie pratique. Apprendre par l'expérience qui transforme.</p>
+        <p>Des immersions intenses qui transforment. Nature, dépassement de soi, philosophie pra...</p>
       </div>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card reveal" onclick="openService('formation')" style="cursor:pointer;">
       <div class="service-img-wrap">
         <img class="service-img" src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80" alt="Formations entreprises">
       </div>
       <div class="service-content">
         <h3>Formations entreprises</h3>
-        <p>Interventions pour développer talents, leadership et cohésion. Synergies à l'échelle d'une équipe.</p>
+        <p>Interventions sur-mesure pour développer les talents, renforcer le leadership et amél...</p>
       </div>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card reveal" onclick="openService('ressources')" style="cursor:pointer;">
       <div class="service-img-wrap">
-        <img class="service-img" src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80" alt="Ressources et Outils">
+        <img class="service-img" src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80" alt="Ressources & Outils">
       </div>
       <div class="service-content">
         <h3>Ressources & Outils</h3>
-        <p>Guides, supports, contenus pédagogiques pour continuer à avancer entre les sessions.</p>
+        <p>Guides pratiques, supports pédagogiques, outils de diagnostic et contenus exclusifs p...</p>
       </div>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card reveal" onclick="openService('collectif')" style="cursor:pointer;">
       <div class="service-img-wrap">
         <img class="service-img" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80" alt="Accompagnement collectif">
       </div>
       <div class="service-content">
         <h3>Accompagnement collectif</h3>
-        <p>Groupes de pairs, cercles de progression. L'intelligence collective au service de ta montée en compétence.</p>
+        <p>Groupes de pairs, cercles de progression, masterminds. L'intelligence collective au s...</p>
       </div>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card reveal" onclick="openService('digital')" style="cursor:pointer;">
       <div class="service-img-wrap">
         <img class="service-img" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80" alt="Parcours digitaux">
       </div>
       <div class="service-content">
         <h3>Parcours digitaux</h3>
-        <p>Séquences email, vidéos, questionnaires. Un tunnel pédagogique qui commence bien avant le premier entretien.</p>
+        <p>Séquences email, vidéos pédagogiques, questionnaires. Un tunnel pédagogique complet q...</p>
       </div>
     </div>
   </div>
+</div>
 </section>
 
 
@@ -1753,7 +1899,7 @@ footer {
   <div style="position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Cpath d='M0 20 Q30 5 60 20 Q90 35 120 20' fill='none' stroke='rgba(184,111,76,0.04)' stroke-width='1.5'/%3E%3C/svg%3E");background-size:120px 40px;pointer-events:none;"></div>
 
   <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto;">
-    <span class="section-label" style="color:var(--copper);">Connaissance de soi</span>
+    <span class="section-label" style="color:var(--copper);">Test · Connaissance de soi</span>
     <h2 class="section-title" style="color:var(--white);">Révèle <strong style="color:var(--copper);">ton potentiel</strong></h2>
     <div class="wave-sep"></div>
     <p class="section-sub" style="color:var(--white);opacity:0.5;margin-bottom:56px;">12 questions. 5 minutes. Un profil personnalisé et l'expert NORIA HORIZON qui correspond à qui tu es vraiment.</p>
@@ -2334,6 +2480,7 @@ function resetQuiz() {
     <div class="form-group"><label>Message</label><textarea rows="4" placeholder="Ce que vous souhaitez nous dire..."></textarea></div>
     <button class="btn-copper-full" style="margin-top:4px;">Envoyer</button>
     <span class="koalendar-link">Ou réservez directement → <a href="#">Calendrier Koalendar</a></span>
+    <span class="koalendar-link" style="margin-top:8px;">Contact direct → <a href="mailto:noriahorizon.contact@gmail.com">noriahorizon.contact@gmail.com</a></span>
   </div>
 </section>
 
@@ -2341,7 +2488,7 @@ function resetQuiz() {
 <footer>
   <div class="footer-brand">
     NORIA HORIZON
-    <small>Élever les potentiels · noria-horizon.fr</small>
+    <small>Élever les potentiels · <a href="mailto:noriahorizon.contact@gmail.com" style="color:var(--copper);text-decoration:none;">noriahorizon.contact@gmail.com</a></small>
   </div>
   <ul class="footer-links">
     <li><a href="#comment">Parcours</a></li>
@@ -2373,108 +2520,4 @@ const experts = {
     location:'Marseille',
     phone:'+33 6 00 00 00 00',
     email:'denisdeblevidcontact@gmail.com',
-    bio:["Coach philosophique et fondateur de la Méthode 4P (Psychologique, Physique, Philosophique, Pneuma), Denis accompagne ceux qui portent une soif profonde de sens et de transformation. Son approche s'enracine dans le stoïcisme pratique — une philosophie vécue, incarnée, qui ne reste pas dans les livres.","Ancien pratiquant d'arts martiaux pendant dix ans, Denis a traversé ses propres ruptures pour construire une méthode qui touche l'être dans toutes ses dimensions. Il marche à tes côtés, non au-dessus de toi."],
-    tags:['Stoïcisme','Méthode 4P','Identité','Sens','Résilience','Corps & Mental','Philosophie pratique']
-  },
-  melanie: {
-    photo:'Melanie-Allard.png',
-    name:'Mélanie Allard',
-    role:'Consultante Emploi · Carrière · Développement',
-    location:'Vendée (visio & présentiel)',
-    phone:'+33 6 00 00 00 00',
-    email:'melanie.allard@noria-horizon.fr',
-    bio:["Forte de 20 ans d'expérience en intérim, recrutement et gestion d'agence, Mélanie accompagne particuliers et professionnels à clarifier leur situation, structurer leurs démarches et avancer de manière alignée dans leurs projets professionnels.","Pour les particuliers : transitions professionnelles, orientation, repositionnement, diagnostic CV, préparation aux entretiens. Pour les professionnels : audit business, structuration et développement de TPE/PME. Une approche pragmatique, simple et orientée solutions."],
-    tags:['Carrière','Reconversion','CV & Entretiens','Audit business','TPE·PME','Transitions pro','Bilan carrière']
-  },
-  marc: {
-    photo:'Marc-Vandrepotte.png',
-    name:'Marc Vandrepotte',
-    role:'Copywriter · Consultant · Compléments alimentaires',
-    location:'France',
-    phone:'+33 6 00 00 00 00',
-    email:'marc.vandrepotte@noria-horizon.fr',
-    bio:["Freelance polyvalent, Marc conjugue expertise en compléments alimentaires, copywriting et conseil en développement de compétences. Une approche qui lie le corps, la communication et la progression personnelle.","En parallèle de ses activités de conseil, Marc pratique et propose la magnétothérapie — une dimension complémentaire pour ceux qui cherchent un accompagnement holistique de leur bien-être."],
-    tags:['Copywriting','Compléments alimentaires','Bien-être','Magnétisme','Développement de compétences']
-  },
-  laurence: {
-    photo:'Laurence-Brouet.png',
-    name:'Laurence Brouet',
-    role:'Consultante RH · Formation · E-learning',
-    location:'Toulouse (distanciel & présentiel)',
-    phone:'+33 6 71 82 57 39',
-    email:'brouet.laurence@orange.fr',
-    bio:[
-      "Consultante dans les activités RH et dans le secteur de la formation, Laurence apporte des solutions concrètes aux dirigeants en recherche de talents, aux salariés désireux de développer leurs compétences professionnelles, aux personnes en reconversion et aux jeunes en contrat d'apprentissage.",
-      "Avec un parcours professionnel riche et une connaissance approfondie du monde de l'entreprise, elle a développé polyvalence, sens de l'organisation, forte adaptabilité et une aptitude fine à la détection des attentes et des besoins. Disponible pour des interventions ponctuelles ou récurrentes, en distanciel ou sur site dans le secteur toulousain."
-    ],
-    tags:['RH','Formation','E-learning','Éducation','Reconversion','Apprentissage','Développement des compétences','Recrutement']
-  }
-};
-
-function openModal(id){
-  var e=experts[id]; if(!e) return;
-  var bioHTML=e.bio.map(function(p){ return '<p class="modal-bio">'+p+'</p>'; }).join('');
-  var tagsHTML=e.tags.map(function(t){ return '<span class="modal-tag">'+t+'</span>'; }).join('');
-  document.getElementById('modalBody').innerHTML=
-    '<div class="modal-header">' +
-    '<div class="modal-photo" style="overflow:hidden;padding:0;">'+(e.photo ? '<img src="'+e.photo+'" alt="'+e.name+'" style="width:100%;height:100%;object-fit:cover;object-position:center top;">' : '')+'</div>' +
-    '<div class="modal-info">' +
-    '<h2>'+e.name+'</h2>' +
-    '<span class="role-badge">'+e.role+'</span><br>' +
-    '<small style="opacity:.4;font-size:.78rem;display:block;margin-bottom:10px;">📍 '+e.location+'</small>' +
-    '<div class="contact-links">' +
-    '<a href="tel:'+e.phone+'">📞 '+e.phone+'</a>' +
-    '<a href="mailto:'+e.email+'">✉ '+e.email+'</a>' +
-    '</div></div></div>' +
-    bioHTML +
-    '<div class="modal-tags">'+tagsHTML+'</div>';
-  document.getElementById('modalOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-
-function closeModal(){
-  document.getElementById('modalOverlay').classList.remove('open');
-  document.body.style.overflow='';
-}
-function closeModalOnBg(e){ if(e.target===document.getElementById('modalOverlay')) closeModal(); }
-
-function handleFormSubmit(e){
-  const btn=e.target;
-  btn.textContent='✓ Vérifie ton mail — les vidéos arrivent';
-  btn.style.background='var(--teal)';
-  setTimeout(()=>{ btn.textContent='Recevoir les 3 vidéos →'; btn.style.background='var(--copper)'; },3500);
-}
-
-// Scroll reveal
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('visible'); });
-},{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-// Animation séquentielle étapes
-(function(){
-  const grid=document.querySelector('.steps-grid'); if(!grid) return;
-  const cards=grid.querySelectorAll('.step-card');
-
-  let done=false;
-  const run=()=>{
-    if(done) return; done=true;
-    cards.forEach((card,i)=>{
-      setTimeout(()=>card.classList.add('illumine'), i*380);
-      setTimeout(()=>card.classList.remove('illumine'), i*380+900);
-      setTimeout(()=>{
-        card.classList.add('illumine');
-        if(i===cards.length-1) setTimeout(()=>grid.classList.add('sequence-done'),200);
-      }, i*380+1400);
-    });
-  };
-  const o=new IntersectionObserver(entries=>{
-    entries.forEach(en=>{ if(en.isIntersecting){ setTimeout(run,300); o.disconnect(); } });
-  },{threshold:0.3});
-  o.observe(grid);
-})();
-
-document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
-</script>
-</body>
-</html>
+    bio:["Coach philosophique et fondateur de la Méthode 4P (Psychologique, Physique, Philosophique, Pneuma), Denis accompagne ceux qui portent une soif profonde
