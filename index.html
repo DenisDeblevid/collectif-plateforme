@@ -1371,12 +1371,11 @@ footer {
   </a>
   <ul class="nav-links">
     <li><a href="#comment" class="nav-anchor">Parcours</a></li>
-    <li><a href="#tunnel" class="nav-anchor">Tunnel</a></li>
     <li><a href="#equipe" class="nav-anchor">Experts</a></li>
     <li><a href="#mission" class="nav-anchor">Mission</a></li>
     <li><a href="#valeurs" class="nav-anchor">Valeurs</a></li>
     <li><a href="#services" class="nav-anchor">Services</a></li>
-    <li><a href="test-profil.html">Test</a></li>
+    <li><a href="#disc" class="nav-anchor">Test</a></li>
     <li><a href="#partenaires" class="nav-anchor">Partenaires</a></li>
     <li><a href="#contact" class="nav-anchor">Contact</a></li>
     <li><a href="#tunnel" class="nav-cta">Commencer</a></li>
@@ -1844,68 +1843,15 @@ footer {
 
 <!-- ─── SECTION RÉVÈLE TON POTENTIEL ─── -->
 <section id="disc" style="background:var(--deep); color:var(--white); position:relative; overflow:hidden;">
-
-  <!-- Fond vagues -->
-  <div style="position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Cpath d='M0 20 Q30 5 60 20 Q90 35 120 20' fill='none' stroke='rgba(184,111,76,0.04)' stroke-width='1.5'/%3E%3C/svg%3E");background-size:120px 40px;pointer-events:none;"></div>
-
-  <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto;">
-    <span class="section-label" style="color:var(--copper);">Test · Connaissance de soi</span>
-    <h2 class="section-title" style="color:var(--white);">Révèle <strong style="color:var(--copper);">ton potentiel</strong></h2>
-    <div class="wave-sep"></div>
-    <p class="section-sub" style="color:var(--white);opacity:0.5;margin-bottom:56px;">12 questions. 5 minutes. Un profil personnalisé et l'expert NORIA HORIZON qui correspond à qui tu es vraiment.</p>
-
-    <!-- QUESTIONNAIRE -->
-    <div style="margin-bottom:48px;text-align:center;">
-      <a href="test-profil.html" class="btn-primary action-key" style="font-size:0.9rem;padding:18px 52px;letter-spacing:0.2em;display:inline-block;">
-        Révèle ton potentiel →
-      </a>
-      <p style="font-size:0.78rem;color:var(--white);opacity:0.35;margin-top:14px;">12 questions · 5 minutes · Profil personnalisé</p>
-    </div>
-    <div id="disc-quiz" style="display:none;">
-      <div id="disc-progress-bar" style="width:100%;height:3px;background:rgba(255,255,255,0.1);margin-bottom:48px;border-radius:2px;">
-        <div id="disc-progress-fill" style="height:100%;width:0%;background:linear-gradient(to right,var(--copper),var(--teal));transition:width 0.4s ease;border-radius:2px;"></div>
-      </div>
-      <div id="disc-question-block">
-        <!-- Injecté par JS -->
-      </div>
-    </div>
-
-    <!-- RÉSULTAT -->
-    <div id="disc-result" style="display:none;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
-
-        <!-- Radar -->
-        <div>
-          <p style="font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--copper);margin-bottom:24px;">Ton graphique</p>
-          <canvas id="disc-radar" width="360" height="360" style="max-width:100%;"></canvas>
-        </div>
-
-        <!-- Carte profil -->
-        <div id="disc-card">
-          <!-- Injecté par JS -->
-        </div>
-      </div>
-
-      <!-- Capture email -->
-      <div id="disc-email-block" style="margin-top:56px;padding:40px;background:rgba(255,255,255,0.04);border:1px solid rgba(184,111,76,0.2);max-width:560px;">
-        <h3 style="font-family:var(--font-display);font-size:1.4rem;color:var(--white);margin-bottom:8px;font-weight:300;">Recevoir mon profil complet par mail</h3>
-        <p style="font-size:0.82rem;opacity:0.4;color:var(--white);margin-bottom:24px;">Radar + carte profil + recommandation expert — directement dans ta boîte.</p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <input type="email" id="disc-email-input" placeholder="ton@email.com"
-            style="flex:1;background:rgba(255,255,255,0.06);border:none;border-bottom:1px solid rgba(184,111,76,0.4);padding:12px 4px;color:var(--white);font-family:var(--font-body);font-size:0.9rem;outline:none;min-width:200px;">
-          <button onclick="sendDiscByEmail()" 
-            style="background:var(--copper);color:var(--white);border:none;padding:12px 28px;font-family:var(--font-body);font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:opacity 0.3s;">
-            Envoyer →
-          </button>
-        </div>
-        <p id="disc-email-confirm" style="font-size:0.78rem;color:var(--teal);margin-top:12px;display:none;">✓ Profil envoyé — vérifie ta boîte mail !</p>
-      </div>
-
-      <!-- CTA expert -->
-      <div style="margin-top:32px;">
-        <a href="#tunnel" class="btn-primary">Rencontrer mon expert →</a>
-      </div>
-    </div>
+  <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto;text-align:center;">
+    <span class="section-label" style="color:var(--copper);justify-content:center;">Test &middot; Connaissance de soi</span>
+    <h2 class="section-title" style="color:var(--white);">R&eacute;v&egrave;le <strong style="color:var(--copper);">ton potentiel</strong></h2>
+    <div class="wave-sep" style="margin:0 auto 32px;"></div>
+    <p class="section-sub" style="color:var(--white);opacity:0.5;margin:0 auto 48px;">12 questions. 5 minutes. Un profil personnalis&eacute; et l'expert NORIA HORIZON qui te correspond vraiment.</p>
+    <a href="test-profil.html" class="btn-primary action-key" style="font-size:0.9rem;padding:18px 52px;letter-spacing:0.2em;display:inline-block;">
+      R&eacute;v&egrave;le ton potentiel &rarr;
+    </a>
+    <p style="font-size:0.78rem;color:var(--white);opacity:0.35;margin-top:14px;">12 questions &middot; 5 minutes &middot; Profil personnalis&eacute;</p>
   </div>
 </section>
 
@@ -2042,364 +1988,6 @@ footer {
 }
 </style>
 
-<script>
-// ─── DONNÉES PROFIL ───
-const discQuestions = [
-  {
-    text: "Face à un projet urgent, tu as tendance à...",
-    options: [
-      { text: "Prendre les décisions rapidement et avancer sans attendre", disc: "D" },
-      { text: "Motiver l'équipe et créer de l'enthousiasme autour du projet", disc: "I" },
-      { text: "T'assurer que tout le monde est à l'aise et bien soutenu", disc: "S" },
-      { text: "Analyser les risques avant de te lancer", disc: "C" }
-    ]
-  },
-  {
-    text: "Ce qui te motive le plus dans ton travail, c'est...",
-    options: [
-      { text: "Obtenir des résultats concrets et relever des défis", disc: "D" },
-      { text: "Les échanges humains et créer du lien", disc: "I" },
-      { text: "La stabilité et contribuer à une équipe soudée", disc: "S" },
-      { text: "La précision, la qualité et le travail bien fait", disc: "C" }
-    ]
-  },
-  {
-    text: "En situation de conflit, tu...",
-    options: [
-      { text: "Prends position fermement et vas droit au but", disc: "D" },
-      { text: "Cherches à apaiser et trouves un terrain commun", disc: "I" },
-      { text: "Prends du recul et évites l'affrontement direct", disc: "S" },
-      { text: "Analyses la situation avec des faits avant de répondre", disc: "C" }
-    ]
-  },
-  {
-    text: "Les autres te décrivent souvent comme...",
-    options: [
-      { text: "Déterminé et direct", disc: "D" },
-      { text: "Enthousiaste et communicatif", disc: "I" },
-      { text: "Fiable et patient", disc: "S" },
-      { text: "Rigoureux et réfléchi", disc: "C" }
-    ]
-  },
-  {
-    text: "Pour toi, prendre une décision importante c'est...",
-    options: [
-      { text: "Agir vite — l'inaction est pire que l'erreur", disc: "D" },
-      { text: "En parler avec des personnes de confiance d'abord", disc: "I" },
-      { text: "Prendre le temps qu'il faut pour ne pas brusquer les choses", disc: "S" },
-      { text: "Rassembler toutes les données nécessaires avant de choisir", disc: "C" }
-    ]
-  },
-  {
-    text: "Dans une réunion, tu es plutôt celui qui...",
-    options: [
-      { text: "Oriente les débats et pousse à l'action", disc: "D" },
-      { text: "Anime l'échange et fait participer tout le monde", disc: "I" },
-      { text: "Écoute attentivement et intervient avec mesure", disc: "S" },
-      { text: "Prend des notes et vérifie les détails", disc: "C" }
-    ]
-  },
-  {
-    text: "Ton plus grand atout professionnel selon toi ?",
-    options: [
-      { text: "Ta capacité à te dépasser et à atteindre tes objectifs", disc: "D" },
-      { text: "Ta capacité à convaincre et à fédérer", disc: "I" },
-      { text: "Ta loyauté et ta constance dans l'effort", disc: "S" },
-      { text: "Ton sens du détail et ta rigueur", disc: "C" }
-    ]
-  },
-  {
-    text: "Face à un changement inattendu, tu...",
-    options: [
-      { text: "T'adaptes immédiatement et vois l'opportunité", disc: "D" },
-      { text: "Restes positif et entraînes les autres avec toi", disc: "I" },
-      { text: "As besoin de temps pour t'y faire", disc: "S" },
-      { text: "Cherches à comprendre les causes avant d'avancer", disc: "C" }
-    ]
-  },
-  {
-    text: "Ce qui t'irrite le plus au travail, c'est...",
-    options: [
-      { text: "La lenteur et l'indécision", disc: "D" },
-      { text: "Le manque de reconnaissance et l'isolement", disc: "I" },
-      { text: "Les conflits et l'instabilité", disc: "S" },
-      { text: "Le manque de rigueur et les erreurs répétées", disc: "C" }
-    ]
-  },
-  {
-    text: "Tu apprends mieux en...",
-    options: [
-      { text: "Testant directement — tu apprends en faisant", disc: "D" },
-      { text: "Échangeant avec d'autres et en partageant des expériences", disc: "I" },
-      { text: "Avançant à ton rythme dans un cadre sécurisant", disc: "S" },
-      { text: "Lisant, analysant et comprenant en profondeur", disc: "C" }
-    ]
-  },
-  {
-    text: "Dans une relation de coaching, tu attends avant tout...",
-    options: [
-      { text: "Des défis concrets et des résultats mesurables", disc: "D" },
-      { text: "De l'énergie, de l'inspiration et de la connexion humaine", disc: "I" },
-      { text: "De la bienveillance, de la patience et de l'écoute", disc: "S" },
-      { text: "Une méthode claire, structurée et rigoureuse", disc: "C" }
-    ]
-  },
-  {
-    text: "Quand tu penses à ton avenir professionnel, tu vois...",
-    options: [
-      { text: "Un leader qui trace sa voie et crée son propre chemin", disc: "D" },
-      { text: "Quelqu'un qui inspire et influence positivement son entourage", disc: "I" },
-      { text: "Une personne épanouie dans un environnement stable et harmonieux", disc: "S" },
-      { text: "Un expert reconnu pour son excellence et sa rigueur", disc: "C" }
-    ]
-  }
-];
-
-const discProfiles = {
-  D: {
-    letter: "D",
-    name: "Le Dominant",
-    badge: "Profil Dominant",
-    color: "#B86F4C",
-    description: "Tu es orienté résultats, direct et déterminé. Tu n'attends pas que les choses se fassent — tu les fais. Face au challenge, tu avances. Face à l'obstacle, tu trouves le contournement. Ta force est dans l'action, ton risque est dans l'impatience.",
-    strengths: ["Leadership naturel", "Prise de décision rapide", "Orientation résultats", "Résilience face aux obstacles", "Capacité à ouvrir la voie"],
-    axes: ["Écouter avant d'agir", "Accepter la lenteur des autres", "Nuancer ses positions", "Prendre en compte les émotions"],
-    expert: { name: "Florian Dhaussy", role: "Formateur Management · Leadership", text: "Florian travaille avec des profils comme le tien — des personnes qui veulent aller plus loin, plus vite, et qui ont besoin d'un cadre pour canaliser leur énergie sans la brider." }
-  },
-  I: {
-    letter: "I",
-    name: "L'Influent",
-    badge: "Profil Influent",
-    color: "#3B7A78",
-    description: "Tu rayonnes. Les gens gravitent autour de toi naturellement. Tu communiques avec aisance, tu inspires et tu entraînes. Ton énergie est contagieuse — et c'est ton plus grand atout. Là où d'autres voient un mur, tu vois une porte et tu sais convaincre les autres de l'ouvrir avec toi.",
-    strengths: ["Communication naturelle", "Capacité à fédérer", "Créativité et enthousiasme", "Influence positive", "Adaptabilité sociale"],
-    axes: ["Structurer ses idées", "Aller jusqu'au bout des projets", "Gérer les priorités", "Travailler sa rigueur"],
-    expert: { name: "Denis Deblevid", role: "Coach Philosophique · Méthode 4P", text: "Denis accompagne les profils Influents à ancrer leur énergie dans une philosophie de vie solide — pour que l'enthousiasme devienne une force durable, pas seulement un feu de paille." }
-  },
-  S: {
-    letter: "S",
-    name: "Le Stable",
-    badge: "Profil Stable",
-    color: "#3B7A78",
-    description: "Tu es la colonne vertébrale de chaque équipe. Fiable, constant, profondément humain — tu crées la sécurité autour de toi. Tu n'es pas dans la démonstration mais dans l'action silencieuse et solide. Ta fidélité et ta patience sont des forces rares dans un monde qui s'agite.",
-    strengths: ["Fiabilité et constance", "Écoute profonde", "Sens du collectif", "Patience et persévérance", "Loyauté"],
-    axes: ["Affirmer ses besoins", "Accepter le changement", "Sortir de sa zone de confort", "Développer son leadership"],
-    expert: { name: "Mélanie Allard", role: "Consultante Carrière · Emploi", text: "Mélanie accompagne les profils Stables dans leurs transitions — avec la douceur et la structure dont tu as besoin pour avancer sans te brusquer." }
-  },
-  C: {
-    letter: "C",
-    name: "Le Consciencieux",
-    badge: "Profil Consciencieux",
-    color: "#234B5E",
-    description: "Tu es l'expert de la précision. Là où les autres voient une réponse, tu vois dix questions supplémentaires. Ta capacité d'analyse et ton exigence de qualité font de toi quelqu'un sur qui on peut vraiment compter. Tu ne t'engages pas à la légère — mais quand tu t'engages, c'est pour de vrai.",
-    strengths: ["Analyse et rigueur", "Souci du détail", "Fiabilité dans l'exécution", "Pensée systématique", "Standards de qualité élevés"],
-    axes: ["Accepter l'imperfection", "Décider sans toutes les données", "Déléguer et faire confiance", "Aller à l'essentiel"],
-    expert: { name: "Marc Vandrepotte", role: "Copywriter · Consultant · Développement", text: "Marc travaille avec les profils Consciencieux sur la clarté de leur communication et la structuration de leur expertise — pour que ta rigueur devienne visible et valorisée." }
-  }
-};
-
-// ─── ÉTAT QUIZ ───
-let discScores = { D:0, I:0, S:0, C:0 };
-let discCurrent = 0;
-let discAnswers = [];
-
-function startQuiz() {
-  document.getElementById('disc-cta-btn').style.display = 'none';
-  document.getElementById('disc-quiz').style.display = 'block';
-  discInit();
-}
-
-function discInit() {
-  discScores = { D:0, I:0, S:0, C:0 };
-  discCurrent = 0;
-  discAnswers = [];
-  document.getElementById('disc-result').style.display = 'none';
-  document.getElementById('disc-quiz').style.display = 'block';
-  document.getElementById('disc-email-confirm').style.display = 'none';
-  renderDiscQuestion();
-}
-
-
-
-function discAnswer(type) {
-  discScores[type]++;
-  discAnswers.push(type);
-  discCurrent++;
-
-  if (discCurrent >= discQuestions.length) {
-    showDiscResult();
-  } else {
-    document.getElementById('disc-question-block').style.opacity = '0';
-    setTimeout(() => {
-      document.getElementById('disc-question-block').style.opacity = '1';
-      renderDiscQuestion();
-    }, 200);
-  }
-}
-
-
-
-function drawDiscRadar(scores) {
-  const canvas = document.getElementById('disc-radar');
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
-  const cx = W/2, cy = H/2;
-  const R = W * 0.38;
-  const labels = ['D', 'I', 'S', 'C'];
-  const colors = ['#B86F4C', '#3B7A78', '#5a9e9c', '#234B5E'];
-  const max = discQuestions.length / 4 * 2;
-
-  ctx.clearRect(0,0,W,H);
-
-  const angles = labels.map((_,i) => (i * Math.PI*2/4) - Math.PI/2);
-
-  // Grilles
-  for(let level=1; level<=4; level++){
-    ctx.beginPath();
-    angles.forEach((a,i) => {
-      const r = R * level/4;
-      const x = cx + r * Math.cos(a);
-      const y = cy + r * Math.sin(a);
-      i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
-    });
-    ctx.closePath();
-    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
-    ctx.lineWidth = 1;
-    ctx.stroke();
-  }
-
-  // Axes
-  angles.forEach(a => {
-    ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.lineTo(cx + R*Math.cos(a), cy + R*Math.sin(a));
-    ctx.strokeStyle = 'rgba(255,255,255,0.1)';
-    ctx.lineWidth = 1;
-    ctx.stroke();
-  });
-
-  // Données
-  ctx.beginPath();
-  angles.forEach((a,i) => {
-    const val = scores[labels[i]];
-    const r = R * Math.min(val/max, 1);
-    const x = cx + r * Math.cos(a);
-    const y = cy + r * Math.sin(a);
-    i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
-  });
-  ctx.closePath();
-  ctx.fillStyle = 'rgba(184,111,76,0.18)';
-  ctx.fill();
-  ctx.strokeStyle = '#B86F4C';
-  ctx.lineWidth = 2;
-  ctx.stroke();
-
-  // Points
-  angles.forEach((a,i) => {
-    const val = scores[labels[i]];
-    const r = R * Math.min(val/max, 1);
-    const x = cx + r * Math.cos(a);
-    const y = cy + r * Math.sin(a);
-    ctx.beginPath();
-    ctx.arc(x, y, 5, 0, Math.PI*2);
-    ctx.fillStyle = colors[i];
-    ctx.fill();
-  });
-
-  // Labels
-  ctx.font = 'bold 16px sans-serif';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  angles.forEach((a,i) => {
-    const x = cx + (R+28) * Math.cos(a);
-    const y = cy + (R+28) * Math.sin(a);
-    ctx.fillStyle = colors[i];
-    ctx.fillText(labels[i], x, y);
-    // Score
-    ctx.font = '11px sans-serif';
-    ctx.fillStyle = 'rgba(255,255,255,0.4)';
-    ctx.fillText(scores[labels[i]], x, y+16);
-    ctx.font = 'bold 16px sans-serif';
-  });
-}
-
-function sendDiscByEmail() {
-  const email = document.getElementById('disc-email-input').value;
-  if(!email || !email.includes('@')) {
-    document.getElementById('disc-email-input').style.borderBottomColor = 'var(--copper)';
-    return;
-  }
-  // Ici : intégration Brevo API pour envoyer le profil
-  // Pour l'instant — confirmation visuelle
-  document.getElementById('disc-email-confirm').style.display = 'block';
-  document.getElementById('disc-email-input').value = '';
-}
-
-// Init au chargement
-// Le questionnaire s'initialise au clic sur le bouton
-
-function renderQ() {
-  var q = discQuestions[window._dc];
-  var pct = (window._dc / discQuestions.length) * 100;
-  window._df.style.width = pct + '%';
-  var opts = q.options.slice().sort(function(){ return Math.random()-0.5; });
-  var html = '<span class="disc-q-num">Question ' + (window._dc+1) + ' / ' + discQuestions.length + '</span>';
-  html += '<p class="disc-q-text">' + q.text + '</p>';
-  html += '<div class="disc-options">';
-  opts.forEach(function(o) {
-    html += '<button class="disc-option" onclick="pickAnswer(\&#39;' + o.disc + '\&#39;)">' + o.text + '</button>';
-  });
-  html += '</div>';
-  window._dq.innerHTML = html;
-}
-
-function pickAnswer(type) {
-  window._ds[type]++;
-  window._dc++;
-  if (window._dc >= discQuestions.length) {
-    showResult();
-  } else {
-    window._dq.style.opacity = '0';
-    setTimeout(function() {
-      window._dq.style.opacity = '1';
-      renderQ();
-    }, 200);
-  }
-}
-
-function showResult() {
-  window._df.style.width = '100%';
-  setTimeout(function() {
-    document.getElementById('disc-quiz').style.display = 'none';
-    document.getElementById('disc-result').style.display = 'block';
-    var scores = window._ds;
-    var dominant = Object.keys(scores).sort(function(a,b){ return scores[b]-scores[a]; })[0];
-    var profile = discProfiles[dominant];
-    document.getElementById('disc-card').innerHTML =
-      '<span class="disc-profile-badge">Ton profil</span>' +
-      '<div class="disc-profile-letter">' + profile.letter + '</div>' +
-      '<div class="disc-profile-name">' + profile.name + '</div>' +
-      '<p class="disc-profile-text">' + profile.description + '</p>' +
-      '<div class="disc-profile-section"><h4>Tes points forts</h4><ul>' +
-        profile.strengths.map(function(s){ return '<li>'+s+'</li>'; }).join('') +
-      '</ul></div>' +
-      '<div class="disc-profile-section"><h4>Axes de progression</h4><ul>' +
-        profile.axes.map(function(a){ return '<li>'+a+'</li>'; }).join('') +
-      '</ul></div>' +
-      '<div class="disc-expert-rec"><p>Ton expert recommandé : <strong>' + profile.expert.name + '</strong> · ' + profile.expert.role + '</p>' +
-      '<p style="margin-top:8px;">' + profile.expert.text + '</p></div>' +
-      '<button onclick="resetQuiz()" style="margin-top:20px;background:transparent;border:1px solid rgba(255,255,255,0.2);color:var(--white);padding:8px 18px;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;opacity:0.5;font-family:var(--font-body);">Refaire le test</button>';
-    drawDiscRadar(scores);
-  }, 400);
-}
-
-function resetQuiz() {
-  document.getElementById('disc-cta-btn').style.display = 'block';
-  document.getElementById('disc-quiz').style.display = 'none';
-  document.getElementById('disc-result').style.display = 'none';
-  document.getElementById('disc-email-confirm').style.display = 'none';
-}
-</script>
 
 <!-- PARTENAIRES -->
 <section id="partenaires">
@@ -2465,3 +2053,219 @@ const experts = {
     role:'Formateur Management · Consultant RH · Co-fondateur',
     location:'Hauts-de-France (France entière)',
     phone:'+33 6 00 00 00 00',
+    email:'florian.dhaussy@noria-horizon.fr',
+    bio:["Consultant en développement des compétences, manager d'une équipe de consultants, formateur et coach certifié SEVEN NATURAL SKILLS®, Florian intervient à la croisée des enjeux humains et stratégiques. Sa conviction : la réussite durable repose sur la capacité à développer les compétences, révéler les potentiels et faire grandir les talents.","Il accompagne dirigeants, équipes RH, managers et collaborateurs dans la construction de solutions concrètes favorisant l'engagement, la montée en compétences et la performance collective."],
+    tags:['Management','Formation','Leadership','RH','Compétences','Performance collective','Seven Natural Skills®']
+  },
+  denis: {
+    photo:'Denis-Deblevid.png',
+    name:'Denis Deblevid',
+    role:'Coach Philosophique · Méthode 4P · Co-fondateur',
+    location:'Marseille',
+    phone:'+33 6 00 00 00 00',
+    email:'denisdeblevidcontact@gmail.com',
+    bio:["Coach philosophique et fondateur de la Méthode 4P (Psychologique, Physique, Philosophique, Pneuma), Denis accompagne ceux qui portent une soif profonde de sens et de transformation. Son approche s'enracine dans le stoïcisme pratique — une philosophie vécue, incarnée, qui ne reste pas dans les livres.","Ancien pratiquant d'arts martiaux pendant dix ans, Denis a traversé ses propres ruptures pour construire une méthode qui touche l'être dans toutes ses dimensions. Il marche à tes côtés, non au-dessus de toi."],
+    tags:['Stoïcisme','Méthode 4P','Identité','Sens','Résilience','Corps & Mental','Philosophie pratique']
+  },
+  melanie: {
+    photo:'Melanie-Allard.png',
+    name:'Mélanie Allard',
+    role:'Consultante Emploi · Carrière · Développement',
+    location:'Vendée (visio & présentiel)',
+    phone:'+33 6 00 00 00 00',
+    email:'melanie.allard@noria-horizon.fr',
+    bio:["Forte de 20 ans d'expérience en intérim, recrutement et gestion d'agence, Mélanie accompagne particuliers et professionnels à clarifier leur situation, structurer leurs démarches et avancer de manière alignée dans leurs projets professionnels.","Pour les particuliers : transitions professionnelles, orientation, repositionnement, diagnostic CV, préparation aux entretiens. Pour les professionnels : audit business, structuration et développement de TPE/PME. Une approche pragmatique, simple et orientée solutions."],
+    tags:['Carrière','Reconversion','CV & Entretiens','Audit business','TPE·PME','Transitions pro','Bilan carrière']
+  },
+  marc: {
+    photo:'Marc-Vandrepotte.png',
+    name:'Marc Vandrepotte',
+    role:'Copywriter · Consultant · Compléments alimentaires',
+    location:'France',
+    phone:'+33 6 00 00 00 00',
+    email:'marc.vandrepotte@noria-horizon.fr',
+    bio:["Freelance polyvalent, Marc conjugue expertise en compléments alimentaires, copywriting et conseil en développement de compétences. Une approche qui lie le corps, la communication et la progression personnelle.","En parallèle de ses activités de conseil, Marc pratique et propose la magnétothérapie — une dimension complémentaire pour ceux qui cherchent un accompagnement holistique de leur bien-être."],
+    tags:['Copywriting','Compléments alimentaires','Bien-être','Magnétisme','Développement de compétences']
+  },
+  laurence: {
+    photo:'Laurence-Brouet.png',
+    name:'Laurence Brouet',
+    role:'Consultante RH · Formation · E-learning',
+    location:'Toulouse (distanciel & présentiel)',
+    phone:'+33 6 71 82 57 39',
+    email:'brouet.laurence@orange.fr',
+    bio:[
+      "Consultante dans les activités RH et dans le secteur de la formation, Laurence apporte des solutions concrètes aux dirigeants en recherche de talents, aux salariés désireux de développer leurs compétences professionnelles, aux personnes en reconversion et aux jeunes en contrat d'apprentissage.",
+      "Avec un parcours professionnel riche et une connaissance approfondie du monde de l'entreprise, elle a développé polyvalence, sens de l'organisation, forte adaptabilité et une aptitude fine à la détection des attentes et des besoins. Disponible pour des interventions ponctuelles ou récurrentes, en distanciel ou sur site dans le secteur toulousain."
+    ],
+    tags:['RH','Formation','E-learning','Éducation','Reconversion','Apprentissage','Développement des compétences','Recrutement']
+  }
+};
+
+function openModal(id){
+  var e=experts[id]; if(!e) return;
+  var bioHTML=e.bio.map(function(p){ return '<p class="modal-bio">'+p+'</p>'; }).join('');
+  var tagsHTML=e.tags.map(function(t){ return '<span class="modal-tag">'+t+'</span>'; }).join('');
+  document.getElementById('modalBody').innerHTML=
+    '<div class="modal-header">' +
+    '<div class="modal-photo" style="overflow:hidden;padding:0;">'+(e.photo ? '<img src="'+e.photo+'" alt="'+e.name+'" style="width:100%;height:100%;object-fit:cover;object-position:center top;">' : '')+'</div>' +
+    '<div class="modal-info">' +
+    '<h2>'+e.name+'</h2>' +
+    '<span class="role-badge">'+e.role+'</span><br>' +
+    '<small style="opacity:.4;font-size:.78rem;display:block;margin-bottom:10px;">📍 '+e.location+'</small>' +
+    '<div class="contact-links">' +
+    '<a href="tel:'+e.phone+'">📞 '+e.phone+'</a>' +
+    '<a href="mailto:'+e.email+'">✉ '+e.email+'</a>' +
+    '</div></div></div>' +
+    bioHTML +
+    '<div class="modal-tags">'+tagsHTML+'</div>';
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function closeModalOnBg(e){ if(e.target===document.getElementById('modalOverlay')) closeModal(); }
+
+function handleFormSubmit(e){
+  const btn=e.target;
+  btn.textContent='✓ Vérifie ton mail — les vidéos arrivent';
+  btn.style.background='var(--teal)';
+  setTimeout(()=>{ btn.textContent='Recevoir les 3 vidéos →'; btn.style.background='var(--copper)'; },3500);
+}
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('visible'); });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Animation séquentielle étapes
+(function(){
+  const grid=document.querySelector('.steps-grid'); if(!grid) return;
+  const cards=grid.querySelectorAll('.step-card');
+
+  let done=false;
+  const run=()=>{
+    if(done) return; done=true;
+    cards.forEach((card,i)=>{
+      setTimeout(()=>card.classList.add('illumine'), i*380);
+      setTimeout(()=>card.classList.remove('illumine'), i*380+900);
+      setTimeout(()=>{
+        card.classList.add('illumine');
+        if(i===cards.length-1) setTimeout(()=>grid.classList.add('sequence-done'),200);
+      }, i*380+1400);
+    });
+  };
+  const o=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{ if(en.isIntersecting){ setTimeout(run,300); o.disconnect(); } });
+  },{threshold:0.3});
+  o.observe(grid);
+})();
+
+
+var svcData = {
+  coaching:  {title:"Coaching individuel",   img:"https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&q=80", desc:"Un accompagnement sur-mesure, en profondeur, avec l\'expert qui correspond \u00e0 ta r\u00e9alit\u00e9. Blocages, croyances limitantes, objectifs de vie et de carri\u00e8re.", details:["S\u00e9ances en visio ou pr\u00e9sentiel","Suivi personnalis\u00e9","Outils et supports fournis","Fr\u00e9quence adapt\u00e9e \u00e0 ton rythme"], prix:"\u00c0 partir de 80\u20ac / s\u00e9ance"},
+  stages:    {title:"Stages & Ateliers",      img:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80", desc:"Des immersions intenses qui transforment. Nature, d\u00e9passement de soi, philosophie pratique \u2014 pour ancrer des changements profonds.", details:["Formats d\'1 \u00e0 3 jours","Groupes de 6 \u00e0 12 personnes","Encadrement par plusieurs experts","Suivi post-stage inclus"], prix:"\u00c0 partir de 350\u20ac / participant"},
+  formation: {title:"Formations entreprises", img:"https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80", desc:"Interventions sur-mesure pour d\u00e9velopper les talents, renforcer le leadership et am\u00e9liorer la coh\u00e9sion d\'\u00e9quipe.", details:["Audit des besoins en amont","Programme sur-mesure","Interventions ponctuelles ou r\u00e9currentes","Rapport de suivi"], prix:"Sur devis"},
+  ressources:{title:"Ressources & Outils",    img:"https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80", desc:"Guides pratiques, supports p\u00e9dagogiques, outils de diagnostic et contenus exclusifs pour avancer entre les sessions.", details:["Biblioth\u00e8que NORIA HORIZON","Outils de diagnostic","Contenus mis \u00e0 jour","Acc\u00e8s illimit\u00e9"], prix:"\u00c0 partir de 29\u20ac"},
+  collectif: {title:"Accompagnement collectif",img:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80", desc:"Groupes de pairs, cercles de progression, masterminds. L\'intelligence collective au service de ta mont\u00e9e en comp\u00e9tence.", details:["Groupes de 6 \u00e0 10 personnes","Sessions bi-mensuelles","Anim\u00e9 par un expert","Communaut\u00e9 priv\u00e9e"], prix:"\u00c0 partir de 150\u20ac / mois"},
+  digital:   {title:"Parcours digitaux",      img:"https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80", desc:"S\u00e9quences email, vid\u00e9os p\u00e9dagogiques, questionnaires. Un tunnel p\u00e9dagogique complet.", details:["Acc\u00e8s 24h/24","Progression \u00e0 ton rythme","Vid\u00e9o + exercices","Support par email"], prix:"\u00c0 partir de 49\u20ac"}
+};
+function openService(key){
+  var s=svcData[key]; if(!s) return;
+  var det=s.details.map(function(d){return "<li>"+d+"</li>";}).join("");
+  document.getElementById("serviceBody").innerHTML=
+    "<img class=\"service-modal-img\" src=\""+s.img+"\" alt=\""+s.title+"\">"+
+    "<h2>"+s.title+"</h2>"+
+    "<p class=\"service-modal-desc\">"+s.desc+"</p>"+
+    "<div class=\"service-prix\"><span>Tarif indicatif</span>"+s.prix+"</div>"+
+    "<ul class=\"service-details\">"+det+"</ul>"+
+    "<button class=\"btn-copper-full\" onclick=\"closeService();openDevis('"+key+"')\">Demander un devis &rarr;</button>";
+  document.getElementById("serviceOverlay").classList.add("open");
+  document.body.style.overflow="hidden";
+}
+function closeService(){ document.getElementById("serviceOverlay").classList.remove("open"); document.body.style.overflow=""; }
+function openDevis(key){ if(key&&svcData[key])document.getElementById("devis-service").value=svcData[key].title; document.getElementById("devisOverlay").classList.add("open"); document.body.style.overflow="hidden"; }
+function closeDevis(){ document.getElementById("devisOverlay").classList.remove("open"); document.body.style.overflow=""; }
+function submitDevis(){ document.getElementById("devis-confirm").style.display="block"; setTimeout(function(){ closeDevis(); document.getElementById("devis-confirm").style.display="none"; },3000); }
+
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();closeService();closeDevis();} });
+
+// ─── MENU ACTIF + SILLAGE SCROLL + BACK TO TOP ───
+(function(){
+  var anchors = Array.prototype.slice.call(document.querySelectorAll('.nav-anchor'));
+  var sections = anchors.map(function(a){
+    var id = a.getAttribute('href').replace('#','');
+    return { link:a, el:document.getElementById(id) };
+  }).filter(function(s){ return s.el; });
+
+  var actionKeys = Array.prototype.slice.call(document.querySelectorAll('.action-key'));
+  var backBtn = document.getElementById('backToTop');
+  var allCards = Array.prototype.slice.call(document.querySelectorAll('.step-card,.valeur-card,.team-card,.service-card,.pillar,.partner-logo'));
+
+  function onScroll(){
+    var mid = window.scrollY + window.innerHeight/2;
+    var docTop = window.scrollY;
+
+    // Menu actif
+    var current = null;
+    sections.forEach(function(s){
+      var top = s.el.offsetTop - 120;
+      var bot = top + s.el.offsetHeight;
+      if(docTop+150 >= top && docTop+150 < bot) current = s.link;
+    });
+    anchors.forEach(function(a){ a.classList.remove('active'); });
+    if(current) current.classList.add('active');
+
+    // Action keys — illumination quand proche du centre écran
+    actionKeys.forEach(function(k){
+      var r = k.getBoundingClientRect();
+      var c = r.top + r.height/2;
+      if(c > window.innerHeight*0.2 && c < window.innerHeight*0.75) k.classList.add('lit');
+      else k.classList.remove('lit');
+    });
+
+    // Sillage — lueur fugace sur cartes proches du centre
+    allCards.forEach(function(card){
+      var r = card.getBoundingClientRect();
+      var c = r.top + r.height/2;
+      if(c > window.innerHeight*0.35 && c < window.innerHeight*0.65) card.classList.add('swept');
+      else card.classList.remove('swept');
+    });
+
+    // Back to top
+    if(window.scrollY > 500) backBtn.classList.add('show');
+    else backBtn.classList.remove('show');
+  }
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('load', onScroll);
+  onScroll();
+})();
+
+</script>
+<!-- BOUTON REMONTER -->
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Remonter en haut">
+  <svg viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g style="transform-origin:44px 44px;">
+      <circle cx="44" cy="44" r="36" stroke="#234B5E" stroke-width="2.5"/>
+      <circle cx="44" cy="44" r="26" stroke="#3B7A78" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="44" y1="8" x2="44" y2="80" stroke="#234B5E" stroke-width="1.2" opacity="0.6"/>
+      <line x1="8" y1="44" x2="80" y2="44" stroke="#234B5E" stroke-width="1.2" opacity="0.6"/>
+      <line x1="18" y1="18" x2="70" y2="70" stroke="#3B7A78" stroke-width="0.9" opacity="0.45"/>
+      <line x1="70" y1="18" x2="18" y2="70" stroke="#3B7A78" stroke-width="0.9" opacity="0.45"/>
+      <path d="M44 8 C41 12 41 16 44 16 C47 16 47 12 44 8Z" fill="#B86F4C"/>
+      <path d="M80 44 C76 41 72 41 72 44 C72 47 76 47 80 44Z" fill="#B86F4C"/>
+      <path d="M44 80 C47 76 47 72 44 72 C41 72 41 76 44 80Z" fill="#B86F4C"/>
+      <path d="M8 44 C12 47 16 47 16 44 C16 41 12 41 8 44Z" fill="#B86F4C"/>
+      <circle cx="44" cy="44" r="5" fill="#B86F4C"/>
+      <circle cx="44" cy="44" r="2.5" fill="#234B5E"/>
+    </g>
+  </svg>
+</button>
+
+</body>
+</html>
