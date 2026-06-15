@@ -1301,11 +1301,17 @@ footer {
 /* ÉLÉMENTS D'ACTION — toujours plus visibles */
 .action-key {
   position:relative;
-  transition:color 0.6s ease, text-shadow 0.6s ease;
+  transition:color 0.6s ease, text-shadow 0.6s ease, box-shadow 0.6s ease, transform 0.6s ease;
 }
-.action-key.lit {
+/* Titres (texte sur fond) : le texte passe en cuivre + halo */
+h3.action-key.lit, h2.action-key.lit {
   color:var(--copper) !important;
-  text-shadow:0 0 16px rgba(184,111,76,0.5);
+  text-shadow:0 0 16px rgba(184,111,76,0.4);
+}
+/* Boutons : pas de changement de couleur du texte, juste un halo lumineux autour */
+button.action-key.lit, a.action-key.lit {
+  box-shadow:0 0 22px rgba(184,111,76,0.55), 0 0 0 2px rgba(184,111,76,0.3);
+  transform:translateY(-2px);
 }
 
 /* SILLAGE DE SCROLL — lueur fugace cuivre */
