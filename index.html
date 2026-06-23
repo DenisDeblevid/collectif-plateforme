@@ -113,8 +113,6 @@ nav {
   padding:130px 60px 80px;
 }
 
-
-
 /* Vague décorative hero */
 .hero-wave {
   position:absolute; bottom:0; left:0; right:0;
@@ -295,8 +293,6 @@ section { padding:100px 60px; position:relative; z-index:1; }
 }
 .step-card:hover .step-num { color:var(--copper); }
 .step-card:hover h3 { color:var(--copper); }
-
-
 
 .step-num {
   font-size:0.68rem;
@@ -484,15 +480,6 @@ section { padding:100px 60px; position:relative; z-index:1; }
   object-fit:cover; object-position:center top;
   position:absolute; inset:0; z-index:1;
   transition:transform 0.4s ease;
-}
-.team-card:hover .team-photo img { transform:scale(1.04); }
-.team-photo img {
-  width:100%; height:100%;
-  object-fit:cover;
-  object-position:center top;
-  position:absolute; inset:0;
-  transition:transform 0.4s ease;
-  z-index:1;
 }
 .team-card:hover .team-photo img { transform:scale(1.04); }
 .team-photo::before {
@@ -859,8 +846,6 @@ footer {
 }
 
 /* ─── ANIMATION GOUTTE 3D TUNNEL ─── */
-
-/* Cercles en chute 3D — perspective */
 .tunnel-step-circle {
   width:36px; height:36px;
   border:1px solid var(--teal);
@@ -873,137 +858,59 @@ footer {
   perspective:200px;
 }
 
-/* Cercle 1 — tombe en 3D, s aplatit en descendant */
-.tunnel-step:nth-child(1) .tunnel-step-circle {
-  animation:drop3d 4s ease-in-out infinite 0s;
-}
-.tunnel-step:nth-child(2) .tunnel-step-circle {
-  animation:drop3d 4s ease-in-out infinite 0.7s;
-}
-.tunnel-step:nth-child(3) .tunnel-step-circle {
-  animation:drop3d 4s ease-in-out infinite 1.4s;
-}
+.tunnel-step:nth-child(1) .tunnel-step-circle { animation:drop3d 4s ease-in-out infinite 0s; }
+.tunnel-step:nth-child(2) .tunnel-step-circle { animation:drop3d 4s ease-in-out infinite 0.7s; }
+.tunnel-step:nth-child(3) .tunnel-step-circle { animation:drop3d 4s ease-in-out infinite 1.4s; }
 .tunnel-step:nth-child(4) .tunnel-step-circle {
   animation:impact3d 4s ease-in-out infinite 2.1s;
-  border-color:var(--copper);
-  color:var(--copper);
+  border-color:var(--copper); color:var(--copper);
 }
 
-/* Onde 1 autour du cercle 4 */
 .tunnel-step:nth-child(4) .tunnel-step-circle::before {
-  content:"";
-  position:absolute;
-  width:36px; height:36px;
-  border-radius:50%;
+  content:""; position:absolute;
+  width:36px; height:36px; border-radius:50%;
   border:1.5px solid var(--copper);
-  animation:ripple 4s ease-out infinite 2.1s;
-  opacity:0;
+  animation:ripple 4s ease-out infinite 2.1s; opacity:0;
 }
-
-/* Onde 2 — décalée */
 .tunnel-step:nth-child(4) .tunnel-step-circle::after {
-  content:"";
-  position:absolute;
-  width:36px; height:36px;
-  border-radius:50%;
+  content:""; position:absolute;
+  width:36px; height:36px; border-radius:50%;
   border:1px solid var(--teal);
-  animation:ripple 4s ease-out infinite 2.5s;
-  opacity:0;
+  animation:ripple 4s ease-out infinite 2.5s; opacity:0;
 }
 
-/* Chute 3D — le cercle s aplatit en perspective comme une goutte qui tombe */
 @keyframes drop3d {
-  0%, 60%, 100% {
-    transform:rotateX(0deg) scale(1);
-    opacity:0.5;
-    border-color:var(--teal);
-    color:var(--teal);
-    box-shadow:none;
-  }
-  /* Début de chute — inclinaison */
-  10% {
-    transform:rotateX(25deg) scaleY(0.85) translateY(-3px);
-    opacity:0.7;
-  }
-  /* Milieu — s aplatit davantage, accélère */
-  20% {
-    transform:rotateX(50deg) scaleY(0.6) translateY(-1px);
-    opacity:0.9;
-    border-color:var(--copper);
-    color:var(--copper);
-  }
-  /* Impact — très plat */
-  28% {
-    transform:rotateX(70deg) scaleY(0.3) scaleX(1.2);
-    opacity:1;
-    box-shadow:0 4px 12px rgba(184,111,76,0.3);
-  }
-  /* Rebond léger */
-  35% {
-    transform:rotateX(0deg) scale(1.15);
-    opacity:1;
-    border-color:var(--copper);
-    box-shadow:0 0 0 4px rgba(184,111,76,0.15);
-  }
-  45% {
-    transform:rotateX(0deg) scale(1);
-    opacity:0.6;
-    border-color:var(--teal);
-    box-shadow:none;
-  }
+  0%, 60%, 100% { transform:rotateX(0deg) scale(1); opacity:0.5; border-color:var(--teal); color:var(--teal); box-shadow:none; }
+  10% { transform:rotateX(25deg) scaleY(0.85) translateY(-3px); opacity:0.7; }
+  20% { transform:rotateX(50deg) scaleY(0.6) translateY(-1px); opacity:0.9; border-color:var(--copper); color:var(--copper); }
+  28% { transform:rotateX(70deg) scaleY(0.3) scaleX(1.2); opacity:1; box-shadow:0 4px 12px rgba(184,111,76,0.3); }
+  35% { transform:rotateX(0deg) scale(1.15); opacity:1; border-color:var(--copper); box-shadow:0 0 0 4px rgba(184,111,76,0.15); }
+  45% { transform:rotateX(0deg) scale(1); opacity:0.6; border-color:var(--teal); box-shadow:none; }
 }
 
-/* Impact eau — pulse 2D fort + ondes */
 @keyframes impact3d {
-  0%, 15%, 100% {
-    transform:scale(1);
-    opacity:0.5;
-    border-color:var(--copper);
-    box-shadow:none;
-  }
-  /* Reçoit l onde des cercles du dessus */
-  30% {
-    transform:scale(1.3);
-    opacity:1;
-    box-shadow:0 0 0 6px rgba(184,111,76,0.2), 0 0 0 12px rgba(184,111,76,0.08);
-  }
-  40% {
-    transform:scale(0.9);
-    opacity:0.8;
-  }
-  50% {
-    transform:scale(1.1);
-    opacity:1;
-  }
-  60% {
-    transform:scale(1);
-    opacity:0.7;
-  }
+  0%, 15%, 100% { transform:scale(1); opacity:0.5; border-color:var(--copper); box-shadow:none; }
+  30% { transform:scale(1.3); opacity:1; box-shadow:0 0 0 6px rgba(184,111,76,0.2), 0 0 0 12px rgba(184,111,76,0.08); }
+  40% { transform:scale(0.9); opacity:0.8; }
+  50% { transform:scale(1.1); opacity:1; }
+  60% { transform:scale(1); opacity:0.7; }
 }
 
-/* Ondes concentriques autour du 4 */
 @keyframes ripple {
   0%   { transform:scale(1);   opacity:0.8; }
   70%  { transform:scale(3.5); opacity:0; }
   100% { transform:scale(3.5); opacity:0; }
 }
 
-
-
 /* ═══════════════════════════════════════
-   AMBIANCE AQUATIQUE UNIFIÉE — référence : valeurs (bubbleUp)
-   Même mouvement, même amplitude, même âme — sur tout le site
+   AMBIANCE AQUATIQUE UNIFIÉE
    ═══════════════════════════════════════ */
-
-/* ─── Keyframe unique de référence ─── */
 @keyframes aqua {
   0%,100% { transform: translateY(0px) translateX(0px); }
   25%     { transform: translateY(-5px) translateX(2px); }
   50%     { transform: translateY(-3px) translateX(-2px); }
   75%     { transform: translateY(-6px) translateX(1px); }
 }
-
-/* Impact goutte — perturbation occasionnelle */
 @keyframes dropHit {
   0%,100% { transform: translateY(0px) scale(1); }
   8%      { transform: translateY(-8px) scale(1.03); }
@@ -1012,53 +919,42 @@ footer {
   40%     { transform: translateY(2px) scale(0.995); }
   55%     { transform: translateY(0px) scale(1); }
 }
-
-/* Onde sur bordure */
 @keyframes borderBreath {
   0%,100% { border-left-color: var(--teal); }
   50%     { border-left-color: var(--copper); }
 }
-
 @keyframes surfaceRipple {
   0%   { box-shadow: 0 0 0 0px rgba(59,122,120,0.4); }
   60%  { box-shadow: 0 0 0 18px rgba(59,122,120,0); }
   100% { box-shadow: 0 0 0 0px rgba(59,122,120,0); }
 }
-
-/* Onde séparateur */
 @keyframes waveSepAnim {
   0%,100% { transform: scaleX(1) translateX(0); }
   50%     { transform: scaleX(1.06) translateX(3px); }
 }
 
-/* ─── VALEURS — référence ─── */
 .valeur-card:nth-child(1) { animation: aqua 6s ease-in-out infinite 0s; }
 .valeur-card:nth-child(2) { animation: aqua 6s ease-in-out infinite 1.4s; }
 .valeur-card:nth-child(3) { animation: aqua 6s ease-in-out infinite 2.8s; }
 .valeur-card:nth-child(4) { animation: aqua 6s ease-in-out infinite 0.7s; }
 .valeur-card:nth-child(5) { animation: aqua 6s ease-in-out infinite 2.1s; }
 
-/* ─── PILIERS MISSION — même rythme ─── */
 .pillar:nth-child(1) { animation: aqua 6s ease-in-out infinite 0s,   dropHit 11s ease-in-out infinite 2s; }
 .pillar:nth-child(2) { animation: aqua 6s ease-in-out infinite 1.4s, dropHit 11s ease-in-out infinite 5.5s; }
 .pillar:nth-child(3) { animation: aqua 6s ease-in-out infinite 2.8s, dropHit 11s ease-in-out infinite 8.5s; }
-
-.pillar-mark { animation: borderBreath 6s ease-in-out infinite; }
-.pillar:nth-child(2) .pillar-mark { animation-delay: 1.8s; }
-.pillar:nth-child(3) .pillar-mark { animation-delay: 3.5s; }
 
 .pillar:nth-child(1) .pillar-mark { animation: borderBreath 6s ease-in-out infinite, surfaceRipple 11s ease-out infinite 2s; }
 .pillar:nth-child(2) .pillar-mark { animation: borderBreath 6s ease-in-out infinite 1.8s, surfaceRipple 11s ease-out infinite 5.5s; }
 .pillar:nth-child(3) .pillar-mark { animation: borderBreath 6s ease-in-out infinite 3.5s, surfaceRipple 11s ease-out infinite 8.5s; }
 
-/* ─── ÉQUIPE — même rythme ─── */
 .team-card:nth-child(1) { animation: aqua 6s ease-in-out infinite 0s,   dropHit 12s ease-in-out infinite 3s; }
 .team-card:nth-child(2) { animation: aqua 6s ease-in-out infinite 1.4s, dropHit 12s ease-in-out infinite 6.5s; }
 .team-card:nth-child(3) { animation: aqua 6s ease-in-out infinite 2.8s, dropHit 12s ease-in-out infinite 9.5s; }
 .team-card:nth-child(4) { animation: aqua 6s ease-in-out infinite 0.7s, dropHit 12s ease-in-out infinite 1.5s; }
 .team-card:nth-child(5) { animation: aqua 6s ease-in-out infinite 2.1s, dropHit 12s ease-in-out infinite 4.5s; }
+.team-card:nth-child(6) { animation: aqua 6s ease-in-out infinite 3.5s, dropHit 12s ease-in-out infinite 7.5s; }
+.team-card:nth-child(7) { animation: aqua 6s ease-in-out infinite 1.0s, dropHit 12s ease-in-out infinite 2.5s; }
 
-/* ─── SERVICES — même rythme ─── */
 .service-card:nth-child(1) { animation: aqua 6s ease-in-out infinite 0s; }
 .service-card:nth-child(2) { animation: aqua 6s ease-in-out infinite 1.4s; }
 .service-card:nth-child(3) { animation: aqua 6s ease-in-out infinite 2.8s; }
@@ -1066,12 +962,10 @@ footer {
 .service-card:nth-child(5) { animation: aqua 6s ease-in-out infinite 2.1s; }
 .service-card:nth-child(6) { animation: aqua 6s ease-in-out infinite 3.5s; }
 
-/* ─── ÉTAPES — même rythme (après illumination) ─── */
 .step-card.illumine:nth-child(1) { animation: aqua 6s ease-in-out infinite 0s; }
 .step-card.illumine:nth-child(2) { animation: aqua 6s ease-in-out infinite 1.4s; }
 .step-card.illumine:nth-child(3) { animation: aqua 6s ease-in-out infinite 2.8s; }
 
-/* ─── PARTENAIRES — même rythme ─── */
 .partner-logo:nth-child(1) { animation: aqua 6s ease-in-out infinite 0s; }
 .partner-logo:nth-child(2) { animation: aqua 6s ease-in-out infinite 1.4s; }
 .partner-logo:nth-child(3) { animation: aqua 6s ease-in-out infinite 2.8s; }
@@ -1079,11 +973,9 @@ footer {
 .partner-logo:nth-child(5) { animation: aqua 6s ease-in-out infinite 2.1s; }
 .partner-logo:nth-child(6) { animation: aqua 6s ease-in-out infinite 3.5s; }
 
-/* ─── SÉPARATEURS ─── */
 .wave-sep { animation: waveSepAnim 6s ease-in-out infinite; transform-origin: left center; }
 .wave-sep::after { animation: waveSepAnim 6s ease-in-out infinite 1.4s; transform-origin: left center; }
 
-/* Au survol — pause ─── */
 .valeur-card:hover,
 .pillar:hover,
 .team-card:hover,
@@ -1092,92 +984,12 @@ footer {
 .partner-logo:hover { animation: none !important; }
 .pillar:hover .pillar-mark { animation: none !important; }
 
-/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .valeur-card, .pillar, .team-card, .service-card,
   .step-card, .partner-logo, .wave-sep, .pillar-mark {
     animation: none !important;
   }
 }
-
-}
-
-
-/* ─── IMPACT GOUTTE — perturbation occasionnelle ─── */
-
-/* Frémissement quand une goutte touche */
-@keyframes dropHit {
-  0%    { transform: translateY(0px) scale(1); }
-  8%    { transform: translateY(-8px) scale(1.03); }
-  16%   { transform: translateY(4px) scale(0.98); }
-  24%   { transform: translateY(-4px) scale(1.01); }
-  35%   { transform: translateY(2px) scale(0.99); }
-  45%   { transform: translateY(-2px) scale(1.005); }
-  55%   { transform: translateY(0px) scale(1); }
-  100%  { transform: translateY(0px) scale(1); }
-}
-
-/* Onde de surface autour de l'élément touché */
-@keyframes surfaceRipple {
-  0%   { box-shadow: 0 0 0 0px rgba(59,122,120,0.4); opacity:1; }
-  60%  { box-shadow: 0 0 0 18px rgba(59,122,120,0); opacity:0; }
-  100% { box-shadow: 0 0 0 0px rgba(59,122,120,0); opacity:0; }
-}
-
-/* Team cards — goutte toutes les ~12s, décalée par carte */
-.team-card:nth-child(1) {
-  animation: drift1 10s ease-in-out infinite 0s,
-             dropHit 12s ease-in-out infinite 3s;
-}
-.team-card:nth-child(2) {
-  animation: drift2 11s ease-in-out infinite 1s,
-             dropHit 12s ease-in-out infinite 6.5s;
-}
-.team-card:nth-child(3) {
-  animation: drift1 10.5s ease-in-out infinite 2s,
-             dropHit 12s ease-in-out infinite 9.5s;
-}
-.team-card:nth-child(4) {
-  animation: drift3 12s ease-in-out infinite 0.5s,
-             dropHit 12s ease-in-out infinite 1.5s;
-}
-
-/* Piliers mission — goutte toutes les ~10s */
-.pillar:nth-child(1) {
-  animation: drift1 7s ease-in-out infinite,
-             dropHit 11s ease-in-out infinite 2s;
-}
-.pillar:nth-child(2) {
-  animation: drift2 9s ease-in-out infinite 1.5s,
-             dropHit 11s ease-in-out infinite 5.5s;
-}
-.pillar:nth-child(3) {
-  animation: drift3 8s ease-in-out infinite 3s,
-             dropHit 11s ease-in-out infinite 8.5s;
-}
-
-/* Onde visible sur la pillar-mark au moment de l'impact */
-.pillar:nth-child(1) .pillar-mark {
-  animation: borderBreath 6s ease-in-out infinite,
-             surfaceRipple 11s ease-out infinite 2s;
-}
-.pillar:nth-child(2) .pillar-mark {
-  animation: borderBreath 6s ease-in-out infinite 1.8s,
-             surfaceRipple 11s ease-out infinite 5.5s;
-}
-.pillar:nth-child(3) .pillar-mark {
-  animation: borderBreath 6s ease-in-out infinite 3.5s,
-             surfaceRipple 11s ease-out infinite 8.5s;
-}
-
-.team-card:hover,
-.pillar:hover {
-  animation: none !important;
-}
-.pillar:hover .pillar-mark {
-  animation: none !important;
-}
-
 
 /* ─── SERVICE CARDS AVEC PHOTO ─── */
 .service-card {
@@ -1207,12 +1019,9 @@ footer {
   position:absolute; inset:0;
   background:linear-gradient(to bottom, transparent 50%, rgba(35,75,94,0.3) 100%);
 }
-.service-content {
-  padding:28px 30px 32px;
-}
+.service-content { padding:28px 30px 32px; }
 .service-card h3 { font-family:var(--font-display); font-size:1.1rem; font-weight:600; margin-bottom:10px; color:var(--deep); }
 .service-card p { font-size:0.86rem; opacity:0.6; line-height:1.75; }
-
 
 /* HERO CENTRÉ */
 #hero { justify-content:center; }
@@ -1262,14 +1071,10 @@ footer {
 .contact-level-tag { font-size:0.6rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--copper); display:block; margin-bottom:12px; }
 .contact-level h3 { font-family:var(--font-display); font-size:1.15rem; font-weight:300; color:var(--white); margin-bottom:10px; }
 .contact-level p { font-size:0.8rem; opacity:0.4; color:var(--white); margin-bottom:20px; line-height:1.6; }
-.cf-simple { display:none; margin-top:18px; text-align:left; }
-.cf-simple label { color:var(--white) !important; }
 @media(max-width:900px){ .contact-levels { grid-template-columns:1fr; } .devis-row { grid-template-columns:1fr; } }
 
-
-/* OVERRIDE SÉCURITÉ — contenu toujours visible, pas d'animation qui collapse */
-.step-card, .valeur-card, .team-card, .service-card, .pillar,
-.reveal {
+/* OVERRIDE SÉCURITÉ */
+.step-card, .valeur-card, .team-card, .service-card, .pillar, .reveal {
   opacity: 1 !important;
   transform: none !important;
   animation: none !important;
@@ -1278,13 +1083,12 @@ footer {
   background: transparent !important;
 }
 
-
 /* MENU ACTIF AU SCROLL */
 .nav-anchor.active { opacity:1 !important; color:var(--copper) !important; }
 .nav-anchor.active::after { content:''; display:block; height:2px; background:var(--copper); margin-top:3px; animation:navUnderline 0.3s ease; }
 @keyframes navUnderline { from{transform:scaleX(0);} to{transform:scaleX(1);} }
 
-/* BOUTON REMONTER — roue noria */
+/* BOUTON REMONTER */
 #backToTop {
   position:fixed; bottom:30px; right:30px; z-index:120;
   width:52px; height:52px; border-radius:50%;
@@ -1298,30 +1102,46 @@ footer {
 #backToTop:hover { transform:translateY(-3px); }
 #backToTop svg { width:30px; height:30px; animation:cwSpin 8s linear infinite; }
 
-/* ÉLÉMENTS D'ACTION — toujours plus visibles */
+/* ÉLÉMENTS D'ACTION */
 .action-key {
   position:relative;
   transition:color 0.6s ease, text-shadow 0.6s ease, box-shadow 0.6s ease, transform 0.6s ease;
 }
-/* Titres (texte sur fond) : le texte passe en cuivre + halo */
 h3.action-key.lit, h2.action-key.lit {
   color:var(--copper) !important;
   text-shadow:0 0 16px rgba(184,111,76,0.4);
 }
-/* Boutons : pas de changement de couleur du texte, juste un halo lumineux autour */
 button.action-key.lit, a.action-key.lit {
   box-shadow:0 0 22px rgba(184,111,76,0.55), 0 0 0 2px rgba(184,111,76,0.3);
   transform:translateY(-2px);
 }
 
-/* SILLAGE DE SCROLL — lueur fugace cuivre */
+/* SILLAGE DE SCROLL */
 .step-card, .valeur-card, .team-card, .service-card, .pillar, .partner-logo {
   transition:box-shadow 0.6s ease;
 }
-.swept {
-  box-shadow:0 0 28px rgba(184,111,76,0.22) !important;
-}
+.swept { box-shadow:0 0 28px rgba(184,111,76,0.22) !important; }
 
+/* DISC STYLES */
+.disc-q-text { font-family:var(--font-display); font-size:clamp(1.3rem,2.5vw,1.8rem); font-weight:300; color:var(--white); margin-bottom:36px; line-height:1.4; }
+.disc-options { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.disc-option { background:rgba(255,255,255,0.04); border:1px solid rgba(184,111,76,0.15); padding:18px 22px; cursor:pointer; font-family:var(--font-body); font-size:0.9rem; color:var(--white); opacity:0.75; transition:all 0.25s; text-align:left; line-height:1.5; }
+.disc-option:hover { background:rgba(184,111,76,0.12); border-color:var(--copper); opacity:1; transform:translateX(4px); }
+.disc-option.selected { background:rgba(184,111,76,0.2); border-color:var(--copper); opacity:1; }
+.disc-q-num { font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--copper); opacity:0.6; margin-bottom:16px; display:block; }
+.disc-profile-badge { display:inline-block; background:var(--copper); color:var(--white); font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; padding:4px 14px; margin-bottom:16px; }
+.disc-profile-letter { font-family:var(--font-display); font-size:5rem; font-weight:600; color:var(--copper); line-height:1; margin-bottom:8px; }
+.disc-profile-name { font-family:var(--font-display); font-size:1.6rem; font-weight:300; color:var(--white); margin-bottom:20px; }
+.disc-profile-text { font-size:0.88rem; color:var(--white); opacity:0.65; line-height:1.8; margin-bottom:20px; }
+.disc-profile-section { margin-bottom:20px; }
+.disc-profile-section h4 { font-family:var(--font-display); font-size:0.9rem; font-weight:600; color:var(--copper); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px; }
+.disc-profile-section ul { list-style:none; padding:0; }
+.disc-profile-section ul li { font-size:0.85rem; color:var(--white); opacity:0.6; padding:4px 0; padding-left:16px; position:relative; }
+.disc-profile-section ul li::before { content:""; position:absolute; left:0; top:12px; width:6px; height:1px; background:var(--copper); }
+.disc-expert-rec { background:rgba(184,111,76,0.1); border-left:3px solid var(--copper); padding:16px 20px; margin-top:24px; }
+.disc-expert-rec p { font-size:0.82rem; color:var(--white); opacity:0.7; line-height:1.6; }
+.disc-expert-rec strong { color:var(--copper); font-weight:500; }
+@media(max-width:900px){ #disc-result > div { grid-template-columns:1fr; gap:40px; } .disc-options { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -1342,32 +1162,23 @@ button.action-key.lit, a.action-key.lit {
 <nav>
   <a href="#hero" class="nav-brand">
     <svg class="logo-svg" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Roue complète qui tourne sur son centre (44,44) -->
       <g style="animation:cwSpin 18s linear infinite; transform-origin:44px 44px;">
-        <!-- Jante extérieure -->
         <circle cx="44" cy="44" r="36" stroke="#234B5E" stroke-width="2.5"/>
-        <!-- Jante intérieure -->
         <circle cx="44" cy="44" r="26" stroke="#3B7A78" stroke-width="1" stroke-dasharray="3 3"/>
-        <!-- 8 rayons -->
         <line x1="44" y1="8"  x2="44" y2="80" stroke="#234B5E" stroke-width="1.2" opacity="0.6"/>
         <line x1="8"  y1="44" x2="80" y2="44" stroke="#234B5E" stroke-width="1.2" opacity="0.6"/>
         <line x1="18" y1="18" x2="70" y2="70" stroke="#3B7A78" stroke-width="0.9" opacity="0.45"/>
         <line x1="70" y1="18" x2="18" y2="70" stroke="#3B7A78" stroke-width="0.9" opacity="0.45"/>
-        <!-- Godets aux 4 cardinales -->
         <path d="M44 8 C41 12 41 16 44 16 C47 16 47 12 44 8Z" fill="#B86F4C" opacity="0.8"/>
         <path d="M80 44 C76 41 72 41 72 44 C72 47 76 47 80 44Z" fill="#B86F4C" opacity="0.8"/>
         <path d="M44 80 C47 76 47 72 44 72 C41 72 41 76 44 80Z" fill="#B86F4C" opacity="0.8"/>
         <path d="M8 44 C12 47 16 47 16 44 C16 41 12 41 8 44Z" fill="#B86F4C" opacity="0.8"/>
-        <!-- Moyeu -->
         <circle cx="44" cy="44" r="5" fill="#B86F4C"/>
         <circle cx="44" cy="44" r="2.5" fill="#234B5E"/>
       </g>
-      <!-- Calque masque — couleur fond nav — cache la partie basse de la roue -->
       <rect x="0" y="70" width="88" height="18" fill="#F4EFE6"/>
-      <!-- Vagues par-dessus -->
       <path d="M4 72 Q22 64 44 72 Q66 80 84 72" stroke="#234B5E" stroke-width="1.8" fill="none" opacity="0.5" stroke-linecap="round"/>
       <path d="M2 78 Q22 71 44 78 Q66 85 86 78" stroke="#3B7A78" stroke-width="1.1" fill="none" opacity="0.32" stroke-linecap="round"/>
-      <!-- Point cuivre fixe en haut à droite -->
       <circle cx="72" cy="10" r="4" fill="#B86F4C"/>
     </svg>
     <div class="brand-text">
@@ -1407,8 +1218,6 @@ button.action-key.lit, a.action-key.lit {
       <a href="#contact" class="hero-btn">Une question ? Un projet ?</a>
     </div>
   </div>
-
-  <!-- Vague bas hero -->
   <svg class="hero-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
     <path d="M0 40 Q180 0 360 40 Q540 80 720 40 Q900 0 1080 40 Q1260 80 1440 40 L1440 80 L0 80Z" fill="#E8DCC9" opacity="0.5"/>
     <path d="M0 55 Q200 20 400 55 Q600 90 800 55 Q1000 20 1200 55 Q1320 75 1440 55" stroke="#3B7A78" stroke-width="1" fill="none" opacity="0.25"/>
@@ -1421,7 +1230,6 @@ button.action-key.lit, a.action-key.lit {
   <h2 class="section-title">Un chemin pensé <strong>pour toi</strong></h2>
   <div class="wave-sep"></div>
   <p class="section-sub">Un triage intelligent pour te mettre face à l'expert qui correspond à là où tu en es. Pas de standardisation. Pas de jargon.</p>
-
   <div class="steps-grid" style="margin-top:56px;">
     <div class="step-card reveal">
       <span class="step-num">— Étape 01 <span class="step-dot sd-1"></span></span>
@@ -1480,7 +1288,6 @@ button.action-key.lit, a.action-key.lit {
         </div>
       </div>
     </div>
-
     <div class="tunnel-form">
       <h3>Commencer maintenant</h3>
       <p>Inscription sécurisée · Aucun spam</p>
@@ -1522,7 +1329,7 @@ button.action-key.lit, a.action-key.lit {
   <div class="team-grid">
 
     <!-- 1. Laurence -->
-    <div class="team-card reveal" style="order:4;" onclick="openModal('laurence')">
+    <div class="team-card reveal" onclick="openModal('laurence')">
       <div class="team-photo">
         <img src="Laurence-Brouet.png" alt="Laurence Brouet">
         <div class="team-overlay"><p>Consultante RH · Formation · E-learning · Toulouse</p></div>
@@ -1574,7 +1381,24 @@ button.action-key.lit, a.action-key.lit {
       </div>
     </div>
 
-    <!-- 4. Mélanie -->
+    <!-- 4. Émilie — juste après Denis -->
+    <div class="team-card reveal" onclick="openModal('emilie')">
+      <div class="team-photo">
+        <img src="Emilie-Abraham.jpg" alt="Émilie Abraham">
+        <div class="team-overlay"><p>Consultante RH · Prévention des risques · QVT · 15 ans d'expérience</p></div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Émilie Abraham</div>
+        <span class="team-role">Consultante RH · Développement professionnel</span>
+        <span class="team-location">📍 France</span>
+        <div class="team-contacts">
+          <a href="tel:+33665520000" onclick="event.stopPropagation()">📞 Tél.</a>
+          <a href="mailto:abrahamemilie@gmail.com" onclick="event.stopPropagation()">✉ Mail</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Mélanie -->
     <div class="team-card reveal" onclick="openModal('melanie')">
       <div class="team-photo">
         <img src="Melanie-Allard.png" alt="Mélanie Allard">
@@ -1591,7 +1415,7 @@ button.action-key.lit, a.action-key.lit {
       </div>
     </div>
 
-    <!-- 5. Marc -->
+    <!-- 6. Marc -->
     <div class="team-card reveal" onclick="openModal('marc')">
       <div class="team-photo">
         <img src="Marc-Vandrepotte.png" alt="Marc Vandrepotte">
@@ -1608,7 +1432,7 @@ button.action-key.lit, a.action-key.lit {
       </div>
     </div>
 
-    <!-- 6. Gilles -->
+    <!-- 7. Gilles -->
     <div class="team-card reveal" onclick="openModal('gilles')">
       <div class="team-photo">
         <img src="Gilles-Quillerier.png" alt="Gilles Quillerier">
@@ -1626,9 +1450,7 @@ button.action-key.lit, a.action-key.lit {
     </div>
 
   </div>
-  </div>
 </section>
-
 
 <!-- SERVICE OVERLAY -->
 <div class="service-overlay" id="serviceOverlay" onclick="if(event.target===this)closeService()">
@@ -1727,14 +1549,12 @@ button.action-key.lit, a.action-key.lit {
         </div>
       </div>
     </div>
-
     <div class="mission-visual">
       <div class="mission-rings">
         <div class="m-ring m-ring-a"><div class="ring-dot"></div></div>
         <div class="m-ring m-ring-b"><div class="ring-dot"></div></div>
         <div class="m-ring m-ring-c"><div class="ring-dot"></div></div>
       </div>
-      <!-- Roue NORIA complète animée — visible en entier -->
       <svg class="noria-wheel-mission" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg"
            style="position:absolute;width:160px;height:160px;animation:cwSpin 20s linear infinite;">
         <g style="transform-origin:44px 44px;">
@@ -1767,33 +1587,12 @@ button.action-key.lit, a.action-key.lit {
   <h2 class="section-title">Cinq valeurs, <strong>une vision</strong></h2>
   <div class="wave-sep" style="background:linear-gradient(to right, var(--copper), var(--teal));"></div>
   <p class="section-sub" style="color:var(--white);opacity:0.5;">L'intelligence collective au service des trajectoires humaines et professionnelles.</p>
-
   <div class="valeurs-grid">
-    <div class="valeur-card reveal">
-      <span class="valeur-num">01</span>
-      <h3>Comprendre</h3>
-      <p>Observer avec justesse avant d'agir. Cultiver le discernement et la profondeur de réflexion.</p>
-    </div>
-    <div class="valeur-card reveal">
-      <span class="valeur-num">02</span>
-      <h3>Développer</h3>
-      <p>Faire émerger les potentiels. Encourager l'apprentissage continu et la progression.</p>
-    </div>
-    <div class="valeur-card reveal">
-      <span class="valeur-num">03</span>
-      <h3>Agir</h3>
-      <p>Transformer les intentions en actions concrètes. Passer du savoir à l'impact.</p>
-    </div>
-    <div class="valeur-card reveal">
-      <span class="valeur-num">04</span>
-      <h3>Transmettre</h3>
-      <p>Partager les connaissances et les expériences. Faire grandir les autres autant que soi-même.</p>
-    </div>
-    <div class="valeur-card reveal">
-      <span class="valeur-num">05</span>
-      <h3 class="action-key">Élever</h3>
-      <p>Viser l'amélioration continue. Chercher l'excellence sans perdre de vue l'humain.</p>
-    </div>
+    <div class="valeur-card reveal"><span class="valeur-num">01</span><h3>Comprendre</h3><p>Observer avec justesse avant d'agir. Cultiver le discernement et la profondeur de réflexion.</p></div>
+    <div class="valeur-card reveal"><span class="valeur-num">02</span><h3>Développer</h3><p>Faire émerger les potentiels. Encourager l'apprentissage continu et la progression.</p></div>
+    <div class="valeur-card reveal"><span class="valeur-num">03</span><h3>Agir</h3><p>Transformer les intentions en actions concrètes. Passer du savoir à l'impact.</p></div>
+    <div class="valeur-card reveal"><span class="valeur-num">04</span><h3>Transmettre</h3><p>Partager les connaissances et les expériences. Faire grandir les autres autant que soi-même.</p></div>
+    <div class="valeur-card reveal"><span class="valeur-num">05</span><h3 class="action-key">Élever</h3><p>Viser l'amélioration continue. Chercher l'excellence sans perdre de vue l'humain.</p></div>
   </div>
 </section>
 
@@ -1807,64 +1606,33 @@ button.action-key.lit, a.action-key.lit {
   </div>
   <div class="services-grid">
     <div class="service-card reveal" onclick="openService('coaching')" style="cursor:pointer;">
-      <div class="service-img-wrap">
-        <img class="service-img" src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&q=80" alt="Coaching individuel">
-      </div>
-      <div class="service-content">
-        <h3>Coaching individuel</h3>
-        <p>Un accompagnement sur-mesure avec l'expert qui correspond à ta réalité. Travail en profondeur, progression mesurable.</p>
-      </div>
+      <div class="service-img-wrap"><img class="service-img" src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&q=80" alt="Coaching individuel"></div>
+      <div class="service-content"><h3>Coaching individuel</h3><p>Un accompagnement sur-mesure avec l'expert qui correspond à ta réalité. Travail en profondeur, progression mesurable.</p></div>
     </div>
     <div class="service-card reveal" onclick="openService('stages')" style="cursor:pointer;">
-      <div class="service-img-wrap">
-        <img class="service-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Stages et Ateliers">
-      </div>
-      <div class="service-content">
-        <h3>Stages & Ateliers</h3>
-        <p>Des immersions intenses — nature, dépassement de soi, philosophie pratique. Apprendre par l'expérience qui transforme.</p>
-      </div>
+      <div class="service-img-wrap"><img class="service-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Stages et Ateliers"></div>
+      <div class="service-content"><h3>Stages & Ateliers</h3><p>Des immersions intenses — nature, dépassement de soi, philosophie pratique. Apprendre par l'expérience qui transforme.</p></div>
     </div>
     <div class="service-card reveal" onclick="openService('formation')" style="cursor:pointer;">
-      <div class="service-img-wrap">
-        <img class="service-img" src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80" alt="Formations entreprises">
-      </div>
-      <div class="service-content">
-        <h3>Formations entreprises</h3>
-        <p>Interventions pour développer talents, leadership et cohésion. Synergies à l'échelle d'une équipe.</p>
-      </div>
+      <div class="service-img-wrap"><img class="service-img" src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80" alt="Formations entreprises"></div>
+      <div class="service-content"><h3>Formations entreprises</h3><p>Interventions pour développer talents, leadership et cohésion. Synergies à l'échelle d'une équipe.</p></div>
     </div>
     <div class="service-card reveal" onclick="openService('ressources')" style="cursor:pointer;">
-      <div class="service-img-wrap">
-        <img class="service-img" src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80" alt="Ressources et Outils">
-      </div>
-      <div class="service-content">
-        <h3>Ressources & Outils</h3>
-        <p>Guides, supports, contenus pédagogiques pour continuer à avancer entre les sessions.</p>
-      </div>
+      <div class="service-img-wrap"><img class="service-img" src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80" alt="Ressources et Outils"></div>
+      <div class="service-content"><h3>Ressources & Outils</h3><p>Guides, supports, contenus pédagogiques pour continuer à avancer entre les sessions.</p></div>
     </div>
     <div class="service-card reveal" onclick="openService('collectif')" style="cursor:pointer;">
-      <div class="service-img-wrap">
-        <img class="service-img" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80" alt="Accompagnement collectif">
-      </div>
-      <div class="service-content">
-        <h3>Accompagnement collectif</h3>
-        <p>Groupes de pairs, cercles de progression. L'intelligence collective au service de ta montée en compétence.</p>
-      </div>
+      <div class="service-img-wrap"><img class="service-img" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80" alt="Accompagnement collectif"></div>
+      <div class="service-content"><h3>Accompagnement collectif</h3><p>Groupes de pairs, cercles de progression. L'intelligence collective au service de ta montée en compétence.</p></div>
     </div>
     <div class="service-card reveal" onclick="openService('digital')" style="cursor:pointer;">
-      <div class="service-img-wrap">
-        <img class="service-img" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80" alt="Parcours digitaux">
-      </div>
-      <div class="service-content">
-        <h3>Parcours digitaux</h3>
-        <p>Séquences email, vidéos, questionnaires. Un tunnel pédagogique qui commence bien avant le premier entretien.</p>
-      </div>
+      <div class="service-img-wrap"><img class="service-img" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80" alt="Parcours digitaux"></div>
+      <div class="service-content"><h3>Parcours digitaux</h3><p>Séquences email, vidéos, questionnaires. Un tunnel pédagogique qui commence bien avant le premier entretien.</p></div>
     </div>
   </div>
 </section>
 
-
-<!-- ─── SECTION RÉVÈLE TON POTENTIEL ─── -->
+<!-- RÉVÈLE TON POTENTIEL -->
 <section id="disc" style="background:var(--deep); color:var(--white); position:relative; overflow:hidden;">
   <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto;text-align:center;">
     <span class="section-label" style="color:var(--copper);justify-content:center;">Test &middot; Connaissance de soi</span>
@@ -1877,140 +1645,6 @@ button.action-key.lit, a.action-key.lit {
     <p style="font-size:0.78rem;color:var(--white);opacity:0.35;margin-top:14px;">12 questions &middot; 5 minutes &middot; Profil personnalis&eacute;</p>
   </div>
 </section>
-
-<style>
-/* Question profil */
-.disc-q-text {
-  font-family:var(--font-display);
-  font-size:clamp(1.3rem,2.5vw,1.8rem);
-  font-weight:300;
-  color:var(--white);
-  margin-bottom:36px;
-  line-height:1.4;
-}
-.disc-options {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-.disc-option {
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(184,111,76,0.15);
-  padding:18px 22px;
-  cursor:pointer;
-  font-family:var(--font-body);
-  font-size:0.9rem;
-  color:var(--white);
-  opacity:0.75;
-  transition:all 0.25s;
-  text-align:left;
-  line-height:1.5;
-}
-.disc-option:hover {
-  background:rgba(184,111,76,0.12);
-  border-color:var(--copper);
-  opacity:1;
-  transform:translateX(4px);
-}
-.disc-option.selected {
-  background:rgba(184,111,76,0.2);
-  border-color:var(--copper);
-  opacity:1;
-}
-.disc-q-num {
-  font-size:0.68rem;
-  letter-spacing:0.3em;
-  text-transform:uppercase;
-  color:var(--copper);
-  opacity:0.6;
-  margin-bottom:16px;
-  display:block;
-}
-.disc-profile-badge {
-  display:inline-block;
-  background:var(--copper);
-  color:var(--white);
-  font-size:0.65rem;
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  padding:4px 14px;
-  margin-bottom:16px;
-}
-.disc-profile-letter {
-  font-family:var(--font-display);
-  font-size:5rem;
-  font-weight:600;
-  color:var(--copper);
-  line-height:1;
-  margin-bottom:8px;
-}
-.disc-profile-name {
-  font-family:var(--font-display);
-  font-size:1.6rem;
-  font-weight:300;
-  color:var(--white);
-  margin-bottom:20px;
-}
-.disc-profile-text {
-  font-size:0.88rem;
-  color:var(--white);
-  opacity:0.65;
-  line-height:1.8;
-  margin-bottom:20px;
-}
-.disc-profile-section {
-  margin-bottom:20px;
-}
-.disc-profile-section h4 {
-  font-family:var(--font-display);
-  font-size:0.9rem;
-  font-weight:600;
-  color:var(--copper);
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  margin-bottom:10px;
-}
-.disc-profile-section ul {
-  list-style:none;
-  padding:0;
-}
-.disc-profile-section ul li {
-  font-size:0.85rem;
-  color:var(--white);
-  opacity:0.6;
-  padding:4px 0;
-  padding-left:16px;
-  position:relative;
-}
-.disc-profile-section ul li::before {
-  content:"";
-  position:absolute;
-  left:0; top:12px;
-  width:6px; height:1px;
-  background:var(--copper);
-}
-.disc-expert-rec {
-  background:rgba(184,111,76,0.1);
-  border-left:3px solid var(--copper);
-  padding:16px 20px;
-  margin-top:24px;
-}
-.disc-expert-rec p {
-  font-size:0.82rem;
-  color:var(--white);
-  opacity:0.7;
-  line-height:1.6;
-}
-.disc-expert-rec strong {
-  color:var(--copper);
-  font-weight:500;
-}
-@media(max-width:900px){
-  #disc-result > div { grid-template-columns:1fr; gap:40px; }
-  .disc-options { grid-template-columns:1fr; }
-}
-</style>
-
 
 <!-- PARTENAIRES -->
 <section id="partenaires">
@@ -2089,6 +1723,19 @@ const experts = {
     email:'denisdeblevidcontact@gmail.com',
     bio:["Coach philosophique et fondateur de la Méthode 4P (Psychologique, Physique, Philosophique, Pneuma), Denis accompagne ceux qui portent une soif profonde de sens et de transformation. Son approche s'enracine dans le stoïcisme pratique — une philosophie vécue, incarnée, qui ne reste pas dans les livres.","Ancien pratiquant d'arts martiaux pendant dix ans, Denis a traversé ses propres ruptures pour construire une méthode qui touche l'être dans toutes ses dimensions. Il marche à tes côtés, non au-dessus de toi."],
     tags:['Stoïcisme','Méthode 4P','Identité','Sens','Résilience','Corps & Mental','Philosophie pratique']
+  },
+  emilie: {
+    photo:'Emilie-Abraham.jpg',
+    name:'Émilie Abraham',
+    role:'Consultante RH · Développement professionnel · Nobel RH',
+    location:'France',
+    phone:'+33 6 65 52 00 00',
+    email:'abrahamemilie@gmail.com',
+    bio:[
+      "Professionnelle des Ressources Humaines avec plus de 15 ans d'expérience, Émilie accompagne les organisations publiques et privées dans la prévention des risques professionnels, le développement des compétences et l'amélioration de la qualité de vie au travail.",
+      "Ancienne Cheffe de service QVT, Adjointe DRH, Responsable formation et recrutement, elle apporte une vision 360° de l'organisation — humaine, stratégique et opérationnelle. Son diagnostic est le point de départ pour définir des objectifs clairs et activer la croissance."
+    ],
+    tags:['QVT','Prévention des risques','Formation','Recrutement','Dialogue social','RH publique & privée','Développement des compétences','Audit entreprise']
   },
   melanie: {
     photo:'Melanie-Allard.png',
@@ -2183,7 +1830,6 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 (function(){
   const grid=document.querySelector('.steps-grid'); if(!grid) return;
   const cards=grid.querySelectorAll('.step-card');
-
   let done=false;
   const run=()=>{
     if(done) return; done=true;
@@ -2202,15 +1848,15 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
   o.observe(grid);
 })();
 
-
 var svcData = {
-  coaching:  {title:"Coaching individuel",   img:"https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&q=80", desc:"Un accompagnement sur-mesure, en profondeur, avec l\'expert qui correspond \u00e0 ta r\u00e9alit\u00e9. Blocages, croyances limitantes, objectifs de vie et de carri\u00e8re.", details:["S\u00e9ances en visio ou pr\u00e9sentiel","Suivi personnalis\u00e9","Outils et supports fournis","Fr\u00e9quence adapt\u00e9e \u00e0 ton rythme"], prix:"\u00c0 partir de 80\u20ac / s\u00e9ance"},
-  stages:    {title:"Stages & Ateliers",      img:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80", desc:"Des immersions intenses qui transforment. Nature, d\u00e9passement de soi, philosophie pratique \u2014 pour ancrer des changements profonds.", details:["Formats d\'1 \u00e0 3 jours","Groupes de 6 \u00e0 12 personnes","Encadrement par plusieurs experts","Suivi post-stage inclus"], prix:"\u00c0 partir de 350\u20ac / participant"},
-  formation: {title:"Formations entreprises", img:"https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80", desc:"Interventions sur-mesure pour d\u00e9velopper les talents, renforcer le leadership et am\u00e9liorer la coh\u00e9sion d\'\u00e9quipe.", details:["Audit des besoins en amont","Programme sur-mesure","Interventions ponctuelles ou r\u00e9currentes","Rapport de suivi"], prix:"Sur devis"},
-  ressources:{title:"Ressources & Outils",    img:"https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80", desc:"Guides pratiques, supports p\u00e9dagogiques, outils de diagnostic et contenus exclusifs pour avancer entre les sessions.", details:["Biblioth\u00e8que NORIA HORIZON","Outils de diagnostic","Contenus mis \u00e0 jour","Acc\u00e8s illimit\u00e9"], prix:"\u00c0 partir de 29\u20ac"},
-  collectif: {title:"Accompagnement collectif",img:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80", desc:"Groupes de pairs, cercles de progression, masterminds. L\'intelligence collective au service de ta mont\u00e9e en comp\u00e9tence.", details:["Groupes de 6 \u00e0 10 personnes","Sessions bi-mensuelles","Anim\u00e9 par un expert","Communaut\u00e9 priv\u00e9e"], prix:"\u00c0 partir de 150\u20ac / mois"},
-  digital:   {title:"Parcours digitaux",      img:"https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80", desc:"S\u00e9quences email, vid\u00e9os p\u00e9dagogiques, questionnaires. Un tunnel p\u00e9dagogique complet.", details:["Acc\u00e8s 24h/24","Progression \u00e0 ton rythme","Vid\u00e9o + exercices","Support par email"], prix:"\u00c0 partir de 49\u20ac"}
+  coaching:  {title:"Coaching individuel",   img:"https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&q=80", desc:"Un accompagnement sur-mesure, en profondeur, avec l'expert qui correspond à ta réalité. Blocages, croyances limitantes, objectifs de vie et de carrière.", details:["Séances en visio ou présentiel","Suivi personnalisé","Outils et supports fournis","Fréquence adaptée à ton rythme"], prix:"À partir de 80€ / séance"},
+  stages:    {title:"Stages & Ateliers",      img:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80", desc:"Des immersions intenses qui transforment. Nature, dépassement de soi, philosophie pratique — pour ancrer des changements profonds.", details:["Formats d'1 à 3 jours","Groupes de 6 à 12 personnes","Encadrement par plusieurs experts","Suivi post-stage inclus"], prix:"À partir de 350€ / participant"},
+  formation: {title:"Formations entreprises", img:"https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80", desc:"Interventions sur-mesure pour développer les talents, renforcer le leadership et améliorer la cohésion d'équipe.", details:["Audit des besoins en amont","Programme sur-mesure","Interventions ponctuelles ou récurrentes","Rapport de suivi"], prix:"Sur devis"},
+  ressources:{title:"Ressources & Outils",    img:"https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80", desc:"Guides pratiques, supports pédagogiques, outils de diagnostic et contenus exclusifs pour avancer entre les sessions.", details:["Bibliothèque NORIA HORIZON","Outils de diagnostic","Contenus mis à jour","Accès illimité"], prix:"À partir de 29€"},
+  collectif: {title:"Accompagnement collectif",img:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80", desc:"Groupes de pairs, cercles de progression, masterminds. L'intelligence collective au service de ta montée en compétence.", details:["Groupes de 6 à 10 personnes","Sessions bi-mensuelles","Animé par un expert","Communauté privée"], prix:"À partir de 150€ / mois"},
+  digital:   {title:"Parcours digitaux",      img:"https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80", desc:"Séquences email, vidéos pédagogiques, questionnaires. Un tunnel pédagogique complet.", details:["Accès 24h/24","Progression à ton rythme","Vidéo + exercices","Support par email"], prix:"À partir de 49€"}
 };
+
 function openService(key){
   var s=svcData[key]; if(!s) return;
   var det=s.details.map(function(d){return "<li>"+d+"</li>";}).join("");
@@ -2244,10 +1890,7 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();close
   var allCards = Array.prototype.slice.call(document.querySelectorAll('.step-card,.valeur-card,.team-card,.service-card,.pillar,.partner-logo'));
 
   function onScroll(){
-    var mid = window.scrollY + window.innerHeight/2;
     var docTop = window.scrollY;
-
-    // Menu actif
     var current = null;
     sections.forEach(function(s){
       var top = s.el.offsetTop - 120;
@@ -2257,7 +1900,6 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();close
     anchors.forEach(function(a){ a.classList.remove('active'); });
     if(current) current.classList.add('active');
 
-    // Action keys — illumination quand proche du centre écran
     actionKeys.forEach(function(k){
       var r = k.getBoundingClientRect();
       var c = r.top + r.height/2;
@@ -2265,7 +1907,6 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();close
       else k.classList.remove('lit');
     });
 
-    // Sillage — lueur fugace sur cartes proches du centre
     allCards.forEach(function(card){
       var r = card.getBoundingClientRect();
       var c = r.top + r.height/2;
@@ -2273,7 +1914,6 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();close
       else card.classList.remove('swept');
     });
 
-    // Back to top
     if(window.scrollY > 500) backBtn.classList.add('show');
     else backBtn.classList.remove('show');
   }
@@ -2282,8 +1922,8 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();close
   window.addEventListener('load', onScroll);
   onScroll();
 })();
-
 </script>
+
 <!-- BOUTON REMONTER -->
 <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Remonter en haut">
   <svg viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
