@@ -717,20 +717,54 @@ section { padding:100px 60px; position:relative; z-index:1; }
   max-width:1100px; margin:0 auto;
 }
 .service-card {
-  background:var(--white); padding:46px 36px;
-  position:relative; overflow:hidden; transition:background 0.3s;
+  background:var(--white); padding:0;
+  position:relative; overflow:hidden; transition:transform 0.3s;
+  display:flex; flex-direction:column;
 }
-.service-card:hover { background:var(--mist); }
+.service-card:hover { transform:translateY(-4px); }
+.service-card:hover::after { transform:scaleY(1); }
 .service-card::after {
   content:''; position:absolute;
   left:0; top:0; bottom:0; width:3px;
   background:var(--copper); transform:scaleY(0);
   transform-origin:bottom; transition:transform 0.35s;
 }
-.service-card:hover::after { transform:scaleY(1); }
-.service-icon { font-size:1.7rem; margin-bottom:18px; display:block; }
+
+.service-img {
+  width:100%; height:180px;
+  object-fit:cover; object-position:center;
+  display:block;
+  filter:saturate(0.7) brightness(0.9);
+  transition:filter 0.4s ease, transform 0.4s ease;
+}
+.service-card:hover .service-img {
+  filter:saturate(0.9) brightness(1);
+  transform:scale(1.04);
+}
+.service-img-wrap {
+  overflow:hidden; height:180px; position:relative;
+}
+.service-img-wrap::after {
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(to bottom, transparent 50%, rgba(35,75,94,0.3) 100%);
+}
+.service-content { padding:28px 30px 32px; }
 .service-card h3 { font-family:var(--font-display); font-size:1.1rem; font-weight:600; margin-bottom:10px; color:var(--deep); }
 .service-card p { font-size:0.86rem; opacity:0.6; line-height:1.75; }
+
+/* Carte "à venir" sans image */
+.service-card-empty {
+  background:var(--mist);
+  border:1px dashed rgba(35,75,94,0.25);
+  display:flex; align-items:center; justify-content:center;
+  min-height:280px;
+}
+.service-card-empty .service-content { text-align:center; }
+.service-card-empty .empty-tag {
+  font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase;
+  color:var(--copper); opacity:0.6; display:block; margin-bottom:10px;
+}
 
 /* ─── PARTENAIRES DÉFILANTS ─── */
 #partenaires { background:var(--sand); text-align:center; overflow:hidden; }
@@ -1012,38 +1046,6 @@ footer {
     animation: none !important;
   }
 }
-
-/* ─── SERVICE CARDS AVEC PHOTO ─── */
-.service-card {
-  background:var(--white); padding:0;
-  position:relative; overflow:hidden; transition:transform 0.3s;
-  display:flex; flex-direction:column;
-}
-.service-card:hover { transform:translateY(-4px); }
-.service-card:hover::after { transform:scaleY(1); }
-
-.service-img {
-  width:100%; height:180px;
-  object-fit:cover; object-position:center;
-  display:block;
-  filter:saturate(0.7) brightness(0.9);
-  transition:filter 0.4s ease, transform 0.4s ease;
-}
-.service-card:hover .service-img {
-  filter:saturate(0.9) brightness(1);
-  transform:scale(1.04);
-}
-.service-img-wrap {
-  overflow:hidden; height:180px; position:relative;
-}
-.service-img-wrap::after {
-  content:'';
-  position:absolute; inset:0;
-  background:linear-gradient(to bottom, transparent 50%, rgba(35,75,94,0.3) 100%);
-}
-.service-content { padding:28px 30px 32px; }
-.service-card h3 { font-family:var(--font-display); font-size:1.1rem; font-weight:600; margin-bottom:10px; color:var(--deep); }
-.service-card p { font-size:0.86rem; opacity:0.6; line-height:1.75; }
 
 /* HERO CENTRÉ */
 #hero { justify-content:center; }
@@ -1439,24 +1441,7 @@ button.action-key.lit, a.action-key.lit {
       </div>
     </div>
 
-    <!-- 6. Marc -->
-    <div class="team-card reveal" onclick="openModal('marc')">
-      <div class="team-photo">
-        <img src="Marc-Vandrepotte.png" alt="Marc Vandrepotte">
-        <div class="team-overlay"><p>Copywriter · Consultant · Bien-être holistique</p></div>
-      </div>
-      <div class="team-info">
-        <div class="team-name">Marc Vandrepotte</div>
-        <span class="team-role">Copywriter · Consultant</span>
-        <span class="team-location">📍 France</span>
-        <div class="team-contacts">
-          <a href="#" onclick="event.stopPropagation()">📞 Tél.</a>
-          <a href="#" onclick="event.stopPropagation()">✉ Mail</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- 7. Gilles -->
+    <!-- 6. Gilles -->
     <div class="team-card reveal" onclick="openModal('gilles')">
       <div class="team-photo">
         <img src="Gilles-Quillerier.png" alt="Gilles Quillerier">
@@ -1505,7 +1490,7 @@ button.action-key.lit, a.action-key.lit {
         <option>Coaching individuel</option>
         <option>Stages &amp; Ateliers</option>
         <option>Formations entreprises</option>
-        <option>Ressources &amp; Outils</option>
+        <option>Diagnostic Premium</option>
         <option>Accompagnement collectif</option>
         <option>Parcours digitaux</option>
         <option>Autre / Plusieurs services</option>
@@ -1630,27 +1615,30 @@ button.action-key.lit, a.action-key.lit {
   </div>
   <div class="services-grid">
     <div class="service-card reveal" onclick="openService('coaching')" style="cursor:pointer;">
-      <div class="service-img-wrap"><img class="service-img" src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&q=80" alt="Coaching individuel"></div>
+      <div class="service-img-wrap"><img class="service-img" src="coaching-individuel.png" alt="Coaching individuel"></div>
       <div class="service-content"><h3>Coaching individuel</h3><p>Un accompagnement sur-mesure avec l'expert qui correspond à ta réalité. Travail en profondeur, progression mesurable.</p></div>
     </div>
     <div class="service-card reveal" onclick="openService('stages')" style="cursor:pointer;">
-      <div class="service-img-wrap"><img class="service-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Stages et Ateliers"></div>
+      <div class="service-img-wrap"><img class="service-img" src="stages-ateliers.png" alt="Stages et Ateliers"></div>
       <div class="service-content"><h3>Stages & Ateliers</h3><p>Des immersions intenses — nature, dépassement de soi, philosophie pratique. Apprendre par l'expérience qui transforme.</p></div>
     </div>
     <div class="service-card reveal" onclick="openService('formation')" style="cursor:pointer;">
-      <div class="service-img-wrap"><img class="service-img" src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80" alt="Formations entreprises"></div>
+      <div class="service-img-wrap"><img class="service-img" src="formations-entreprises.png" alt="Formations entreprises"></div>
       <div class="service-content"><h3>Formations entreprises</h3><p>Interventions pour développer talents, leadership et cohésion. Synergies à l'échelle d'une équipe.</p></div>
     </div>
-    <div class="service-card reveal" onclick="openService('ressources')" style="cursor:pointer;">
-      <div class="service-img-wrap"><img class="service-img" src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80" alt="Ressources et Outils"></div>
-      <div class="service-content"><h3>Ressources & Outils</h3><p>Guides, supports, contenus pédagogiques pour continuer à avancer entre les sessions.</p></div>
+    <div class="service-card service-card-empty reveal">
+      <div class="service-content">
+        <span class="empty-tag">Pas d'image encore</span>
+        <h3>Diagnostic Premium</h3>
+        <p>Entretien de cadrage, analyse approfondie des besoins, regard croisé d'experts, restitution et plan d'action sur-mesure.</p>
+      </div>
     </div>
     <div class="service-card reveal" onclick="openService('collectif')" style="cursor:pointer;">
-      <div class="service-img-wrap"><img class="service-img" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80" alt="Accompagnement collectif"></div>
+      <div class="service-img-wrap"><img class="service-img" src="accompagnement-collectif.png" alt="Accompagnement collectif"></div>
       <div class="service-content"><h3>Accompagnement collectif</h3><p>Groupes de pairs, cercles de progression. L'intelligence collective au service de ta montée en compétence.</p></div>
     </div>
     <div class="service-card reveal" onclick="openService('digital')" style="cursor:pointer;">
-      <div class="service-img-wrap"><img class="service-img" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80" alt="Parcours digitaux"></div>
+      <div class="service-img-wrap"><img class="service-img" src="parcours-digitaux.png" alt="Parcours digitaux"></div>
       <div class="service-content"><h3>Parcours digitaux</h3><p>Séquences email, vidéos, questionnaires. Un tunnel pédagogique qui commence bien avant le premier entretien.</p></div>
     </div>
   </div>
@@ -1799,16 +1787,6 @@ const experts = {
     bio:["Forte de 20 ans d'expérience en intérim, recrutement et gestion d'agence, Mélanie accompagne particuliers et professionnels à clarifier leur situation, structurer leurs démarches et avancer de manière alignée dans leurs projets professionnels.","Pour les particuliers : transitions professionnelles, orientation, repositionnement, diagnostic CV, préparation aux entretiens. Pour les professionnels : audit business, structuration et développement de TPE/PME. Une approche pragmatique, simple et orientée solutions."],
     tags:['Carrière','Reconversion','CV & Entretiens','Audit business','TPE·PME','Transitions pro','Bilan carrière']
   },
-  marc: {
-    photo:'Marc-Vandrepotte.png',
-    name:'Marc Vandrepotte',
-    role:'Copywriter · Consultant · Compléments alimentaires',
-    location:'France',
-    phone:'+33 6 00 00 00 00',
-    email:'marc.vandrepotte@noria-horizon.fr',
-    bio:["Freelance polyvalent, Marc conjugue expertise en compléments alimentaires, copywriting et conseil en développement de compétences. Une approche qui lie le corps, la communication et la progression personnelle.","En parallèle de ses activités de conseil, Marc pratique et propose la magnétothérapie — une dimension complémentaire pour ceux qui cherchent un accompagnement holistique de leur bien-être."],
-    tags:['Copywriting','Compléments alimentaires','Bien-être','Magnétisme','Développement de compétences']
-  },
   laurence: {
     photo:'Laurence-Brouet.png',
     name:'Laurence Brouet',
@@ -1901,12 +1879,11 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 })();
 
 var svcData = {
-  coaching:  {title:"Coaching individuel",   img:"https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600&q=80", desc:"Un accompagnement sur-mesure, en profondeur, avec l'expert qui correspond à ta réalité. Blocages, croyances limitantes, objectifs de vie et de carrière.", details:["Séances en visio ou présentiel","Suivi personnalisé","Outils et supports fournis","Fréquence adaptée à ton rythme"], prix:"À partir de 80€ / séance"},
-  stages:    {title:"Stages & Ateliers",      img:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80", desc:"Des immersions intenses qui transforment. Nature, dépassement de soi, philosophie pratique — pour ancrer des changements profonds.", details:["Formats d'1 à 3 jours","Groupes de 6 à 12 personnes","Encadrement par plusieurs experts","Suivi post-stage inclus"], prix:"À partir de 350€ / participant"},
-  formation: {title:"Formations entreprises", img:"https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80", desc:"Interventions sur-mesure pour développer les talents, renforcer le leadership et améliorer la cohésion d'équipe.", details:["Audit des besoins en amont","Programme sur-mesure","Interventions ponctuelles ou récurrentes","Rapport de suivi"], prix:"Sur devis"},
-  ressources:{title:"Ressources & Outils",    img:"https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80", desc:"Guides pratiques, supports pédagogiques, outils de diagnostic et contenus exclusifs pour avancer entre les sessions.", details:["Bibliothèque NORIA HORIZON","Outils de diagnostic","Contenus mis à jour","Accès illimité"], prix:"À partir de 29€"},
-  collectif: {title:"Accompagnement collectif",img:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80", desc:"Groupes de pairs, cercles de progression, masterminds. L'intelligence collective au service de ta montée en compétence.", details:["Groupes de 6 à 10 personnes","Sessions bi-mensuelles","Animé par un expert","Communauté privée"], prix:"À partir de 150€ / mois"},
-  digital:   {title:"Parcours digitaux",      img:"https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80", desc:"Séquences email, vidéos pédagogiques, questionnaires. Un tunnel pédagogique complet.", details:["Accès 24h/24","Progression à ton rythme","Vidéo + exercices","Support par email"], prix:"À partir de 49€"}
+  coaching:  {title:"Coaching individuel",   img:"coaching-individuel.png", desc:"Un accompagnement sur-mesure, en profondeur, avec l'expert qui correspond à ta réalité. Blocages, croyances limitantes, objectifs de vie et de carrière.", details:["Séances en visio ou présentiel","Suivi personnalisé","Outils et supports fournis","Fréquence adaptée à ton rythme"], prix:"À partir de 80€ / séance"},
+  stages:    {title:"Stages & Ateliers",      img:"stages-ateliers.png", desc:"Des immersions intenses qui transforment. Nature, dépassement de soi, philosophie pratique — pour ancrer des changements profonds.", details:["Formats d'1 à 3 jours","Groupes de 6 à 12 personnes","Encadrement par plusieurs experts","Suivi post-stage inclus"], prix:"À partir de 350€ / participant"},
+  formation: {title:"Formations entreprises", img:"formations-entreprises.png", desc:"Interventions sur-mesure pour développer les talents, renforcer le leadership et améliorer la cohésion d'équipe.", details:["Audit des besoins en amont","Programme sur-mesure","Interventions ponctuelles ou récurrentes","Rapport de suivi"], prix:"Sur devis"},
+  collectif: {title:"Accompagnement collectif",img:"accompagnement-collectif.png", desc:"Groupes de pairs, cercles de progression, masterminds. L'intelligence collective au service de ta montée en compétence.", details:["Groupes de 6 à 10 personnes","Sessions bi-mensuelles","Animé par un expert","Communauté privée"], prix:"À partir de 150€ / mois"},
+  digital:   {title:"Parcours digitaux",      img:"parcours-digitaux.png", desc:"Séquences email, vidéos pédagogiques, questionnaires. Un tunnel pédagogique complet.", details:["Accès 24h/24","Progression à ton rythme","Vidéo + exercices","Support par email"], prix:"À partir de 49€"}
 };
 
 function openService(key){
