@@ -1939,15 +1939,17 @@ function openMap(activeId){
 
   setTimeout(function(){
     if(!expertsMap){
-      expertsMap = L.map('expertsMapContainer', { scrollWheelZoom:true }).setView([active.lat, active.lon], active.zoom);
+      expertsMap = L.map('expertsMapContainer', { scrollWheelZoom:true });
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors',
         maxZoom: 18
       }).addTo(expertsMap);
-    } else {
-      expertsMap.invalidateSize();
-      expertsMap.setView([active.lat, active.lon], active.zoom);
     }
+
+    // Toujours forcer le recalcul de la taille avant de positionner la vue —
+    // évite les bugs d'affichage liés à un conteneur qui vient juste de devenir visible
+    expertsMap.invalidateSize();
+    expertsMap.setView([active.lat, active.lon], active.zoom);
 
     // Nettoyer les anciens marqueurs
     expertsMapMarkers.forEach(function(m){ expertsMap.removeLayer(m); });
@@ -1957,13 +1959,18 @@ function openMap(activeId){
     Object.keys(expertsGeo).forEach(function(id){
       var g = expertsGeo[id];
       var e = experts[id];
+      if(!g) return;
       var isActive = (id === activeId);
       var marker = L.marker([g.lat, g.lon], { icon: buildMarkerIcon(isActive) }).addTo(expertsMap);
       marker.bindPopup('<strong>' + (e ? e.name : id) + '</strong><br>' + g.ville);
       if(isActive) marker.openPopup();
       expertsMapMarkers.push(marker);
     });
-  }, 50);
+
+    // Second recalcul après un court instant — garantit que Leaflet a bien
+    // les bonnes dimensions même sur mobile ou après une animation d'ouverture
+    setTimeout(function(){ expertsMap.invalidateSize(); }, 250);
+  }, 80);
 }
 
 function closeMap(){
@@ -2123,10 +2130,4 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();close
       <path d="M44 80 C47 76 47 72 44 72 C41 72 41 76 44 80Z" fill="#B86F4C"/>
       <path d="M8 44 C12 47 16 47 16 44 C16 41 12 41 8 44Z" fill="#B86F4C"/>
       <circle cx="44" cy="44" r="5" fill="#B86F4C"/>
-      <circle cx="44" cy="44" r="2.5" fill="#234B5E"/>
-    </g>
-  </svg>
-</button>
-
-</body>
-</html>
+      <circle
