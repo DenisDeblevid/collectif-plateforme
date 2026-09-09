@@ -1196,31 +1196,41 @@ button.action-key.lit, a.action-key.lit {
   .map-modal { max-width:100%; }
 }
 
-/* Marqueur personnalisé — point cuivre pulsant */
+/* Marqueur personnalisé — point cuivre pulsant, bien visible même dézoomé */
 .expert-marker {
-  position:relative; width:16px; height:16px;
+  position:relative; width:26px; height:26px;
 }
 .expert-marker .dot-core {
-  position:absolute; top:4px; left:4px;
-  width:8px; height:8px; border-radius:50%;
+  position:absolute; top:9px; left:9px;
+  width:14px; height:14px; border-radius:50%;
   background:var(--copper);
-  box-shadow:0 0 0 0 rgba(184,111,76,0.5);
+  box-shadow: 0 0 0 3px rgba(253,250,245,0.9), 0 0 14px 4px rgba(184,111,76,0.85);
+  z-index:2;
 }
 .expert-marker.active .dot-core {
   background:var(--deep);
+  box-shadow: 0 0 0 3px rgba(253,250,245,0.9), 0 0 16px 5px rgba(35,75,94,0.9);
 }
 .expert-marker .dot-pulse {
   position:absolute; inset:0; border-radius:50%;
-  background:rgba(184,111,76,0.35);
-  animation: markerPulse 2.6s ease-out infinite;
+  background:rgba(184,111,76,0.55);
+  animation: markerPulse 2s ease-out infinite;
 }
 .expert-marker.active .dot-pulse {
-  background:rgba(35,75,94,0.35);
+  background:rgba(35,75,94,0.55);
+}
+.expert-marker .dot-pulse-2 {
+  position:absolute; inset:0; border-radius:50%;
+  background:rgba(184,111,76,0.4);
+  animation: markerPulse 2s ease-out infinite 0.6s;
+}
+.expert-marker.active .dot-pulse-2 {
+  background:rgba(35,75,94,0.4);
 }
 @keyframes markerPulse {
-  0%   { transform:scale(0.4); opacity:0.9; }
-  70%  { transform:scale(1.8); opacity:0; }
-  100% { transform:scale(1.8); opacity:0; }
+  0%   { transform:scale(0.5); opacity:1; }
+  80%  { transform:scale(2.6); opacity:0; }
+  100% { transform:scale(2.6); opacity:0; }
 }
 .leaflet-popup-content-wrapper {
   border-radius:0; font-family:var(--font-body);
@@ -1925,9 +1935,9 @@ var expertsMapMarkers = [];
 function buildMarkerIcon(active){
   return L.divIcon({
     className: '',
-    html: '<div class="expert-marker' + (active ? ' active' : '') + '"><div class="dot-pulse"></div><div class="dot-core"></div></div>',
-    iconSize: [16,16],
-    iconAnchor: [8,8]
+    html: '<div class="expert-marker' + (active ? ' active' : '') + '"><div class="dot-pulse"></div><div class="dot-pulse-2"></div><div class="dot-core"></div></div>',
+    iconSize: [26,26],
+    iconAnchor: [13,13]
   });
 }
 
@@ -2124,10 +2134,4 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();close
       <line x1="44" y1="8" x2="44" y2="80" stroke="#234B5E" stroke-width="1.2" opacity="0.6"/>
       <line x1="8" y1="44" x2="80" y2="44" stroke="#234B5E" stroke-width="1.2" opacity="0.6"/>
       <line x1="18" y1="18" x2="70" y2="70" stroke="#3B7A78" stroke-width="0.9" opacity="0.45"/>
-      <line x1="70" y1="18" x2="18" y2="70" stroke="#3B7A78" stroke-width="0.9" opacity="0.45"/>
-      <path d="M44 8 C41 12 41 16 44 16 C47 16 47 12 44 8Z" fill="#B86F4C"/>
-      <path d="M80 44 C76 41 72 41 72 44 C72 47 76 47 80 44Z" fill="#B86F4C"/>
-      <path d="M44 80 C47 76 47 72 44 72 C41 72 41 76 44 80Z" fill="#B86F4C"/>
-      <path d="M8 44 C12 47 16 47 16 44 C16 41 12 41 8 44Z" fill="#B86F4C"/>
-      <circle cx="44" cy="44" r="5" fill="#B86F4C"/>
-      <circle
+      <line x1="70" y1="18" x2="18" y2="70" 
