@@ -6,6 +6,8 @@
 <title>NORIA HORIZON — Élever les potentiels</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <style>
 :root {
   --deep:    #234B5E;
@@ -1148,7 +1150,83 @@ button.action-key.lit, a.action-key.lit {
   box-shadow:0 0 40px rgba(184,111,76,0.45), 0 0 80px rgba(184,111,76,0.15) !important;
 }
 
-/* DISC STYLES */
+.team-location.locatable {
+  cursor: pointer;
+  text-decoration: underline dotted rgba(184,111,76,0.5);
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+.team-location.locatable:hover {
+  color: var(--copper);
+  text-decoration-color: var(--copper);
+}
+
+/* ─── MAP OVERLAY ─── */
+.map-overlay {
+  display:none; position:fixed; inset:0; z-index:260;
+  background:rgba(26,46,56,0.9); backdrop-filter:blur(10px);
+  align-items:center; justify-content:center; padding:24px;
+}
+.map-overlay.open { display:flex; }
+.map-modal {
+  background:var(--white); max-width:920px; width:100%;
+  padding:0; position:relative;
+  animation:modalIn 0.35s ease;
+  overflow:hidden;
+}
+.map-modal-header {
+  padding:22px 28px 16px; display:flex; align-items:center; justify-content:space-between;
+  border-bottom:1px solid rgba(35,75,94,0.08);
+}
+.map-modal-header h3 {
+  font-family:var(--font-display); font-size:1.3rem; font-weight:300; color:var(--deep); margin:0;
+}
+.map-modal-header p {
+  font-size:0.8rem; opacity:0.5; margin-top:4px;
+}
+.map-close {
+  background:none; border:none; cursor:pointer;
+  font-size:1.2rem; color:var(--ink); opacity:0.35; transition:opacity 0.2s;
+}
+.map-close:hover { opacity:1; }
+#expertsMapContainer {
+  width:100%; height:480px;
+}
+@media(max-width:900px){
+  #expertsMapContainer { height:340px; }
+  .map-modal { max-width:100%; }
+}
+
+/* Marqueur personnalisé — point cuivre pulsant */
+.expert-marker {
+  position:relative; width:16px; height:16px;
+}
+.expert-marker .dot-core {
+  position:absolute; top:4px; left:4px;
+  width:8px; height:8px; border-radius:50%;
+  background:var(--copper);
+  box-shadow:0 0 0 0 rgba(184,111,76,0.5);
+}
+.expert-marker.active .dot-core {
+  background:var(--deep);
+}
+.expert-marker .dot-pulse {
+  position:absolute; inset:0; border-radius:50%;
+  background:rgba(184,111,76,0.35);
+  animation: markerPulse 2.6s ease-out infinite;
+}
+.expert-marker.active .dot-pulse {
+  background:rgba(35,75,94,0.35);
+}
+@keyframes markerPulse {
+  0%   { transform:scale(0.4); opacity:0.9; }
+  70%  { transform:scale(1.8); opacity:0; }
+  100% { transform:scale(1.8); opacity:0; }
+}
+.leaflet-popup-content-wrapper {
+  border-radius:0; font-family:var(--font-body);
+}
+.leaflet-popup-content { margin:12px 16px; font-size:0.85rem; color:var(--ink); }
+.leaflet-popup-content strong { color:var(--deep); font-family:var(--font-display); font-size:1rem; }
 .disc-q-text { font-family:var(--font-display); font-size:clamp(1.3rem,2.5vw,1.8rem); font-weight:300; color:var(--white); margin-bottom:36px; line-height:1.4; }
 .disc-options { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
 .disc-option { background:rgba(255,255,255,0.04); border:1px solid rgba(184,111,76,0.15); padding:18px 22px; cursor:pointer; font-family:var(--font-body); font-size:0.9rem; color:var(--white); opacity:0.75; transition:all 0.25s; text-align:left; line-height:1.5; }
@@ -1364,7 +1442,7 @@ button.action-key.lit, a.action-key.lit {
       <div class="team-info">
         <div class="team-name">Florian Dhaussy</div>
         <span class="team-role">Formateur Management · RH</span>
-        <span class="team-location">📍 Hauts-de-France</span>
+        <span class="team-location locatable" onclick="event.stopPropagation();openMap('florian')">📍 Hauts-de-France</span>
         <div class="team-contacts">
           <a href="tel:+33600000000" onclick="event.stopPropagation()">📞 +33 6 00 00 00 00</a>
           <a href="mailto:florian.dhaussy@noria-horizon.fr" onclick="event.stopPropagation()">✉ Mail</a>
@@ -1382,7 +1460,7 @@ button.action-key.lit, a.action-key.lit {
       <div class="team-info">
         <div class="team-name">Denis Deblevid</div>
         <span class="team-role">Coach Philosophique · Stoïcisme</span>
-        <span class="team-location">📍 Marseille</span>
+        <span class="team-location locatable" onclick="event.stopPropagation();openMap('denis')">📍 Marseille</span>
         <div class="team-contacts">
           <a href="tel:+33600000000" onclick="event.stopPropagation()">📞 +33 6 00 00 00 00</a>
           <a href="mailto:denisdeblevidcontact@gmail.com" onclick="event.stopPropagation()">✉ Mail</a>
@@ -1399,7 +1477,7 @@ button.action-key.lit, a.action-key.lit {
       <div class="team-info">
         <div class="team-name">Émilie Abraham</div>
         <span class="team-role">Consultante RH · Développement professionnel</span>
-        <span class="team-location">📍 France</span>
+        <span class="team-location locatable" onclick="event.stopPropagation();openMap('emilie')">📍 France</span>
         <div class="team-contacts">
           <a href="tel:+33665520000" onclick="event.stopPropagation()">📞 06 65 52 00 00</a>
           <a href="mailto:abrahamemilie@gmail.com" onclick="event.stopPropagation()">✉ Mail</a>
@@ -1416,7 +1494,7 @@ button.action-key.lit, a.action-key.lit {
       <div class="team-info">
         <div class="team-name">Laurence Brouet</div>
         <span class="team-role">Consultante RH · Formation</span>
-        <span class="team-location">📍 Toulouse</span>
+        <span class="team-location locatable" onclick="event.stopPropagation();openMap('laurence')">📍 Toulouse</span>
         <div class="team-contacts">
           <a href="tel:+33671825739" onclick="event.stopPropagation()">📞 06 71 82 57 39</a>
           <a href="mailto:brouet.laurence@orange.fr" onclick="event.stopPropagation()">✉ Mail</a>
@@ -1433,7 +1511,7 @@ button.action-key.lit, a.action-key.lit {
       <div class="team-info">
         <div class="team-name">Mélanie Allard</div>
         <span class="team-role">Consultante Carrière · Emploi</span>
-        <span class="team-location">📍 Vendée</span>
+        <span class="team-location locatable" onclick="event.stopPropagation();openMap('melanie')">📍 Vendée</span>
         <div class="team-contacts">
           <a href="#" onclick="event.stopPropagation()">📞 Tél.</a>
           <a href="#" onclick="event.stopPropagation()">✉ Mail</a>
@@ -1450,7 +1528,7 @@ button.action-key.lit, a.action-key.lit {
       <div class="team-info">
         <div class="team-name">Gilles Quillerier</div>
         <span class="team-role">Consultant développement de compétences</span>
-        <span class="team-location">📍 France & International</span>
+        <span class="team-location locatable" onclick="event.stopPropagation();openMap('gilles')">📍 France & International</span>
         <div class="team-contacts">
           <a href="#" onclick="event.stopPropagation()">📞 Tél.</a>
           <a href="#" onclick="event.stopPropagation()">✉ Mail</a>
@@ -1515,6 +1593,20 @@ button.action-key.lit, a.action-key.lit {
     <button class="btn-copper-full" onclick="submitDevis()">Envoyer ma demande &rarr;</button>
     <p class="devis-confirm" id="devis-confirm">&#10003; Demande envoy&eacute;e &mdash; r&eacute;ponse sous 48h !</p>
     <p style="font-size:0.66rem;opacity:0.3;margin-top:10px;text-align:center;">RGPD &middot; Donn&eacute;es confidentielles</p>
+  </div>
+</div>
+
+<!-- MAP OVERLAY -->
+<div class="map-overlay" id="mapOverlay" onclick="if(event.target===this)closeMap()">
+  <div class="map-modal">
+    <div class="map-modal-header">
+      <div>
+        <h3>Nos experts, sur le terrain</h3>
+        <p>Zoomez ou déplacez la carte pour explorer l'ensemble de l'écosystème.</p>
+      </div>
+      <button class="map-close" onclick="closeMap()">&#10005;</button>
+    </div>
+    <div id="expertsMapContainer"></div>
   </div>
 </div>
 
@@ -1817,6 +1909,68 @@ const experts = {
   }
 };
 
+// ─── CARTE DES EXPERTS (Leaflet) ───
+var expertsGeo = {
+  florian:  { lat: 50.6292, lon: 3.0573,  zoom: 8,  ville: "Lille (Hauts-de-France)" },
+  denis:    { lat: 43.2965, lon: 5.3698,  zoom: 9,  ville: "Marseille" },
+  emilie:   { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" },
+  laurence: { lat: 43.6047, lon: 1.4442,  zoom: 9,  ville: "Toulouse" },
+  melanie:  { lat: 46.6705, lon: -1.4269, zoom: 8,  ville: "Vendée" },
+  gilles:   { lat: 46.6034, lon: 1.8883,  zoom: 5,  ville: "France & International" }
+};
+
+var expertsMap = null;
+var expertsMapMarkers = [];
+
+function buildMarkerIcon(active){
+  return L.divIcon({
+    className: '',
+    html: '<div class="expert-marker' + (active ? ' active' : '') + '"><div class="dot-pulse"></div><div class="dot-core"></div></div>',
+    iconSize: [16,16],
+    iconAnchor: [8,8]
+  });
+}
+
+function openMap(activeId){
+  document.getElementById('mapOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+
+  var active = expertsGeo[activeId];
+
+  setTimeout(function(){
+    if(!expertsMap){
+      expertsMap = L.map('expertsMapContainer', { scrollWheelZoom:true }).setView([active.lat, active.lon], active.zoom);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors',
+        maxZoom: 18
+      }).addTo(expertsMap);
+    } else {
+      expertsMap.invalidateSize();
+      expertsMap.setView([active.lat, active.lon], active.zoom);
+    }
+
+    // Nettoyer les anciens marqueurs
+    expertsMapMarkers.forEach(function(m){ expertsMap.removeLayer(m); });
+    expertsMapMarkers = [];
+
+    // Ajouter tous les experts, avec l'expert cliqué mis en avant
+    Object.keys(expertsGeo).forEach(function(id){
+      var g = expertsGeo[id];
+      var e = experts[id];
+      var isActive = (id === activeId);
+      var marker = L.marker([g.lat, g.lon], { icon: buildMarkerIcon(isActive) }).addTo(expertsMap);
+      marker.bindPopup('<strong>' + (e ? e.name : id) + '</strong><br>' + g.ville);
+      if(isActive) marker.openPopup();
+      expertsMapMarkers.push(marker);
+    });
+  }, 50);
+}
+
+function closeMap(){
+  document.getElementById('mapOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
 function openModal(id){
   var e=experts[id]; if(!e) return;
   var bioHTML=e.bio.map(function(p){ return '<p class="modal-bio">'+p+'</p>'; }).join('');
@@ -1905,7 +2059,7 @@ function openDevis(key){ if(key&&svcData[key])document.getElementById("devis-ser
 function closeDevis(){ document.getElementById("devisOverlay").classList.remove("open"); document.body.style.overflow=""; }
 function submitDevis(){ document.getElementById("devis-confirm").style.display="block"; setTimeout(function(){ closeDevis(); document.getElementById("devis-confirm").style.display="none"; },3000); }
 
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();closeService();closeDevis();} });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();closeService();closeDevis();closeMap();} });
 
 // ─── MENU ACTIF + SILLAGE SCROLL + BACK TO TOP ───
 (function(){
