@@ -1237,6 +1237,66 @@ button.action-key.lit, a.action-key.lit {
 }
 .leaflet-popup-content { margin:12px 16px; font-size:0.85rem; color:var(--ink); }
 .leaflet-popup-content strong { color:var(--deep); font-family:var(--font-display); font-size:1rem; }
+/* ─── TARIFS ─── */
+#tarifs { background:var(--mist); }
+.tarifs-header { text-align:center; margin-bottom:56px; }
+.tarifs-header .section-sub { margin:0 auto; }
+.tarifs-header .wave-sep { margin:0 auto 32px; }
+
+.tarifs-grid {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:1px; background:rgba(35,75,94,0.1);
+  max-width:1100px; margin:0 auto;
+}
+.tarif-card {
+  background:var(--white); padding:40px 26px;
+  text-align:center; position:relative;
+  transition:transform 0.3s, box-shadow 0.3s;
+}
+.tarif-card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(35,75,94,0.1); }
+.tarif-card.best {
+  background:var(--deep);
+}
+.tarif-badge {
+  position:absolute; top:-1px; left:50%; transform:translateX(-50%);
+  background:var(--copper); color:var(--white);
+  font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase;
+  padding:5px 16px; white-space:nowrap;
+}
+.tarif-formule {
+  font-size:0.72rem; letter-spacing:0.25em; text-transform:uppercase;
+  color:var(--teal); margin-bottom:18px; display:block;
+}
+.tarif-card.best .tarif-formule { color:var(--copper); }
+.tarif-prix {
+  font-family:var(--font-display); font-size:2.4rem; font-weight:600;
+  color:var(--deep); line-height:1;
+}
+.tarif-card.best .tarif-prix { color:var(--white); }
+.tarif-prix span { font-size:0.9rem; font-weight:300; opacity:0.6; }
+.tarif-equiv {
+  font-size:0.78rem; opacity:0.5; margin:8px 0 22px;
+}
+.tarif-card.best .tarif-equiv { color:var(--white); opacity:0.55; }
+.tarif-economie {
+  font-size:0.72rem; color:var(--copper); font-weight:500; margin-bottom:18px;
+}
+.tarif-card.best .tarif-economie { color:var(--sand); }
+.tarif-btn {
+  display:block; width:100%; padding:12px; margin-top:10px;
+  background:transparent; border:1px solid rgba(35,75,94,0.25);
+  color:var(--deep); font-family:var(--font-body); font-size:0.74rem;
+  letter-spacing:0.14em; text-transform:uppercase;
+  cursor:pointer; text-decoration:none; transition:all 0.3s;
+}
+.tarif-btn:hover { background:var(--deep); color:var(--white); border-color:var(--deep); }
+.tarif-card.best .tarif-btn { border-color:rgba(253,250,245,0.3); color:var(--white); }
+.tarif-card.best .tarif-btn:hover { background:var(--copper); border-color:var(--copper); }
+.tarifs-note {
+  text-align:center; margin-top:28px; font-size:0.78rem; opacity:0.45; font-style:italic;
+}
+@media(max-width:900px){ .tarifs-grid { grid-template-columns:1fr; } }
+
 .disc-q-text { font-family:var(--font-display); font-size:clamp(1.3rem,2.5vw,1.8rem); font-weight:300; color:var(--white); margin-bottom:36px; line-height:1.4; }
 .disc-options { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
 .disc-option { background:rgba(255,255,255,0.04); border:1px solid rgba(184,111,76,0.15); padding:18px 22px; cursor:pointer; font-family:var(--font-body); font-size:0.9rem; color:var(--white); opacity:0.75; transition:all 0.25s; text-align:left; line-height:1.5; }
@@ -1307,6 +1367,7 @@ button.action-key.lit, a.action-key.lit {
     <li><a href="#valeurs" class="nav-anchor">Valeurs</a></li>
     <li><a href="#services" class="nav-anchor">Services</a></li>
     <li><a href="#disc" class="nav-anchor">Test</a></li>
+    <li><a href="#tarifs" class="nav-anchor">Tarifs</a></li>
     <li><a href="#partenaires" class="nav-anchor">Partenaires</a></li>
     <li><a href="#contact" class="nav-anchor">Contact</a></li>
     <li><a href="#tunnel" class="nav-cta">Commencer</a></li>
@@ -1370,7 +1431,7 @@ button.action-key.lit, a.action-key.lit {
       <span class="section-label" style="color:var(--copper);">Commencer</span>
       <h2 class="section-title">Par où <strong>commencer ?</strong></h2>
       <div class="wave-sep"></div>
-      <p class="section-sub">Réponds à quelques questions. On s'occupe du reste. Chaque réponse nous aide à t'orienter vers les bonnes personnes.</p>
+      <p class="section-sub">Répondez à quelques questions. Nous nous occupons du reste. Chaque réponse nous aide à vous orienter vers les bonnes personnes.</p>
       <div class="tunnel-steps">
         <div class="tunnel-step">
           <div class="tunnel-step-circle">1</div>
@@ -1414,7 +1475,7 @@ button.action-key.lit, a.action-key.lit {
         <input type="email" placeholder="votre@email.com">
       </div>
       <div class="form-group">
-        <label>Ce qui te touche le plus en ce moment</label>
+        <label>Ce qui vous touche le plus en ce moment</label>
         <select>
           <option value="" disabled selected>Choisis une direction</option>
           <option>Ma vie professionnelle · sens au travail</option>
@@ -1521,10 +1582,10 @@ button.action-key.lit, a.action-key.lit {
       <div class="team-info">
         <div class="team-name">Mélanie Allard</div>
         <span class="team-role">Consultante Carrière · Emploi</span>
-        <span class="team-location locatable" onclick="event.stopPropagation();openMap('melanie')">📍 Vendée</span>
+        <span class="team-location locatable" onclick="event.stopPropagation();openMap('melanie')">📍 Challans (85)</span>
         <div class="team-contacts">
-          <a href="#" onclick="event.stopPropagation()">📞 Tél.</a>
-          <a href="#" onclick="event.stopPropagation()">✉ Mail</a>
+          <a href="tel:+33613063107" onclick="event.stopPropagation()">📞 06 13 06 31 07</a>
+          <a href="mailto:melanieallardpro@gmail.com" onclick="event.stopPropagation()">✉ Mail</a>
         </div>
       </div>
     </div>
@@ -1752,12 +1813,51 @@ button.action-key.lit, a.action-key.lit {
     <span class="section-label" style="color:var(--copper);justify-content:center;">Test &middot; Connaissance de soi</span>
     <h2 class="section-title" style="color:var(--white);">R&eacute;v&eacute;lez <strong style="color:var(--copper);">votre potentiel</strong></h2>
     <div class="wave-sep" style="margin:0 auto 32px;"></div>
-    <p class="section-sub" style="color:var(--white);opacity:0.5;margin:0 auto 48px;">12 questions. 5 minutes. Un profil personnalis&eacute; et l'expert NORIA HORIZON qui te correspond vraiment.</p>
+    <p class="section-sub" style="color:var(--white);opacity:0.5;margin:0 auto 48px;">12 questions. 5 minutes. Un profil personnalis&eacute; et l'expert NORIA HORIZON qui vous correspond vraiment.</p>
     <a href="test-profil.html" class="btn-primary action-key" style="font-size:0.9rem;padding:18px 52px;letter-spacing:0.2em;display:inline-block;">
       R&eacute;v&eacute;lez votre potentiel &rarr;
     </a>
     <p style="font-size:0.78rem;color:var(--white);opacity:0.35;margin-top:14px;">12 questions &middot; 5 minutes &middot; Profil personnalis&eacute;</p>
   </div>
+</section>
+
+<!-- TARIFS -->
+<section id="tarifs">
+  <div class="tarifs-header">
+    <span class="section-label" style="justify-content:center;">Accès à l'écosystème</span>
+    <h2 class="section-title">Un pass, <strong>tous les experts</strong></h2>
+    <div class="wave-sep"></div>
+    <p class="section-sub">Choisissez la formule qui vous correspond. Accès complet à la plateforme, à l'ensemble des experts et des services — sans engagement au-delà de la période choisie.</p>
+  </div>
+  <div class="tarifs-grid">
+    <div class="tarif-card">
+      <span class="tarif-formule">Mensuel</span>
+      <div class="tarif-prix">49 €<span> HT/mois</span></div>
+      <p class="tarif-equiv">Sans engagement</p>
+      <a href="#contact" class="tarif-btn">Choisir cette formule</a>
+    </div>
+    <div class="tarif-card">
+      <span class="tarif-formule">Trimestriel</span>
+      <div class="tarif-prix">135 €<span> HT</span></div>
+      <p class="tarif-equiv">Soit 45 € HT/mois</p>
+      <a href="#contact" class="tarif-btn">Choisir cette formule</a>
+    </div>
+    <div class="tarif-card">
+      <span class="tarif-formule">Semestriel</span>
+      <div class="tarif-prix">255 €<span> HT</span></div>
+      <p class="tarif-equiv">Soit 42,50 € HT/mois</p>
+      <a href="#contact" class="tarif-btn">Choisir cette formule</a>
+    </div>
+    <div class="tarif-card best">
+      <span class="tarif-badge">Le plus avantageux</span>
+      <span class="tarif-formule">Annuel</span>
+      <div class="tarif-prix">468 €<span> HT</span></div>
+      <p class="tarif-equiv">Soit 39 € HT/mois</p>
+      <p class="tarif-economie">Économie de 120 € HT/an</p>
+      <a href="#contact" class="tarif-btn">Choisir cette formule</a>
+    </div>
+  </div>
+  <p class="tarifs-note">Paiement en ligne sécurisé — bientôt disponible. En attendant, contactez-nous pour activer votre accès.</p>
 </section>
 
 <!-- PARTENAIRES -->
@@ -1838,6 +1938,7 @@ button.action-key.lit, a.action-key.lit {
     <li><a href="#equipe">Experts</a></li>
     <li><a href="#mission">Mission</a></li>
     <li><a href="#valeurs">Valeurs</a></li>
+    <li><a href="#tarifs">Tarifs</a></li>
     <li><a href="#partenaires">Partenaires</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -1883,10 +1984,10 @@ const experts = {
     photo:'Melanie-Allard.png',
     name:'Mélanie Allard',
     role:'Consultante Emploi · Carrière · Développement',
-    location:'Vendée (visio & présentiel)',
-    phone:'+33 6 00 00 00 00',
-    email:'melanie.allard@noria-horizon.fr',
-    bio:["Forte de 20 ans d'expérience en intérim, recrutement et gestion d'agence, Mélanie accompagne particuliers et professionnels à clarifier leur situation, structurer leurs démarches et avancer de manière alignée dans leurs projets professionnels.","Pour les particuliers : transitions professionnelles, orientation, repositionnement, diagnostic CV, préparation aux entretiens. Pour les professionnels : audit business, structuration et développement de TPE/PME. Une approche pragmatique, simple et orientée solutions."],
+    location:'Challans (85) + Visio',
+    phone:'+33 6 13 06 31 07',
+    email:'melanieallardpro@gmail.com',
+    bio:["Forte de 20 ans d'expérience en intérim, recrutement et gestion d'agence, Mélanie accompagne particuliers et professionnels à clarifier leur situation, structurer leurs démarches et avancer de manière alignée dans leurs projets professionnels.","Pour les particuliers : transitions professionnelles, orientation, repositionnement, diagnostic CV, préparation aux entretiens. Pour les professionnels : audit business, structuration et développement de TPE/PME. Une approche humaine, structurante et orientée solution."],
     tags:['Carrière','Reconversion','CV & Entretiens','Audit business','TPE·PME','Transitions pro','Bilan carrière']
   },
   laurence: {
@@ -1925,7 +2026,7 @@ var expertsGeo = {
   denis:    { lat: 43.2965, lon: 5.3698,  zoom: 9,  ville: "Marseille" },
   emilie:   { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" },
   laurence: { lat: 43.6047, lon: 1.4442,  zoom: 9,  ville: "Toulouse" },
-  melanie:  { lat: 46.6705, lon: -1.4269, zoom: 8,  ville: "Vendée" },
+  melanie:  { lat: 46.8494, lon: -1.8794, zoom: 9,  ville: "Challans (85)" },
   gilles:   { lat: 46.6034, lon: 1.8883,  zoom: 5,  ville: "France & International" }
 };
 
@@ -2054,82 +2155,4 @@ var svcData = {
   coaching:  {title:"Coaching individuel",   img:"coaching-individuel.png", desc:"Un accompagnement sur-mesure, en profondeur, avec l'expert qui correspond à votre réalité. Blocages, croyances limitantes, objectifs de vie et de carrière.", details:["Séances en visio ou présentiel","Suivi personnalisé","Outils et supports fournis","Fréquence adaptée à votre rythme"], prix:"À partir de 80€ / séance"},
   stages:    {title:"Stages & Ateliers",      img:"stages-ateliers.png", desc:"Des immersions intenses qui transforment. Nature, dépassement de soi, philosophie pratique — pour ancrer des changements profonds.", details:["Formats d'1 à 3 jours","Groupes de 6 à 12 personnes","Encadrement par plusieurs experts","Suivi post-stage inclus"], prix:"À partir de 350€ / participant"},
   formation: {title:"Formations entreprises", img:"formations-entreprises.png", desc:"Interventions sur-mesure pour développer les talents, renforcer le leadership et améliorer la cohésion d'équipe.", details:["Audit des besoins en amont","Programme sur-mesure","Interventions ponctuelles ou récurrentes","Rapport de suivi"], prix:"Sur devis"},
-  collectif: {title:"Accompagnement collectif",img:"accompagnement-collectif.png", desc:"Groupes de pairs, cercles de progression, masterminds. L'intelligence collective au service de votre montée en compétence.", details:["Groupes de 6 à 10 personnes","Sessions bi-mensuelles","Animé par un expert","Communauté privée"], prix:"À partir de 150€ / mois"},
-  digital:   {title:"Parcours digitaux",      img:"parcours-digitaux.png", desc:"Séquences email, vidéos pédagogiques, questionnaires. Un tunnel pédagogique complet.", details:["Accès 24h/24","Progression à votre rythme","Vidéo + exercices","Support par email"], prix:"À partir de 49€"}
-};
-
-function openService(key){
-  var s=svcData[key]; if(!s) return;
-  var det=s.details.map(function(d){return "<li>"+d+"</li>";}).join("");
-  document.getElementById("serviceBody").innerHTML=
-    "<img class=\"service-modal-img\" src=\""+s.img+"\" alt=\""+s.title+"\">"+
-    "<h2>"+s.title+"</h2>"+
-    "<p class=\"service-modal-desc\">"+s.desc+"</p>"+
-    "<div class=\"service-prix\"><span>Tarif indicatif</span>"+s.prix+"</div>"+
-    "<ul class=\"service-details\">"+det+"</ul>"+
-    "<button class=\"btn-copper-full\" onclick=\"closeService();openDevis('"+key+"')\">Demander un devis &rarr;</button>";
-  document.getElementById("serviceOverlay").classList.add("open");
-  document.body.style.overflow="hidden";
-}
-function closeService(){ document.getElementById("serviceOverlay").classList.remove("open"); document.body.style.overflow=""; }
-function openDevis(key){ if(key&&svcData[key])document.getElementById("devis-service").value=svcData[key].title; document.getElementById("devisOverlay").classList.add("open"); document.body.style.overflow="hidden"; }
-function closeDevis(){ document.getElementById("devisOverlay").classList.remove("open"); document.body.style.overflow=""; }
-function submitDevis(){ document.getElementById("devis-confirm").style.display="block"; setTimeout(function(){ closeDevis(); document.getElementById("devis-confirm").style.display="none"; },3000); }
-
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();closeService();closeDevis();closeMap();} });
-
-// ─── MENU ACTIF + SILLAGE SCROLL + BACK TO TOP ───
-(function(){
-  var anchors = Array.prototype.slice.call(document.querySelectorAll('.nav-anchor'));
-  var sections = anchors.map(function(a){
-    var id = a.getAttribute('href').replace('#','');
-    return { link:a, el:document.getElementById(id) };
-  }).filter(function(s){ return s.el; });
-
-  var actionKeys = Array.prototype.slice.call(document.querySelectorAll('.action-key'));
-  var backBtn = document.getElementById('backToTop');
-  var allCards = Array.prototype.slice.call(document.querySelectorAll('.step-card,.valeur-card,.team-card,.service-card,.pillar,.partner-logo'));
-
-  function onScroll(){
-    var docTop = window.scrollY;
-    var current = null;
-    sections.forEach(function(s){
-      var top = s.el.offsetTop - 120;
-      var bot = top + s.el.offsetHeight;
-      if(docTop+150 >= top && docTop+150 < bot) current = s.link;
-    });
-    anchors.forEach(function(a){ a.classList.remove('active'); });
-    if(current) current.classList.add('active');
-
-    actionKeys.forEach(function(k){
-      var r = k.getBoundingClientRect();
-      var c = r.top + r.height/2;
-      if(c > window.innerHeight*0.2 && c < window.innerHeight*0.75) k.classList.add('lit');
-      else k.classList.remove('lit');
-    });
-
-    allCards.forEach(function(card){
-      var r = card.getBoundingClientRect();
-      var c = r.top + r.height/2;
-      if(c > window.innerHeight*0.35 && c < window.innerHeight*0.65) card.classList.add('swept');
-      else card.classList.remove('swept');
-    });
-
-    if(window.scrollY > 500) backBtn.classList.add('show');
-    else backBtn.classList.remove('show');
-  }
-
-  window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('load', onScroll);
-  onScroll();
-})();
-</script>
-
-<!-- BOUTON REMONTER -->
-<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Remonter en haut">
-  <svg viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g style="transform-origin:44px 44px;">
-      <circle cx="44" cy="44" r="36" stroke="#234B5E" stroke-width="2.5"/>
-      <circle cx="44" cy="44" r="26" stroke="#3B7A78" stroke-width="1" stroke-dasharray="3 3"/>
-      <line x1="44" y1="8" x2="44" y2="80" stroke="#234B5E" stroke-width="1.2" opacity="0.6"/>
-      <line x1="8" y1="44" x2="80" y2="44" stroke="#234B5E" stroke-width="1.2" opacity="0.
+  collectif: {title:"Accompagnement collectif",img:"accompagnement-collectif.png", desc:"Groupes de
