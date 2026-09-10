@@ -1,3 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NORIA HORIZON — Élever les potentiels</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- GOUTTES D'EAU -->
+<div class="eau-container">
+  <div class="goutte-eau"><svg viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="g0" cx="38%" cy="32%" r="60%"><stop offset="0%" stop-color="#fff" stop-opacity="0.7"/><stop offset="40%" stop-color="#3B7A78" stop-opacity="0.45"/><stop offset="100%" stop-color="#234B5E" stop-opacity="0.6"/></radialGradient></defs><path d="M12 2 C12 2 2 14 2 21 C2 27.6 6.5 32 12 32 C17.5 32 22 27.6 22 21 C22 14 12 2 12 2Z" fill="url(#g0)" stroke="rgba(59,122,120,0.25)" stroke-width="0.5"/><path d="M8 9 C9 7 11 6 12 7 C11 8 9 9 8 9Z" fill="rgba(255,255,255,0.55)"/></svg></div>
+  <div class="goutte-eau"><svg viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="g1" cx="38%" cy="32%" r="60%"><stop offset="0%" stop-color="#fff" stop-opacity="0.7"/><stop offset="40%" stop-color="#3B7A78" stop-opacity="0.45"/><stop offset="100%" stop-color="#234B5E" stop-opacity="0.6"/></radialGradient></defs><path d="M12 2 C12 2 2 14 2 21 C2 27.6 6.5 32 12 32 C17.5 32 22 27.6 22 21 C22 14 12 2 12 2Z" fill="url(#g1)" stroke="rgba(59,122,120,0.25)" stroke-width="0.5"/><path d="M8 9 C9 7 11 6 12 7 C11 8 9 9 8 9Z" fill="rgba(255,255,255,0.55)"/></svg></div>
+  <div class="goutte-eau"><svg viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="g2" cx="38%" cy="32%" r="60%"><stop offset="0%" stop-color="#fff" stop-opacity="0.7"/><stop offset="40%" stop-color="#3B7A78" stop-opacity="0.45"/><stop offset="100%" stop-color="#234B5E" stop-opacity="0.6"/></radialGradient></defs><path d="M12 2 C12 2 2 14 2 21 C2 27.6 6.5 32 12 32 C17.5 32 22 27.6 22 21 C22 14 12 2 12 2Z" fill="url(#g2)" stroke="rgba(59,122,120,0.25)" stroke-width="0.5"/><path d="M8 9 C9 7 11 6 12 7 C11 8 9 9 8 9Z" fill="rgba(255,255,255,0.55)"/></svg></div>
+  <div class="goutte-eau"><svg viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="g3" cx="38%" cy="32%" r="60%"><stop offset="0%" stop-color="#fff" stop-opacity="0.7"/><stop offset="40%" stop-color="#3B7A78" stop-opacity="0.45"/><stop offset="100%" stop-color="#234B5E" stop-opacity="0.6"/></radialGradient></defs><path d="M12 2 C12 2 2 14 2 21 C2 27.6 6.5 32 12 32 C17.5 32 22 27.6 22 21 C22 14 12 2 12 2Z" fill="url(#g3)" stroke="rgba(59,122,120,0.25)" stroke-width="0.5"/><path d="M8 9 C9 7 11 6 12 7 C11 8 9 9 8 9Z" fill="rgba(255,255,255,0.55)"/></svg></div>
+  <div class="goutte-eau"><svg viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="g4" cx="38%" cy="32%" r="60%"><stop offset="0%" stop-color="#fff" stop-opacity="0.7"/><stop offset="40%" stop-color="#3B7A78" stop-opacity="0.45"/><stop offset="100%" stop-color="#234B5E" stop-opacity="0.6"/></radialGradient></defs><path d="M12 2 C12 2 2 14 2 21 C2 27.6 6.5 32 12 32 C17.5 32 22 27.6 22 21 C22 14 12 2 12 2Z" fill="url(#g4)" stroke="rgba(59,122,120,0.25)" stroke-width="0.5"/><path d="M8 9 C9 7 11 6 12 7 C11 8 9 9 8 9Z" fill="rgba(255,255,255,0.55)"/></svg></div>
+  <div class="goutte-eau"><svg viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="g5" cx="38%" cy="32%" r="60%"><stop offset="0%" stop-color="#fff" stop-opacity="0.7"/><stop offset="40%" stop-color="#3B7A78" stop-opacity="0.45"/><stop offset="100%" stop-color="#234B5E" stop-opacity="0.6"/></radialGradient></defs><path d="M12 2 C12 2 2 14 2 21 C2 27.6 6.5 32 12 32 C17.5 32 22 27.6 22 21 C22 14 12 2 12 2Z" fill="url(#g5)" stroke="rgba(59,122,120,0.25)" stroke-width="0.5"/><path d="M8 9 C9 7 11 6 12 7 C11 8 9 9 8 9Z" fill="rgba(255,255,255,0.55)"/></svg></div>
+  <div class="goutte-eau"><svg viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="g6" cx="38%" cy="32%" r="60%"><stop offset="0%" stop-color="#fff" stop-opacity="0.7"/><stop offset="40%" stop-color="#3B7A78" stop-opacity="0.45"/><stop offset="100%" stop-color="#234B5E" stop-opacity="0.6"/></radialGradient></defs><path d="M12 2 C12 2 2 14 2 21 C2 27.6 6.5 32 12 32 C17.5 32 22 27.6 22 21 C22 14 12 2 12 2Z" fill="url(#g6)" stroke="rgba(59,122,120,0.25)" stroke-width="0.5"/><path d="M8 9 C9 7 11 6 12 7 C11 8 9 9 8 9Z" fill="rgba(255,255,255,0.55)"/></svg></div>
+  <div class="goutte-eau"><svg viewBox="0 0 24 34" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="g7" cx="38%" cy="32%" r="60%"><stop offset="0%" stop-color="#fff" stop-opacity="0.7"/><stop offset="40%" stop-color="#3B7A78" stop-opacity="0.45"/><stop offset="100%" stop-color="#234B5E" stop-opacity="0.6"/></radialGradient></defs><path d="M12 2 C12 2 2 14 2 21 C2 27.6 6.5 32 12 32 C17.5 32 22 27.6 22 21 C22 14 12 2 12 2Z" fill="url(#g7)" stroke="rgba(59,122,120,0.25)" stroke-width="0.5"/><path d="M8 9 C9 7 11 6 12 7 C11 8 9 9 8 9Z" fill="rgba(255,255,255,0.55)"/></svg></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-brand">
+    <svg class="logo-svg" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g style="animation:cwSpin 18s linear infinite; transform-origin:44px 44px;">
+        <circle cx="44" cy="44" r="36" stroke="#234B5E" stroke-width="2.5"/>
+        <circle cx="44" cy="44" r="26" stroke="#3B7A78" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="44" y1="8"  x2="44" y2="80" stroke="#234B5E" stroke-width="1.2" opacity="0.6"/>
+        <line x1="8"  y1="44" x2="80" y2="44" stroke="#234B5E" stroke-width="1.2" opacity="0.6"/>
+        <line x1="18" y1="18" x2="70" y2="70" stroke="#3B7A78" stroke-width="0.9" opacity="0.45"/>
+        <line x1="70" y1="18" x2="18" y2="70" stroke="#3B7A78" stroke-width="0.9" opacity="0.45"/>
+        <path d="M44 8 C41 12 41 16 44 16 C47 16 47 12 44 8Z" fill="#B86F4C" opacity="0.8"/>
+        <path d="M80 44 C76 41 72 41 72 44 C72 47 76 47 80 44Z" fill="#B86F4C" opacity="0.8"/>
+        <path d="M44 80 C47 76 47 72 44 72 C41 72 41 76 44 80Z" fill="#B86F4C" opacity="0.8"/>
+        <path d="M8 44 C12 47 16 47 16 44 C16 41 12 41 8 44Z" fill="#B86F4C" opacity="0.8"/>
+        <circle cx="44" cy="44" r="5" fill="#B86F4C"/>
+        <circle cx="44" cy="44" r="2.5" fill="#234B5E"/>
+      </g>
+      <rect x="0" y="70" width="88" height="18" fill="#F4EFE6"/>
+      <path d="M4 72 Q22 64 44 72 Q66 80 84 72" stroke="#234B5E" stroke-width="1.8" fill="none" opacity="0.5" stroke-linecap="round"/>
+      <path d="M2 78 Q22 71 44 78 Q66 85 86 78" stroke="#3B7A78" stroke-width="1.1" fill="none" opacity="0.32" stroke-linecap="round"/>
+      <circle cx="72" cy="10" r="4" fill="#B86F4C"/>
+    </svg>
+    <div class="brand-text">
+      <span class="brand-name">NORIA</span>
+      <span class="brand-sub">Horizon · Élever les potentiels</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#comment" class="nav-anchor">Parcours</a></li>
+    <li><a href="#equipe" class="nav-anchor">Experts</a></li>
+    <li><a href="#mission" class="nav-anchor">Mission</a></li>
+    <li><a href="#valeurs" class="nav-anchor">Valeurs</a></li>
+    <li><a href="#services" class="nav-anchor">Services</a></li>
+    <li><a href="#disc" class="nav-anchor">Test</a></li>
+    <li><a href="#tarifs" class="nav-anchor">Tarifs</a></li>
+    <li><a href="#partenaires" class="nav-anchor">Partenaires</a></li>
+    <li><a href="#contact" class="nav-anchor">Contact</a></li>
+    <li><a href="#tunnel" class="nav-cta">Commencer</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <span class="hero-eyebrow">Intelligence collective · Développement humain</span>
+    <h1 class="hero-title">
+      Élever<br>
+      <strong>les potentiels.</strong>
+    </h1>
+    <p class="hero-sub">
+      Mettre en mouvement les transformations pour révéler, développer et élever les personnes, les équipes et les organisations.
+    </p>
+    <div class="hero-buttons">
+      <a href="#tunnel" class="hero-btn primary">Découvrir mon expert</a>
+      <a href="#equipe" class="hero-btn">Découvrir l'équipe</a>
+      <a href="#services" class="hero-btn">Ce que nous proposons</a>
+      <a href="test-profil.html" class="hero-btn">Révélez votre potentiel</a>
+      <a href="#contact" class="hero-btn">Une question ? Un projet ?</a>
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0 40 Q180 0 360 40 Q540 80 720 40 Q900 0 1080 40 Q1260 80 1440 40 L1440 80 L0 80Z" fill="#E8DCC9" opacity="0.5"/>
+    <path d="M0 55 Q200 20 400 55 Q600 90 800 55 Q1000 20 1200 55 Q1320 75 1440 55" stroke="#3B7A78" stroke-width="1" fill="none" opacity="0.25"/>
+  </svg>
+</section>
+
+<!-- COMMENT ÇA MARCHE -->
+<section id="comment">
+  <span class="section-label">Le parcours</span>
+  <h2 class="section-title">Un chemin pensé <strong>pour vous</strong></h2>
+  <div class="wave-sep"></div>
+  <p class="section-sub">Un triage intelligent pour vous mettre face à l'expert qui correspond à là où vous en êtes. Pas de standardisation. Pas de jargon.</p>
+  <div class="steps-grid" style="margin-top:56px;">
+    <div class="step-card reveal">
       <span class="step-num">— Étape 01 <span class="step-dot sd-1"></span></span>
       <h3>Vous remplissez votre profil</h3>
       <p>Un questionnaire court pour cerner vos priorités du moment — pro, perso, ou les deux. Quelques minutes, un cap clair.</p>
@@ -34,4 +135,529 @@
         <div class="tunnel-step">
           <div class="tunnel-step-circle">2</div>
           <div class="tunnel-step-text">
- 
+            <h4>3 vidéos dans votre boîte mail</h4>
+            <p>Chacune pose une question différente. Vous avancez à votre rythme.</p>
+          </div>
+        </div>
+        <div class="tunnel-step">
+          <div class="tunnel-step-circle">3</div>
+          <div class="tunnel-step-text">
+            <h4>Vous choisissez ce qui compte</h4>
+            <p>Qu'est-ce qui est le plus important pour vous aujourd'hui ?</p>
+          </div>
+        </div>
+        <div class="tunnel-step">
+          <div class="tunnel-step-circle">4</div>
+          <div class="tunnel-step-text">
+            <h4>Votre expert vous attend</h4>
+            <p>L'Instant Horizon, un minimum de 45 minutes, est offert. Sans condition. Sans pression.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tunnel-form">
+      <h3>Commencer maintenant</h3>
+      <p>Inscription sécurisée · Aucun spam</p>
+      <div class="form-group">
+        <label>Prénom</label>
+        <input type="text" placeholder="Votre prénom">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="votre@email.com">
+      </div>
+      <div class="form-group">
+        <label>Ce qui vous touche le plus en ce moment</label>
+        <select>
+          <option value="" disabled selected>Choisis une direction</option>
+          <option>Ma vie professionnelle · sens au travail</option>
+          <option>Mes relations · communication</option>
+          <option>Ma confiance · identité</option>
+          <option>Mon énergie · santé · corps</option>
+          <option>Mes finances · projets de vie</option>
+          <option>Ma spiritualité · profondeur intérieure</option>
+        </select>
+      </div>
+      <button class="btn-copper-full action-key" onclick="handleFormSubmit(event)">Recevoir les 3 vidéos →</button>
+      <p style="font-size:0.7rem;opacity:0.3;margin-top:12px;color:var(--white);text-align:center;">Intégration Brevo · RGPD</p>
+    </div>
+  </div>
+</section>
+
+<!-- ÉQUIPE -->
+<section id="equipe">
+  <div class="equipe-header">
+    <span class="section-label">Les experts</span>
+    <h2 class="section-title">Ceux qui marchent <strong>à vos côtés</strong></h2>
+    <div class="wave-sep"></div>
+    <p class="section-sub">Des professionnels de l'humain, chacun avec son chemin, sa méthode, sa singularité. Clique pour en savoir plus.</p>
+  </div>
+
+  <div class="team-grid">
+
+    <!-- 1. Florian — co-fondateur -->
+    <div class="team-card reveal" onclick="openModal('florian')">
+      <div class="team-photo">
+        <span class="founder-badge">Co-fondateur</span>
+        <img src="Florian-Dhaussy.png" alt="Florian Dhaussy">
+        <div class="team-overlay"><p>Formateur Management · Consultant RH · Co-fondateur</p></div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Florian Dhaussy</div>
+        <span class="team-role">Formateur Management · RH</span>
+        <span class="team-location locatable" onclick="event.stopPropagation();openMap('florian')">📍 Hauts-de-France</span>
+        <div class="team-contacts">
+          <a href="tel:+33600000000" onclick="event.stopPropagation()">📞 +33 6 00 00 00 00</a>
+          <a href="mailto:florian.dhaussy@noria-horizon.fr" onclick="event.stopPropagation()">✉ Mail</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Denis — co-fondateur -->
+    <div class="team-card reveal" onclick="openModal('denis')">
+      <div class="team-photo">
+        <span class="founder-badge">Co-fondateur</span>
+        <img src="Denis-Deblevid.png" alt="Denis Deblevid">
+        <div class="team-overlay"><p>Coach philosophique · Méthode 4P · Co-fondateur</p></div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Denis Deblevid</div>
+        <span class="team-role">Coach Philosophique · Stoïcisme</span>
+        <span class="team-location locatable" onclick="event.stopPropagation();openMap('denis')">📍 Marseille</span>
+        <div class="team-contacts">
+          <a href="tel:+33600000000" onclick="event.stopPropagation()">📞 +33 6 00 00 00 00</a>
+          <a href="mailto:denisdeblevidcontact@gmail.com" onclick="event.stopPropagation()">✉ Mail</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Émilie — juste après Denis -->
+    <div class="team-card reveal" onclick="openModal('emilie')">
+      <div class="team-photo">
+        <img src="Emilie-Abraham.jpg" alt="Émilie Abraham">
+        <div class="team-overlay"><p>Consultante RH · Prévention des risques · QVT · 15 ans d'expérience</p></div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Émilie Abraham</div>
+        <span class="team-role">Consultante RH · Développement professionnel</span>
+        <span class="team-location locatable" onclick="event.stopPropagation();openMap('emilie')">📍 France</span>
+        <div class="team-contacts">
+          <a href="tel:+33665520000" onclick="event.stopPropagation()">📞 06 65 52 00 00</a>
+          <a href="mailto:abrahamemilie@gmail.com" onclick="event.stopPropagation()">✉ Mail</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Laurence -->
+    <div class="team-card reveal" onclick="openModal('laurence')">
+      <div class="team-photo">
+        <img src="Laurence-Brouet.png" alt="Laurence Brouet">
+        <div class="team-overlay"><p>Consultante RH · Formation · E-learning · Toulouse</p></div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Laurence Brouet</div>
+        <span class="team-role">Consultante RH · Formation</span>
+        <span class="team-location locatable" onclick="event.stopPropagation();openMap('laurence')">📍 Toulouse</span>
+        <div class="team-contacts">
+          <a href="tel:+33671825739" onclick="event.stopPropagation()">📞 06 71 82 57 39</a>
+          <a href="mailto:brouet.laurence@orange.fr" onclick="event.stopPropagation()">✉ Mail</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Mélanie -->
+    <div class="team-card reveal" onclick="openModal('melanie')">
+      <div class="team-photo">
+        <img src="Melanie-Allard.png" alt="Mélanie Allard">
+        <div class="team-overlay"><p>Consultante emploi · Carrière · 20 ans d'expérience</p></div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Mélanie Allard</div>
+        <span class="team-role">Consultante Carrière · Emploi</span>
+        <span class="team-location locatable" onclick="event.stopPropagation();openMap('melanie')">📍 Challans (85)</span>
+        <div class="team-contacts">
+          <a href="tel:+33613063107" onclick="event.stopPropagation()">📞 06 13 06 31 07</a>
+          <a href="mailto:melanieallardpro@gmail.com" onclick="event.stopPropagation()">✉ Mail</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Gilles -->
+    <div class="team-card reveal" onclick="openModal('gilles')">
+      <div class="team-photo">
+        <img src="Gilles-Quillerier.png" alt="Gilles Quillerier">
+        <div class="team-overlay"><p>Management international · Développement commercial · Transitions pro</p></div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Gilles Quillerier</div>
+        <span class="team-role">Consultant développement de compétences</span>
+        <span class="team-location locatable" onclick="event.stopPropagation();openMap('gilles')">📍 France & International</span>
+        <div class="team-contacts">
+          <a href="#" onclick="event.stopPropagation()">📞 Tél.</a>
+          <a href="#" onclick="event.stopPropagation()">✉ Mail</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICE OVERLAY -->
+<div class="service-overlay" id="serviceOverlay" onclick="if(event.target===this)closeService()">
+  <div class="service-modal">
+    <button class="svc-close" onclick="closeService()">&#10005;</button>
+    <div id="serviceBody"></div>
+  </div>
+</div>
+
+<!-- DEVIS OVERLAY -->
+<div class="devis-overlay" id="devisOverlay" onclick="if(event.target===this)closeDevis()">
+  <div class="devis-modal">
+    <button class="devis-close" onclick="closeDevis()">&#10005;</button>
+    <h2>Demander un devis</h2>
+    <p class="sub">R&eacute;ponse sous 48h &middot; <a href="mailto:noriahorizon.contact@gmail.com" style="color:var(--copper);">noriahorizon.contact@gmail.com</a></p>
+    <div class="devis-row">
+      <div class="devis-field"><label>Pr&eacute;nom</label><input type="text" placeholder="Votre pr&eacute;nom"></div>
+      <div class="devis-field"><label>Nom</label><input type="text" placeholder="Votre nom"></div>
+    </div>
+    <div class="devis-row">
+      <div class="devis-field"><label>Email</label><input type="email" placeholder="votre@email.com"></div>
+      <div class="devis-field"><label>T&eacute;l&eacute;phone</label><input type="tel" placeholder="06 00 00 00 00"></div>
+    </div>
+    <div class="devis-field">
+      <label>Service concern&eacute;</label>
+      <select id="devis-service">
+        <option value="" disabled selected>Choisissez un service</option>
+        <option>Coaching individuel</option>
+        <option>Stages &amp; Ateliers</option>
+        <option>Formations entreprises</option>
+        <option>Diagnostic Premium</option>
+        <option>Accompagnement collectif</option>
+        <option>Parcours digitaux</option>
+        <option>Autre / Plusieurs services</option>
+      </select>
+    </div>
+    <div class="devis-field">
+      <label>Budget indicatif</label>
+      <select>
+        <option value="" disabled selected>Fourchette budg&eacute;taire</option>
+        <option>Moins de 500&euro;</option>
+        <option>500&euro; &ndash; 1 500&euro;</option>
+        <option>1 500&euro; &ndash; 5 000&euro;</option>
+        <option>5 000&euro; &ndash; 10 000&euro;</option>
+        <option>Plus de 10 000&euro;</option>
+        <option>&Agrave; d&eacute;finir ensemble</option>
+      </select>
+    </div>
+    <div class="devis-field">
+      <label>Votre message</label>
+      <textarea rows="4" placeholder="D&eacute;crivez votre besoin, votre contexte..."></textarea>
+    </div>
+    <button class="btn-copper-full" onclick="submitDevis()">Envoyer ma demande &rarr;</button>
+    <p class="devis-confirm" id="devis-confirm">&#10003; Demande envoy&eacute;e &mdash; r&eacute;ponse sous 48h !</p>
+    <p style="font-size:0.66rem;opacity:0.3;margin-top:10px;text-align:center;">RGPD &middot; Donn&eacute;es confidentielles</p>
+  </div>
+</div>
+
+<!-- MAP OVERLAY -->
+<div class="map-overlay" id="mapOverlay" onclick="if(event.target===this)closeMap()">
+  <div class="map-modal">
+    <div class="map-modal-header">
+      <div>
+        <h3>Nos experts, sur le terrain</h3>
+        <p>Zoomez ou déplacez la carte pour explorer l'ensemble de l'écosystème.</p>
+      </div>
+      <button class="map-close" onclick="closeMap()">&#10005;</button>
+    </div>
+    <div id="expertsMapContainer"></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
+  <div class="modal" id="modalContent">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="mission-grid">
+    <div>
+      <span class="section-label">Notre raison d'être</span>
+      <h2 class="section-title">Un cycle <strong>vertueux</strong></h2>
+      <div class="wave-sep"></div>
+      <p class="section-sub">Accompagner chaque trajectoire humaine et professionnelle pour révéler, développer et élever les potentiels. Mettre en mouvement les transformations.</p>
+      <div class="mission-pillars">
+        <div class="pillar reveal">
+          <div class="pillar-mark"></div>
+          <div>
+            <h4>Pourquoi nous existons</h4>
+            <p>La NORIA est un mécanisme qui élève l'eau en mouvement permanent. Nous faisons de même avec les potentiels humains — un cycle continu, une élévation sans fin.</p>
+          </div>
+        </div>
+        <div class="pillar reveal">
+          <div class="pillar-mark"></div>
+          <div>
+            <h4>Comment nous travaillons</h4>
+            <p>En synergie. Chaque expert apporte sa discipline — ensemble nous créons un écosystème de progression cohérent, sur-mesure et durable.</p>
+          </div>
+        </div>
+        <div class="pillar reveal">
+          <div class="pillar-mark"></div>
+          <div>
+            <h4>Avec qui nous avançons</h4>
+            <p>Des femmes et des hommes qui ont soif de sens, d'exigence et d'une vie construite — pas subie. L'intelligence collective au service des trajectoires.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mission-visual">
+      <div class="mission-rings">
+        <div class="m-ring m-ring-a"><div class="ring-dot"></div></div>
+        <div class="m-ring m-ring-b"><div class="ring-dot"></div></div>
+        <div class="m-ring m-ring-c"><div class="ring-dot"></div></div>
+      </div>
+      <svg class="noria-wheel-mission" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg"
+           style="position:absolute;width:160px;height:160px;animation:cwSpin 20s linear infinite;">
+        <g style="transform-origin:44px 44px;">
+          <circle cx="44" cy="44" r="38" stroke="#234B5E" stroke-width="2.5" opacity="0.5"/>
+          <circle cx="44" cy="44" r="28" stroke="#3B7A78" stroke-width="1" stroke-dasharray="3 3" opacity="0.35"/>
+          <line x1="44" y1="6"  x2="44" y2="82" stroke="#234B5E" stroke-width="1.4" opacity="0.4"/>
+          <line x1="6"  y1="44" x2="82" y2="44" stroke="#234B5E" stroke-width="1.4" opacity="0.4"/>
+          <line x1="17" y1="17" x2="71" y2="71" stroke="#3B7A78" stroke-width="1" opacity="0.3"/>
+          <line x1="71" y1="17" x2="17" y2="71" stroke="#3B7A78" stroke-width="1" opacity="0.3"/>
+          <line x1="6"  y1="24" x2="82" y2="64" stroke="#234B5E" stroke-width="0.7" opacity="0.2"/>
+          <line x1="6"  y1="64" x2="82" y2="24" stroke="#234B5E" stroke-width="0.7" opacity="0.2"/>
+          <line x1="24" y1="6"  x2="64" y2="82" stroke="#234B5E" stroke-width="0.7" opacity="0.2"/>
+          <line x1="64" y1="6"  x2="24" y2="82" stroke="#234B5E" stroke-width="0.7" opacity="0.2"/>
+          <path d="M44 6  C41 10 41 14 44 14 C47 14 47 10 44 6Z"  fill="#B86F4C" opacity="0.7"/>
+          <path d="M82 44 C78 41 74 41 74 44 C74 47 78 47 82 44Z" fill="#B86F4C" opacity="0.7"/>
+          <path d="M44 82 C47 78 47 74 44 74 C41 74 41 78 44 82Z" fill="#B86F4C" opacity="0.7"/>
+          <path d="M6  44 C10 47 14 47 14 44 C14 41 10 41 6  44Z" fill="#B86F4C" opacity="0.7"/>
+          <circle cx="44" cy="44" r="5.5" fill="#B86F4C" opacity="0.8"/>
+          <circle cx="44" cy="44" r="2.5" fill="#234B5E" opacity="0.9"/>
+        </g>
+      </svg>
+      <div class="mission-center-dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALEURS -->
+<section id="valeurs">
+  <span class="section-label">Notre ADN</span>
+  <h2 class="section-title">Cinq valeurs, <strong>une vision</strong></h2>
+  <div class="wave-sep" style="background:linear-gradient(to right, var(--copper), var(--teal));"></div>
+  <p class="section-sub" style="color:var(--white);opacity:0.5;">L'intelligence collective au service des trajectoires humaines et professionnelles.</p>
+  <div class="valeurs-grid">
+    <div class="valeur-card reveal"><span class="valeur-num">01</span><h3>Comprendre</h3><p>Observer avec justesse avant d'agir. Cultiver le discernement et la profondeur de réflexion.</p></div>
+    <div class="valeur-card reveal"><span class="valeur-num">02</span><h3>Développer</h3><p>Faire émerger les potentiels. Encourager l'apprentissage continu et la progression.</p></div>
+    <div class="valeur-card reveal"><span class="valeur-num">03</span><h3>Agir</h3><p>Transformer les intentions en actions concrètes. Passer du savoir à l'impact.</p></div>
+    <div class="valeur-card reveal"><span class="valeur-num">04</span><h3>Transmettre</h3><p>Partager les connaissances et les expériences. Faire grandir les autres autant que soi-même.</p></div>
+    <div class="valeur-card reveal"><span class="valeur-num">05</span><h3 class="action-key">Élever</h3><p>Viser l'amélioration continue. Chercher l'excellence sans perdre de vue l'humain.</p></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <span class="section-label" style="justify-content:center;">Ce que nous proposons</span>
+    <h2 class="section-title">Des leviers de <strong>transformation réelle</strong></h2>
+    <div class="wave-sep"></div>
+    <p class="section-sub">Coaching individuel, stages, formations, ateliers collectifs — nous agissons là où ça compte vraiment.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal" onclick="openService('coaching')" style="cursor:pointer;">
+      <div class="service-img-wrap"><img class="service-img" src="coaching-individuel.png" alt="Coaching individuel"></div>
+      <div class="service-content"><h3>Coaching individuel</h3><p>Un accompagnement sur-mesure avec l'expert qui correspond à votre réalité. Travail en profondeur, progression mesurable.</p></div>
+    </div>
+    <div class="service-card reveal" onclick="openService('stages')" style="cursor:pointer;">
+      <div class="service-img-wrap"><img class="service-img" src="stages-ateliers.png" alt="Stages et Ateliers"></div>
+      <div class="service-content"><h3>Stages & Ateliers</h3><p>Des immersions intenses — nature, dépassement de soi, philosophie pratique. Apprendre par l'expérience qui transforme.</p></div>
+    </div>
+    <div class="service-card reveal" onclick="openService('formation')" style="cursor:pointer;">
+      <div class="service-img-wrap"><img class="service-img" src="formations-entreprises.png" alt="Formations entreprises"></div>
+      <div class="service-content"><h3>Formations entreprises</h3><p>Interventions pour développer talents, leadership et cohésion. Synergies à l'échelle d'une équipe.</p></div>
+    </div>
+    <div class="service-card service-card-empty reveal">
+      <div class="service-content">
+        <span class="empty-tag">Pas d'image encore</span>
+        <h3>Diagnostic Premium</h3>
+        <p>Entretien de cadrage, analyse approfondie des besoins, regard croisé d'experts, restitution et plan d'action sur-mesure.</p>
+      </div>
+    </div>
+    <div class="service-card reveal" onclick="openService('collectif')" style="cursor:pointer;">
+      <div class="service-img-wrap"><img class="service-img" src="accompagnement-collectif.png" alt="Accompagnement collectif"></div>
+      <div class="service-content"><h3>Accompagnement collectif</h3><p>Groupes de pairs, cercles de progression. L'intelligence collective au service de votre montée en compétence.</p></div>
+    </div>
+    <div class="service-card reveal" onclick="openService('digital')" style="cursor:pointer;">
+      <div class="service-img-wrap"><img class="service-img" src="parcours-digitaux.png" alt="Parcours digitaux"></div>
+      <div class="service-content"><h3>Parcours digitaux</h3><p>Séquences email, vidéos, questionnaires. Un tunnel pédagogique qui commence bien avant le premier entretien.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RÉVÉLEZ VOTRE POTENTIEL -->
+<section id="disc" style="background:var(--deep); color:var(--white); position:relative; overflow:hidden;">
+  <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto;text-align:center;">
+    <span class="section-label" style="color:var(--copper);justify-content:center;">Test &middot; Connaissance de soi</span>
+    <h2 class="section-title" style="color:var(--white);">R&eacute;v&eacute;lez <strong style="color:var(--copper);">votre potentiel</strong></h2>
+    <div class="wave-sep" style="margin:0 auto 32px;"></div>
+    <p class="section-sub" style="color:var(--white);opacity:0.5;margin:0 auto 48px;">12 questions. 5 minutes. Un profil personnalis&eacute; et l'expert NORIA HORIZON qui vous correspond vraiment.</p>
+    <a href="test-profil.html" class="btn-primary action-key" style="font-size:0.9rem;padding:18px 52px;letter-spacing:0.2em;display:inline-block;">
+      R&eacute;v&eacute;lez votre potentiel &rarr;
+    </a>
+    <p style="font-size:0.78rem;color:var(--white);opacity:0.35;margin-top:14px;">12 questions &middot; 5 minutes &middot; Profil personnalis&eacute;</p>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section id="tarifs">
+  <div class="tarifs-header">
+    <span class="section-label" style="justify-content:center;">Accès à l'écosystème</span>
+    <h2 class="section-title">Un pass, <strong>tous les experts</strong></h2>
+    <div class="wave-sep"></div>
+    <p class="section-sub">Choisissez la formule qui vous correspond. Accès complet à la plateforme, à l'ensemble des experts et des services — sans engagement au-delà de la période choisie.</p>
+  </div>
+  <div class="tarifs-grid">
+    <div class="tarif-card">
+      <span class="tarif-formule">Mensuel</span>
+      <div class="tarif-prix">49 €<span> HT/mois</span></div>
+      <p class="tarif-equiv">Sans engagement</p>
+      <a href="#contact" class="tarif-btn">Choisir cette formule</a>
+    </div>
+    <div class="tarif-card">
+      <span class="tarif-formule">Trimestriel</span>
+      <div class="tarif-prix">135 €<span> HT</span></div>
+      <p class="tarif-equiv">Soit 45 € HT/mois</p>
+      <a href="#contact" class="tarif-btn">Choisir cette formule</a>
+    </div>
+    <div class="tarif-card">
+      <span class="tarif-formule">Semestriel</span>
+      <div class="tarif-prix">255 €<span> HT</span></div>
+      <p class="tarif-equiv">Soit 42,50 € HT/mois</p>
+      <a href="#contact" class="tarif-btn">Choisir cette formule</a>
+    </div>
+    <div class="tarif-card best">
+      <span class="tarif-badge">Le plus avantageux</span>
+      <span class="tarif-formule">Annuel</span>
+      <div class="tarif-prix">468 €<span> HT</span></div>
+      <p class="tarif-equiv">Soit 39 € HT/mois</p>
+      <p class="tarif-economie">Économie de 120 € HT/an</p>
+      <a href="#contact" class="tarif-btn">Choisir cette formule</a>
+    </div>
+  </div>
+  <p class="tarifs-note">Paiement en ligne sécurisé — bientôt disponible. En attendant, contactez-nous pour activer votre accès.</p>
+</section>
+
+<!-- PARTENAIRES -->
+<section id="partenaires">
+  <span class="section-label">Synergies & Partenariats</span>
+  <h2 class="section-title">Ceux qui avancent <strong>avec nous</strong></h2>
+  <div class="wave-sep"></div>
+  <p class="section-sub">Entreprises, structures et organisations qui partagent nos valeurs et avec qui nous créons, formons et agissons.</p>
+
+  <div class="partners-ticker-wrap">
+    <!-- Ligne 1 → droite -->
+    <div class="partners-track partners-track-right">
+      <div class="partner-logo">Partenaire A</div>
+      <div class="partner-logo">Partenaire B</div>
+      <div class="partner-logo">Partenaire C</div>
+      <div class="partner-logo">Partenaire D</div>
+      <div class="partner-logo">Partenaire E</div>
+      <div class="partner-logo">Partenaire F</div>
+      <!-- Doublon pour boucle infinie -->
+      <div class="partner-logo">Partenaire A</div>
+      <div class="partner-logo">Partenaire B</div>
+      <div class="partner-logo">Partenaire C</div>
+      <div class="partner-logo">Partenaire D</div>
+      <div class="partner-logo">Partenaire E</div>
+      <div class="partner-logo">Partenaire F</div>
+    </div>
+    <!-- Ligne 2 → gauche -->
+    <div class="partners-track partners-track-left">
+      <div class="partner-logo">Partenaire G</div>
+      <div class="partner-logo">Partenaire H</div>
+      <div class="partner-logo">Partenaire I</div>
+      <div class="partner-logo">Partenaire J</div>
+      <div class="partner-logo">Partenaire K</div>
+      <div class="partner-logo">Partenaire L</div>
+      <!-- Doublon pour boucle infinie -->
+      <div class="partner-logo">Partenaire G</div>
+      <div class="partner-logo">Partenaire H</div>
+      <div class="partner-logo">Partenaire I</div>
+      <div class="partner-logo">Partenaire J</div>
+      <div class="partner-logo">Partenaire K</div>
+      <div class="partner-logo">Partenaire L</div>
+    </div>
+  </div>
+
+  <p class="partner-note">Rejoindre l'écosystème ? <a href="#contact" style="color:var(--copper);text-decoration:none;">Parlons-en →</a></p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <span class="section-label">Nous contacter</span>
+  <h2 class="section-title">Une question ? <strong>Un projet ?</strong></h2>
+  <div class="wave-sep" style="margin:0 auto 20px;background:linear-gradient(to right,var(--copper),var(--teal));"></div>
+  <p class="section-sub">Vous avez un projet ? Écrivez-nous, ou demandez directement un devis personnalisé.</p>
+  <div class="contact-levels" style="grid-template-columns:repeat(2,1fr);max-width:720px;align-items:end;">
+    <div class="contact-level">
+      <span class="contact-level-tag">Par mail</span>
+      <h3>Contactez-nous</h3>
+      <p>Une question, un échange. Écrivez-nous directement.</p>
+      <a href="mailto:noriahorizon.contact@gmail.com" class="btn-copper-full" style="display:block;text-align:center;text-decoration:none;">Nous écrire →</a>
+    </div>
+    <div class="contact-level highlight" style="display:flex;flex-direction:column;justify-content:flex-end;">
+      <span class="contact-level-tag">Vous êtes décidés</span>
+      <h3>Demander un devis</h3>
+      <p>Proposition personnalisée sous 48h.</p>
+      <button class="btn-copper-full action-key" onclick="openDevis(null)" style="margin-top:auto;">Demander un devis →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    NORIA HORIZON
+    <small><a href="mailto:noriahorizon.contact@gmail.com" style="color:var(--copper);text-decoration:none;">noriahorizon.contact@gmail.com</a></small>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#comment">Parcours</a></li>
+    <li><a href="#equipe">Experts</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#valeurs">Valeurs</a></li>
+    <li><a href="#tarifs">Tarifs</a></li>
+    <li><a href="#partenaires">Partenaires</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 — NORIA HORIZON · Tous droits réservés</span>
+</footer>
+
+<script src="script.js"></script>
+
+<!-- BOUTON REMONTER -->
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Remonter en haut">
+  <svg viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g style="transform-origin:44px 44px;">
+      <circle cx="44" cy="44" r="36" stroke="#234B5E" stroke-width="2.5"/>
+      <circle cx="44" cy="44" r="26" stroke="#3B7A78" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="44" y1="8" x2="44" y2="80" stroke="#234B5E" stroke-width="1.2" opacity="0.6"/>
+      <line x1="8" y1="44" x2="80" y2="44" stroke="#234B5E" stroke-width="1.2" opacity="0.6"/>
+      <line x1="18" y1="18" x2="70" y2="70" stroke="#3B7A78" stroke-width="0.9" opacity="0.45"/>
+      <line x1="70" y1="18" x2="18" y2="70" stroke="#3B7A78" stroke-width="0.9" opacity="0.45"/>
+      <path d="M44 8 C41 12 41 16 44 16 C47 16 47 12 44 8Z" fill="#B86F4C"/>
+      <path d="M80 44 C76 41 72 41 72 44 C72 47 76 47 80 44Z" fill="#B86F4C"/>
+      <path d="M44 80 C47 76 47 72 44 72 C41 72 41 76 44 80Z" fill="#B86F4C"/>
+      <path d="M8 44 C12 47 16 47 16 44 C16 41 12 41 8 44Z" fill="#B86F4C"/>
+      <circle cx="44" cy="44" r="5" fill="#B86F4C"/>
+      <circle cx="44" cy="44" r="2.5" fill="#234B5E"/>
+    </g>
+  </svg>
+</button>
+
+</body>
+</html>
