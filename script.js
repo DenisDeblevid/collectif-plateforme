@@ -215,7 +215,15 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
     if(title) title.classList.add('illumine');
     if(visual) visual.classList.add('in-view');
     points.forEach((pt,i)=>{
-      setTimeout(()=>pt.classList.add('illumine'), 400 + i*450);
+      const isLast = i===points.length-1;
+      const base = 400 + i*450;
+      setTimeout(()=>pt.classList.add('illumine'), base);
+      if(!isLast){
+        setTimeout(()=>pt.classList.remove('illumine'), base+650);
+        setTimeout(()=>pt.classList.add('illumine'), base+1100);
+      } else {
+        setTimeout(()=>pt.classList.add('illumine-final'), base+650);
+      }
     });
   };
   const o=new IntersectionObserver(entries=>{
