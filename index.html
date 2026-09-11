@@ -558,15 +558,20 @@
 
     <div class="prisme-grid">
       <div class="prisme-visual">
-        <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="prismFill" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#3B7A78" stop-opacity="0.28"/>
-              <stop offset="60%" stop-color="#F4EFE6" stop-opacity="0.15"/>
-              <stop offset="100%" stop-color="#B86F4C" stop-opacity="0.4"/>
+              <stop offset="0%" stop-color="#3B7A78" stop-opacity="0.3"/>
+              <stop offset="65%" stop-color="#F4EFE6" stop-opacity="0.12"/>
+              <stop offset="100%" stop-color="#B86F4C" stop-opacity="0.45"/>
             </linearGradient>
-            <filter id="glowPrisme" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="4.5" result="blur"/>
+            <radialGradient id="dotCore" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#FDFAF5"/>
+              <stop offset="45%" stop-color="#B86F4C"/>
+              <stop offset="100%" stop-color="#B86F4C" stop-opacity="0"/>
+            </radialGradient>
+            <filter id="glowPrisme" x="-80%" y="-80%" width="260%" height="260%">
+              <feGaussianBlur stdDeviation="5" result="blur"/>
               <feMerge>
                 <feMergeNode in="blur"/>
                 <feMergeNode in="SourceGraphic"/>
@@ -574,24 +579,23 @@
             </filter>
           </defs>
 
-          <!-- Rayons entrants, simultanés -->
-          <line class="prisme-ray" x1="8" y1="55"  x2="150" y2="72"  stroke="#B86F4C" stroke-width="2.5" opacity="0.7"/>
-          <line class="prisme-ray" x1="8" y1="90"  x2="150" y2="92"  stroke="#3B7A78" stroke-width="2.5" opacity="0.7"/>
-          <line class="prisme-ray" x1="8" y1="130" x2="150" y2="128" stroke="#234B5E" stroke-width="2.5" opacity="0.7"/>
-          <line class="prisme-ray" x1="8" y1="165" x2="150" y2="148" stroke="#B86F4C" stroke-width="2.5" opacity="0.55"/>
+          <!-- Rayons entrants : angles différents, même point de convergence (base du prisme) -->
+          <line class="prisme-ray" x1="12" y1="45"  x2="210" y2="150" stroke="#B86F4C" stroke-width="2.5" opacity="0.65"/>
+          <line class="prisme-ray" x1="12" y1="105" x2="210" y2="150" stroke="#3B7A78" stroke-width="2.5" opacity="0.65"/>
+          <line class="prisme-ray" x1="55" y1="150" x2="210" y2="150" stroke="#F4EFE6" stroke-width="2"   opacity="0.5"/>
+          <line class="prisme-ray" x1="12" y1="195" x2="210" y2="150" stroke="#234B5E" stroke-width="2.5" opacity="0.65"/>
+          <line class="prisme-ray" x1="12" y1="255" x2="210" y2="150" stroke="#B86F4C" stroke-width="2.5" opacity="0.55"/>
 
-          <!-- Prisme en 3 faces (effet volume) -->
-          <polygon points="150,170 172,180 220,110" fill="#1a2e38" opacity="0.35"/>
-          <polygon points="150,50 172,40 220,110" fill="#F4EFE6" opacity="0.22"/>
-          <polygon points="150,50 150,170 220,110" fill="url(#prismFill)" stroke="#F4EFE6" stroke-width="2" opacity="0.95"/>
-          <line x1="150" y1="50" x2="150" y2="170" stroke="#F4EFE6" stroke-width="1.5" opacity="0.5"/>
-          <line x1="150" y1="50" x2="172" y2="40" stroke="#F4EFE6" stroke-width="1.2" opacity="0.4"/>
-          <line x1="150" y1="170" x2="172" y2="180" stroke="#F4EFE6" stroke-width="1.2" opacity="0.4"/>
+          <!-- Prisme, silhouette simple vue de côté -->
+          <polygon points="210,40 210,260 370,150" fill="url(#prismFill)" stroke="#F4EFE6" stroke-width="2.5" opacity="0.95"/>
 
-          <!-- Faisceau de sortie, lumineux -->
-          <line class="prisme-beam-core" x1="220" y1="110" x2="345" y2="110" stroke="#B86F4C" stroke-width="4" filter="url(#glowPrisme)"/>
-          <line x1="220" y1="110" x2="345" y2="110" stroke="#F4EFE6" stroke-width="1.2" opacity="0.8"/>
-          <circle class="prisme-beam-dot" cx="345" cy="110" r="5" fill="#B86F4C" filter="url(#glowPrisme)"/>
+          <!-- Point de convergence à l'entrée -->
+          <circle cx="210" cy="150" r="3" fill="#F4EFE6" opacity="0.8"/>
+
+          <!-- Faisceau de sortie -->
+          <line class="prisme-beam-core" x1="370" y1="150" x2="438" y2="150" stroke="#B86F4C" stroke-width="2" opacity="0.5"/>
+          <circle class="prisme-beam-travel" cx="378" cy="150" r="6" fill="url(#dotCore)" filter="url(#glowPrisme)"/>
+          <circle class="prisme-beam-dot-big" cx="438" cy="150" r="8" fill="#B86F4C" filter="url(#glowPrisme)"/>
         </svg>
       </div>
 
