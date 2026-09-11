@@ -1303,6 +1303,21 @@ button.action-key.lit, a.action-key.lit {
 .prisme-visual { display:flex; align-items:center; justify-content:center; }
 .prisme-visual svg { width:100%; max-width:320px; height:auto; }
 
+.prisme-ray {
+  stroke-dasharray: 9 7;
+  animation: prismeRayFlow 1.4s linear infinite;
+}
+@keyframes prismeRayFlow {
+  to { stroke-dashoffset: -16; }
+}
+.prisme-beam-core, .prisme-beam-dot {
+  animation: prismeBeamPulse 2.2s ease-in-out infinite;
+}
+@keyframes prismeBeamPulse {
+  0%, 100% { opacity:0.7; }
+  50% { opacity:1; }
+}
+
 .prisme-intro { font-size:0.92rem; line-height:1.85; opacity:0.7; margin-bottom:16px; }
 
 .prisme-points { margin:28px 0 32px; display:flex; flex-direction:column; gap:14px; }
