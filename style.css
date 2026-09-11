@@ -1297,21 +1297,25 @@ button.action-key.lit, a.action-key.lit {
 .prisme-title strong { font-weight:600; color:var(--copper); }
 
 .prisme-grid {
-  display:grid; grid-template-columns:1.15fr 1.25fr;
-  gap:48px; align-items:center; text-align:left; margin-top:40px;
+  display:grid; grid-template-columns:1.3fr 1.1fr;
+  gap:40px; align-items:center; text-align:left; margin-top:40px;
 }
-.prisme-visual { display:flex; align-items:center; justify-content:center; }
+.prisme-visual { display:flex; align-items:center; justify-content:flex-start; }
 .prisme-visual svg { width:100%; max-width:460px; height:auto; }
 
 .prisme-ray {
   stroke-dasharray: 9 7;
   animation: prismeRayFlow 1.4s linear infinite;
+  animation-play-state: paused;
 }
 @keyframes prismeRayFlow {
   to { stroke-dashoffset: -16; }
 }
 
-.prisme-beam-core { animation: prismeTrackPulse 3.5s ease-in-out infinite; }
+.prisme-beam-core {
+  animation: prismeTrackPulse 3.5s ease-in-out infinite;
+  animation-play-state: paused;
+}
 @keyframes prismeTrackPulse {
   0%, 100% { opacity:0.35; }
   50% { opacity:0.6; }
@@ -1321,6 +1325,7 @@ button.action-key.lit, a.action-key.lit {
   transform-box: fill-box;
   transform-origin: center;
   animation: prismeTravel 3.5s ease-in infinite;
+  animation-play-state: paused;
 }
 @keyframes prismeTravel {
   0%   { transform:translateX(0);    opacity:0; }
@@ -1334,6 +1339,7 @@ button.action-key.lit, a.action-key.lit {
   transform-box: fill-box;
   transform-origin: center;
   animation: prismeDotPulse 3.5s ease-in-out infinite;
+  animation-play-state: paused;
 }
 @keyframes prismeDotPulse {
   0%, 58%  { transform:scale(1);    filter:brightness(1); }
@@ -1342,27 +1348,62 @@ button.action-key.lit, a.action-key.lit {
   100%     { transform:scale(1);    filter:brightness(1); }
 }
 
+/* Démarrage des animations au scroll seulement */
+.prisme-visual.in-view .prisme-ray,
+.prisme-visual.in-view .prisme-beam-core,
+.prisme-visual.in-view .prisme-beam-travel,
+.prisme-visual.in-view .prisme-beam-dot-big {
+  animation-play-state: running;
+}
+
+/* Titre qui s'illumine à l'arrivée */
+.prisme-title { transition:text-shadow 0.6s ease, opacity 0.6s ease; }
+.prisme-title.illumine strong {
+  animation: prismeTitleGlow 1.6s ease-out;
+}
+@keyframes prismeTitleGlow {
+  0%   { text-shadow:0 0 0 rgba(184,111,76,0); }
+  40%  { text-shadow:0 0 22px rgba(184,111,76,0.75); }
+  100% { text-shadow:0 0 0 rgba(184,111,76,0); }
+}
+
 .prisme-intro { font-size:0.92rem; line-height:1.85; opacity:0.7; margin-bottom:16px; }
 
 .prisme-points { margin:28px 0 32px; display:flex; flex-direction:column; gap:14px; }
 .prisme-point {
   display:flex; align-items:baseline; gap:14px;
-  font-size:0.88rem; opacity:0.8; line-height:1.6;
+  font-size:0.88rem; opacity:0.4; line-height:1.6;
   border-bottom:1px solid rgba(253,250,245,0.08); padding-bottom:12px;
+  transition:opacity 0.5s ease, border-color 0.5s ease, transform 0.5s ease;
 }
 .prisme-point span {
-  font-family:var(--font-display); font-size:1rem; color:var(--copper);
-  opacity:0.8; flex-shrink:0; min-width:24px;
+  font-family:var(--font-display); font-size:1rem; color:var(--teal);
+  opacity:0.7; flex-shrink:0; min-width:24px;
+  transition:color 0.5s ease, opacity 0.5s ease;
 }
+.prisme-point.illumine {
+  opacity:1; border-color:rgba(184,111,76,0.35); transform:translateX(4px);
+}
+.prisme-point.illumine span { color:var(--copper); opacity:1; }
 
 .prisme-pricing { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
 .prisme-price-card {
   background:rgba(255,255,255,0.04); border:1px solid rgba(184,111,76,0.2);
-  padding:24px 20px; text-align:center;
+  padding:24px 20px; text-align:center; position:relative;
+  transition:transform 0.3s, box-shadow 0.3s;
 }
+.prisme-price-card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,0.25); }
 .prisme-price-label { font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--copper); opacity:0.85; display:block; margin-bottom:10px; }
 .prisme-price { font-family:var(--font-display); font-size:1.9rem; color:var(--white); margin-bottom:16px; font-weight:300; }
 .prisme-price span { font-size:0.9rem; opacity:0.5; }
+
+.prisme-price-card.best {
+  background:var(--copper); border-color:var(--copper);
+}
+.prisme-price-card.best .prisme-price-label { color:var(--ink); opacity:0.85; }
+.prisme-price-card.best .prisme-price { color:var(--white); }
+.prisme-price-card.best .tarif-btn { border-color:rgba(255,255,255,0.4); color:var(--white); }
+.prisme-price-card.best .tarif-btn:hover { background:var(--white); color:var(--copper); border-color:var(--white); }
 
 @media(max-width:900px){
   .prisme-grid { grid-template-columns:1fr; text-align:center; }
