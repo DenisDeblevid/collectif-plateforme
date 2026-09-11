@@ -203,6 +203,27 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
   o.observe(grid);
 })();
 
+// Section Noria Prisme — animation au scroll
+(function(){
+  const section = document.getElementById('prisme'); if(!section) return;
+  const title = document.getElementById('prismeTitle');
+  const visual = document.getElementById('prismeVisual');
+  const points = document.querySelectorAll('#prismePoints .prisme-point');
+  let done=false;
+  const run=()=>{
+    if(done) return; done=true;
+    if(title) title.classList.add('illumine');
+    if(visual) visual.classList.add('in-view');
+    points.forEach((pt,i)=>{
+      setTimeout(()=>pt.classList.add('illumine'), 400 + i*450);
+    });
+  };
+  const o=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{ if(en.isIntersecting){ run(); o.disconnect(); } });
+  },{threshold:0.25});
+  o.observe(section);
+})();
+
 var svcData = {
   coaching:  {title:"Coaching individuel",   img:"coaching-individuel.png", desc:"Un accompagnement sur-mesure, en profondeur, avec l'expert qui correspond à votre réalité. Blocages, croyances limitantes, objectifs de vie et de carrière.", details:["Séances en visio ou présentiel","Suivi personnalisé","Outils et supports fournis","Fréquence adaptée à votre rythme"], prix:"À partir de 80€ / séance"},
   stages:    {title:"Stages & Ateliers",      img:"stages-ateliers.png", desc:"Des immersions intenses qui transforment. Nature, dépassement de soi, philosophie pratique — pour ancrer des changements profonds.", details:["Formats d'1 à 3 jours","Groupes de 6 à 12 personnes","Encadrement par plusieurs experts","Suivi post-stage inclus"], prix:"À partir de 350€ / participant"},
