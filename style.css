@@ -1297,11 +1297,11 @@ button.action-key.lit, a.action-key.lit {
 .prisme-title strong { font-weight:600; color:var(--copper); }
 
 .prisme-grid {
-  display:grid; grid-template-columns:0.9fr 1.4fr;
-  gap:56px; align-items:center; text-align:left; margin-top:40px;
+  display:grid; grid-template-columns:1.15fr 1.25fr;
+  gap:48px; align-items:center; text-align:left; margin-top:40px;
 }
 .prisme-visual { display:flex; align-items:center; justify-content:center; }
-.prisme-visual svg { width:100%; max-width:320px; height:auto; }
+.prisme-visual svg { width:100%; max-width:460px; height:auto; }
 
 .prisme-ray {
   stroke-dasharray: 9 7;
@@ -1310,12 +1310,36 @@ button.action-key.lit, a.action-key.lit {
 @keyframes prismeRayFlow {
   to { stroke-dashoffset: -16; }
 }
-.prisme-beam-core, .prisme-beam-dot {
-  animation: prismeBeamPulse 2.2s ease-in-out infinite;
+
+.prisme-beam-core { animation: prismeTrackPulse 3.5s ease-in-out infinite; }
+@keyframes prismeTrackPulse {
+  0%, 100% { opacity:0.35; }
+  50% { opacity:0.6; }
 }
-@keyframes prismeBeamPulse {
-  0%, 100% { opacity:0.7; }
-  50% { opacity:1; }
+
+.prisme-beam-travel {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: prismeTravel 3.5s ease-in infinite;
+}
+@keyframes prismeTravel {
+  0%   { transform:translateX(0);    opacity:0; }
+  8%   { opacity:1; }
+  62%  { transform:translateX(58px); opacity:1; }
+  72%  { transform:translateX(62px); opacity:0; }
+  100% { transform:translateX(62px); opacity:0; }
+}
+
+.prisme-beam-dot-big {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: prismeDotPulse 3.5s ease-in-out infinite;
+}
+@keyframes prismeDotPulse {
+  0%, 58%  { transform:scale(1);    filter:brightness(1); }
+  72%      { transform:scale(1.8);  filter:brightness(2); }
+  86%      { transform:scale(1.2);  filter:brightness(1.3); }
+  100%     { transform:scale(1);    filter:brightness(1); }
 }
 
 .prisme-intro { font-size:0.92rem; line-height:1.85; opacity:0.7; margin-bottom:16px; }
