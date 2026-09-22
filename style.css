@@ -23,16 +23,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ─── PHOTO BG FIXE ─── */
-body::before {
-  content:'';
-  position:fixed; inset:0; z-index:0;
-  background: url('images/Noria1.jpg') center/cover no-repeat fixed;
-  opacity: 0.06;
-  pointer-events:none;
-  filter: grayscale(40%) sepia(10%);
-}
-
 /* ─── VAGUES SVG DÉCORATIVES ─── */
 .wave-divider { width:100%; overflow:hidden; line-height:0; }
 .wave-divider svg { display:block; }
