@@ -170,9 +170,9 @@ function closeModalOnBg(e){ if(e.target===document.getElementById('modalOverlay'
 
 function handleFormSubmit(e){
   const btn=e.target;
-  btn.textContent='✓ Vérifiez votre mail — les vidéos arrivent';
+  btn.textContent='✓ Demande envoyée — nous vous recontactons vite';
   btn.style.background='var(--teal)';
-  setTimeout(()=>{ btn.textContent='Recevoir les 3 vidéos →'; btn.style.background='var(--copper)'; },3500);
+  setTimeout(()=>{ btn.textContent='Réservez gratuitement votre Instant Horizon →'; btn.style.background='var(--copper)'; },3500);
 }
 
 // Scroll reveal
