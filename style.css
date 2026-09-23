@@ -1305,14 +1305,17 @@ button.action-key.lit, a.action-key.lit {
 .prisme-title strong { font-weight:600; color:var(--copper); }
 
 .prisme-grid {
-  display:grid; grid-template-columns:1.3fr 1.1fr;
+  display:grid; grid-template-columns:1.5fr 1fr;
   gap:40px; align-items:center; text-align:left; margin-top:40px;
 }
-.prisme-visual { display:flex; align-items:center; justify-content:center; }
+.prisme-visual {
+  display:flex; align-items:center; justify-content:center;
+  padding:22px; background:var(--ink); border-radius:22px;
+}
 .prisme-visual svg { width:100%; max-width:460px; height:auto; }
 .prisme-image {
   width:100%;
-  max-width:520px;
+  max-width:600px;
   height:auto;
   display:block;
   margin:0 auto;
