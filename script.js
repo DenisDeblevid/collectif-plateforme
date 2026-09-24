@@ -320,3 +320,18 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();close
   window.addEventListener('load', onScroll);
   onScroll();
 })();
+
+// ─── BANDEAU RGPD ───
+(function(){
+  var banner = document.getElementById('cookieBanner');
+  if(!banner) return;
+  var choice = null;
+  try { choice = localStorage.getItem('noria_cookie_consent'); } catch(e){}
+  if(choice){ banner.classList.add('hidden'); }
+})();
+
+function handleCookieChoice(accepted){
+  var banner = document.getElementById('cookieBanner');
+  try { localStorage.setItem('noria_cookie_consent', accepted ? 'accepted' : 'refused'); } catch(e){}
+  if(banner) banner.classList.add('hidden');
+}
