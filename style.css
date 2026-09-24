@@ -1581,3 +1581,41 @@ button.action-key.lit, a.action-key.lit {
 .disc-expert-rec p { font-size:0.82rem; color:var(--white); opacity:0.7; line-height:1.6; }
 .disc-expert-rec strong { color:var(--copper); font-weight:500; }
 @media(max-width:900px){ #disc-result > div { grid-template-columns:1fr; gap:40px; } .disc-options { grid-template-columns:1fr; } }
+
+/* ─── BANDEAU RGPD ─── */
+.cookie-banner {
+  position:fixed; left:0; right:0; bottom:0; z-index:400;
+  background:var(--ink); color:var(--white);
+  padding:20px 28px;
+  display:flex; align-items:center; justify-content:space-between; gap:28px;
+  flex-wrap:wrap;
+  border-top:1px solid rgba(184,111,76,0.3);
+  box-shadow:0 -8px 30px rgba(0,0,0,0.35);
+  transform:translateY(0);
+  transition:transform 0.4s ease, opacity 0.4s ease;
+}
+.cookie-banner.hidden {
+  transform:translateY(100%);
+  opacity:0;
+  pointer-events:none;
+}
+.cookie-banner p {
+  font-size:0.82rem; line-height:1.6; opacity:0.75;
+  max-width:720px; margin:0;
+}
+.cookie-actions { display:flex; gap:12px; flex-shrink:0; }
+.cookie-btn {
+  font-family:var(--font-body); font-size:0.74rem; letter-spacing:0.1em; text-transform:uppercase;
+  padding:11px 24px; cursor:pointer; border:1px solid rgba(253,250,245,0.3);
+  background:transparent; color:var(--white); transition:all 0.25s;
+  white-space:nowrap;
+}
+.cookie-btn.cookie-accept { background:var(--copper); border-color:var(--copper); }
+.cookie-btn.cookie-accept:hover { background:var(--white); color:var(--copper); border-color:var(--white); }
+.cookie-btn.cookie-refuse:hover { border-color:var(--white); }
+
+@media(max-width:900px){
+  .cookie-banner { padding:18px 20px; flex-direction:column; align-items:flex-start; }
+  .cookie-actions { width:100%; }
+  .cookie-btn { flex:1; text-align:center; }
+}
