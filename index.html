@@ -341,34 +341,32 @@
       <div class="devis-field"><label>Email</label><input type="email" placeholder="votre@email.com"></div>
       <div class="devis-field"><label>T&eacute;l&eacute;phone</label><input type="tel" placeholder="06 00 00 00 00"></div>
     </div>
-    <div class="devis-field">
-      <label>Service concern&eacute;</label>
-      <select id="devis-service">
-        <option value="" disabled selected>Choisissez un service</option>
-        <option>Coaching individuel</option>
-        <option>Stages &amp; Ateliers</option>
-        <option>Formations entreprises</option>
-        <option>Ressources & Outils</option>
-        <option>Accompagnement collectif</option>
-        <option>Parcours digitaux</option>
-        <option>Autre / Plusieurs services</option>
-      </select>
+    <div class="devis-row">
+      <div class="devis-field"><label>Nom de l'entreprise</label><input type="text" placeholder="Nom de votre entreprise"></div>
+      <div class="devis-field"><label>Intitul&eacute; du poste</label><input type="text" placeholder="Votre poste dans l'entreprise"></div>
     </div>
     <div class="devis-field">
-      <label>Budget indicatif</label>
-      <select>
-        <option value="" disabled selected>Fourchette budg&eacute;taire</option>
-        <option>Moins de 500&euro;</option>
-        <option>500&euro; &ndash; 1 500&euro;</option>
-        <option>1 500&euro; &ndash; 5 000&euro;</option>
-        <option>5 000&euro; &ndash; 10 000&euro;</option>
-        <option>Plus de 10 000&euro;</option>
-        <option>&Agrave; d&eacute;finir ensemble</option>
+      <label>Ce qui vous touche le plus en ce moment</label>
+      <select id="devis-service">
+        <option value="" disabled selected>Choisis une direction</option>
+        <option>Ma vie professionnelle &middot; sens au travail</option>
+        <option>Mes relations &middot; communication</option>
+        <option>Ma confiance &middot; identit&eacute;</option>
+        <option>Mon &eacute;nergie &middot; sant&eacute; &middot; corps</option>
+        <option>Mes finances &middot; projets de vie</option>
+        <option>Ma spiritualit&eacute; &middot; profondeur int&eacute;rieure</option>
+        <option>Ressources humaines &middot; RH</option>
+        <option>Pr&eacute;vention des risques &middot; hygi&egrave;ne et s&eacute;curit&eacute; au travail</option>
+        <option>Formation &middot; mont&eacute;e en comp&eacute;tences</option>
+        <option>Recrutement &middot; recherche de talents</option>
+        <option>D&eacute;veloppement commercial &middot; strat&eacute;gie</option>
+        <option>Management &middot; leadership d'&eacute;quipe</option>
+        <option>Reconversion &middot; transition professionnelle</option>
       </select>
     </div>
     <div class="devis-field">
       <label>Votre message</label>
-      <textarea rows="4" placeholder="D&eacute;crivez votre besoin, votre contexte..."></textarea>
+      <textarea rows="4" placeholder="D&eacute;crivez en quelques lignes le probl&egrave;me sur lequel vous souhaitez qu'on travaille"></textarea>
     </div>
     <button class="btn-copper-full" onclick="submitDevis()">Envoyer ma demande &rarr;</button>
     <p class="devis-confirm" id="devis-confirm">&#10003; Demande envoy&eacute;e &mdash; r&eacute;ponse sous 48h !</p>
