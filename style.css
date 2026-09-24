@@ -364,15 +364,15 @@ section { padding:100px 60px; position:relative; z-index:1; }
 }
 
 .tunnel-top {
-  max-width:1100px; margin:0 auto 48px;
+  max-width:1250px; margin:0 auto 48px;
   position:relative; z-index:2;
 }
 
 .tunnel-grid {
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:80px; align-items:center;
-  max-width:1100px; margin:0 auto;
+  grid-template-columns:1.3fr 1fr;
+  gap:70px; align-items:center;
+  max-width:1250px; margin:0 auto;
   position:relative; z-index:2;
 }
 
@@ -382,7 +382,7 @@ section { padding:100px 60px; position:relative; z-index:1; }
 }
 .tunnel-image {
   width:100%;
-  max-width:420px;
+  max-width:600px;
   height:auto;
   display:block;
   margin:0 auto;
