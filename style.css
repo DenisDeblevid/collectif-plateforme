@@ -821,7 +821,7 @@ section { padding:100px 60px; position:relative; z-index:1; }
 /* ─── CONTACT ─── */
 #contact {
   background:var(--ink); color:var(--white);
-  text-align:center; position:relative; overflow:hidden;
+  text-align:left; position:relative; overflow:hidden;
 }
 #contact::before {
   content:'';
@@ -829,8 +829,8 @@ section { padding:100px 60px; position:relative; z-index:1; }
   background:radial-gradient(ellipse 80% 60% at 50% 100%, rgba(59,122,120,0.08) 0%, transparent 60%);
 }
 #contact .section-title { color:var(--white); }
-#contact .section-sub { color:var(--white); opacity:0.4; margin:0 auto 48px; }
-#contact .section-label { color:var(--copper); justify-content:center; }
+#contact .section-sub { color:var(--white); opacity:0.4; margin-bottom:48px; }
+#contact .section-label { color:var(--copper); }
 #contact .section-label::before { background:var(--copper); }
 
 .contact-inner {
