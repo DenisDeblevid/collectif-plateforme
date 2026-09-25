@@ -70,18 +70,19 @@ const experts = {
     ],
     tags:['Management international','Développement commercial','Transitions professionnelles','Conseil stratégique','Négociation','Conduite du changement','Management multiculturel']
   },
-  caroline: {
-    photo:'Caroline-Seure.jpg',
-    name:'Caroline Seure',
-    role:'Formatrice & ingénieure pédagogique',
+  josselin: {
+    photo:'',
+    name:'Josselin Dionisi',
+    role:'Développeur Web · Builder IA',
     location:'France',
-    phone:'+33 6 89 90 36 08',
-    email:'caroline.seure@gmail.com',
+    phone:'',
+    email:'contact@boreales-creations.fr',
     bio:[
-      "Formatrice et ingénieure pédagogique, Caroline aide les personnes et les entreprises à mieux utiliser ce qu'elles ont déjà entre les mains — une compétence, une expertise, un savoir-faire qui dort souvent dans la tête de quelqu'un. Elle intervient autour de la communication, de l'intelligence émotionnelle, des compétences psychosociales, des relations professionnelles, de la relation client et de la coopération.",
-      "Elle développe aussi un axe autour de la transmission des savoir-faire en entreprise par le digital : capitaliser une expertise, transformer une réunion en ressource pédagogique, transmettre autrement, sans perdre la dimension humaine. Sa conviction : une entreprise possède souvent plus de ressources qu'elle ne le pense ; son rôle est de les révéler, les structurer et les rendre transmissibles."
+      "Professionnel de la tech et de l'IA depuis de nombreuses années, Josselin a accompagné des entreprises de toutes tailles — start-up et multinationales — dans leurs processus numériques. Aujourd'hui il se diversifie en gérant un collectif de développeurs, en ayant créé un logiciel en ligne pour faciliter la présence sur les réseaux sociaux, et en cherchant avant tout à étoffer son réseau pour de nouvelles perspectives.",
+      "« J'aime faciliter la vie des gens et la technologie est ma meilleure alliée pour ça. »",
+      "Une conviction qui lui tient particulièrement à cœur : il ne faut pas écouter tout ce que l'on nous dit. Le marketing, les idées reçues… ont parfois tendance à nous faire passer à côté de choses intéressantes."
     ],
-    tags:['Compétences psychosociales','Coopération','Ingénierie pédagogique','Transmission digitale','Haute sensibilité']
+    tags:['Web','IA','Agentique','Formation']
   }
 };
 
@@ -93,7 +94,7 @@ var expertsGeo = {
   laurence: { lat: 43.6047, lon: 1.4442,  zoom: 9,  ville: "Toulouse" },
   melanie:  { lat: 46.8494, lon: -1.8794, zoom: 9,  ville: "Challans (85)" },
   gilles:   { lat: 46.6034, lon: 1.8883,  zoom: 5,  ville: "France & International" },
-  caroline: { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" }
+  josselin: { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" }
 };
 
 var expertsMap = null;
@@ -167,8 +168,8 @@ function openModal(id){
     '<span class="role-badge">'+e.role+'</span><br>' +
     '<small style="opacity:.4;font-size:.78rem;display:block;margin-bottom:10px;">📍 '+e.location+'</small>' +
     '<div class="contact-links">' +
-    '<a href="tel:'+e.phone+'">📞 '+e.phone+'</a>' +
-    '<a href="mailto:'+e.email+'">✉ '+e.email+'</a>' +
+    (e.phone ? '<a href="tel:'+e.phone+'">📞 '+e.phone+'</a>' : '') +
+    (e.email ? '<a href="mailto:'+e.email+'">✉ '+e.email+'</a>' : '') +
     '</div></div></div>' +
     bioHTML +
     '<div class="modal-tags">'+tagsHTML+'</div>';
@@ -184,9 +185,9 @@ function closeModalOnBg(e){ if(e.target===document.getElementById('modalOverlay'
 
 function handleFormSubmit(e){
   const btn=e.target;
-  btn.textContent='✓ Demande envoyée — nous vous recontactons vite';
+  btn.textContent='✓ Vérifiez votre mail — les vidéos arrivent';
   btn.style.background='var(--teal)';
-  setTimeout(()=>{ btn.textContent='Réservez gratuitement votre Instant Horizon →'; btn.style.background='var(--copper)'; },3500);
+  setTimeout(()=>{ btn.textContent='Recevoir les 3 vidéos →'; btn.style.background='var(--copper)'; },3500);
 }
 
 // Scroll reveal
@@ -320,18 +321,3 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();close
   window.addEventListener('load', onScroll);
   onScroll();
 })();
-
-// ─── BANDEAU RGPD ───
-(function(){
-  var banner = document.getElementById('cookieBanner');
-  if(!banner) return;
-  var choice = null;
-  try { choice = localStorage.getItem('noria_cookie_consent'); } catch(e){}
-  if(choice){ banner.classList.add('hidden'); }
-})();
-
-function handleCookieChoice(accepted){
-  var banner = document.getElementById('cookieBanner');
-  try { localStorage.setItem('noria_cookie_consent', accepted ? 'accepted' : 'refused'); } catch(e){}
-  if(banner) banner.classList.add('hidden');
-}
