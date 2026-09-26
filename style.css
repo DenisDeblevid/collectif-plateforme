@@ -1690,3 +1690,91 @@ button.action-key.lit, a.action-key.lit {
   /* Petits écrans : le trait décoratif sous les titres centrés ne fait plus déborder la page */
   html, body { overflow-x:clip; }
 }
+
+/* ═══════════════════════════════════════
+   ESPACE ABONNÉS — experts + ressources floutés (26/09/2026)
+   ═══════════════════════════════════════ */
+.locked-area { position:relative; }
+.lock-panel { display:none; }
+
+body:not(.abonne) .locked-area .team-grid {
+  filter:blur(9px) saturate(0.8);
+  pointer-events:none; user-select:none;
+}
+body:not(.abonne) .locked-area .lock-panel {
+  display:block;
+  position:absolute; z-index:5; top:70px; left:50%; transform:translateX(-50%);
+  width:min(560px, calc(100% - 32px));
+}
+.lock-panel {
+  background:var(--white); border:1px solid rgba(184,111,76,0.35);
+  box-shadow:0 24px 70px rgba(35,75,94,0.22);
+  padding:40px 38px 32px; text-align:center;
+}
+.lock-kicker {
+  display:block; font-size:0.66rem; letter-spacing:0.28em; text-transform:uppercase;
+  color:var(--copper); margin-bottom:14px;
+}
+.lock-panel h3 {
+  font-family:var(--font-display); font-size:1.75rem; font-weight:400; line-height:1.25;
+  color:var(--deep); margin-bottom:12px;
+}
+.lock-panel p { font-size:0.9rem; opacity:0.7; line-height:1.7; margin-bottom:22px; }
+.lock-form { display:flex; gap:10px; }
+.lock-form input {
+  flex:1; min-width:0; padding:13px 14px;
+  border:1px solid rgba(35,75,94,0.25); background:var(--mist);
+  font-family:var(--font-body); font-size:0.92rem; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--ink); outline:none;
+}
+.lock-form input:focus { border-color:var(--copper); }
+.lock-form button {
+  background:var(--copper); color:var(--white); border:none; cursor:pointer;
+  padding:13px 24px; font-family:var(--font-body); font-size:0.74rem;
+  letter-spacing:0.18em; text-transform:uppercase; transition:background 0.3s;
+}
+.lock-form button:hover { background:var(--deep); }
+.lock-panel .lock-error { color:#a4452a; opacity:1; font-size:0.8rem; margin:12px 0 0; }
+.lock-link {
+  display:inline-block; margin-top:18px; font-size:0.78rem;
+  color:var(--teal); text-decoration:none; border-bottom:1px solid rgba(59,122,120,0.35);
+}
+.lock-link:hover { color:var(--copper); border-color:var(--copper); }
+
+/* Carte Ressources & Outils */
+.lock-badge { display:none; }
+body:not(.abonne) .locked-card .service-img-wrap,
+body:not(.abonne) .locked-card .service-content { filter:blur(6px); }
+body:not(.abonne) .locked-card .lock-badge {
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+  position:absolute; inset:0; z-index:3; cursor:pointer;
+  background:rgba(244,239,230,0.55); text-align:center; padding:20px;
+}
+.lock-badge span {
+  font-family:var(--font-display); font-size:1.25rem; color:var(--deep);
+}
+.lock-badge em {
+  font-style:normal; font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--white); background:var(--copper); padding:9px 16px;
+}
+
+/* Fenêtre du code d'accès */
+.access-overlay {
+  display:none; position:fixed; inset:0; z-index:270;
+  background:rgba(26,46,56,0.88); backdrop-filter:blur(10px);
+  align-items:center; justify-content:center; padding:24px;
+}
+.access-overlay.open { display:flex; }
+.access-overlay .lock-panel { display:block; position:relative; width:min(560px,100%); animation:modalIn 0.35s ease; }
+.access-close {
+  position:absolute; top:14px; right:18px; background:none; border:none; cursor:pointer;
+  font-size:1.1rem; color:var(--ink); opacity:0.35;
+}
+.access-close:hover { opacity:1; }
+
+@media(max-width:600px){
+  .lock-panel { padding:30px 22px 24px; }
+  .lock-panel h3 { font-size:1.45rem; }
+  .lock-form { flex-direction:column; }
+  body:not(.abonne) .locked-area .lock-panel { top:24px; }
+}
