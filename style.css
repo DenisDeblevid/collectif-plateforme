@@ -1619,3 +1619,63 @@ button.action-key.lit, a.action-key.lit {
   .cookie-actions { width:100%; }
   .cookie-btn { flex:1; text-align:center; }
 }
+
+/* ═══════════════════════════════════════
+   AJUSTEMENTS MOBILE (26/09/2026)
+   ═══════════════════════════════════════ */
+
+/* Boutons "Nous contacter" lisibles sur fond sombre (Prisme + Sommet) */
+#prisme .prisme-price-card:not(.best) .tarif-btn,
+#prisme-sommet .tarif-btn {
+  color:var(--mist); border-color:rgba(244,239,230,0.35);
+}
+#prisme .prisme-price-card:not(.best) .tarif-btn:hover,
+#prisme-sommet .tarif-btn:hover {
+  background:var(--copper); border-color:var(--copper); color:var(--white);
+}
+
+/* Bouton menu (caché sur ordinateur) */
+.nav-toggle { display:none; }
+
+@media(max-width:900px){
+  /* Le grand cercle de la section Mission ne dépasse plus de l'écran */
+  .mission-visual { overflow:hidden; }
+
+  /* Bouton ☰ */
+  .nav-toggle {
+    display:flex; flex-direction:column; justify-content:center; gap:5px;
+    width:44px; height:44px; padding:10px;
+    background:none; border:none; cursor:pointer;
+  }
+  .nav-toggle span {
+    display:block; width:24px; height:2px; background:var(--deep);
+    transition:transform 0.3s, opacity 0.3s;
+  }
+  nav.open .nav-toggle span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  nav.open .nav-toggle span:nth-child(2) { opacity:0; }
+  nav.open .nav-toggle span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+  /* Menu déroulant */
+  nav.open .nav-links {
+    display:flex; flex-direction:column; align-items:stretch; gap:0;
+    position:absolute; top:100%; left:0; right:0;
+    background:rgba(244,239,230,0.98); backdrop-filter:blur(16px);
+    padding:8px 22px 22px;
+    border-bottom:1px solid rgba(35,75,94,0.1);
+    box-shadow:0 18px 40px rgba(35,75,94,0.12);
+    max-height:calc(100vh - 72px); overflow-y:auto;
+  }
+  nav.open .nav-links li { border-bottom:1px solid rgba(35,75,94,0.08); }
+  nav.open .nav-links li:last-child { border-bottom:none; }
+  nav.open .nav-links a { display:block; padding:14px 0; font-size:0.8rem; opacity:0.8; }
+  nav.open .nav-links .nav-cta { text-align:center; margin-top:14px; padding:14px; }
+  nav.open .nav-anchor.active::after { display:none; }
+
+  /* Contact : cartes l'une sous l'autre */
+  #contact .contact-levels { grid-template-columns:1fr !important; }
+}
+
+@media(max-width:500px){
+  /* Coordonnées des experts sur deux lignes propres */
+  .team-contacts { flex-direction:column; gap:4px; }
+}
