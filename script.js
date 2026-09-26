@@ -327,8 +327,10 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();close
       else card.classList.remove('swept');
     });
 
-    if(window.scrollY > 500) backBtn.classList.add('show');
-    else backBtn.classList.remove('show');
+    if(backBtn){
+      if(window.scrollY > 500) backBtn.classList.add('show');
+      else backBtn.classList.remove('show');
+    }
   }
 
   window.addEventListener('scroll', onScroll, {passive:true});
@@ -350,3 +352,16 @@ function handleCookieChoice(accepted){
   try { localStorage.setItem('noria_cookie_consent', accepted ? 'accepted' : 'refused'); } catch(e){}
   if(banner) banner.classList.add('hidden');
 }
+
+// ─── MENU MOBILE ───
+function toggleNav(force){
+  var nav=document.querySelector('nav'); if(!nav) return;
+  var open = (typeof force==='boolean') ? force : !nav.classList.contains('open');
+  nav.classList.toggle('open', open);
+  var btn=document.querySelector('.nav-toggle');
+  if(btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+document.querySelectorAll('.nav-links a').forEach(function(a){
+  a.addEventListener('click', function(){ toggleNav(false); });
+});
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') toggleNav(false); });
