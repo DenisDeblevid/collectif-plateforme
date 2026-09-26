@@ -70,6 +70,19 @@ const experts = {
     ],
     tags:['Management international','Développement commercial','Transitions professionnelles','Conseil stratégique','Négociation','Conduite du changement','Management multiculturel']
   },
+  caroline: {
+    photo:'Caroline-Seure.jpg',
+    name:'Caroline Seure',
+    role:'Formatrice & ingénieure pédagogique',
+    location:'France',
+    phone:'+33 6 89 90 36 08',
+    email:'caroline.seure@gmail.com',
+    bio:[
+      "Formatrice et ingénieure pédagogique, Caroline aide les personnes et les entreprises à mieux utiliser ce qu'elles ont déjà entre les mains — une compétence, une expertise, un savoir-faire qui dort souvent dans la tête de quelqu'un. Elle intervient autour de la communication, de l'intelligence émotionnelle, des compétences psychosociales, des relations professionnelles, de la relation client et de la coopération.",
+      "Elle développe aussi un axe autour de la transmission des savoir-faire en entreprise par le digital : capitaliser une expertise, transformer une réunion en ressource pédagogique, transmettre autrement, sans perdre la dimension humaine. Sa conviction : une entreprise possède souvent plus de ressources qu'elle ne le pense ; son rôle est de les révéler, les structurer et les rendre transmissibles."
+    ],
+    tags:['Compétences psychosociales','Coopération','Ingénierie pédagogique','Transmission digitale','Haute sensibilité']
+  },
   josselin: {
     photo:'',
     name:'Josselin Dionisi',
@@ -94,6 +107,7 @@ var expertsGeo = {
   laurence: { lat: 43.6047, lon: 1.4442,  zoom: 9,  ville: "Toulouse" },
   melanie:  { lat: 46.8494, lon: -1.8794, zoom: 9,  ville: "Challans (85)" },
   gilles:   { lat: 46.6034, lon: 1.8883,  zoom: 5,  ville: "France & International" },
+  caroline: { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" },
   josselin: { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" }
 };
 
@@ -185,9 +199,9 @@ function closeModalOnBg(e){ if(e.target===document.getElementById('modalOverlay'
 
 function handleFormSubmit(e){
   const btn=e.target;
-  btn.textContent='✓ Vérifiez votre mail — les vidéos arrivent';
+  btn.textContent='✓ Demande envoyée — nous vous recontactons vite';
   btn.style.background='var(--teal)';
-  setTimeout(()=>{ btn.textContent='Recevoir les 3 vidéos →'; btn.style.background='var(--copper)'; },3500);
+  setTimeout(()=>{ btn.textContent='Réservez gratuitement votre Instant Horizon →'; btn.style.background='var(--copper)'; },3500);
 }
 
 // Scroll reveal
@@ -321,3 +335,18 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();close
   window.addEventListener('load', onScroll);
   onScroll();
 })();
+
+// ─── BANDEAU RGPD ───
+(function(){
+  var banner = document.getElementById('cookieBanner');
+  if(!banner) return;
+  var choice = null;
+  try { choice = localStorage.getItem('noria_cookie_consent'); } catch(e){}
+  if(choice){ banner.classList.add('hidden'); }
+})();
+
+function handleCookieChoice(accepted){
+  var banner = document.getElementById('cookieBanner');
+  try { localStorage.setItem('noria_cookie_consent', accepted ? 'accepted' : 'refused'); } catch(e){}
+  if(banner) banner.classList.add('hidden');
+}
