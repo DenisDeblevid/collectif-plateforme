@@ -84,7 +84,7 @@ const experts = {
     tags:['Compétences psychosociales','Coopération','Ingénierie pédagogique','Transmission digitale','Haute sensibilité']
   },
   josselin: {
-    photo:'',
+    photo:'Josselin-Dionisi.png',
     name:'Josselin Dionisi',
     role:'Développeur Web · Builder IA',
     location:'France',
