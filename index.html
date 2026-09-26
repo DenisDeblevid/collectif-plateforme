@@ -234,6 +234,18 @@
     <p class="section-sub">Des professionnels de l'humain, chacun avec son chemin, sa méthode, sa singularité. Clique pour en savoir plus.</p>
   </div>
 
+  <div class="locked-area">
+  <div class="lock-panel">
+    <span class="lock-kicker">🔒 Espace abonnés · Continuum</span>
+    <h3>Le cœur de la Noria s'ouvre à nos abonnés</h3>
+    <p>Nos experts, leurs coordonnées et nos ressources sont accessibles avec l'abonnement Continuum. Saisissez votre code d'accès pour entrer.</p>
+    <form class="lock-form" onsubmit="return unlockAccess(this)">
+      <input type="text" name="code" placeholder="Votre code d'accès" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Code d'accès">
+      <button type="submit">Entrer</button>
+    </form>
+    <p class="lock-error" hidden>Code non reconnu. Vérifiez-le ou écrivez-nous.</p>
+    <a href="#tarifs" class="lock-link">Pas encore abonné ? Découvrir Continuum →</a>
+  </div>
   <div class="team-grid">
 
     <!-- 1. Florian — co-fondateur -->
@@ -374,6 +386,7 @@
     </div>
 
   </div>
+  </div>
 </section>
 
 <!-- SERVICE OVERLAY -->
@@ -445,6 +458,22 @@
   </div>
 </div>
 
+<!-- ACCÈS ABONNÉS -->
+<div class="access-overlay" id="accessOverlay" onclick="if(event.target===this)closeAccess()">
+  <div class="lock-panel access-modal">
+    <button class="access-close" onclick="closeAccess()" aria-label="Fermer">&#10005;</button>
+    <span class="lock-kicker">🔒 Espace abonnés · Continuum</span>
+    <h3>Le cœur de la Noria s'ouvre à nos abonnés</h3>
+    <p>Saisissez votre code d'accès pour découvrir nos experts et nos ressources.</p>
+    <form class="lock-form" onsubmit="return unlockAccess(this)">
+      <input type="text" name="code" placeholder="Votre code d'accès" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Code d'accès">
+      <button type="submit">Entrer</button>
+    </form>
+    <p class="lock-error" hidden>Code non reconnu. Vérifiez-le ou écrivez-nous.</p>
+    <a href="#tarifs" class="lock-link" onclick="closeAccess()">Pas encore abonné ? Découvrir Continuum →</a>
+  </div>
+</div>
+
 <!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
   <div class="modal" id="modalContent">
@@ -474,7 +503,8 @@
       <div class="service-img-wrap"><img class="service-img" src="formations-entreprises.png" alt="Formations entreprises"></div>
       <div class="service-content"><h3>Formations entreprises</h3><p>Interventions pour développer talents, leadership et cohésion. Synergies à l'échelle d'une équipe.</p></div>
     </div>
-    <div class="service-card reveal" onclick="openService('ressources')" style="cursor:pointer;">
+    <div class="service-card reveal locked-card" onclick="openService('ressources')" style="cursor:pointer;">
+      <div class="lock-badge"><span>🔒 Réservé aux abonnés</span><em>J'ai un code d'accès</em></div>
       <div class="service-img-wrap"><img class="service-img" src="ressources-outils.png" alt="Ressources et outils"></div>
       <div class="service-content"><span class="empty-tag" style="display:inline-block;margin-bottom:8px;">En préparation</span><h3>Ressources & Outils</h3><p>Guides, fiches pratiques et outils concrets pour continuer à avancer entre deux accompagnements.</p></div>
     </div>
