@@ -124,6 +124,7 @@ function buildMarkerIcon(active){
 }
 
 function openMap(activeId){
+  if(!isAbonne()){ openAccess(); return; }
   document.getElementById('mapOverlay').classList.add('open');
   document.body.style.overflow='hidden';
 
@@ -171,6 +172,7 @@ function closeMap(){
 }
 
 function openModal(id){
+  if(!isAbonne()){ openAccess(); return; }
   var e=experts[id]; if(!e) return;
   var bioHTML=e.bio.map(function(p){ return '<p class="modal-bio">'+p+'</p>'; }).join('');
   var tagsHTML=e.tags.map(function(t){ return '<span class="modal-tag">'+t+'</span>'; }).join('');
@@ -271,6 +273,7 @@ var svcData = {
 };
 
 function openService(key){
+  if(key==='ressources' && !isAbonne()){ openAccess(); return; }
   var s=svcData[key]; if(!s) return;
   var det=s.details.map(function(d){return "<li>"+d+"</li>";}).join("");
   document.getElementById("serviceBody").innerHTML=
@@ -365,3 +368,61 @@ document.querySelectorAll('.nav-links a').forEach(function(a){
   a.addEventListener('click', function(){ toggleNav(false); });
 });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') toggleNav(false); });
+
+// ─── ESPACE ABONNÉS (code d'accès) ───
+// Le code n'est jamais écrit en clair ici : seule son empreinte (SHA-256) est stockée.
+// Pour changer de code, il suffit de remplacer ACCESS_HASH.
+var ACCESS_HASH = '87431e84e12cbf52322e66a8f16228c290a97c0605cb8766dd8636ba275f9f75';
+var ACCESS_KEY  = 'noriaAccesAbonne';
+
+function isAbonne(){ return document.body.classList.contains('abonne'); }
+
+function setAbonne(){
+  document.body.classList.add('abonne');
+  try { localStorage.setItem(ACCESS_KEY, ACCESS_HASH); } catch(e){}
+}
+
+function sha256Hex(txt){
+  var data = new TextEncoder().encode(txt);
+  return crypto.subtle.digest('SHA-256', data).then(function(buf){
+    return Array.prototype.map.call(new Uint8Array(buf), function(b){ return ('0'+b.toString(16)).slice(-2); }).join('');
+  });
+}
+
+function unlockAccess(form){
+  var input = form.querySelector('input[name=code]');
+  var err = form.parentNode.querySelector('.lock-error');
+  var code = (input.value || '').trim().toUpperCase();
+  if(!code){ input.focus(); return false; }
+  if(!(window.crypto && crypto.subtle)){ if(err){ err.textContent='Votre navigateur ne permet pas la vérification. Essayez avec un navigateur à jour.'; err.hidden=false; } return false; }
+  sha256Hex('noria|'+code).then(function(hex){
+    if(hex === ACCESS_HASH){
+      setAbonne();
+      closeAccess();
+      var eq = document.getElementById('equipe');
+      if(eq) eq.scrollIntoView({behavior:'smooth'});
+    } else {
+      if(err) err.hidden = false;
+      input.select();
+    }
+  });
+  return false;
+}
+
+function openAccess(){
+  var o = document.getElementById('accessOverlay'); if(!o) return;
+  o.classList.add('open'); document.body.style.overflow='hidden';
+  var i = o.querySelector('input'); if(i) setTimeout(function(){ i.focus(); }, 50);
+}
+function closeAccess(){
+  var o = document.getElementById('accessOverlay'); if(!o) return;
+  o.classList.remove('open'); document.body.style.overflow='';
+}
+
+(function(){
+  try { if(localStorage.getItem(ACCESS_KEY) === ACCESS_HASH) document.body.classList.add('abonne'); } catch(e){}
+  document.querySelectorAll('.lock-badge').forEach(function(b){
+    b.addEventListener('click', function(ev){ ev.stopPropagation(); openAccess(); });
+  });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeAccess(); });
+})();
