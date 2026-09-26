@@ -1679,3 +1679,14 @@ button.action-key.lit, a.action-key.lit {
   /* Coordonnées des experts sur deux lignes propres */
   .team-contacts { flex-direction:column; gap:4px; }
 }
+
+/* Animation "Notre raison d'être" entière sur téléphone (26/09/2026) */
+@media(max-width:900px){
+  .mission-visual { height:330px; }
+  .m-ring-a { width:150px; height:150px; }
+  .m-ring-b { width:225px; height:225px; }
+  .m-ring-c { width:300px; height:300px; }
+  .noria-wheel-mission { width:120px !important; height:120px !important; }
+  /* Petits écrans : le trait décoratif sous les titres centrés ne fait plus déborder la page */
+  html, body { overflow-x:clip; }
+}
