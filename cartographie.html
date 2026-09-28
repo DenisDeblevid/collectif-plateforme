@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Votre Cartographie Noria Horizon — Égogramme & Drivers</title>
+<meta name="description" content="Votre Cartographie Noria Horizon : 64 affirmations, environ 12 minutes, pour découvrir vos états du moi et vos drivers, inspirés de l'analyse transactionnelle.">
+<link rel="canonical" href="https://noriahorizon.fr/cartographie.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Votre Cartographie Noria Horizon">
+<meta property="og:description" content="Égogramme et drivers : découvrez vos ressources et vos pistes de progression en 12 minutes.">
+<meta property="og:url" content="https://noriahorizon.fr/cartographie.html">
+<meta property="og:image" content="https://noriahorizon.fr/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep:   #234B5E;
+  --teal:   #3B7A78;
+  --teal-l: #7FB7B4;
+  --sand:   #E8DCC9;
+  --copper: #B86F4C;
+  --copper-l:#D08A64;
+  --mist:   #F4EFE6;
+  --white:  #FDFAF5;
+  --ink:    #1a2e38;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body:    'DM Sans', sans-serif;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--deep); color: var(--white);
+  font-family: var(--font-body); font-weight: 300;
+  min-height: 100vh; padding: 56px 20px 40px;
+  overflow-x: hidden;
+}
+body::before {
+  content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Cpath d='M0 20 Q30 5 60 20 Q90 35 120 20' fill='none' stroke='rgba(184,111,76,0.04)' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-size:120px 40px;
+}
+.container { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+
+/* En-tête */
+.page-header { text-align:center; margin-bottom:48px; }
+.back-link {
+  display:inline-block; color:var(--copper); text-decoration:none;
+  font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase;
+  margin-bottom:28px; opacity:0.75;
+}
+.back-link:hover { opacity:1; }
+.kicker { display:block; font-size:0.68rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--copper-l); margin-bottom:14px; }
+.page-title { font-family:var(--font-display); font-size:clamp(2rem,5vw,3.3rem); font-weight:300; line-height:1.15; margin-bottom:14px; }
+.page-title strong { color:var(--copper-l); font-weight:600; }
+.page-sub { font-size:0.9rem; opacity:0.55; max-width:520px; margin:0 auto; line-height:1.8; }
+
+/* Écran d'accueil */
+.intro-card {
+  background:rgba(255,255,255,0.04); border:1px solid rgba(184,111,76,0.22);
+  padding:40px 38px; max-width:680px; margin:0 auto; text-align:center;
+}
+.intro-card blockquote {
+  font-family:var(--font-display); font-size:1.25rem; line-height:1.6; font-style:italic;
+  opacity:0.9; margin-bottom:26px;
+}
+.scale-demo { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin:0 0 28px; }
+.scale-demo span {
+  font-size:0.72rem; letter-spacing:0.08em; padding:6px 12px;
+  border:1px solid rgba(255,255,255,0.18); opacity:0.7;
+}
+.intro-note { font-size:0.82rem; opacity:0.55; line-height:1.7; margin-bottom:30px; }
+
+/* Boutons */
+.btn-copper {
+  background:var(--copper); color:var(--white); border:none; cursor:pointer;
+  padding:15px 32px; font-family:var(--font-body); font-size:0.78rem;
+  letter-spacing:0.16em; text-transform:uppercase; transition:background 0.3s;
+}
+.btn-copper:hover { background:var(--copper-l); }
+.btn-ghost {
+  background:transparent; color:var(--white); cursor:pointer;
+  border:1px solid rgba(255,255,255,0.25); padding:12px 24px;
+  font-family:var(--font-body); font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase;
+  opacity:0.7; transition:opacity 0.3s; text-decoration:none; display:inline-block;
+}
+.btn-ghost:hover { opacity:1; }
+
+/* Questionnaire */
+#quiz-section { display:none; max-width:720px; margin:0 auto; }
+.progress-wrap { height:3px; background:rgba(255,255,255,0.08); margin-bottom:14px; }
+.progress-fill { height:100%; width:0; background:linear-gradient(to right,var(--copper),var(--teal-l)); transition:width 0.4s ease; }
+.q-meta { display:flex; justify-content:space-between; align-items:center; margin-bottom:40px; }
+.q-num { font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--copper-l); opacity:0.8; }
+.q-back { background:none; border:none; color:var(--white); opacity:0.5; cursor:pointer; font-family:var(--font-body); font-size:0.78rem; }
+.q-back:hover { opacity:1; }
+.q-back[disabled] { visibility:hidden; }
+#quiz-block { transition:opacity 0.2s ease; min-height:260px; }
+.q-text {
+  font-family:var(--font-display); font-size:clamp(1.45rem,3.4vw,2.1rem);
+  font-weight:300; line-height:1.4; margin-bottom:38px; text-align:center;
+}
+.answers { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.ans {
+  background:rgba(255,255,255,0.04); border:1px solid rgba(184,111,76,0.25);
+  color:var(--white); cursor:pointer; padding:18px 10px;
+  font-family:var(--font-body); font-size:0.88rem; line-height:1.3;
+  transition:all 0.2s;
+}
+.ans:hover { background:rgba(184,111,76,0.16); border-color:var(--copper); }
+.ans.chosen { background:var(--copper); border-color:var(--copper); }
+.ans small { display:block; font-size:0.66rem; opacity:0.5; margin-top:6px; letter-spacing:0.1em; }
+
+/* Résultats */
+#result-section { display:none; }
+.res-block { margin-bottom:64px; }
+.res-block h2 { font-family:var(--font-display); font-size:clamp(1.6rem,4vw,2.2rem); font-weight:300; margin-bottom:6px; text-align:center; }
+.res-block h2 strong { color:var(--copper-l); font-weight:600; }
+.res-lead { text-align:center; font-size:0.82rem; opacity:0.5; margin-bottom:26px; }
+.chart-wrap { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:18px 10px 10px; }
+.chart-wrap svg { display:block; width:100%; height:auto; }
+.chart-wrap.compact { max-width:540px; margin:0 auto; }
+.legend { display:flex; justify-content:center; gap:22px; flex-wrap:wrap; font-size:0.72rem; opacity:0.75; margin-top:10px; }
+.legend i { display:inline-block; width:12px; height:12px; margin-right:6px; vertical-align:-1px; }
+.res-sentence {
+  font-size:0.95rem; line-height:1.8; opacity:0.85; max-width:680px; margin:22px auto 0;
+  text-align:center;
+}
+.res-sentence b { color:var(--copper-l); font-weight:500; }
+
+/* Toile floutée + formulaire */
+.synth-grid { display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:center; }
+.spider-lock { position:relative; overflow:hidden; }
+.spider-lock svg { filter:blur(7px); opacity:0.85; }
+.spider-lock .lock-tag {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display); font-size:1.15rem; text-align:center; padding:20px;
+}
+.spider-lock .lock-tag span { background:rgba(35,75,94,0.85); border:1px solid rgba(184,111,76,0.4); padding:10px 18px; }
+.synth-text { font-size:0.92rem; line-height:1.8; opacity:0.85; margin-bottom:22px; }
+.lead-form { display:grid; gap:12px; }
+.lead-form .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.lead-form input[type=text], .lead-form input[type=email] {
+  width:100%; background:rgba(255,255,255,0.06); border:none; border-bottom:1px solid rgba(184,111,76,0.45);
+  padding:12px 6px; color:var(--white); font-family:var(--font-body); font-size:0.9rem; outline:none;
+}
+.lead-form input:focus { border-bottom-color:var(--copper-l); }
+.lead-form input::placeholder { color:rgba(253,250,245,0.45); }
+.consent { display:flex; gap:10px; align-items:flex-start; font-size:0.74rem; opacity:0.7; line-height:1.55; text-align:left; }
+.consent input { margin-top:3px; accent-color:var(--copper); }
+.form-msg { font-size:0.82rem; line-height:1.6; display:none; }
+.form-msg.err { color:#f0a58a; display:block; }
+.form-msg.ok { color:var(--teal-l); display:block; }
+
+.conclusion {
+  background:rgba(184,111,76,0.1); border-left:3px solid var(--copper);
+  padding:24px 26px; font-size:0.92rem; line-height:1.85; margin-bottom:30px;
+}
+.end-actions { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; }
+.disclaimer { text-align:center; font-size:0.72rem; opacity:0.35; margin-top:48px; line-height:1.6; }
+
+@media(max-width:700px){
+  body { padding:40px 16px 32px; }
+  .intro-card { padding:30px 20px; }
+  .answers { grid-template-columns:1fr 1fr; }
+  .synth-grid { grid-template-columns:1fr; }
+  .lead-form .row { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="page-header">
+    <a href="index.html" class="back-link">← Retour NORIA HORIZON</a>
+    <span class="kicker">Égogramme · Drivers · Analyse transactionnelle</span>
+    <h1 class="page-title">Votre Cartographie <strong>Noria Horizon</strong></h1>
+    <p class="page-sub">64 affirmations · environ 12 minutes · une photographie de vos états du moi et des messages qui vous animent.</p>
+  </div>
+
+  <!-- ACCUEIL -->
+  <div id="intro-section">
+    <div class="intro-card">
+      <blockquote>Il n'existe ni bon ni mauvais profil. Chacun de nous dispose de plusieurs états du moi — Parent, Adulte, Enfant — et tous sont utiles dans la vie de tous les jours. Ce qui fait la différence, ce n'est pas l'état qui domine : c'est la capacité à passer de l'un à l'autre au bon moment.</blockquote>
+      <p class="intro-note">Pour chaque affirmation, indiquez à quel point elle vous ressemble. Répondez spontanément, en pensant à ce que vous vivez vraiment, pas à ce que vous aimeriez être.</p>
+      <div class="scale-demo"><span>Pas du tout</span><span>Un peu</span><span>Souvent</span><span>Tout à fait</span></div>
+      <button class="btn-copper" onclick="startCarto()">Commencer ma cartographie →</button>
+    </div>
+  </div>
+
+  <!-- QUESTIONNAIRE -->
+  <div id="quiz-section">
+    <div class="progress-wrap"><div class="progress-fill" id="prog"></div></div>
+    <div class="q-meta">
+      <span class="q-num" id="q-num">Affirmation 1 / 64</span>
+      <button class="q-back" id="q-back" onclick="goBack()">← Précédente</button>
+    </div>
+    <div id="quiz-block"></div>
+  </div>
+
+  <!-- RÉSULTATS -->
+  <div id="result-section">
+
+    <div class="res-block">
+      <h2>Votre <strong>égogramme</strong></h2>
+      <p class="res-lead">Vos états du moi sur 20 — le positif au-dessus de la ligne, le négatif en dessous</p>
+      <div class="chart-wrap"><svg id="ego-chart" viewBox="0 0 760 440" role="img" aria-label="Égogramme"></svg></div>
+      <div class="legend"><span><i style="background:var(--copper)"></i>Versant positif</span><span><i style="background:var(--teal-l)"></i>Versant négatif</span><span><i style="background:var(--sand)"></i>Adulte</span></div>
+      <p class="res-sentence" id="ego-sentence"></p>
+    </div>
+
+    <div class="res-block">
+      <h2>Vos <strong>drivers</strong></h2>
+      <p class="res-lead">Les messages contraignants reçus tôt dans la vie, sur 20</p>
+      <div class="chart-wrap compact"><svg id="drv-chart" viewBox="0 0 520 250" role="img" aria-label="Drivers"></svg></div>
+      <p class="res-sentence" id="drv-sentence"></p>
+    </div>
+
+    <div class="res-block">
+      <h2>Votre <strong>synthèse</strong></h2>
+      <p class="res-lead">Vos appuis et vos pistes de progression, sur 6 compétences de vie</p>
+      <div class="synth-grid">
+        <div class="spider-lock">
+          <svg id="spider-chart" viewBox="0 0 420 420" aria-hidden="true"></svg>
+          <div class="lock-tag"><span>Votre analyse complète vous attend</span></div>
+        </div>
+        <div>
+          <p class="synth-text">Voici la synthèse de votre cartographie : à la croisée de vos états du moi et de vos drivers, elle révèle vos appuis et vos pistes de progression. Pour recevoir votre <strong>analyse complète et commentée</strong> dans votre boîte mail, complétez le formulaire.</p>
+          <form class="lead-form" id="lead-form" onsubmit="return submitLead(event)">
+            <div class="row">
+              <input type="text" name="PRENOM" placeholder="Prénom" autocomplete="given-name" required>
+              <input type="text" name="NOM" placeholder="Nom" autocomplete="family-name" required>
+            </div>
+            <input type="email" name="EMAIL" placeholder="Votre adresse email" autocomplete="email" required>
+            <label class="consent"><input type="checkbox" name="CONSENT" required> <span>J'accepte que NORIA HORIZON conserve mes réponses et mes coordonnées pour m'envoyer mon analyse et me recontacter. Je peux demander leur suppression à tout moment.</span></label>
+            <div id="score-fields"></div>
+            <button type="submit" class="btn-copper">Recevoir mon analyse complète →</button>
+            <p class="form-msg" id="form-msg"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="conclusion">Votre égogramme n'est pas un verdict : c'est une photographie de ce moment de votre vie. Chaque état du moi est une ressource, y compris ceux qui ressortent en négatif — ils montrent simplement où l'énergie se dépense sans vous servir. Les drivers, eux, sont des messages reçus tôt, qui vous ont aidé à grandir et qui peuvent aujourd'hui vous freiner. L'équipe NORIA HORIZON lit votre cartographie et vous oriente vers l'accompagnement le plus juste.</div>
+
+    <div class="end-actions">
+      <a href="index.html#tunnel" class="btn-copper" style="text-decoration:none;">Réserver mon Instant Horizon →</a>
+      <button class="btn-ghost" onclick="restart()">Refaire ma cartographie</button>
+    </div>
+  </div>
+
+  <p class="disclaimer">Outil de réflexion personnelle inspiré de l'analyse transactionnelle. Il ne constitue ni un test psychométrique ni un diagnostic psychologique.</p>
+</div>
+
+<script>
+// ─── LES 64 AFFIRMATIONS (validées dans le document « Cartographie Noria Horizon ») ───
+var ITEMS = [
+  ['PNp',"Je sais poser des règles claires quand une situation l'exige."],
+  ['PNp',"Je défends mes valeurs, même quand ce n'est pas confortable."],
+  ['PNp',"Quand je dis non, je sais expliquer pourquoi, calmement."],
+  ['PNp',"Les autres peuvent compter sur moi pour tenir un cap."],
+  ['PNn',"J'ai tendance à juger rapidement la façon dont les autres font les choses."],
+  ['PNn',"Il m'arrive de critiquer avant d'avoir vraiment écouté."],
+  ['PNn',"Je pense souvent qu'il n'y a qu'une bonne façon de faire : la mienne."],
+  ['PNn',"Je peux devenir cassant(e) quand quelqu'un ne respecte pas une règle."],
+  ['PNop',"Je remarque facilement quand quelqu'un ne va pas bien."],
+  ['PNop',"J'aime encourager les autres et les voir progresser."],
+  ['PNop',"Je sais réconforter quelqu'un sans l'étouffer."],
+  ['PNop',"Je sais aussi m'accorder du repos et de la douceur quand j'en ai besoin."],
+  ['PNon',"Je fais parfois à la place des autres, alors qu'ils pourraient y arriver seuls."],
+  ['PNon',"J'ai du mal à laisser quelqu'un faire ses propres erreurs."],
+  ['PNon',"Je m'occupe tant des autres que j'en oublie mes propres besoins."],
+  ['PNon',"Il m'arrive d'aider sans qu'on me l'ait demandé."],
+  ['A',"Avant de décider, je rassemble les faits."],
+  ['A',"Je sais garder mon calme pour analyser un problème, même sous pression."],
+  ['A',"Je distingue facilement ce que je sais de ce que je suppose."],
+  ['A',"Je change d'avis quand on m'apporte de meilleurs arguments."],
+  ['ELp',"Je sais m'amuser et profiter du moment présent."],
+  ['ELp',"J'exprime facilement mes émotions, joyeuses comme tristes."],
+  ['ELp',"Les idées nouvelles et les projets créatifs me stimulent."],
+  ['ELp',"Ma curiosité me pousse souvent à essayer des choses nouvelles."],
+  ['ELn',"Il m'arrive d'agir sur un coup de tête et de le regretter ensuite."],
+  ['ELn',"Quand quelque chose me plaît, j'ai du mal à m'arrêter, même si ce n'est pas raisonnable."],
+  ['ELn',"Emporté(e) par mes émotions, j'oublie parfois l'effet de mes paroles."],
+  ['ELn',"J'ai tendance à ne faire que ce qui me fait envie sur le moment."],
+  ['EASp',"Je sais m'adapter aux règles d'un groupe pour que tout se passe bien."],
+  ['EASp',"La politesse et le respect des usages comptent pour moi."],
+  ['EASp',"Je sais faire des compromis quand l'intérêt commun le demande."],
+  ['EASp',"Je tiens mes engagements, même quand cela me coûte."],
+  ['EASn',"J'ai du mal à dire non, de peur de décevoir."],
+  ['EASn',"Je garde souvent mon avis pour moi afin d'éviter le conflit."],
+  ['EASn',"Je me sens facilement coupable, même quand je n'y suis pour rien."],
+  ['EASn',"J'attends l'approbation des autres avant d'agir."],
+  ['EARp',"J'ose dire mon désaccord quand quelque chose me semble injuste."],
+  ['EARp',"Je sais remettre en question une habitude qui ne fonctionne plus."],
+  ['EARp',"Je n'accepte pas une décision qu'on m'impose sans en comprendre la raison."],
+  ['EARp',"Face à la pression, je sais défendre ma position."],
+  ['EARn',"Quand on me donne un ordre, j'ai d'abord envie de faire l'inverse."],
+  ['EARn',"Il m'arrive de m'opposer par principe, sans vraie raison."],
+  ['EARn',"Je peux bouder ou traîner des pieds quand on m'impose quelque chose."],
+  ['EARn',"Les règles m'agacent, même quand elles sont utiles."],
+  ['SP',"Je retouche souvent un travail qui est pourtant déjà bon."],
+  ['SP',"Une petite erreur peut me gâcher toute une réussite."],
+  ['SP',"J'ai du mal à rendre un travail tant qu'il n'est pas impeccable."],
+  ['SP',"Je remarque d'abord ce qui ne va pas, avant ce qui va."],
+  ['FP',"J'ai besoin que les autres soient contents de moi pour me sentir bien."],
+  ['FP',"Je dis oui à une demande avant même de savoir si j'en ai envie."],
+  ['FP',"Je m'inquiète beaucoup de ce que les autres pensent de moi."],
+  ['FP',"Je fais passer les envies des autres avant les miennes."],
+  ['SF',"Je préfère ne pas montrer quand je suis fatigué(e) ou touché(e)."],
+  ['SF',"Demander de l'aide me donne l'impression d'être faible."],
+  ['SF',"Je serre les dents et je continue, même quand je devrais m'arrêter."],
+  ['SF',"J'ai du mal à dire ce que je ressens vraiment."],
+  ['DT',"Je fais souvent plusieurs choses à la fois."],
+  ['DT',"L'attente m'impatiente très vite."],
+  ['DT',"Il m'arrive de finir les phrases des autres à leur place."],
+  ['DT',"Je me sens mal à l'aise quand je n'ai rien à faire."],
+  ['FE',"Pour moi, ce qui a de la valeur doit forcément être difficile."],
+  ['FE',"Je commence beaucoup de choses mais j'ai du mal à les terminer."],
+  ['FE',"Je me sens plus légitime quand j'ai beaucoup peiné."],
+  ['FE',"Quand une solution est simple, je m'en méfie."]
+];
+
+var ANSWERS = [['Pas du tout',0],['Un peu',1],['Souvent',2],['Tout à fait',3]];
+
+var EGO = [ // état du moi : facette positive, facette négative (null pour l'Adulte)
+  {key:'PN',  label:['Parent','normatif'],        pos:'PNp',  neg:'PNn'},
+  {key:'PNo', label:['Parent','nourricier'],      pos:'PNop', neg:'PNon'},
+  {key:'A',   label:['Adulte',''],                pos:'A',    neg:null},
+  {key:'EL',  label:['Enfant','libre'],           pos:'ELp',  neg:'ELn'},
+  {key:'EAS', label:['Enfant adapté','soumis'],   pos:'EASp', neg:'EASn'},
+  {key:'EAR', label:['Enfant adapté','rebelle'],  pos:'EARp', neg:'EARn'}
+];
+var EGO_NAMES = {PNp:'Parent normatif',PNn:'Parent normatif',PNop:'Parent nourricier',PNon:'Parent nourricier',A:'Adulte',ELp:'Enfant libre',ELn:'Enfant libre',EASp:'Enfant adapté soumis',EASn:'Enfant adapté soumis',EARp:'Enfant adapté rebelle',EARn:'Enfant adapté rebelle'};
+
+var DRIVERS = [
+  {key:'SP', name:'Sois parfait',     force:"une vraie exigence de qualité",    risk:"la peur de l'erreur"},
+  {key:'FP', name:'Fais plaisir',     force:"un sens aigu de l'autre",          risk:"l'oubli de vos propres besoins"},
+  {key:'SF', name:'Sois fort',        force:"une grande endurance",             risk:"la solitude dans les moments difficiles"},
+  {key:'DT', name:'Dépêche-toi',      force:"efficacité et réactivité",         risk:"la précipitation"},
+  {key:'FE', name:'Fais des efforts', force:"une belle persévérance",           risk:"la difficulté à aboutir"}
+];
+
+// Toile d'araignée : ressource = facette positive ; vigilance = facette négative (+ driver associé)
+var AXES = [
+  {name:'Poser un cadre',            res:'PNp',  vig:['PNn','SP']},
+  {name:'Prendre soin',              res:'PNop', vig:['PNon','SF']},
+  {name:'Analyser et décider',       res:'A',    vig:['DT']},
+  {name:'Créer et ressentir',        res:'ELp',  vig:['ELn','FE']},
+  {name:'Coopérer',                  res:'EASp', vig:['EASn','FP']},
+  {name:"S'affirmer",                res:'EARp', vig:['EARn']}
+];
+
+var order = [], answers = [], pos = 0, scores = {};
+
+function shuffled(n){
+  var a=[]; for(var i=0;i<n;i++) a.push(i);
+  for(var j=n-1;j>0;j--){ var k=Math.floor(Math.random()*(j+1)); var t=a[j]; a[j]=a[k]; a[k]=t; }
+  return a;
+}
+
+function startCarto(){
+  order = shuffled(ITEMS.length); answers = new Array(ITEMS.length); pos = 0;
+  document.getElementById('intro-section').style.display='none';
+  document.getElementById('result-section').style.display='none';
+  document.getElementById('quiz-section').style.display='block';
+  renderItem();
+  window.scrollTo({top:0});
+}
+
+function renderItem(){
+  var idx = order[pos], item = ITEMS[idx];
+  document.getElementById('prog').style.width = Math.round(pos/ITEMS.length*100)+'%';
+  document.getElementById('q-num').textContent = 'Affirmation '+(pos+1)+' / '+ITEMS.length;
+  document.getElementById('q-back').disabled = (pos===0);
+  var html = '<p class="q-text">'+item[1]+'</p><div class="answers">';
+  ANSWERS.forEach(function(a){
+    var chosen = (answers[idx]===a[1]) ? ' chosen' : '';
+    html += '<button class="ans'+chosen+'" onclick="answer('+a[1]+')">'+a[0]+'</button>';
+  });
+  document.getElementById('quiz-block').innerHTML = html+'</div>';
+}
+
+function answer(v){
+  answers[order[pos]] = v;
+  var block = document.getElementById('quiz-block');
+  if(pos+1 >= ITEMS.length){ showResults(); return; }
+  block.style.opacity='0';
+  setTimeout(function(){ pos++; renderItem(); block.style.opacity='1'; }, 180);
+}
+
+function goBack(){ if(pos>0){ pos--; renderItem(); } }
+
+function computeScores(){
+  var sum = {};
+  ITEMS.forEach(function(it,i){ sum[it[0]] = (sum[it[0]]||0) + (answers[i]||0); });
+  var s = {};
+  Object.keys(sum).forEach(function(k){ s[k] = Math.round(sum[k]*20/12); }); // 4 affirmations × 3 points = 12 → ramené sur 20
+  return s;
+}
+
+// ─── ÉGOGRAMME (barres en miroir) ───
+function drawEgo(){
+  var svg = document.getElementById('ego-chart');
+  var narrow = svg.parentNode.clientWidth < 560;
+  var W = narrow ? 400 : 760, mid = narrow ? 170 : 210, unit = narrow ? 7 : 8.5, left = narrow ? 30 : 46;
+  var colW=(W-left-6)/EGO.length, bw = narrow ? 26 : 34, fs = narrow ? 12 : 13;
+  var h = '';
+  for(var v=5; v<=20; v+=5){
+    h += '<line x1="'+left+'" x2="'+(W-10)+'" y1="'+(mid-v*unit)+'" y2="'+(mid-v*unit)+'" stroke="rgba(255,255,255,0.07)"/>';
+    h += '<line x1="'+left+'" x2="'+(W-10)+'" y1="'+(mid+v*unit)+'" y2="'+(mid+v*unit)+'" stroke="rgba(255,255,255,0.07)"/>';
+    h += '<text x="'+(left-8)+'" y="'+(mid-v*unit+4)+'" fill="rgba(255,255,255,0.4)" font-size="11" text-anchor="end">'+v+'</text>';
+    h += '<text x="'+(left-8)+'" y="'+(mid+v*unit+4)+'" fill="rgba(255,255,255,0.4)" font-size="11" text-anchor="end">'+v+'</text>';
+  }
+  h += '<text x="'+(left-8)+'" y="'+(mid+4)+'" fill="rgba(255,255,255,0.4)" font-size="11" text-anchor="end">0</text>';
+  EGO.forEach(function(e,i){
+    var cx = left + colW*i + colW/2;
+    var p = scores[e.pos], isA = !e.neg;
+    var col = isA ? '#E8DCC9' : '#B86F4C';
+    h += '<rect x="'+(cx-bw/2)+'" y="'+(mid-p*unit)+'" width="'+bw+'" height="'+(p*unit)+'" fill="'+col+'" rx="2"/>';
+    h += '<text x="'+cx+'" y="'+(mid-p*unit-7)+'" fill="#FDFAF5" font-size="'+fs+'" font-weight="500" text-anchor="middle">'+p+'</text>';
+    if(e.neg){
+      var n = scores[e.neg];
+      h += '<rect x="'+(cx-bw/2)+'" y="'+mid+'" width="'+bw+'" height="'+(n*unit)+'" fill="#7FB7B4" rx="2"/>';
+      h += '<text x="'+cx+'" y="'+(mid+n*unit+16)+'" fill="#FDFAF5" font-size="'+fs+'" font-weight="500" text-anchor="middle">'+n+'</text>';
+    }
+    var lines = narrow ? (e.label[0]+' '+e.label[1]).trim().split(' ') : e.label;
+    lines.forEach(function(w,j){
+      h += '<text x="'+cx+'" y="'+(mid+20*unit+28+j*15)+'" fill="#FDFAF5" font-size="'+fs+'" text-anchor="middle"'+(j>0?' opacity="0.7"':'')+'>'+w+'</text>';
+    });
+  });
+  h += '<line x1="'+left+'" x2="'+(W-10)+'" y1="'+mid+'" y2="'+mid+'" stroke="rgba(253,250,245,0.55)" stroke-width="1.5"/>';
+  svg.setAttribute('viewBox','0 0 '+W+' '+(mid+20*unit+(narrow?72:56)));
+  svg.innerHTML = h;
+
+  var posKeys = ['PNp','PNop','A','ELp','EASp','EARp'].sort(function(a,b){ return scores[b]-scores[a]; });
+  var negKeys = ['PNn','PNon','ELn','EASn','EARn'].sort(function(a,b){ return scores[b]-scores[a]; });
+  var txt = 'Votre énergie se porte d\'abord sur votre <b>'+EGO_NAMES[posKeys[0]]+'</b> et votre <b>'+EGO_NAMES[posKeys[1]]+'</b> : ce sont vos appuis naturels.';
+  if(scores[negKeys[0]] >= 14) txt += ' Côté vigilance, votre <b>'+EGO_NAMES[negKeys[0]]+'</b> dépense parfois son énergie sans vous servir.';
+  txt += ' Aucun état du moi n\'est un défaut : c\'est la souplesse pour passer de l\'un à l\'autre qui compte.';
+  document.getElementById('ego-sentence').innerHTML = txt;
+}
+
+// ─── DRIVERS (barres verticales compactes) ───
+function drawDrivers(){
+  var svg = document.getElementById('drv-chart');
+  var narrow = svg.parentNode.clientWidth < 480;
+  var W = narrow ? 360 : 520, left = narrow ? 26 : 34, base = narrow ? 175 : 190, unit = 8;
+  var colW=(W-left-6)/DRIVERS.length, bw = narrow ? 30 : 40, h='';
+  svg.setAttribute('viewBox','0 0 '+W+' 250');
+  for(var v=5; v<=20; v+=5){
+    h += '<line x1="'+left+'" x2="'+(W-10)+'" y1="'+(base-v*unit)+'" y2="'+(base-v*unit)+'" stroke="rgba(255,255,255,0.07)"/>';
+    h += '<text x="'+(left-8)+'" y="'+(base-v*unit+4)+'" fill="rgba(255,255,255,0.4)" font-size="11" text-anchor="end">'+v+'</text>';
+  }
+  DRIVERS.forEach(function(d,i){
+    var cx = left + colW*i + colW/2, s = scores[d.key];
+    var col = s>=14 ? '#B86F4C' : 'rgba(208,138,100,0.55)';
+    h += '<rect x="'+(cx-bw/2)+'" y="'+(base-s*unit)+'" width="'+bw+'" height="'+(s*unit)+'" fill="'+col+'" rx="2"/>';
+    h += '<text x="'+cx+'" y="'+(base-s*unit-7)+'" fill="#FDFAF5" font-size="13" font-weight="500" text-anchor="middle">'+s+'</text>';
+    var parts = d.name.split(' ');
+    h += '<text x="'+cx+'" y="'+(base+22)+'" fill="#FDFAF5" font-size="12.5" text-anchor="middle">'+parts[0]+'</text>';
+    h += '<text x="'+cx+'" y="'+(base+38)+'" fill="#FDFAF5" font-size="12.5" text-anchor="middle" opacity="0.7">'+parts.slice(1).join(' ')+'</text>';
+  });
+  h += '<line x1="'+left+'" x2="'+(W-10)+'" y1="'+base+'" y2="'+base+'" stroke="rgba(253,250,245,0.55)" stroke-width="1.5"/>';
+  svg.innerHTML = h;
+
+  var sorted = DRIVERS.slice().sort(function(a,b){ return scores[b.key]-scores[a.key]; });
+  var d = sorted[0], txt;
+  if(scores[d.key] >= 14){
+    txt = 'Le message qui ressort le plus chez vous : <b>« '+d.name+' »</b>. Il vous apporte '+d.force+', à condition qu\'il ne vous enferme pas dans '+d.risk+'.';
+  } else {
+    txt = 'Aucun driver ne ressort fortement : ces messages sont présents chez vous sans vous gouverner. Le plus marqué est <b>« '+d.name+' »</b>, source d\''+d.force.replace(/^une? /,'')+'.';
+  }
+  document.getElementById('drv-sentence').innerHTML = txt;
+}
+
+// ─── TOILE D'ARAIGNÉE (floutée à l'écran) ───
+function axisValues(){
+  return AXES.map(function(ax){
+    var vig = ax.vig.reduce(function(t,k){ return t+scores[k]; },0)/ax.vig.length;
+    return {res:scores[ax.res], vig:Math.round(vig)};
+  });
+}
+function drawSpider(){
+  var svg = document.getElementById('spider-chart'), c=210, R=140, n=AXES.length, h='';
+  function pt(i,v){ var a=-Math.PI/2+i*2*Math.PI/n, r=R*v/20; return [c+r*Math.cos(a), c+r*Math.sin(a)]; }
+  for(var lv=1; lv<=4; lv++){
+    var ring=[]; for(var i=0;i<n;i++) ring.push(pt(i,lv*5).join(','));
+    h += '<polygon points="'+ring.join(' ')+'" fill="none" stroke="rgba(255,255,255,0.1)"/>';
+  }
+  var vals = axisValues(), res=[], vig=[];
+  for(var i=0;i<n;i++){
+    var e=pt(i,20); h += '<line x1="'+c+'" y1="'+c+'" x2="'+e[0]+'" y2="'+e[1]+'" stroke="rgba(255,255,255,0.1)"/>';
+    var l=pt(i,25); h += '<text x="'+l[0]+'" y="'+l[1]+'" fill="#FDFAF5" font-size="12" text-anchor="middle">'+AXES[i].name+'</text>';
+    res.push(pt(i,vals[i].res).join(',')); vig.push(pt(i,vals[i].vig).join(','));
+  }
+  h += '<polygon points="'+vig.join(' ')+'" fill="rgba(127,183,180,0.25)" stroke="#7FB7B4" stroke-width="2"/>';
+  h += '<polygon points="'+res.join(' ')+'" fill="rgba(184,111,76,0.3)" stroke="#D08A64" stroke-width="2"/>';
+  svg.innerHTML = h;
+}
+
+// Champs cachés : les notes partent avec le formulaire (pour Brevo)
+function fillScoreFields(){
+  var box = document.getElementById('score-fields'), h='';
+  Object.keys(scores).forEach(function(k){ h += '<input type="hidden" name="CARTO_'+k.toUpperCase()+'" value="'+scores[k]+'">'; });
+  box.innerHTML = h;
+}
+
+function showResults(){
+  scores = computeScores();
+  document.getElementById('prog').style.width='100%';
+  document.getElementById('quiz-section').style.display='none';
+  document.getElementById('result-section').style.display='block';
+  drawEgo(); drawDrivers(); drawSpider(); fillScoreFields();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ─── FORMULAIRE ───
+// À BRANCHER SUR BREVO à l'étape suivante (automatisation). Pour l'instant, rien n'est envoyé.
+function submitLead(ev){
+  ev.preventDefault();
+  var f = document.getElementById('lead-form'), msg = document.getElementById('form-msg');
+  if(!f.checkValidity()){ msg.className='form-msg err'; msg.textContent='Merci de compléter tous les champs et de cocher la case de consentement.'; return false; }
+  msg.className='form-msg ok';
+  msg.textContent="Merci ! L'envoi automatique de votre analyse complète sera activé très prochainement. En attendant, vous pouvez réserver votre Instant Horizon, l'échange offert avec un expert.";
+  return false;
+}
+
+function restart(){
+  document.getElementById('lead-form').reset();
+  document.getElementById('form-msg').className='form-msg';
+  document.getElementById('result-section').style.display='none';
+  document.getElementById('intro-section').style.display='block';
+  window.scrollTo({top:0});
+}
+</script>
+</body>
+</html>
