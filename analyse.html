@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Votre analyse complète — Cartographie Noria Horizon</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep:   #234B5E;
+  --teal:   #3B7A78;
+  --teal-l: #7FB7B4;
+  --sand:   #E8DCC9;
+  --copper: #B86F4C;
+  --copper-l:#D08A64;
+  --mist:   #F4EFE6;
+  --white:  #FDFAF5;
+  --ink:    #1a2e38;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body:    'DM Sans', sans-serif;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--deep); color: var(--white);
+  font-family: var(--font-body); font-weight: 300;
+  min-height: 100vh; padding: 56px 20px 40px;
+  overflow-x: hidden;
+}
+body::before {
+  content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Cpath d='M0 20 Q30 5 60 20 Q90 35 120 20' fill='none' stroke='rgba(184,111,76,0.04)' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-size:120px 40px;
+}
+.container { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+
+/* En-tête */
+.page-header { text-align:center; margin-bottom:48px; }
+.back-link {
+  display:inline-block; color:var(--copper); text-decoration:none;
+  font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase;
+  margin-bottom:28px; opacity:0.75;
+}
+.back-link:hover { opacity:1; }
+.kicker { display:block; font-size:0.68rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--copper-l); margin-bottom:14px; }
+.page-title { font-family:var(--font-display); font-size:clamp(2rem,5vw,3.3rem); font-weight:300; line-height:1.15; margin-bottom:14px; }
+.page-title strong { color:var(--copper-l); font-weight:600; }
+.page-sub { font-size:0.9rem; opacity:0.55; max-width:520px; margin:0 auto; line-height:1.8; }
+
+/* Écran d'accueil */
+.intro-card {
+  background:rgba(255,255,255,0.04); border:1px solid rgba(184,111,76,0.22);
+  padding:40px 38px; max-width:680px; margin:0 auto; text-align:center;
+}
+.intro-card blockquote {
+  font-family:var(--font-display); font-size:1.25rem; line-height:1.6; font-style:italic;
+  opacity:0.9; margin-bottom:26px;
+}
+.scale-demo { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin:0 0 28px; }
+.scale-demo span {
+  font-size:0.72rem; letter-spacing:0.08em; padding:6px 12px;
+  border:1px solid rgba(255,255,255,0.18); opacity:0.7;
+}
+.intro-note { font-size:0.82rem; opacity:0.55; line-height:1.7; margin-bottom:30px; }
+
+/* Boutons */
+.btn-copper {
+  background:var(--copper); color:var(--white); border:none; cursor:pointer;
+  padding:15px 32px; font-family:var(--font-body); font-size:0.78rem;
+  letter-spacing:0.16em; text-transform:uppercase; transition:background 0.3s;
+}
+.btn-copper:hover { background:var(--copper-l); }
+.btn-ghost {
+  background:transparent; color:var(--white); cursor:pointer;
+  border:1px solid rgba(255,255,255,0.25); padding:12px 24px;
+  font-family:var(--font-body); font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase;
+  opacity:0.7; transition:opacity 0.3s; text-decoration:none; display:inline-block;
+}
+.btn-ghost:hover { opacity:1; }
+
+/* Questionnaire */
+#quiz-section { display:none; max-width:720px; margin:0 auto; }
+.progress-wrap { height:3px; background:rgba(255,255,255,0.08); margin-bottom:14px; }
+.progress-fill { height:100%; width:0; background:linear-gradient(to right,var(--copper),var(--teal-l)); transition:width 0.4s ease; }
+.q-meta { display:flex; justify-content:space-between; align-items:center; margin-bottom:40px; }
+.q-num { font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--copper-l); opacity:0.8; }
+.q-back { background:none; border:none; color:var(--white); opacity:0.5; cursor:pointer; font-family:var(--font-body); font-size:0.78rem; }
+.q-back:hover { opacity:1; }
+.q-back[disabled] { visibility:hidden; }
+#quiz-block { transition:opacity 0.2s ease; min-height:260px; }
+.q-text {
+  font-family:var(--font-display); font-size:clamp(1.45rem,3.4vw,2.1rem);
+  font-weight:300; line-height:1.4; margin-bottom:38px; text-align:center;
+}
+.answers { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.ans {
+  background:rgba(255,255,255,0.04); border:1px solid rgba(184,111,76,0.25);
+  color:var(--white); cursor:pointer; padding:18px 10px;
+  font-family:var(--font-body); font-size:0.88rem; line-height:1.3;
+  transition:all 0.2s;
+}
+.ans:hover { background:rgba(184,111,76,0.16); border-color:var(--copper); }
+.ans.chosen { background:var(--copper); border-color:var(--copper); }
+.ans small { display:block; font-size:0.66rem; opacity:0.5; margin-top:6px; letter-spacing:0.1em; }
+
+/* Résultats */
+#result-section { display:none; }
+.res-block { margin-bottom:64px; }
+.res-block h2 { font-family:var(--font-display); font-size:clamp(1.6rem,4vw,2.2rem); font-weight:300; margin-bottom:6px; text-align:center; }
+.res-block h2 strong { color:var(--copper-l); font-weight:600; }
+.res-lead { text-align:center; font-size:0.82rem; opacity:0.5; margin-bottom:26px; }
+.chart-wrap { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:18px 10px 10px; }
+.chart-wrap svg { display:block; width:100%; height:auto; }
+.chart-wrap.compact { max-width:540px; margin:0 auto; }
+.legend { display:flex; justify-content:center; gap:22px; flex-wrap:wrap; font-size:0.72rem; opacity:0.75; margin-top:10px; }
+.legend i { display:inline-block; width:12px; height:12px; margin-right:6px; vertical-align:-1px; }
+.res-sentence {
+  font-size:0.95rem; line-height:1.8; opacity:0.85; max-width:680px; margin:22px auto 0;
+  text-align:center;
+}
+.res-sentence b { color:var(--copper-l); font-weight:500; }
+
+/* Toile floutée + formulaire */
+.synth-grid { display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:center; }
+.spider-lock { position:relative; overflow:hidden; }
+.spider-lock svg { filter:blur(7px); opacity:0.85; }
+.spider-lock .lock-tag {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display); font-size:1.15rem; text-align:center; padding:20px;
+}
+.spider-lock .lock-tag span { background:rgba(35,75,94,0.85); border:1px solid rgba(184,111,76,0.4); padding:10px 18px; }
+.synth-text { font-size:0.92rem; line-height:1.8; opacity:0.85; margin-bottom:22px; }
+.lead-form { display:grid; gap:12px; }
+.lead-form .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.lead-form input[type=text], .lead-form input[type=email] {
+  width:100%; background:rgba(255,255,255,0.06); border:none; border-bottom:1px solid rgba(184,111,76,0.45);
+  padding:12px 6px; color:var(--white); font-family:var(--font-body); font-size:0.9rem; outline:none;
+}
+.lead-form input:focus { border-bottom-color:var(--copper-l); }
+.lead-form input::placeholder { color:rgba(253,250,245,0.45); }
+.consent { display:flex; gap:10px; align-items:flex-start; font-size:0.74rem; opacity:0.7; line-height:1.55; text-align:left; }
+.consent input { margin-top:3px; accent-color:var(--copper); }
+.form-msg { font-size:0.82rem; line-height:1.6; display:none; }
+.form-msg.err { color:#f0a58a; display:block; }
+.form-msg.ok { color:var(--teal-l); display:block; }
+
+.compare-block { display:none; }
+.legend .prev i { background:none; border:1.5px dashed rgba(253,250,245,0.8); }
+.res-sentence + .res-sentence { margin-top:12px; }
+.axes-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:34px; }
+.axis-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); padding:20px 22px; }
+.axis-card h3 { font-family:var(--font-display); font-size:1.3rem; font-weight:400; margin-bottom:6px; }
+.axis-card .axis-scores { font-size:0.72rem; letter-spacing:0.08em; opacity:0.6; margin-bottom:10px; }
+.axis-card .axis-scores b { color:var(--copper-l); font-weight:500; }
+.axis-card .axis-scores em { color:var(--teal-l); font-style:normal; font-weight:500; }
+.axis-card p { font-size:0.88rem; line-height:1.7; opacity:0.85; }
+.axis-card.appui { border-color:rgba(208,138,100,0.6); }
+.axis-card.piste { border-color:rgba(127,183,180,0.6); }
+.axis-tag { display:inline-block; font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; padding:3px 9px; margin-bottom:8px; }
+.appui .axis-tag { background:var(--copper); }
+.piste .axis-tag { background:var(--teal); }
+#bad-code { display:none; text-align:center; max-width:560px; margin:0 auto; }
+@media(max-width:700px){ .axes-grid { grid-template-columns:1fr; } }
+.conclusion {
+  background:rgba(184,111,76,0.1); border-left:3px solid var(--copper);
+  padding:24px 26px; font-size:0.92rem; line-height:1.85; margin-bottom:30px;
+}
+.end-actions { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; }
+.disclaimer { text-align:center; font-size:0.72rem; opacity:0.35; margin-top:48px; line-height:1.6; }
+
+@media(max-width:700px){
+  body { padding:40px 16px 32px; }
+  .intro-card { padding:30px 20px; }
+  .answers { grid-template-columns:1fr 1fr; }
+  .synth-grid { grid-template-columns:1fr; }
+  .lead-form .row { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="page-header">
+    <a href="index.html" class="back-link">← Retour NORIA HORIZON</a>
+    <span class="kicker">Égogramme · Drivers · Analyse transactionnelle</span>
+    <h1 class="page-title">Votre analyse <strong>complète</strong></h1>
+    <p class="page-sub">Votre Cartographie Noria Horizon, commentée : vos états du moi, vos drivers et vos six axes de compétences de vie.</p>
+  </div>
+
+  <div id="bad-code" class="intro-card">
+    <p class="synth-text">Ce lien d'analyse semble incomplet ou abîmé. Ouvrez-le à nouveau depuis l'email reçu, ou refaites votre cartographie.</p>
+    <a href="cartographie.html" class="btn-copper" style="text-decoration:none;display:inline-block">Faire ma cartographie →</a>
+  </div>
+
+  <!-- RÉSULTATS -->
+  <div id="result-section">
+
+    <div class="res-block">
+      <h2>Votre <strong>égogramme</strong></h2>
+      <p class="res-lead">Vos états du moi sur 20 — le positif au-dessus de la ligne, le négatif en dessous</p>
+      <div class="chart-wrap"><svg id="ego-chart" viewBox="0 0 760 440" role="img" aria-label="Égogramme"></svg></div>
+      <div class="legend"><span><i style="background:var(--copper)"></i>Versant positif</span><span><i style="background:var(--teal-l)"></i>Versant négatif</span><span><i style="background:var(--sand)"></i>Adulte</span><span class="prev" id="ego-prev-legend" style="display:none"><i></i><em id="ego-prev-date" style="font-style:normal"></em></span></div>
+      <div id="ego-sentence"></div>
+    </div>
+
+    <div class="res-block compare-block" id="compare-block">
+      <h2>Votre <strong>évolution</strong></h2>
+      <p class="res-sentence" id="compare-sentence"></p>
+    </div>
+
+    <div class="res-block">
+      <h2>Vos <strong>drivers</strong></h2>
+      <p class="res-lead">Les messages contraignants reçus tôt dans la vie, sur 20</p>
+      <div class="chart-wrap compact"><svg id="drv-chart" viewBox="0 0 520 250" role="img" aria-label="Drivers"></svg></div>
+      <div class="legend"><span class="prev" id="drv-prev-legend" style="display:none"><i></i><em id="drv-prev-date" style="font-style:normal"></em></span></div>
+      <div id="drv-sentence"></div>
+    </div>
+
+    <div class="res-block">
+      <h2>Votre <strong>synthèse</strong></h2>
+      <p class="res-lead">Vos ressources (cuivre) et vos points de vigilance (bleu), sur 6 compétences de vie</p>
+      <div class="synth-grid">
+        <div class="chart-wrap"><svg id="spider-chart" viewBox="0 0 420 420" role="img" aria-label="Synthèse en toile d'araignée"></svg></div>
+        <div><p class="synth-text" id="synth-text"></p></div>
+      </div>
+      <div class="legend" style="margin-top:14px"><span><i style="background:#D08A64"></i>Ressources</span><span><i style="background:#7FB7B4"></i>Points de vigilance</span></div>
+      <div class="axes-grid" id="axes-grid"></div>
+    </div>
+
+    <div class="conclusion">Votre égogramme n'est pas un verdict : c'est une photographie de ce moment de votre vie. Chaque état du moi est une ressource, y compris ceux qui ressortent en négatif — ils montrent simplement où l'énergie se dépense sans vous servir. Les drivers, eux, sont des messages reçus tôt, qui vous ont aidé à grandir et qui peuvent aujourd'hui vous freiner. L'équipe NORIA HORIZON lit votre cartographie et vous oriente vers l'accompagnement le plus juste.</div>
+
+    <div class="end-actions">
+      <a href="index.html#tunnel" class="btn-copper" style="text-decoration:none;">Réserver mon Instant Horizon →</a>
+      <a href="cartographie.html" class="btn-ghost">Refaire ma cartographie</a>
+    </div>
+  </div>
+
+  <p class="disclaimer">Outil de réflexion personnelle inspiré de l'analyse transactionnelle. Il ne constitue ni un test psychométrique ni un diagnostic psychologique.</p>
+</div>
+
+<script>
+// ─── LES 64 AFFIRMATIONS (validées dans le document « Cartographie Noria Horizon ») ───
+var ITEMS = [
+  ['PNp',"Je sais poser des règles claires quand une situation l'exige."],
+  ['PNp',"Je défends mes valeurs, même quand ce n'est pas confortable."],
+  ['PNp',"Quand je dis non, je sais expliquer pourquoi, calmement."],
+  ['PNp',"Les autres peuvent compter sur moi pour tenir un cap."],
+  ['PNn',"J'ai tendance à juger rapidement la façon dont les autres font les choses."],
+  ['PNn',"Il m'arrive de critiquer avant d'avoir vraiment écouté."],
+  ['PNn',"Je pense souvent qu'il n'y a qu'une bonne façon de faire : la mienne."],
+  ['PNn',"Je peux devenir cassant(e) quand quelqu'un ne respecte pas une règle."],
+  ['PNop',"Je remarque facilement quand quelqu'un ne va pas bien."],
+  ['PNop',"J'aime encourager les autres et les voir progresser."],
+  ['PNop',"Je sais réconforter quelqu'un sans l'étouffer."],
+  ['PNop',"Je sais aussi m'accorder du repos et de la douceur quand j'en ai besoin."],
+  ['PNon',"Je fais parfois à la place des autres, alors qu'ils pourraient y arriver seuls."],
+  ['PNon',"J'ai du mal à laisser quelqu'un faire ses propres erreurs."],
+  ['PNon',"Je m'occupe tant des autres que j'en oublie mes propres besoins."],
+  ['PNon',"Il m'arrive d'aider sans qu'on me l'ait demandé."],
+  ['A',"Avant de décider, je rassemble les faits."],
+  ['A',"Je sais garder mon calme pour analyser un problème, même sous pression."],
+  ['A',"Je distingue facilement ce que je sais de ce que je suppose."],
+  ['A',"Je change d'avis quand on m'apporte de meilleurs arguments."],
+  ['ELp',"Je sais m'amuser et profiter du moment présent."],
+  ['ELp',"J'exprime facilement mes émotions, joyeuses comme tristes."],
+  ['ELp',"Les idées nouvelles et les projets créatifs me stimulent."],
+  ['ELp',"Ma curiosité me pousse souvent à essayer des choses nouvelles."],
+  ['ELn',"Il m'arrive d'agir sur un coup de tête et de le regretter ensuite."],
+  ['ELn',"Quand quelque chose me plaît, j'ai du mal à m'arrêter, même si ce n'est pas raisonnable."],
+  ['ELn',"Emporté(e) par mes émotions, j'oublie parfois l'effet de mes paroles."],
+  ['ELn',"J'ai tendance à ne faire que ce qui me fait envie sur le moment."],
+  ['EASp',"Je sais m'adapter aux règles d'un groupe pour que tout se passe bien."],
+  ['EASp',"La politesse et le respect des usages comptent pour moi."],
+  ['EASp',"Je sais faire des compromis quand l'intérêt commun le demande."],
+  ['EASp',"Je tiens mes engagements, même quand cela me coûte."],
+  ['EASn',"J'ai du mal à dire non, de peur de décevoir."],
+  ['EASn',"Je garde souvent mon avis pour moi afin d'éviter le conflit."],
+  ['EASn',"Je me sens facilement coupable, même quand je n'y suis pour rien."],
+  ['EASn',"J'attends l'approbation des autres avant d'agir."],
+  ['EARp',"J'ose dire mon désaccord quand quelque chose me semble injuste."],
+  ['EARp',"Je sais remettre en question une habitude qui ne fonctionne plus."],
+  ['EARp',"Je n'accepte pas une décision qu'on m'impose sans en comprendre la raison."],
+  ['EARp',"Face à la pression, je sais défendre ma position."],
+  ['EARn',"Quand on me donne un ordre, j'ai d'abord envie de faire l'inverse."],
+  ['EARn',"Il m'arrive de m'opposer par principe, sans vraie raison."],
+  ['EARn',"Je peux bouder ou traîner des pieds quand on m'impose quelque chose."],
+  ['EARn',"Les règles m'agacent, même quand elles sont utiles."],
+  ['SP',"Je retouche souvent un travail qui est pourtant déjà bon."],
+  ['SP',"Une petite erreur peut me gâcher toute une réussite."],
+  ['SP',"J'ai du mal à rendre un travail tant qu'il n'est pas impeccable."],
+  ['SP',"Je remarque d'abord ce qui ne va pas, avant ce qui va."],
+  ['FP',"J'ai besoin que les autres soient contents de moi pour me sentir bien."],
+  ['FP',"Je dis oui à une demande avant même de savoir si j'en ai envie."],
+  ['FP',"Je m'inquiète beaucoup de ce que les autres pensent de moi."],
+  ['FP',"Je fais passer les envies des autres avant les miennes."],
+  ['SF',"Je préfère ne pas montrer quand je suis fatigué(e) ou touché(e)."],
+  ['SF',"Demander de l'aide me donne l'impression d'être faible."],
+  ['SF',"Je serre les dents et je continue, même quand je devrais m'arrêter."],
+  ['SF',"J'ai du mal à dire ce que je ressens vraiment."],
+  ['DT',"Je fais souvent plusieurs choses à la fois."],
+  ['DT',"L'attente m'impatiente très vite."],
+  ['DT',"Il m'arrive de finir les phrases des autres à leur place."],
+  ['DT',"Je me sens mal à l'aise quand je n'ai rien à faire."],
+  ['FE',"Pour moi, ce qui a de la valeur doit forcément être difficile."],
+  ['FE',"Je commence beaucoup de choses mais j'ai du mal à les terminer."],
+  ['FE',"Je me sens plus légitime quand j'ai beaucoup peiné."],
+  ['FE',"Quand une solution est simple, je m'en méfie."]
+];
+
+var ANSWERS = [['Pas du tout',0],['Un peu',1],['Souvent',2],['Tout à fait',3]];
+
+var EGO = [ // état du moi : facette positive, facette négative (null pour l'Adulte)
+  {key:'PN',  label:['Parent','normatif'],        pos:'PNp',  neg:'PNn'},
+  {key:'PNo', label:['Parent','nourricier'],      pos:'PNop', neg:'PNon'},
+  {key:'A',   label:['Adulte',''],                pos:'A',    neg:null},
+  {key:'EL',  label:['Enfant','libre'],           pos:'ELp',  neg:'ELn'},
+  {key:'EAS', label:['Enfant adapté','soumis'],   pos:'EASp', neg:'EASn'},
+  {key:'EAR', label:['Enfant adapté','rebelle'],  pos:'EARp', neg:'EARn'}
+];
+var EGO_NAMES = {PNp:'Parent normatif',PNn:'Parent normatif',PNop:'Parent nourricier',PNon:'Parent nourricier',A:'Adulte',ELp:'Enfant libre',ELn:'Enfant libre',EASp:'Enfant adapté soumis',EASn:'Enfant adapté soumis',EARp:'Enfant adapté rebelle',EARn:'Enfant adapté rebelle'};
+
+var EGO_DESC = {
+  PNp:"qui pose le cadre, défend des valeurs et donne une direction",
+  PNop:"qui protège, encourage et prend soin — des autres comme de vous-même",
+  A:"qui observe les faits, analyse et décide avec recul",
+  ELp:"source de spontanéité, de créativité et de joie de vivre",
+  EASp:"qui sait coopérer, respecter les usages et faire des compromis",
+  EARp:"qui ose dire non et contester ce qui lui semble injuste"
+};
+var EGO_NEG = {
+  PNn:"le Parent normatif peut glisser vers la critique ou la rigidité",
+  PNon:"le Parent nourricier peut devenir surprotection, faire à la place des autres, jusqu'à vous oublier",
+  ELn:"l'Enfant libre peut se muer en impulsivité",
+  EASn:"l'Enfant adapté soumis peut vous conduire à vous effacer, à dire oui quand vous pensez non",
+  EARn:"l'Enfant adapté rebelle peut se transformer en opposition par réflexe"
+};
+var DRIVERS = [
+  {key:'SP', name:'Sois parfait',     force:"une vraie exigence de qualité",    risk:"la peur de l'erreur",
+   desc:"Sous tension, vous cherchez à tout maîtriser et à ne laisser aucune place à l'erreur. C'est une force précieuse, tant qu'elle ne devient pas une insatisfaction permanente.", perm:"Vous avez le droit à l'erreur : « assez bien » est souvent déjà très bien."},
+  {key:'FP', name:'Fais plaisir',     force:"un sens aigu de l'autre",          risk:"l'oubli de vos propres besoins",
+   desc:"Sous tension, vous cherchez d'abord à satisfaire les autres et à éviter de décevoir. C'est une belle qualité relationnelle, tant qu'elle ne vous fait pas passer après tout le monde.", perm:"Vous avez le droit de penser à vous et de dire non."},
+  {key:'SF', name:'Sois fort',        force:"une grande endurance",             risk:"la solitude dans les moments difficiles",
+   desc:"Sous tension, vous serrez les dents, vous tenez, et vous gardez vos émotions pour vous. C'est une vraie solidité, tant qu'elle ne vous isole pas quand vous auriez besoin d'aide.", perm:"Vous avez le droit de ressentir, de le montrer et de demander de l'aide."},
+  {key:'DT', name:'Dépêche-toi',      force:"efficacité et réactivité",         risk:"la précipitation",
+   desc:"Sous tension, vous accélérez, vous enchaînez, vous faites plusieurs choses à la fois. C'est une grande efficacité, tant qu'elle ne se transforme pas en course permanente.", perm:"Vous avez le droit de prendre votre temps."},
+  {key:'FE', name:'Fais des efforts', force:"une belle persévérance",           risk:"la difficulté à aboutir",
+   desc:"Sous tension, vous vous donnez beaucoup de mal, comme si la valeur d'une chose tenait à la peine qu'elle coûte. C'est une ténacité réelle, tant qu'elle ne vous empêche pas d'aboutir.", perm:"Vous avez le droit de réussir simplement, et de terminer."}
+];
+
+// Toile d'araignée : ressource = facette positive ; vigilance = facette négative (+ driver associé)
+var AXES = [
+  {name:'Poser un cadre',            res:'PNp',  vig:['PNn','SP']},
+  {name:'Prendre soin',              res:'PNop', vig:['PNon','SF']},
+  {name:'Analyser et décider',       res:'A',    vig:['DT']},
+  {name:'Créer et ressentir',        res:'ELp',  vig:['ELn','FE']},
+  {name:'Coopérer',                  res:'EASp', vig:['EASn','FP']},
+  {name:"S'affirmer",                res:'EARp', vig:['EARn']}
+];
+
+var order = [], answers = [], pos = 0, scores = {};
+
+function shuffled(n){
+  var a=[]; for(var i=0;i<n;i++) a.push(i);
+  for(var j=n-1;j>0;j--){ var k=Math.floor(Math.random()*(j+1)); var t=a[j]; a[j]=a[k]; a[k]=t; }
+  return a;
+}
+
+function startCarto(){
+  order = shuffled(ITEMS.length); answers = new Array(ITEMS.length); pos = 0;
+  document.getElementById('intro-section').style.display='none';
+  document.getElementById('result-section').style.display='none';
+  document.getElementById('quiz-section').style.display='block';
+  renderItem();
+  window.scrollTo({top:0});
+}
+
+function renderItem(){
+  var idx = order[pos], item = ITEMS[idx];
+  document.getElementById('prog').style.width = Math.round(pos/ITEMS.length*100)+'%';
+  document.getElementById('q-num').textContent = 'Affirmation '+(pos+1)+' / '+ITEMS.length;
+  document.getElementById('q-back').disabled = (pos===0);
+  var html = '<p class="q-text">'+item[1]+'</p><div class="answers">';
+  ANSWERS.forEach(function(a){
+    var chosen = (answers[idx]===a[1]) ? ' chosen' : '';
+    html += '<button class="ans'+chosen+'" onclick="answer('+a[1]+')">'+a[0]+'</button>';
+  });
+  document.getElementById('quiz-block').innerHTML = html+'</div>';
+}
+
+function answer(v){
+  answers[order[pos]] = v;
+  var block = document.getElementById('quiz-block');
+  if(pos+1 >= ITEMS.length){ showResults(); return; }
+  block.style.opacity='0';
+  setTimeout(function(){ pos++; renderItem(); block.style.opacity='1'; }, 180);
+}
+
+function goBack(){ if(pos>0){ pos--; renderItem(); } }
+
+function computeScores(){
+  var sum = {};
+  ITEMS.forEach(function(it,i){ sum[it[0]] = (sum[it[0]]||0) + (answers[i]||0); });
+  var s = {};
+  Object.keys(sum).forEach(function(k){ s[k] = Math.round(sum[k]*20/12); }); // 4 affirmations × 3 points = 12 → ramené sur 20
+  return s;
+}
+
+// ─── ÉGOGRAMME (barres en miroir) ───
+function drawEgo(){
+  var svg = document.getElementById('ego-chart');
+  var narrow = svg.parentNode.clientWidth < 560;
+  var W = narrow ? 400 : 760, mid = narrow ? 170 : 210, unit = narrow ? 7 : 8.5, left = narrow ? 30 : 46;
+  var colW=(W-left-6)/EGO.length, bw = narrow ? 26 : 34, fs = narrow ? 12 : 13;
+  var h = '', gh = '';
+  for(var v=5; v<=20; v+=5){
+    h += '<line x1="'+left+'" x2="'+(W-10)+'" y1="'+(mid-v*unit)+'" y2="'+(mid-v*unit)+'" stroke="rgba(255,255,255,0.07)"/>';
+    h += '<line x1="'+left+'" x2="'+(W-10)+'" y1="'+(mid+v*unit)+'" y2="'+(mid+v*unit)+'" stroke="rgba(255,255,255,0.07)"/>';
+    h += '<text x="'+(left-8)+'" y="'+(mid-v*unit+4)+'" fill="rgba(255,255,255,0.4)" font-size="11" text-anchor="end">'+v+'</text>';
+    h += '<text x="'+(left-8)+'" y="'+(mid+v*unit+4)+'" fill="rgba(255,255,255,0.4)" font-size="11" text-anchor="end">'+v+'</text>';
+  }
+  h += '<text x="'+(left-8)+'" y="'+(mid+4)+'" fill="rgba(255,255,255,0.4)" font-size="11" text-anchor="end">0</text>';
+  EGO.forEach(function(e,i){
+    var cx = left + colW*i + colW/2;
+    var p = scores[e.pos], isA = !e.neg;
+    var col = isA ? '#E8DCC9' : '#B86F4C';
+    h += '<rect x="'+(cx-bw/2)+'" y="'+(mid-p*unit)+'" width="'+bw+'" height="'+(p*unit)+'" fill="'+col+'" rx="2"/>';
+    h += '<text x="'+cx+'" y="'+(mid-p*unit-7)+'" fill="#FDFAF5" font-size="'+fs+'" font-weight="500" text-anchor="middle">'+p+'</text>';
+    if(prevCarto){
+      var pp = prevCarto.scores[e.pos]||0; gh += ghostRect(cx-bw/2-3, mid-pp*unit, bw+6, pp*unit);
+      if(e.neg){ var pn = prevCarto.scores[e.neg]||0; gh += ghostRect(cx-bw/2-3, mid, bw+6, pn*unit); }
+    }
+    if(e.neg){
+      var n = scores[e.neg];
+      h += '<rect x="'+(cx-bw/2)+'" y="'+mid+'" width="'+bw+'" height="'+(n*unit)+'" fill="#7FB7B4" rx="2"/>';
+      h += '<text x="'+cx+'" y="'+(mid+n*unit+16)+'" fill="#FDFAF5" font-size="'+fs+'" font-weight="500" text-anchor="middle">'+n+'</text>';
+    }
+    var lines = narrow ? (e.label[0]+' '+e.label[1]).trim().split(' ') : e.label;
+    lines.forEach(function(w,j){
+      h += '<text x="'+cx+'" y="'+(mid+20*unit+28+j*15)+'" fill="#FDFAF5" font-size="'+fs+'" text-anchor="middle"'+(j>0?' opacity="0.7"':'')+'>'+w+'</text>';
+    });
+  });
+  h += gh;
+  h += '<line x1="'+left+'" x2="'+(W-10)+'" y1="'+mid+'" y2="'+mid+'" stroke="rgba(253,250,245,0.55)" stroke-width="1.5"/>';
+  svg.setAttribute('viewBox','0 0 '+W+' '+(mid+20*unit+(narrow?72:56)));
+  svg.innerHTML = h;
+
+  var posKeys = ['PNp','PNop','A','ELp','EASp','EARp'].sort(function(a,b){ return scores[b]-scores[a]; });
+  var negKeys = ['PNn','PNon','ELn','EASn','EARn'].sort(function(a,b){ return scores[b]-scores[a]; });
+  var t1 = 'L\'égogramme montre comment votre énergie se répartit entre vos états du moi : le Parent, l\'Adulte et l\'Enfant. Chacun a un versant qui vous sert et un versant qui peut vous desservir.';
+  var t2 = 'Chez vous, deux appuis ressortent : votre <b>'+EGO_NAMES[posKeys[0]]+'</b>, '+EGO_DESC[posKeys[0]]+', et votre <b>'+EGO_NAMES[posKeys[1]]+'</b>, '+EGO_DESC[posKeys[1]]+'.';
+  var t3 = (scores[negKeys[0]] >= 14)
+    ? 'Point de vigilance : sous pression, '+EGO_NEG[negKeys[0]]+'.'
+    : 'Aucun versant négatif ne ressort fortement : votre énergie se dépense plutôt là où elle vous sert.';
+  var t4 = 'Aucun état du moi n\'est un défaut : c\'est la souplesse pour passer de l\'un à l\'autre qui fait la différence.';
+  document.getElementById('ego-sentence').innerHTML = '<p class="res-sentence">'+t1+'</p><p class="res-sentence">'+t2+' '+t3+' '+t4+'</p>';
+}
+
+// ─── DRIVERS (barres verticales compactes) ───
+function drawDrivers(){
+  var svg = document.getElementById('drv-chart');
+  var narrow = svg.parentNode.clientWidth < 480;
+  var W = narrow ? 360 : 520, left = narrow ? 26 : 34, base = narrow ? 175 : 190, unit = 8;
+  var colW=(W-left-6)/DRIVERS.length, bw = narrow ? 30 : 40, h='';
+  svg.setAttribute('viewBox','0 0 '+W+' 250');
+  for(var v=5; v<=20; v+=5){
+    h += '<line x1="'+left+'" x2="'+(W-10)+'" y1="'+(base-v*unit)+'" y2="'+(base-v*unit)+'" stroke="rgba(255,255,255,0.07)"/>';
+    h += '<text x="'+(left-8)+'" y="'+(base-v*unit+4)+'" fill="rgba(255,255,255,0.4)" font-size="11" text-anchor="end">'+v+'</text>';
+  }
+  DRIVERS.forEach(function(d,i){
+    var cx = left + colW*i + colW/2, s = scores[d.key];
+    var col = s>=14 ? '#B86F4C' : 'rgba(208,138,100,0.55)';
+    h += '<rect x="'+(cx-bw/2)+'" y="'+(base-s*unit)+'" width="'+bw+'" height="'+(s*unit)+'" fill="'+col+'" rx="2"/>';
+    h += '<text x="'+cx+'" y="'+(base-s*unit-7)+'" fill="#FDFAF5" font-size="13" font-weight="500" text-anchor="middle">'+s+'</text>';
+    if(prevCarto){ var ps = prevCarto.scores[d.key]||0; h += ghostRect(cx-bw/2-3, base-ps*unit, bw+6, ps*unit); }
+    var parts = d.name.split(' ');
+    h += '<text x="'+cx+'" y="'+(base+22)+'" fill="#FDFAF5" font-size="12.5" text-anchor="middle">'+parts[0]+'</text>';
+    h += '<text x="'+cx+'" y="'+(base+38)+'" fill="#FDFAF5" font-size="12.5" text-anchor="middle" opacity="0.7">'+parts.slice(1).join(' ')+'</text>';
+  });
+  h += '<line x1="'+left+'" x2="'+(W-10)+'" y1="'+base+'" y2="'+base+'" stroke="rgba(253,250,245,0.55)" stroke-width="1.5"/>';
+  svg.innerHTML = h;
+
+  var sorted = DRIVERS.slice().sort(function(a,b){ return scores[b.key]-scores[a.key]; });
+  var d = sorted[0], d2 = sorted[1], txt;
+  var intro = 'Les drivers sont des messages reçus tôt dans la vie — « Sois parfait », « Fais plaisir », « Sois fort »… Ils vous ont aidé(e) à grandir et à être accepté(e) ; aujourd\'hui encore, surtout sous stress, ils vous poussent, parfois au-delà du raisonnable.';
+  if(scores[d.key] >= 14){
+    txt = 'Chez vous, le message le plus présent est <b>« '+d.name+' »</b>. '+d.desc+' <em>'+d.perm+'</em>';
+    if(scores[d2.key] >= 14) txt += ' Le driver <b>« '+d2.name+' »</b> est lui aussi actif : il vous apporte '+d2.force+', à condition qu\'il ne vous enferme pas dans '+d2.risk+'.';
+  } else {
+    txt = 'Chez vous, aucun driver ne domine : ces messages sont présents sans vous gouverner. Le plus marqué est <b>« '+d.name+' »</b> : il vous apporte '+d.force+', à condition qu\'il ne vous enferme pas dans '+d.risk+'.';
+  }
+  document.getElementById('drv-sentence').innerHTML = '<p class="res-sentence">'+intro+'</p><p class="res-sentence">'+txt+'</p>';
+}
+
+// ─── TOILE D'ARAIGNÉE (floutée à l'écran) ───
+function axisValues(){
+  return AXES.map(function(ax){
+    var vig = ax.vig.reduce(function(t,k){ return t+scores[k]; },0)/ax.vig.length;
+    return {res:scores[ax.res], vig:Math.round(vig)};
+  });
+}
+function drawSpider(){
+  var svg = document.getElementById('spider-chart'), c=210, R=140, n=AXES.length, h='';
+  function pt(i,v){ var a=-Math.PI/2+i*2*Math.PI/n, r=R*v/20; return [c+r*Math.cos(a), c+r*Math.sin(a)]; }
+  for(var lv=1; lv<=4; lv++){
+    var ring=[]; for(var i=0;i<n;i++) ring.push(pt(i,lv*5).join(','));
+    h += '<polygon points="'+ring.join(' ')+'" fill="none" stroke="rgba(255,255,255,0.1)"/>';
+  }
+  var vals = axisValues(), res=[], vig=[];
+  for(var i=0;i<n;i++){
+    var e=pt(i,20); h += '<line x1="'+c+'" y1="'+c+'" x2="'+e[0]+'" y2="'+e[1]+'" stroke="rgba(255,255,255,0.1)"/>';
+    var l=pt(i,25); h += '<text x="'+l[0]+'" y="'+l[1]+'" fill="#FDFAF5" font-size="12" text-anchor="middle">'+AXES[i].name+'</text>';
+    res.push(pt(i,vals[i].res).join(',')); vig.push(pt(i,vals[i].vig).join(','));
+  }
+  h += '<polygon points="'+vig.join(' ')+'" fill="rgba(127,183,180,0.25)" stroke="#7FB7B4" stroke-width="2"/>';
+  h += '<polygon points="'+res.join(' ')+'" fill="rgba(184,111,76,0.3)" stroke="#D08A64" stroke-width="2"/>';
+  svg.innerHTML = h;
+}
+
+var synthAppui = 0, synthPiste = 0;
+function writeSynthesis(){
+  var vals = axisValues(), appui = 0, piste = 0;
+  for(var i=1;i<vals.length;i++){
+    if(vals[i].res > vals[appui].res) appui = i;
+    if((vals[i].vig - vals[i].res) > (vals[piste].vig - vals[piste].res)) piste = i;
+  }
+  if(piste === appui){ // éviter de nommer deux fois le même axe
+    var best=-99; for(var j=0;j<vals.length;j++){ if(j!==appui && vals[j].vig-vals[j].res>best){ best=vals[j].vig-vals[j].res; piste=j; } }
+  }
+  synthAppui = appui; synthPiste = piste;
+  document.getElementById('synth-text').innerHTML =
+    'Vous venez de consacrer une douzaine de minutes à vous-même. Il en ressort votre <b>égogramme</b> — la façon dont votre énergie se répartit entre vos états du moi — et vos <b>drivers</b>, ces messages qui vous poussent encore aujourd\'hui. Nous croisons ces résultats sur <b>six axes</b> de compétences de vie.'+
+    '<br><br>En bref : votre appui le plus solide se situe du côté de <b>« '+AXES[appui].name+' »</b>, et votre principale piste de progression du côté de <b>« '+AXES[piste].name+' »</b>. Les quatre autres axes, et ce qu\'ils disent de vous, vous attendent dans votre analyse complète.';
+}
+
+// Historique local (sur cet appareil uniquement) pour comparer les cartographies
+var HIST_KEY = 'noriaCartographies', prevCarto = null;
+function loadPrev(){
+  try { var h = JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); return h.length ? h[h.length-1] : null; } catch(e){ return null; }
+}
+function saveCurrent(){
+  try {
+    var h = JSON.parse(localStorage.getItem(HIST_KEY) || '[]');
+    h.push({date:new Date().toISOString(), scores:scores});
+    if(h.length > 12) h = h.slice(-12);
+    localStorage.setItem(HIST_KEY, JSON.stringify(h));
+  } catch(e){}
+}
+function frDate(iso){ var d=new Date(iso); return ('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2)+'/'+d.getFullYear(); }
+var FACET_LABEL = {PNp:'Parent normatif (versant positif)',PNn:'Parent normatif (versant négatif)',PNop:'Parent nourricier (versant positif)',PNon:'Parent nourricier (versant négatif)',A:'Adulte',ELp:'Enfant libre (versant positif)',ELn:'Enfant libre (versant négatif)',EASp:'Enfant adapté soumis (versant positif)',EASn:'Enfant adapté soumis (versant négatif)',EARp:'Enfant adapté rebelle (versant positif)',EARn:'Enfant adapté rebelle (versant négatif)',SP:'driver « Sois parfait »',FP:'driver « Fais plaisir »',SF:'driver « Sois fort »',DT:'driver « Dépêche-toi »',FE:'driver « Fais des efforts »'};
+function writeCompare(){
+  var block = document.getElementById('compare-block');
+  if(!prevCarto){ block.style.display='none'; return; }
+  var diffs = Object.keys(scores).map(function(k){ return {k:k, d:scores[k]-(prevCarto.scores[k]||0)}; })
+    .filter(function(x){ return Math.abs(x.d) >= 2; })
+    .sort(function(a,b){ return Math.abs(b.d)-Math.abs(a.d); }).slice(0,3);
+  var when = frDate(prevCarto.date), txt;
+  if(!diffs.length){
+    txt = 'Depuis votre cartographie du <b>'+when+'</b>, votre profil est resté très stable.';
+  } else {
+    txt = 'Depuis votre cartographie du <b>'+when+'</b> (en pointillés sur les graphiques), les évolutions les plus nettes : ' +
+      diffs.map(function(x){ return 'votre '+FACET_LABEL[x.k]+' '+(x.d>0?'gagne ':'perd ')+Math.abs(x.d)+' point'+(Math.abs(x.d)>1?'s':''); }).join(' ; ')+'.';
+  }
+  txt += ' Un changement n\'est ni bon ni mauvais en soi : il raconte ce que vous traversez.';
+  document.getElementById('compare-sentence').innerHTML = txt;
+  block.style.display='block';
+  ['ego','drv'].forEach(function(p){
+    document.getElementById(p+'-prev-legend').style.display='inline';
+    document.getElementById(p+'-prev-date').textContent = 'Cartographie du '+when;
+  });
+}
+function ghostRect(x,y,w,hgt){
+  return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+Math.max(hgt,0.5)+'" fill="none" stroke="rgba(253,250,245,0.85)" stroke-width="1.5" stroke-dasharray="4 3"/>';
+}
+
+// ─── CODE DE RÉSULTAT (envoyé à Brevo, relu par la page analyse.html) ───
+var CODE_KEYS = ['PNp','PNn','PNop','PNon','A','ELp','ELn','EASp','EASn','EARp','EARn','SP','FP','SF','DT','FE'];
+function buildCode(){ return 'v1.' + CODE_KEYS.map(function(k){ return scores[k]; }).join('.'); }
+function buildResume(){
+  var d = DRIVERS.slice().sort(function(a,b){ return scores[b.key]-scores[a.key]; })[0];
+  return 'Appui : '+AXES[synthAppui].name+' · Piste : '+AXES[synthPiste].name+' · Driver : '+d.name+' ('+scores[d.key]+'/20) · Adulte : '+scores.A+'/20';
+}
+
+function showResults(){
+  scores = computeScores();
+  document.getElementById('prog').style.width='100%';
+  document.getElementById('quiz-section').style.display='none';
+  document.getElementById('result-section').style.display='block';
+  prevCarto = loadPrev();
+  drawEgo(); drawDrivers(); drawSpider(); writeSynthesis(); writeCompare();
+  saveCurrent();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ─── FORMULAIRE → BREVO (liste « Cartographie Noria ») ───
+var BREVO_ACTION = 'https://2b2aa488.sibforms.com/serve/MUIFAIiBIahjAYEc1FccuUshnBKAdZwm55M255agMfpFrgZUCrqBDITPBNEDfaUGrPzLoOaCdr4NEXyAJ8x7Gc1sPmWHF3vKevyLML73KUq1C56LFDwv4iEHMLxobTZlTfJbLlXmzFcywdan_e0sZxuAJ7gx7m-fLnNw0P3l47Nb1a68EzOdWZTuNRCI5rS6w09Uvlt97Utkn9RJTA==';
+function submitLead(ev){
+  ev.preventDefault();
+  var f = document.getElementById('lead-form'), msg = document.getElementById('form-msg');
+  var btn = f.querySelector('button[type=submit]');
+  if(!f.checkValidity()){ msg.className='form-msg err'; msg.textContent='Merci de compléter tous les champs et de cocher la case de consentement.'; return false; }
+  var data = new URLSearchParams();
+  data.append('EMAIL', f.EMAIL.value.trim());
+  data.append('PRENOM', f.PRENOM.value.trim());
+  data.append('NOM', f.NOM.value.trim());
+  data.append('CARTO_CODE', buildCode());
+  data.append('CARTO_RESUME', buildResume());
+  data.append('email_address_check', '');
+  data.append('locale', 'fr');
+  data.append('html_type', 'simple');
+  btn.disabled = true; btn.textContent = 'Envoi en cours…';
+  fetch(BREVO_ACTION, { method:'POST', mode:'no-cors', body:data })
+    .then(function(){
+      msg.className='form-msg ok';
+      msg.textContent="Merci ! Votre demande est bien enregistrée : votre analyse complète vous sera envoyée par email. Pensez à vérifier vos courriers indésirables.";
+      btn.textContent = 'Demande envoyée ✓';
+    })
+    .catch(function(){
+      msg.className='form-msg err';
+      msg.textContent="L'envoi n'a pas abouti. Vérifiez votre connexion et réessayez, ou écrivez-nous à noriahorizoncontacts@gmail.com.";
+      btn.disabled = false; btn.textContent = 'Recevoir mon analyse complète →';
+    });
+  return false;
+}
+
+function restart(){
+  document.getElementById('lead-form').reset();
+  var b = document.querySelector('#lead-form button[type=submit]'); b.disabled=false; b.textContent='Recevoir mon analyse complète →';
+  document.getElementById('form-msg').className='form-msg';
+  document.getElementById('result-section').style.display='none';
+  document.getElementById('intro-section').style.display='block';
+  window.scrollTo({top:0});
+}
+
+// ─── PAGE D'ANALYSE : lecture du code reçu par email ───
+var AXIS_TXT = {
+  'Poser un cadre': {hi:"Vous savez poser des repères clairs, défendre vos valeurs et tenir une direction : les autres peuvent s'appuyer sur vous.", lo:"Poser un cadre ne vous est pas naturel : dire non, fixer une règle ou tenir une limite peut vous coûter.", mid:"Vous savez poser un cadre quand il le faut ; c'est une ressource à cultiver pour qu'elle soit disponible aussi sous pression.", vig:"Point de vigilance : l'exigence peut glisser vers la critique, la rigidité ou le perfectionnisme."},
+  'Prendre soin': {hi:"Vous savez prendre soin — des autres comme de vous-même — encourager, réconforter, soutenir.", lo:"Le soin, envers les autres comme envers vous-même, reste une ressource à développer : on se traite souvent comme on traite les autres.", mid:"Le soin est présent chez vous ; veillez à ce qu'il circule dans les deux sens, vers les autres et vers vous.", vig:"Point de vigilance : vous oublier au profit des autres, ou tout porter seul(e) sans demander d'aide."},
+  'Analyser et décider': {hi:"Vous savez prendre du recul, distinguer les faits des suppositions et décider avec lucidité.", lo:"Prendre le temps d'observer et d'analyser avant d'agir peut devenir un vrai levier pour vous.", mid:"Votre capacité d'analyse est réelle ; elle gagne à être protégée des moments d'urgence.", vig:"Point de vigilance : la précipitation, quand l'urgence prend le pas sur la réflexion."},
+  'Créer et ressentir': {hi:"Vous avez accès à votre spontanéité, à votre créativité et à vos émotions : c'est une source d'énergie précieuse.", lo:"Votre part spontanée et créative gagne à être davantage sollicitée : jouer, oser, ressentir.", mid:"Votre élan créatif est bien là ; il s'épanouit quand vous lui laissez de la place.", vig:"Point de vigilance : l'impulsivité, ou beaucoup d'efforts dépensés sans parvenir à aboutir."},
+  'Coopérer': {hi:"Vous savez coopérer, respecter le cadre collectif et trouver des compromis, y compris dans une relation hiérarchique.", lo:"Vous adapter au fonctionnement d'un groupe ou d'une hiérarchie peut vous demander beaucoup d'énergie.", mid:"Vous savez coopérer quand c'est utile ; c'est un appui à entretenir.", vig:"Point de vigilance : vous effacer pour faire plaisir, dire oui quand vous pensez non."},
+  "S'affirmer": {hi:"Vous osez dire non, exprimer un désaccord et défendre ce qui vous paraît juste.", lo:"Vous affirmer, exprimer un désaccord ou refuser ce qui ne vous convient pas reste une piste de progression.", mid:"Vous savez vous affirmer dans certaines situations ; il s'agit maintenant de le faire sans avoir à forcer.", vig:"Point de vigilance : l'opposition par réflexe, qui peut fermer le dialogue."}
+};
+function writeAxes(){
+  var vals = axisValues(), h = '';
+  AXES.forEach(function(ax,i){
+    var v = vals[i], tx = AXIS_TXT[ax.name];
+    var cls = (i===synthAppui) ? ' appui' : (i===synthPiste ? ' piste' : '');
+    var tag = (i===synthAppui) ? '<span class="axis-tag">Votre appui principal</span>' : (i===synthPiste ? '<span class="axis-tag">Votre piste de progression</span>' : '');
+    var body = v.res >= 14 ? tx.hi : (v.res <= 7 ? tx.lo : tx.mid);
+    if(v.vig >= 12 || v.vig > v.res) body += ' ' + tx.vig;
+    h += '<div class="axis-card'+cls+'">'+tag+'<h3>'+ax.name+'</h3><div class="axis-scores">Ressource <b>'+v.res+'/20</b> · Vigilance <em>'+v.vig+'/20</em></div><p>'+body+'</p></div>';
+  });
+  document.getElementById('axes-grid').innerHTML = h;
+}
+(function(){
+  var code = (new URLSearchParams(location.search).get('c') || '').trim();
+  var parts = code.split('.');
+  var ok = parts[0]==='v1' && parts.length===CODE_KEYS.length+1 && parts.slice(1).every(function(x){ return /^\d{1,2}$/.test(x) && +x<=20; });
+  if(!ok){
+    document.getElementById('result-section').style.display='none';
+    document.getElementById('bad-code').style.display='block';
+    return;
+  }
+  scores = {}; CODE_KEYS.forEach(function(k,i){ scores[k] = +parts[i+1]; });
+  prevCarto = null;
+  document.getElementById('result-section').style.display='block';
+  drawEgo(); drawDrivers(); drawSpider(); writeSynthesis(); writeAxes();
+  document.getElementById('synth-text').innerHTML = document.getElementById('synth-text').innerHTML
+    .replace(' Les quatre autres axes, et ce qu\'ils disent de vous, vous attendent dans votre analyse complète.', ' Retrouvez ci-dessous le détail de chacun des six axes.');
+})();
+</script>
+</body>
+</html>
