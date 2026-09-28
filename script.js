@@ -71,7 +71,7 @@ const experts = {
     tags:['Management international','Développement commercial','Transitions professionnelles','Conseil stratégique','Négociation','Conduite du changement','Management multiculturel']
   },
   caroline: {
-    photo:'Caroline-Seure.jpg',
+    photo:'Caroline-Seure.png',
     name:'Caroline Seure',
     role:'Formatrice & ingénieure pédagogique',
     location:'France',
