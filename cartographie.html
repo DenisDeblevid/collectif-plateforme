@@ -156,6 +156,9 @@ body::before {
 .form-msg.err { color:#f0a58a; display:block; }
 .form-msg.ok { color:var(--teal-l); display:block; }
 
+.compare-block { display:none; }
+.legend .prev i { background:none; border:1.5px dashed rgba(253,250,245,0.8); }
+.res-sentence + .res-sentence { margin-top:12px; }
 .conclusion {
   background:rgba(184,111,76,0.1); border-left:3px solid var(--copper);
   padding:24px 26px; font-size:0.92rem; line-height:1.85; margin-bottom:30px;
@@ -186,6 +189,7 @@ body::before {
   <div id="intro-section">
     <div class="intro-card">
       <blockquote>Il n'existe ni bon ni mauvais profil. Chacun de nous dispose de plusieurs états du moi — Parent, Adulte, Enfant — et tous sont utiles dans la vie de tous les jours. Ce qui fait la différence, ce n'est pas l'état qui domine : c'est la capacité à passer de l'un à l'autre au bon moment.</blockquote>
+      <p class="intro-note"><strong>Votre cartographie reflète un moment.</strong> Elle évolue avec votre état du jour, votre situation, votre vie. Refaites-la dans deux, trois ou quatre semaines et comparez : c'est là qu'elle devient vraiment parlante. Vos résultats sont gardés sur cet appareil, et uniquement sur celui-ci, pour que vous puissiez voir l'évolution.</p>
       <p class="intro-note">Pour chaque affirmation, indiquez à quel point elle vous ressemble. Répondez spontanément, en pensant à ce que vous vivez vraiment, pas à ce que vous aimeriez être.</p>
       <div class="scale-demo"><span>Pas du tout</span><span>Un peu</span><span>Souvent</span><span>Tout à fait</span></div>
       <button class="btn-copper" onclick="startCarto()">Commencer ma cartographie →</button>
@@ -209,15 +213,21 @@ body::before {
       <h2>Votre <strong>égogramme</strong></h2>
       <p class="res-lead">Vos états du moi sur 20 — le positif au-dessus de la ligne, le négatif en dessous</p>
       <div class="chart-wrap"><svg id="ego-chart" viewBox="0 0 760 440" role="img" aria-label="Égogramme"></svg></div>
-      <div class="legend"><span><i style="background:var(--copper)"></i>Versant positif</span><span><i style="background:var(--teal-l)"></i>Versant négatif</span><span><i style="background:var(--sand)"></i>Adulte</span></div>
-      <p class="res-sentence" id="ego-sentence"></p>
+      <div class="legend"><span><i style="background:var(--copper)"></i>Versant positif</span><span><i style="background:var(--teal-l)"></i>Versant négatif</span><span><i style="background:var(--sand)"></i>Adulte</span><span class="prev" id="ego-prev-legend" style="display:none"><i></i><em id="ego-prev-date" style="font-style:normal"></em></span></div>
+      <div id="ego-sentence"></div>
+    </div>
+
+    <div class="res-block compare-block" id="compare-block">
+      <h2>Votre <strong>évolution</strong></h2>
+      <p class="res-sentence" id="compare-sentence"></p>
     </div>
 
     <div class="res-block">
       <h2>Vos <strong>drivers</strong></h2>
       <p class="res-lead">Les messages contraignants reçus tôt dans la vie, sur 20</p>
       <div class="chart-wrap compact"><svg id="drv-chart" viewBox="0 0 520 250" role="img" aria-label="Drivers"></svg></div>
-      <p class="res-sentence" id="drv-sentence"></p>
+      <div class="legend"><span class="prev" id="drv-prev-legend" style="display:none"><i></i><em id="drv-prev-date" style="font-style:normal"></em></span></div>
+      <div id="drv-sentence"></div>
     </div>
 
     <div class="res-block">
@@ -229,7 +239,8 @@ body::before {
           <div class="lock-tag"><span>Votre analyse complète vous attend</span></div>
         </div>
         <div>
-          <p class="synth-text">Voici la synthèse de votre cartographie : à la croisée de vos états du moi et de vos drivers, elle révèle vos appuis et vos pistes de progression. Pour recevoir votre <strong>analyse complète et commentée</strong> dans votre boîte mail, complétez le formulaire.</p>
+          <p class="synth-text" id="synth-text"></p>
+          <p class="synth-text">Pour recevoir votre <strong>analyse complète et commentée</strong> — les six axes détaillés, vos ressources et vos pistes de progression — dans votre boîte mail, complétez le formulaire.</p>
           <form class="lead-form" id="lead-form" onsubmit="return submitLead(event)">
             <div class="row">
               <input type="text" name="PRENOM" placeholder="Prénom" autocomplete="given-name" required>
@@ -337,12 +348,32 @@ var EGO = [ // état du moi : facette positive, facette négative (null pour l'A
 ];
 var EGO_NAMES = {PNp:'Parent normatif',PNn:'Parent normatif',PNop:'Parent nourricier',PNon:'Parent nourricier',A:'Adulte',ELp:'Enfant libre',ELn:'Enfant libre',EASp:'Enfant adapté soumis',EASn:'Enfant adapté soumis',EARp:'Enfant adapté rebelle',EARn:'Enfant adapté rebelle'};
 
+var EGO_DESC = {
+  PNp:"qui pose le cadre, défend des valeurs et donne une direction",
+  PNop:"qui protège, encourage et prend soin — des autres comme de vous-même",
+  A:"qui observe les faits, analyse et décide avec recul",
+  ELp:"source de spontanéité, de créativité et de joie de vivre",
+  EASp:"qui sait coopérer, respecter les usages et faire des compromis",
+  EARp:"qui ose dire non et contester ce qui lui semble injuste"
+};
+var EGO_NEG = {
+  PNn:"le Parent normatif peut glisser vers la critique ou la rigidité",
+  PNon:"le Parent nourricier peut devenir surprotection, faire à la place des autres, jusqu'à vous oublier",
+  ELn:"l'Enfant libre peut se muer en impulsivité",
+  EASn:"l'Enfant adapté soumis peut vous conduire à vous effacer, à dire oui quand vous pensez non",
+  EARn:"l'Enfant adapté rebelle peut se transformer en opposition par réflexe"
+};
 var DRIVERS = [
-  {key:'SP', name:'Sois parfait',     force:"une vraie exigence de qualité",    risk:"la peur de l'erreur"},
-  {key:'FP', name:'Fais plaisir',     force:"un sens aigu de l'autre",          risk:"l'oubli de vos propres besoins"},
-  {key:'SF', name:'Sois fort',        force:"une grande endurance",             risk:"la solitude dans les moments difficiles"},
-  {key:'DT', name:'Dépêche-toi',      force:"efficacité et réactivité",         risk:"la précipitation"},
-  {key:'FE', name:'Fais des efforts', force:"une belle persévérance",           risk:"la difficulté à aboutir"}
+  {key:'SP', name:'Sois parfait',     force:"une vraie exigence de qualité",    risk:"la peur de l'erreur",
+   desc:"Sous tension, vous cherchez à tout maîtriser et à ne laisser aucune place à l'erreur. C'est une force précieuse, tant qu'elle ne devient pas une insatisfaction permanente.", perm:"Vous avez le droit à l'erreur : « assez bien » est souvent déjà très bien."},
+  {key:'FP', name:'Fais plaisir',     force:"un sens aigu de l'autre",          risk:"l'oubli de vos propres besoins",
+   desc:"Sous tension, vous cherchez d'abord à satisfaire les autres et à éviter de décevoir. C'est une belle qualité relationnelle, tant qu'elle ne vous fait pas passer après tout le monde.", perm:"Vous avez le droit de penser à vous et de dire non."},
+  {key:'SF', name:'Sois fort',        force:"une grande endurance",             risk:"la solitude dans les moments difficiles",
+   desc:"Sous tension, vous serrez les dents, vous tenez, et vous gardez vos émotions pour vous. C'est une vraie solidité, tant qu'elle ne vous isole pas quand vous auriez besoin d'aide.", perm:"Vous avez le droit de ressentir, de le montrer et de demander de l'aide."},
+  {key:'DT', name:'Dépêche-toi',      force:"efficacité et réactivité",         risk:"la précipitation",
+   desc:"Sous tension, vous accélérez, vous enchaînez, vous faites plusieurs choses à la fois. C'est une grande efficacité, tant qu'elle ne se transforme pas en course permanente.", perm:"Vous avez le droit de prendre votre temps."},
+  {key:'FE', name:'Fais des efforts', force:"une belle persévérance",           risk:"la difficulté à aboutir",
+   desc:"Sous tension, vous vous donnez beaucoup de mal, comme si la valeur d'une chose tenait à la peine qu'elle coûte. C'est une ténacité réelle, tant qu'elle ne vous empêche pas d'aboutir.", perm:"Vous avez le droit de réussir simplement, et de terminer."}
 ];
 
 // Toile d'araignée : ressource = facette positive ; vigilance = facette négative (+ driver associé)
@@ -409,7 +440,7 @@ function drawEgo(){
   var narrow = svg.parentNode.clientWidth < 560;
   var W = narrow ? 400 : 760, mid = narrow ? 170 : 210, unit = narrow ? 7 : 8.5, left = narrow ? 30 : 46;
   var colW=(W-left-6)/EGO.length, bw = narrow ? 26 : 34, fs = narrow ? 12 : 13;
-  var h = '';
+  var h = '', gh = '';
   for(var v=5; v<=20; v+=5){
     h += '<line x1="'+left+'" x2="'+(W-10)+'" y1="'+(mid-v*unit)+'" y2="'+(mid-v*unit)+'" stroke="rgba(255,255,255,0.07)"/>';
     h += '<line x1="'+left+'" x2="'+(W-10)+'" y1="'+(mid+v*unit)+'" y2="'+(mid+v*unit)+'" stroke="rgba(255,255,255,0.07)"/>';
@@ -423,6 +454,10 @@ function drawEgo(){
     var col = isA ? '#E8DCC9' : '#B86F4C';
     h += '<rect x="'+(cx-bw/2)+'" y="'+(mid-p*unit)+'" width="'+bw+'" height="'+(p*unit)+'" fill="'+col+'" rx="2"/>';
     h += '<text x="'+cx+'" y="'+(mid-p*unit-7)+'" fill="#FDFAF5" font-size="'+fs+'" font-weight="500" text-anchor="middle">'+p+'</text>';
+    if(prevCarto){
+      var pp = prevCarto.scores[e.pos]||0; gh += ghostRect(cx-bw/2-3, mid-pp*unit, bw+6, pp*unit);
+      if(e.neg){ var pn = prevCarto.scores[e.neg]||0; gh += ghostRect(cx-bw/2-3, mid, bw+6, pn*unit); }
+    }
     if(e.neg){
       var n = scores[e.neg];
       h += '<rect x="'+(cx-bw/2)+'" y="'+mid+'" width="'+bw+'" height="'+(n*unit)+'" fill="#7FB7B4" rx="2"/>';
@@ -433,16 +468,20 @@ function drawEgo(){
       h += '<text x="'+cx+'" y="'+(mid+20*unit+28+j*15)+'" fill="#FDFAF5" font-size="'+fs+'" text-anchor="middle"'+(j>0?' opacity="0.7"':'')+'>'+w+'</text>';
     });
   });
+  h += gh;
   h += '<line x1="'+left+'" x2="'+(W-10)+'" y1="'+mid+'" y2="'+mid+'" stroke="rgba(253,250,245,0.55)" stroke-width="1.5"/>';
   svg.setAttribute('viewBox','0 0 '+W+' '+(mid+20*unit+(narrow?72:56)));
   svg.innerHTML = h;
 
   var posKeys = ['PNp','PNop','A','ELp','EASp','EARp'].sort(function(a,b){ return scores[b]-scores[a]; });
   var negKeys = ['PNn','PNon','ELn','EASn','EARn'].sort(function(a,b){ return scores[b]-scores[a]; });
-  var txt = 'Votre énergie se porte d\'abord sur votre <b>'+EGO_NAMES[posKeys[0]]+'</b> et votre <b>'+EGO_NAMES[posKeys[1]]+'</b> : ce sont vos appuis naturels.';
-  if(scores[negKeys[0]] >= 14) txt += ' Côté vigilance, votre <b>'+EGO_NAMES[negKeys[0]]+'</b> dépense parfois son énergie sans vous servir.';
-  txt += ' Aucun état du moi n\'est un défaut : c\'est la souplesse pour passer de l\'un à l\'autre qui compte.';
-  document.getElementById('ego-sentence').innerHTML = txt;
+  var t1 = 'L\'égogramme montre comment votre énergie se répartit entre vos états du moi : le Parent, l\'Adulte et l\'Enfant. Chacun a un versant qui vous sert et un versant qui peut vous desservir.';
+  var t2 = 'Chez vous, deux appuis ressortent : votre <b>'+EGO_NAMES[posKeys[0]]+'</b>, '+EGO_DESC[posKeys[0]]+', et votre <b>'+EGO_NAMES[posKeys[1]]+'</b>, '+EGO_DESC[posKeys[1]]+'.';
+  var t3 = (scores[negKeys[0]] >= 14)
+    ? 'Point de vigilance : sous pression, '+EGO_NEG[negKeys[0]]+'.'
+    : 'Aucun versant négatif ne ressort fortement : votre énergie se dépense plutôt là où elle vous sert.';
+  var t4 = 'Aucun état du moi n\'est un défaut : c\'est la souplesse pour passer de l\'un à l\'autre qui fait la différence.';
+  document.getElementById('ego-sentence').innerHTML = '<p class="res-sentence">'+t1+'</p><p class="res-sentence">'+t2+' '+t3+' '+t4+'</p>';
 }
 
 // ─── DRIVERS (barres verticales compactes) ───
@@ -461,6 +500,7 @@ function drawDrivers(){
     var col = s>=14 ? '#B86F4C' : 'rgba(208,138,100,0.55)';
     h += '<rect x="'+(cx-bw/2)+'" y="'+(base-s*unit)+'" width="'+bw+'" height="'+(s*unit)+'" fill="'+col+'" rx="2"/>';
     h += '<text x="'+cx+'" y="'+(base-s*unit-7)+'" fill="#FDFAF5" font-size="13" font-weight="500" text-anchor="middle">'+s+'</text>';
+    if(prevCarto){ var ps = prevCarto.scores[d.key]||0; h += ghostRect(cx-bw/2-3, base-ps*unit, bw+6, ps*unit); }
     var parts = d.name.split(' ');
     h += '<text x="'+cx+'" y="'+(base+22)+'" fill="#FDFAF5" font-size="12.5" text-anchor="middle">'+parts[0]+'</text>';
     h += '<text x="'+cx+'" y="'+(base+38)+'" fill="#FDFAF5" font-size="12.5" text-anchor="middle" opacity="0.7">'+parts.slice(1).join(' ')+'</text>';
@@ -469,13 +509,15 @@ function drawDrivers(){
   svg.innerHTML = h;
 
   var sorted = DRIVERS.slice().sort(function(a,b){ return scores[b.key]-scores[a.key]; });
-  var d = sorted[0], txt;
+  var d = sorted[0], d2 = sorted[1], txt;
+  var intro = 'Les drivers sont des messages reçus tôt dans la vie — « Sois parfait », « Fais plaisir », « Sois fort »… Ils vous ont aidé(e) à grandir et à être accepté(e) ; aujourd\'hui encore, surtout sous stress, ils vous poussent, parfois au-delà du raisonnable.';
   if(scores[d.key] >= 14){
-    txt = 'Le message qui ressort le plus chez vous : <b>« '+d.name+' »</b>. Il vous apporte '+d.force+', à condition qu\'il ne vous enferme pas dans '+d.risk+'.';
+    txt = 'Chez vous, le message le plus présent est <b>« '+d.name+' »</b>. '+d.desc+' <em>'+d.perm+'</em>';
+    if(scores[d2.key] >= 14) txt += ' Le driver <b>« '+d2.name+' »</b> est lui aussi actif : il vous apporte '+d2.force+', à condition qu\'il ne vous enferme pas dans '+d2.risk+'.';
   } else {
-    txt = 'Aucun driver ne ressort fortement : ces messages sont présents chez vous sans vous gouverner. Le plus marqué est <b>« '+d.name+' »</b>, source d\''+d.force.replace(/^une? /,'')+'.';
+    txt = 'Chez vous, aucun driver ne domine : ces messages sont présents sans vous gouverner. Le plus marqué est <b>« '+d.name+' »</b> : il vous apporte '+d.force+', à condition qu\'il ne vous enferme pas dans '+d.risk+'.';
   }
-  document.getElementById('drv-sentence').innerHTML = txt;
+  document.getElementById('drv-sentence').innerHTML = '<p class="res-sentence">'+intro+'</p><p class="res-sentence">'+txt+'</p>';
 }
 
 // ─── TOILE D'ARAIGNÉE (floutée à l'écran) ───
@@ -503,6 +545,60 @@ function drawSpider(){
   svg.innerHTML = h;
 }
 
+function writeSynthesis(){
+  var vals = axisValues(), appui = 0, piste = 0;
+  for(var i=1;i<vals.length;i++){
+    if(vals[i].res > vals[appui].res) appui = i;
+    if((vals[i].vig - vals[i].res) > (vals[piste].vig - vals[piste].res)) piste = i;
+  }
+  if(piste === appui){ // éviter de nommer deux fois le même axe
+    var best=-99; for(var j=0;j<vals.length;j++){ if(j!==appui && vals[j].vig-vals[j].res>best){ best=vals[j].vig-vals[j].res; piste=j; } }
+  }
+  document.getElementById('synth-text').innerHTML =
+    'Vous venez de consacrer une douzaine de minutes à vous-même. Il en ressort votre <b>égogramme</b> — la façon dont votre énergie se répartit entre vos états du moi — et vos <b>drivers</b>, ces messages qui vous poussent encore aujourd\'hui. Nous croisons ces résultats sur <b>six axes</b> de compétences de vie.'+
+    '<br><br>En bref : votre appui le plus solide se situe du côté de <b>« '+AXES[appui].name+' »</b>, et votre principale piste de progression du côté de <b>« '+AXES[piste].name+' »</b>. Les quatre autres axes, et ce qu\'ils disent de vous, vous attendent dans votre analyse complète.';
+}
+
+// Historique local (sur cet appareil uniquement) pour comparer les cartographies
+var HIST_KEY = 'noriaCartographies', prevCarto = null;
+function loadPrev(){
+  try { var h = JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); return h.length ? h[h.length-1] : null; } catch(e){ return null; }
+}
+function saveCurrent(){
+  try {
+    var h = JSON.parse(localStorage.getItem(HIST_KEY) || '[]');
+    h.push({date:new Date().toISOString(), scores:scores});
+    if(h.length > 12) h = h.slice(-12);
+    localStorage.setItem(HIST_KEY, JSON.stringify(h));
+  } catch(e){}
+}
+function frDate(iso){ var d=new Date(iso); return ('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2)+'/'+d.getFullYear(); }
+var FACET_LABEL = {PNp:'Parent normatif (versant positif)',PNn:'Parent normatif (versant négatif)',PNop:'Parent nourricier (versant positif)',PNon:'Parent nourricier (versant négatif)',A:'Adulte',ELp:'Enfant libre (versant positif)',ELn:'Enfant libre (versant négatif)',EASp:'Enfant adapté soumis (versant positif)',EASn:'Enfant adapté soumis (versant négatif)',EARp:'Enfant adapté rebelle (versant positif)',EARn:'Enfant adapté rebelle (versant négatif)',SP:'driver « Sois parfait »',FP:'driver « Fais plaisir »',SF:'driver « Sois fort »',DT:'driver « Dépêche-toi »',FE:'driver « Fais des efforts »'};
+function writeCompare(){
+  var block = document.getElementById('compare-block');
+  if(!prevCarto){ block.style.display='none'; return; }
+  var diffs = Object.keys(scores).map(function(k){ return {k:k, d:scores[k]-(prevCarto.scores[k]||0)}; })
+    .filter(function(x){ return Math.abs(x.d) >= 2; })
+    .sort(function(a,b){ return Math.abs(b.d)-Math.abs(a.d); }).slice(0,3);
+  var when = frDate(prevCarto.date), txt;
+  if(!diffs.length){
+    txt = 'Depuis votre cartographie du <b>'+when+'</b>, votre profil est resté très stable.';
+  } else {
+    txt = 'Depuis votre cartographie du <b>'+when+'</b> (en pointillés sur les graphiques), les évolutions les plus nettes : ' +
+      diffs.map(function(x){ return 'votre '+FACET_LABEL[x.k]+' '+(x.d>0?'gagne ':'perd ')+Math.abs(x.d)+' point'+(Math.abs(x.d)>1?'s':''); }).join(' ; ')+'.';
+  }
+  txt += ' Un changement n\'est ni bon ni mauvais en soi : il raconte ce que vous traversez.';
+  document.getElementById('compare-sentence').innerHTML = txt;
+  block.style.display='block';
+  ['ego','drv'].forEach(function(p){
+    document.getElementById(p+'-prev-legend').style.display='inline';
+    document.getElementById(p+'-prev-date').textContent = 'Cartographie du '+when;
+  });
+}
+function ghostRect(x,y,w,hgt){
+  return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+Math.max(hgt,0.5)+'" fill="none" stroke="rgba(253,250,245,0.85)" stroke-width="1.5" stroke-dasharray="4 3"/>';
+}
+
 // Champs cachés : les notes partent avec le formulaire (pour Brevo)
 function fillScoreFields(){
   var box = document.getElementById('score-fields'), h='';
@@ -515,7 +611,9 @@ function showResults(){
   document.getElementById('prog').style.width='100%';
   document.getElementById('quiz-section').style.display='none';
   document.getElementById('result-section').style.display='block';
-  drawEgo(); drawDrivers(); drawSpider(); fillScoreFields();
+  prevCarto = loadPrev();
+  drawEgo(); drawDrivers(); drawSpider(); writeSynthesis(); writeCompare(); fillScoreFields();
+  saveCurrent();
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
