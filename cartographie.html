@@ -248,7 +248,6 @@ body::before {
             </div>
             <input type="email" name="EMAIL" placeholder="Votre adresse email" autocomplete="email" required>
             <label class="consent"><input type="checkbox" name="CONSENT" required> <span>J'accepte que NORIA HORIZON conserve mes réponses et mes coordonnées pour m'envoyer mon analyse et me recontacter. Je peux demander leur suppression à tout moment.</span></label>
-            <div id="score-fields"></div>
             <button type="submit" class="btn-copper">Recevoir mon analyse complète →</button>
             <p class="form-msg" id="form-msg"></p>
           </form>
@@ -545,6 +544,7 @@ function drawSpider(){
   svg.innerHTML = h;
 }
 
+var synthAppui = 0, synthPiste = 0;
 function writeSynthesis(){
   var vals = axisValues(), appui = 0, piste = 0;
   for(var i=1;i<vals.length;i++){
@@ -554,6 +554,7 @@ function writeSynthesis(){
   if(piste === appui){ // éviter de nommer deux fois le même axe
     var best=-99; for(var j=0;j<vals.length;j++){ if(j!==appui && vals[j].vig-vals[j].res>best){ best=vals[j].vig-vals[j].res; piste=j; } }
   }
+  synthAppui = appui; synthPiste = piste;
   document.getElementById('synth-text').innerHTML =
     'Vous venez de consacrer une douzaine de minutes à vous-même. Il en ressort votre <b>égogramme</b> — la façon dont votre énergie se répartit entre vos états du moi — et vos <b>drivers</b>, ces messages qui vous poussent encore aujourd\'hui. Nous croisons ces résultats sur <b>six axes</b> de compétences de vie.'+
     '<br><br>En bref : votre appui le plus solide se situe du côté de <b>« '+AXES[appui].name+' »</b>, et votre principale piste de progression du côté de <b>« '+AXES[piste].name+' »</b>. Les quatre autres axes, et ce qu\'ils disent de vous, vous attendent dans votre analyse complète.';
@@ -599,11 +600,12 @@ function ghostRect(x,y,w,hgt){
   return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+Math.max(hgt,0.5)+'" fill="none" stroke="rgba(253,250,245,0.85)" stroke-width="1.5" stroke-dasharray="4 3"/>';
 }
 
-// Champs cachés : les notes partent avec le formulaire (pour Brevo)
-function fillScoreFields(){
-  var box = document.getElementById('score-fields'), h='';
-  Object.keys(scores).forEach(function(k){ h += '<input type="hidden" name="CARTO_'+k.toUpperCase()+'" value="'+scores[k]+'">'; });
-  box.innerHTML = h;
+// ─── CODE DE RÉSULTAT (envoyé à Brevo, relu par la page analyse.html) ───
+var CODE_KEYS = ['PNp','PNn','PNop','PNon','A','ELp','ELn','EASp','EASn','EARp','EARn','SP','FP','SF','DT','FE'];
+function buildCode(){ return 'v1.' + CODE_KEYS.map(function(k){ return scores[k]; }).join('.'); }
+function buildResume(){
+  var d = DRIVERS.slice().sort(function(a,b){ return scores[b.key]-scores[a.key]; })[0];
+  return 'Appui : '+AXES[synthAppui].name+' · Piste : '+AXES[synthPiste].name+' · Driver : '+d.name+' ('+scores[d.key]+'/20) · Adulte : '+scores.A+'/20';
 }
 
 function showResults(){
@@ -612,24 +614,45 @@ function showResults(){
   document.getElementById('quiz-section').style.display='none';
   document.getElementById('result-section').style.display='block';
   prevCarto = loadPrev();
-  drawEgo(); drawDrivers(); drawSpider(); writeSynthesis(); writeCompare(); fillScoreFields();
+  drawEgo(); drawDrivers(); drawSpider(); writeSynthesis(); writeCompare();
   saveCurrent();
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
-// ─── FORMULAIRE ───
-// À BRANCHER SUR BREVO à l'étape suivante (automatisation). Pour l'instant, rien n'est envoyé.
+// ─── FORMULAIRE → BREVO (liste « Cartographie Noria ») ───
+var BREVO_ACTION = 'https://2b2aa488.sibforms.com/serve/MUIFAIiBIahjAYEc1FccuUshnBKAdZwm55M255agMfpFrgZUCrqBDITPBNEDfaUGrPzLoOaCdr4NEXyAJ8x7Gc1sPmWHF3vKevyLML73KUq1C56LFDwv4iEHMLxobTZlTfJbLlXmzFcywdan_e0sZxuAJ7gx7m-fLnNw0P3l47Nb1a68EzOdWZTuNRCI5rS6w09Uvlt97Utkn9RJTA==';
 function submitLead(ev){
   ev.preventDefault();
   var f = document.getElementById('lead-form'), msg = document.getElementById('form-msg');
+  var btn = f.querySelector('button[type=submit]');
   if(!f.checkValidity()){ msg.className='form-msg err'; msg.textContent='Merci de compléter tous les champs et de cocher la case de consentement.'; return false; }
-  msg.className='form-msg ok';
-  msg.textContent="Merci ! L'envoi automatique de votre analyse complète sera activé très prochainement. En attendant, vous pouvez réserver votre Instant Horizon, l'échange offert avec un expert.";
+  var data = new URLSearchParams();
+  data.append('EMAIL', f.EMAIL.value.trim());
+  data.append('PRENOM', f.PRENOM.value.trim());
+  data.append('NOM', f.NOM.value.trim());
+  data.append('CARTO_CODE', buildCode());
+  data.append('CARTO_RESUME', buildResume());
+  data.append('email_address_check', '');
+  data.append('locale', 'fr');
+  data.append('html_type', 'simple');
+  btn.disabled = true; btn.textContent = 'Envoi en cours…';
+  fetch(BREVO_ACTION, { method:'POST', mode:'no-cors', body:data })
+    .then(function(){
+      msg.className='form-msg ok';
+      msg.textContent="Merci ! Votre demande est bien enregistrée : votre analyse complète vous sera envoyée par email. Pensez à vérifier vos courriers indésirables.";
+      btn.textContent = 'Demande envoyée ✓';
+    })
+    .catch(function(){
+      msg.className='form-msg err';
+      msg.textContent="L'envoi n'a pas abouti. Vérifiez votre connexion et réessayez, ou écrivez-nous à noriahorizoncontacts@gmail.com.";
+      btn.disabled = false; btn.textContent = 'Recevoir mon analyse complète →';
+    });
   return false;
 }
 
 function restart(){
   document.getElementById('lead-form').reset();
+  var b = document.querySelector('#lead-form button[type=submit]'); b.disabled=false; b.textContent='Recevoir mon analyse complète →';
   document.getElementById('form-msg').className='form-msg';
   document.getElementById('result-section').style.display='none';
   document.getElementById('intro-section').style.display='block';
