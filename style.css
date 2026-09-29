@@ -1778,3 +1778,23 @@ body:not(.abonne) .locked-card .lock-badge {
   .lock-form { flex-direction:column; }
   body:not(.abonne) .locked-area .lock-panel { top:24px; }
 }
+
+/* ═══════════════════════════════════════
+   PARTENAIRES — vrais logos cliquables (29/09/2026)
+   ═══════════════════════════════════════ */
+.partners-track-right { animation-duration: 45s; }
+.partners-track-left  { animation-duration: 45s; }
+.partners-track { gap:22px; }
+a.partner-logo {
+  width:190px; height:84px; padding:12px 18px;
+  background:#fff; opacity:0.9; text-decoration:none; cursor:pointer;
+}
+a.partner-logo img {
+  display:block; max-width:100%; max-height:58px;
+  width:auto; height:auto; object-fit:contain;
+}
+a.partner-logo:hover { opacity:1; }
+@media(max-width:600px){
+  a.partner-logo { width:150px; height:70px; padding:10px 14px; }
+  a.partner-logo img { max-height:48px; }
+}
