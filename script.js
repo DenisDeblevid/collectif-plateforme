@@ -466,3 +466,48 @@ function closeAccess(){
   });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeAccess(); });
 })();
+
+/* ─── HERO DYNAMIQUE « NORIA » ─── */
+(function(){
+  var hero = document.getElementById('hero');
+  if(!hero) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function split(el){
+    var out = [];
+    (function walk(node){
+      Array.prototype.slice.call(node.childNodes).forEach(function(n){
+        if(n.nodeType === 3){
+          var parts = n.textContent.split(/(\s+)/);
+          var frag = document.createDocumentFragment();
+          parts.forEach(function(p){
+            if(!p) return;
+            if(/^\s+$/.test(p)){ frag.appendChild(document.createTextNode(' ')); return; }
+            var s = document.createElement('span'); s.className = 'nx-w'; s.textContent = p;
+            frag.appendChild(s); out.push(s);
+          });
+          node.replaceChild(frag, n);
+        } else if(n.nodeType === 1 && n.tagName !== 'BR'){ walk(n); }
+      });
+    })(el);
+    el.classList.add('nx-ready');
+    return out;
+  }
+  var blocks = hero.querySelectorAll('.nx-reveal');
+  var t = 350;
+  blocks.forEach(function(b, i){
+    var words = split(b);
+    var step = i === 0 ? 240 : 45;
+    words.forEach(function(w, k){
+      setTimeout(function(){ w.classList.add('on'); }, reduce ? 0 : t + k * step);
+    });
+    t += words.length * step + (i === 0 ? 700 : 500);
+    if(b.classList.contains('hero-promise')){
+      setTimeout(function(){ b.classList.add('nx-lit'); }, reduce ? 0 : t);
+    }
+  });
+  var btns = hero.querySelector('.nx-fade');
+  if(btns) setTimeout(function(){ btns.classList.add('on'); }, reduce ? 0 : t + 200);
+  hero.querySelectorAll('.hero-key').forEach(function(k, i){
+    setTimeout(function(){ k.classList.add('on'); }, reduce ? 0 : 1200 + i * 1500);
+  });
+})();
