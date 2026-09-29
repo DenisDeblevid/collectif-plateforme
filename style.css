@@ -1782,8 +1782,8 @@ body:not(.abonne) .locked-card .lock-badge {
 /* ═══════════════════════════════════════
    PARTENAIRES — vrais logos cliquables (29/09/2026)
    ═══════════════════════════════════════ */
-.partners-track-right { animation-duration: 45s; }
-.partners-track-left  { animation-duration: 45s; }
+.partners-track-right { animation-duration: 68s; }
+.partners-track-left  { animation-duration: 68s; }
 .partners-track { gap:22px; }
 a.partner-logo {
   width:190px; height:84px; padding:12px 18px;
@@ -1798,3 +1798,52 @@ a.partner-logo:hover { opacity:1; }
   a.partner-logo { width:150px; height:70px; padding:10px 14px; }
   a.partner-logo img { max-height:48px; }
 }
+
+/* ─── HERO DYNAMIQUE « NORIA » (sept. 2026) ─── */
+.hero-layout { position:relative; z-index:2; width:100%; max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1fr 220px; gap:48px; align-items:center; }
+#hero .hero-content { max-width:760px; }
+/* Les blocs animés mot à mot ne s'animent plus en bloc */
+#hero .hero-title.nx-ready, #hero .hero-sub.nx-ready { opacity:1; animation:none; }
+#hero .hero-sub { margin-bottom:0; }
+.hero-promise { font-family:var(--font-display); font-size:clamp(1.25rem,2.2vw,1.6rem); font-weight:600; font-style:italic; color:var(--copper); line-height:1.4; margin:26px auto 0; max-width:620px; }
+.hero-promise.nx-lit { animation:nxGlow 2.4s ease forwards; }
+@keyframes nxGlow {
+  0%   { text-shadow:0 0 0 rgba(184,111,76,0); }
+  45%  { text-shadow:0 0 18px rgba(184,111,76,0.45); }
+  100% { text-shadow:0 0 6px rgba(184,111,76,0.18); }
+}
+/* Mot : arrive porté par un courant d'eau — une onde douce, de gauche à droite */
+.nx-w { display:inline-block; opacity:0; filter:blur(4px); transform:translate(-18px, 5px); }
+.nx-w.on { animation:nxFlow 1.9s cubic-bezier(.37,0,.2,1) forwards; }
+@keyframes nxFlow {
+  0%   { opacity:0;   filter:blur(4px);  transform:translate(-18px, 5px); }
+  35%  { opacity:.55; filter:blur(2px);  transform:translate(-9px, -3px); }
+  65%  { opacity:.9;  filter:blur(.6px); transform:translate(-3px, 2px); }
+  100% { opacity:1;   filter:blur(0);    transform:translate(0, 0); }
+}
+/* Boutons */
+.hero-buttons.nx-fade { opacity:0; transform:translateY(12px); transition:opacity 1s ease, transform 1s ease; align-items:flex-start; gap:16px; }
+.hero-buttons.nx-fade.on { opacity:1; transform:none; }
+.hero-cta { display:flex; flex-direction:column; align-items:center; gap:8px; }
+.hero-links { width:100%; text-align:center; margin-top:6px; font-size:0.78rem; letter-spacing:0.08em; color:var(--stone); }
+.hero-links a { color:var(--deep); text-decoration:none; border-bottom:1px solid rgba(35,75,94,0.25); padding-bottom:1px; transition:color .3s, border-color .3s; }
+.hero-links a:hover { color:var(--copper); border-color:var(--copper); }
+.hero-links span { margin:0 10px; color:rgba(35,75,94,0.3); }
+.hero-reassure { font-size:0.72rem; letter-spacing:0.12em; color:var(--teal); }
+/* Trois mots-clés : sortent de l'ombre et restent éclairés */
+.hero-keys { list-style:none; display:flex; flex-direction:column; gap:30px; padding-left:28px; border-left:1px solid rgba(184,111,76,0.35); }
+.hero-key { font-family:var(--font-display); font-size:1.7rem; font-weight:600; line-height:1.2; color:rgba(35,75,94,0.12); transition:color 1.8s ease, text-shadow 1.8s ease; }
+.hero-key.on { color:var(--copper); text-shadow:0 0 8px rgba(184,111,76,0.22); }
+@media (max-width:900px){
+  .hero-layout { grid-template-columns:1fr; gap:34px; }
+  .hero-keys { flex-direction:row; flex-wrap:wrap; justify-content:center; gap:10px 22px; padding-left:0; border-left:none; border-top:1px solid rgba(184,111,76,0.35); padding-top:22px; }
+  .hero-key { font-size:1.2rem; }
+  .hero-buttons.nx-fade { align-items:center; flex-direction:column; }
+}
+@media (prefers-reduced-motion: reduce){
+  .nx-w.on { animation:none; opacity:1; filter:none; transform:none; }
+  .nx-w, .hero-buttons.nx-fade, .hero-key { transition:none !important; }
+}
+
+/* Continuum : phrase d'accroche */
+.tarifs-quote { font-family:var(--font-display); font-style:italic; font-size:clamp(1.3rem,2.4vw,1.75rem); color:var(--copper); text-align:left; margin:22px 0 8px; max-width:640px; line-height:1.4; }
