@@ -96,6 +96,38 @@ const experts = {
       "Une conviction qui lui tient particulièrement à cœur : il ne faut pas écouter tout ce que l'on nous dit. Le marketing, les idées reçues… ont parfois tendance à nous faire passer à côté de choses intéressantes."
     ],
     tags:['Web','IA','Agentique','Formation']
+  },
+  floriang: {
+    photo:'Florian-Gros.png',
+    name:'Florian Gros',
+    role:'Expert en publicité en ligne',
+    location:'',
+    phone:'+33 6 37 92 52 08',
+    email:'floriangrospro@gmail.com',
+    sites:[['libertads.fr','https://libertads.fr'],['LinkedIn','https://www.linkedin.com/in/florian-grossea/']],
+    bio:[
+      "Florian aide les entrepreneurs et les entreprises à développer leur activité grâce à la publicité en ligne. Son travail ne s'arrête pas à la gestion des campagnes : il construit l'ensemble du système d'acquisition, de la publicité jusqu'à la prise de rendez-vous ou à la vente.",
+      "Tunnels de vente, formulaires de qualification, automatisations, intégration de l'intelligence artificielle, suivi des prospects, optimisation de chaque étape du parcours client : l'objectif est un système complet, capable d'attirer les bonnes personnes, de les qualifier et de les convertir en clients.",
+      "« De la publicité au rendez-vous, je construis tout le système d'acquisition. »",
+      "Sa conviction : l'enjeu n'est pas de générer plus de leads, mais de générer plus de bonnes opportunités pour l'entreprise ou l'entrepreneur."
+    ],
+    tags:['Publicité Facebook & Instagram','Génération de prospects','Tunnels de vente','Automatisation IA','Qualification des prospects','Optimisation des conversions']
+  },
+  remi: {
+    photo:'Remi-Rozier.png',
+    name:'Rémi Rozier',
+    role:"Fondateur d'Empreinte Verticale · Impression murale",
+    location:'Marseille · région PACA, et au-delà sur demande',
+    phone:'+33 6 71 23 05 22',
+    email:'contact@empreinteverticale.fr',
+    sites:[['empreinteverticale.fr','https://www.empreinteverticale.fr']],
+    bio:[
+      "Fondateur d'Empreinte Verticale, Rémi transforme les murs en levier d'image. Installé à Marseille, il imprime directement sur les murs, avec une imprimante verticale qu'il amène sur place. Pas de papier peint ni de panneaux collés — sauf si c'est le souhait du client : l'image fait corps avec le lieu.",
+      "Hôtels, restaurants, bureaux, écoles, salles de sport, commerces : il met en scène l'identité d'une marque dans ses locaux, en impression haute définition sur mur et sur supports rigides. Un mur est le seul espace de communication que les clients regardent sans le vouloir ; Rémi en fait une image qu'on remarque, qu'on photographie et dont on se souvient. Chaque projet commence par une conversation sur le lieu, ses clients et ce que l'on veut leur faire ressentir en entrant.",
+      "« Là où il y avait un mur, il y a maintenant une identité. »",
+      "Sa conviction : un lieu professionnel est le premier message envoyé à un client, avant toute parole ou tout document. Investir dans un mur, c'est investir dans la première impression — et elle se travaille comme le reste de la communication."
+    ],
+    tags:['Impression murale HD','Supports rigides','Décoration de lieux professionnels','Identité de marque','Hôtels & restaurants','Bureaux & commerces','Intervention sur site']
   }
 };
 
@@ -108,7 +140,8 @@ var expertsGeo = {
   melanie:  { lat: 46.8494, lon: -1.8794, zoom: 9,  ville: "Challans (85)" },
   gilles:   { lat: 46.6034, lon: 1.8883,  zoom: 5,  ville: "France & International" },
   caroline: { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" },
-  josselin: { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" }
+  josselin: { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" },
+  remi:     { lat: 43.2965, lon: 5.3898,  zoom: 9,  ville: "Marseille (Empreinte Verticale)" }
 };
 
 var expertsMap = null;
@@ -178,14 +211,15 @@ function openModal(id){
   var tagsHTML=e.tags.map(function(t){ return '<span class="modal-tag">'+t+'</span>'; }).join('');
   document.getElementById('modalBody').innerHTML=
     '<div class="modal-header">' +
-    '<div class="modal-photo" style="overflow:hidden;padding:0;">'+(e.photo ? '<img src="'+e.photo+'" alt="'+e.name+'" style="width:100%;height:100%;object-fit:cover;object-position:center top;">' : '')+'</div>' +
+    '<div class="modal-photo" style="overflow:hidden;padding:0;">'+(e.photo ? '<img src="'+e.photo+'" alt="'+e.name+'" onerror="this.remove()" style="width:100%;height:100%;object-fit:cover;object-position:center top;">' : '')+'</div>' +
     '<div class="modal-info">' +
     '<h2>'+e.name+'</h2>' +
     '<span class="role-badge">'+e.role+'</span><br>' +
-    '<small style="opacity:.4;font-size:.78rem;display:block;margin-bottom:10px;">📍 '+e.location+'</small>' +
+    (e.location ? '<small style="opacity:.4;font-size:.78rem;display:block;margin-bottom:10px;">📍 '+e.location+'</small>' : '') +
     '<div class="contact-links">' +
     (e.phone ? '<a href="tel:'+e.phone+'">📞 '+e.phone+'</a>' : '') +
     (e.email ? '<a href="mailto:'+e.email+'">✉ '+e.email+'</a>' : '') +
+    (e.sites ? e.sites.map(function(s){ return '<a href="'+s[1]+'" target="_blank" rel="noopener">🔗 '+s[0]+'</a>'; }).join('') : '') +
     '</div></div></div>' +
     bioHTML +
     '<div class="modal-tags">'+tagsHTML+'</div>';
