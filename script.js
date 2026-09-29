@@ -2,12 +2,18 @@ const experts = {
   florian: {
     photo:'Florian-Dhaussy.png',
     name:'Florian Dhaussy',
-    role:'Formateur Management · Consultant RH · Co-fondateur',
+    role:'Cofondateur de NORIA HORIZON · Formateur en management, communication, IA · Consultant RH',
     location:'Hauts-de-France (France entière)',
-    phone:'+33 6 00 00 00 00',
-    email:'florian.dhaussy@noria-horizon.fr',
-    bio:["Consultant en développement des compétences, manager d'une équipe de consultants, formateur et coach certifié SEVEN NATURAL SKILLS®, Florian intervient à la croisée des enjeux humains et stratégiques. Sa conviction : la réussite durable repose sur la capacité à développer les compétences, révéler les potentiels et faire grandir les talents.","Il accompagne dirigeants, équipes RH, managers et collaborateurs dans la construction de solutions concrètes favorisant l'engagement, la montée en compétences et la performance collective."],
-    tags:['Management','Formation','Leadership','RH','Compétences','Performance collective','Seven Natural Skills®']
+    phone:'+33 6 29 34 09 64',
+    email:'noriahorizoncontacts@gmail.com',
+    bio:[
+      "« Comprendre ce qui se joue. Faire grandir ce qui compte. »",
+      "J’accompagne dirigeants, managers, équipes RH et collaborateurs dans des contextes où il faut à la fois prendre du recul, développer les compétences et remettre du mouvement.",
+      "Mon approche se situe à la croisée du management, des ressources humaines, de la formation et de l’accompagnement des transformations. Je cherche avant tout à comprendre ce qui se joue réellement dans une situation, pour construire des réponses concrètes, utiles et adaptées aux personnes comme à l’organisation.",
+      "Ce qui m’anime particulièrement : révéler les potentiels, faire progresser les pratiques managériales et créer les conditions d’une performance durable, plus humaine et plus collective.",
+      "Au sein de NORIA HORIZON, je porte une conviction simple : on accompagne mieux quand on ne cherche pas à faire entrer les situations dans une méthode toute faite."
+    ],
+    tags:['Management','RH','Formation','Leadership','Développement des compétences','Performance collective','Seven Natural Skills®']
   },
   denis: {
     photo:'Denis-Deblevid.png',
