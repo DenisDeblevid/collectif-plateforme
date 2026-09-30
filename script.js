@@ -163,7 +163,6 @@ function buildMarkerIcon(active){
 }
 
 function openMap(activeId){
-  if(!isAbonne()){ openAccess(); return; }
   document.getElementById('mapOverlay').classList.add('open');
   document.body.style.overflow='hidden';
 
@@ -211,7 +210,6 @@ function closeMap(){
 }
 
 function openModal(id){
-  if(!isAbonne()){ openAccess(); return; }
   var e=experts[id]; if(!e) return;
   var bioHTML=e.bio.map(function(p){ return '<p class="modal-bio">'+p+'</p>'; }).join('');
   var tagsHTML=e.tags.map(function(t){ return '<span class="modal-tag">'+t+'</span>'; }).join('');
@@ -304,23 +302,22 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 })();
 
 var svcData = {
-  coaching:  {title:"Coaching individuel",   img:"coaching-individuel.png", desc:"Un accompagnement sur-mesure, en profondeur, avec l'expert qui correspond à votre réalité. Blocages, croyances limitantes, objectifs de vie et de carrière.", details:["Séances en visio ou présentiel","Suivi personnalisé","Outils et supports fournis","Fréquence adaptée à votre rythme"], prix:"À partir de 80€ / séance"},
-  stages:    {title:"Stages & Ateliers",      img:"stages-ateliers.png", desc:"Des immersions intenses qui transforment. Nature, dépassement de soi, philosophie pratique — pour ancrer des changements profonds.", details:["Formats d'1 à 3 jours","Groupes de 6 à 12 personnes","Encadrement par plusieurs experts","Suivi post-stage inclus"], prix:"À partir de 350€ / participant"},
+  coaching:  {title:"Coaching individuel",   img:"coaching-individuel.png", desc:"Un accompagnement sur-mesure, en profondeur, avec l'expert qui correspond à votre réalité. Blocages, croyances limitantes, objectifs de vie et de carrière.", details:["Séances en visio ou présentiel","Suivi personnalisé","Outils et supports fournis","Fréquence adaptée à votre rythme"], prix:"Sur devis"},
+  stages:    {title:"Stages & Ateliers",      img:"stages-ateliers.png", desc:"Des immersions intenses qui transforment. Nature, dépassement de soi, philosophie pratique — pour ancrer des changements profonds.", details:["Formats d'1 à 3 jours","Groupes de 6 à 12 personnes","Encadrement par plusieurs experts","Suivi post-stage inclus"], prix:"Sur devis"},
   formation: {title:"Formations entreprises", img:"formations-entreprises.png", desc:"Interventions sur-mesure pour développer les talents, renforcer le leadership et améliorer la cohésion d'équipe.", details:["Audit des besoins en amont","Programme sur-mesure","Interventions ponctuelles ou récurrentes","Rapport de suivi"], prix:"Sur devis"},
-  collectif: {title:"Accompagnement collectif",img:"accompagnement-collectif.png", desc:"Groupes de pairs, cercles de progression, masterminds. L'intelligence collective au service de votre montée en compétence.", details:["Groupes de 6 à 10 personnes","Sessions bi-mensuelles","Animé par un expert","Communauté privée"], prix:"À partir de 150€ / mois"},
-  digital:   {title:"Parcours digitaux",      img:"parcours-digitaux.png", desc:"Séquences email, vidéos pédagogiques, questionnaires. Un tunnel pédagogique complet.", details:["Accès 24h/24","Progression à votre rythme","Vidéo + exercices","Support par email"], prix:"À partir de 49€"},
+  collectif: {title:"Accompagnement collectif",img:"accompagnement-collectif.png", desc:"Groupes de pairs, cercles de progression, masterminds. L'intelligence collective au service de votre montée en compétence.", details:["Groupes de 6 à 10 personnes","Sessions bi-mensuelles","Animé par un expert","Communauté privée"], prix:"Sur devis"},
+  digital:   {title:"Parcours digitaux",      img:"parcours-digitaux.png", desc:"Séquences email, vidéos pédagogiques, questionnaires. Un tunnel pédagogique complet.", details:["Accès 24h/24","Progression à votre rythme","Vidéo + exercices","Support par email"], prix:"Sur devis"},
   ressources:{title:"Ressources & Outils",     img:"ressources-outils.png", desc:"Guides pratiques, fiches méthodologiques et outils concrets pour prolonger le travail entre deux rendez-vous.", details:["Bibliothèque de ressources en ligne","Mise à jour régulière","Fiches téléchargeables","Accès inclus selon la formule"], prix:"Inclus ou en complément"}
 };
 
 function openService(key){
-  if(key==='ressources' && !isAbonne()){ openAccess(); return; }
   var s=svcData[key]; if(!s) return;
   var det=s.details.map(function(d){return "<li>"+d+"</li>";}).join("");
   document.getElementById("serviceBody").innerHTML=
     "<img class=\"service-modal-img\" src=\""+s.img+"\" alt=\""+s.title+"\">"+
     "<h2>"+s.title+"</h2>"+
     "<p class=\"service-modal-desc\">"+s.desc+"</p>"+
-    "<div class=\"service-prix\"><span>Tarif indicatif</span>"+s.prix+"</div>"+
+    (s.prix==="Sur devis" ? "<button type=\"button\" class=\"service-prix service-prix-btn\" onclick=\"closeService();openDevis('"+key+"')\"><span>Tarif</span>Sur devis &rarr;</button>" : "<div class=\"service-prix\"><span>Tarif indicatif</span>"+s.prix+"</div>")+
     "<ul class=\"service-details\">"+det+"</ul>"+
     "<button class=\"btn-copper-full\" onclick=\"closeService();openDevis('"+key+"')\">Demander un devis &rarr;</button>";
   document.getElementById("serviceOverlay").classList.add("open");
@@ -408,64 +405,6 @@ document.querySelectorAll('.nav-links a').forEach(function(a){
   a.addEventListener('click', function(){ toggleNav(false); });
 });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') toggleNav(false); });
-
-// ─── ESPACE ABONNÉS (code d'accès) ───
-// Le code n'est jamais écrit en clair ici : seule son empreinte (SHA-256) est stockée.
-// Pour changer de code, il suffit de remplacer ACCESS_HASH.
-var ACCESS_HASH = '87431e84e12cbf52322e66a8f16228c290a97c0605cb8766dd8636ba275f9f75';
-var ACCESS_KEY  = 'noriaAccesAbonne';
-
-function isAbonne(){ return document.body.classList.contains('abonne'); }
-
-function setAbonne(){
-  document.body.classList.add('abonne');
-  try { localStorage.setItem(ACCESS_KEY, ACCESS_HASH); } catch(e){}
-}
-
-function sha256Hex(txt){
-  var data = new TextEncoder().encode(txt);
-  return crypto.subtle.digest('SHA-256', data).then(function(buf){
-    return Array.prototype.map.call(new Uint8Array(buf), function(b){ return ('0'+b.toString(16)).slice(-2); }).join('');
-  });
-}
-
-function unlockAccess(form){
-  var input = form.querySelector('input[name=code]');
-  var err = form.parentNode.querySelector('.lock-error');
-  var code = (input.value || '').trim().toUpperCase();
-  if(!code){ input.focus(); return false; }
-  if(!(window.crypto && crypto.subtle)){ if(err){ err.textContent='Votre navigateur ne permet pas la vérification. Essayez avec un navigateur à jour.'; err.hidden=false; } return false; }
-  sha256Hex('noria|'+code).then(function(hex){
-    if(hex === ACCESS_HASH){
-      setAbonne();
-      closeAccess();
-      var eq = document.getElementById('equipe');
-      if(eq) eq.scrollIntoView({behavior:'smooth'});
-    } else {
-      if(err) err.hidden = false;
-      input.select();
-    }
-  });
-  return false;
-}
-
-function openAccess(){
-  var o = document.getElementById('accessOverlay'); if(!o) return;
-  o.classList.add('open'); document.body.style.overflow='hidden';
-  var i = o.querySelector('input'); if(i) setTimeout(function(){ i.focus(); }, 50);
-}
-function closeAccess(){
-  var o = document.getElementById('accessOverlay'); if(!o) return;
-  o.classList.remove('open'); document.body.style.overflow='';
-}
-
-(function(){
-  try { if(localStorage.getItem(ACCESS_KEY) === ACCESS_HASH) document.body.classList.add('abonne'); } catch(e){}
-  document.querySelectorAll('.lock-badge').forEach(function(b){
-    b.addEventListener('click', function(ev){ ev.stopPropagation(); openAccess(); });
-  });
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeAccess(); });
-})();
 
 /* ─── HERO DYNAMIQUE « NORIA » ─── */
 (function(){
