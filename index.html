@@ -242,21 +242,10 @@
     <span class="section-label">Les experts</span>
     <h2 class="section-title">Ceux qui marchent <strong>à vos côtés</strong></h2>
     <div class="wave-sep"></div>
-    <p class="section-sub">Des professionnels de l'humain, chacun avec son chemin, sa méthode, sa singularité. Clique pour en savoir plus.</p>
+    <p class="section-sub">Des professionnels aux expertises complémentaires, réunis autour d'une même exigence : comprendre la situation avant de proposer une réponse. Découvrez leur parcours, leur approche et leur expertise.</p>
   </div>
 
-  <div class="locked-area">
-  <div class="lock-panel">
-    <span class="lock-kicker">🔒 Espace abonnés · Continuum</span>
-    <h3>Le cœur de la Noria s'ouvre à nos abonnés</h3>
-    <p>Nos experts, leurs coordonnées et nos ressources sont accessibles avec l'abonnement Continuum. Saisissez votre code d'accès pour entrer.</p>
-    <form class="lock-form" onsubmit="return unlockAccess(this)">
-      <input type="text" name="code" placeholder="Votre code d'accès" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Code d'accès">
-      <button type="submit">Entrer</button>
-    </form>
-    <p class="lock-error" hidden>Code non reconnu. Vérifiez-le ou écrivez-nous.</p>
-    <a href="#tarifs" class="lock-link">Pas encore abonné ? Découvrir Continuum →</a>
-  </div>
+  <div class="experts-area">
   <div class="team-grid">
 
     <!-- 1. Florian — co-fondateur -->
@@ -502,22 +491,6 @@
   </div>
 </div>
 
-<!-- ACCÈS ABONNÉS -->
-<div class="access-overlay" id="accessOverlay" onclick="if(event.target===this)closeAccess()">
-  <div class="lock-panel access-modal">
-    <button class="access-close" onclick="closeAccess()" aria-label="Fermer">&#10005;</button>
-    <span class="lock-kicker">🔒 Espace abonnés · Continuum</span>
-    <h3>Le cœur de la Noria s'ouvre à nos abonnés</h3>
-    <p>Saisissez votre code d'accès pour découvrir nos experts et nos ressources.</p>
-    <form class="lock-form" onsubmit="return unlockAccess(this)">
-      <input type="text" name="code" placeholder="Votre code d'accès" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Code d'accès">
-      <button type="submit">Entrer</button>
-    </form>
-    <p class="lock-error" hidden>Code non reconnu. Vérifiez-le ou écrivez-nous.</p>
-    <a href="#tarifs" class="lock-link" onclick="closeAccess()">Pas encore abonné ? Découvrir Continuum →</a>
-  </div>
-</div>
-
 <!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
   <div class="modal" id="modalContent">
@@ -547,8 +520,7 @@
       <div class="service-img-wrap"><img class="service-img" src="formations-entreprises.png" alt="Formations entreprises"></div>
       <div class="service-content"><h3>Formations entreprises</h3><p>Interventions pour développer talents, leadership et cohésion. Synergies à l'échelle d'une équipe.</p></div>
     </div>
-    <div class="service-card reveal locked-card" onclick="openService('ressources')" style="cursor:pointer;">
-      <div class="lock-badge"><span>🔒 Réservé aux abonnés</span><em>J'ai un code d'accès</em></div>
+    <div class="service-card reveal" onclick="openService('ressources')" style="cursor:pointer;">
       <div class="service-img-wrap"><img class="service-img" src="ressources-outils.png" alt="Ressources et outils"></div>
       <div class="service-content"><span class="empty-tag" style="display:inline-block;margin-bottom:8px;">En préparation</span><h3>Ressources & Outils</h3><p>Guides, fiches pratiques et outils concrets pour continuer à avancer entre deux accompagnements.</p></div>
     </div>
@@ -668,8 +640,9 @@
 
       <div class="tarifs-block">
         <h3 class="tarifs-block-title">Continu<span style="color:var(--copper);">u</span>m pour les particuliers, indépendants, micro&#8209;entrepreneurs</h3>
-        <p class="tarifs-subtitle">C'est le pass pour naviguer vers la capacité de votre horizon.</p>
-        <p class="section-sub">Choisissez la formule qui vous correspond. Accès complet à la plateforme, à l'ensemble des experts, aux ressources, au rendez-vous Continuum, à l'écosystème Noria — sans engagement au-delà de la période choisie.</p>
+        <p class="tarifs-subtitle">L'abonnement NORIA HORIZON pour rester en mouvement dans la durée.</p>
+        <p class="section-sub">Choisissez la formule qui vous correspond. Accès aux ressources Continuum, aux temps collectifs, à l'écosystème NORIA et à un premier éclairage lorsqu'une question se présente. Sans engagement au-delà de la période choisie.</p>
+        <p class="tarifs-precision">Continuum ne remplace pas une mission de conseil, un coaching, une formation ou un accompagnement personnalisé. Lorsqu'une situation nécessite une intervention plus approfondie, NORIA vous oriente vers la réponse la plus adaptée.</p>
 
         <div class="tarifs-mini-grid">
           <div class="tarif-card">
@@ -745,8 +718,10 @@
       </div>
 
       <div class="prisme-content">
-        <p class="prisme-intro">Grâce au cycle de la Noria, grâce au tissage d'experts que nous réunissons, dans des domaines aussi denses que variés, grâce à ces compétences et à ces relations mises en commun, nous avons la possibilité de vous offrir un diagnostic premium.</p>
-        <p class="prisme-intro">Une fois l'Instant Horizon réalisé (ou non), vous pouvez le commander.</p>
+        <p class="prisme-intro"><strong>Une même situation peut être lue de plusieurs façons.</strong></p>
+        <p class="prisme-intro">NORIA Prisme mobilise plusieurs expertises complémentaires pour analyser une situation complexe, confronter les lectures et faire émerger une compréhension plus juste.</p>
+        <p class="prisme-motto">Une même situation. Plusieurs lectures. Une compréhension plus juste.</p>
+        <p class="prisme-intro">NORIA Prisme peut être mobilisé à l'issue d'un Instant Horizon, ou directement lorsqu'une situation nécessite plusieurs regards.</p>
 
         <div class="prisme-points" id="prismePoints">
           <div class="prisme-point">
@@ -782,7 +757,7 @@
         <div class="prisme-pricing">
           <div class="prisme-price-card">
             <div class="prisme-price">À partir de 1&nbsp;290 €<span> HT</span></div>
-            <a href="mailto:noriahorizoncontacts@gmail.com" class="tarif-btn">Nous contacter</a>
+            <a href="#" onclick="openDevis(null);return false;" class="tarif-btn">Demander un devis</a>
           </div>
           <div class="prisme-price-card best">
             <span class="tarif-badge">Sur mesure</span>
@@ -799,8 +774,9 @@
 <!-- NORIA PRISME · LE SOMMET -->
 <section id="prisme-sommet">
   <div class="prisme-inner">
+    <span class="section-label" style="color:var(--copper);">La Mise en mouvement</span>
     <h2 class="prisme-title">NORIA <strong>PRISME</strong></h2>
-    <p class="prisme-tagline">La mise en mouvement, transformer la compréhension en décision, priorité et premières actions.</p>
+    <p class="prisme-tagline">Transformer la compréhension en décisions, priorités et premières actions.</p>
     <div class="wave-sep"></div>
 
     <div class="prisme-grid">
@@ -809,7 +785,7 @@
       </div>
 
       <div class="prisme-content">
-        <p class="prisme-intro">Le diagnostic Noria Prisme donne une lecture claire. Le Sommet en fait un levier concret : nous transformons cette lecture en formation, en audit ou en accompagnement sur-mesure, pour que la compréhension devienne décision, priorités et premières actions.</p>
+        <p class="prisme-intro">NORIA Prisme ne s'arrête pas à une lecture de la situation. L'objectif est de faire émerger ce qui mérite réellement d'être traité, dans quel ordre, et avec quel niveau d'intervention.</p>
         <a href="#contact" class="tarif-btn" style="display:inline-block;margin-top:8px;">Nous contacter</a>
       </div>
     </div>
