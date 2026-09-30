@@ -33,7 +33,7 @@
 </head>
 <body>
 <main class="legal">
-  <a href="index.html" class="legal-back">← Retour à NORIA HORIZON</a>
+  <a href="index.html" class="legal-back" onclick="noriaRetour(event)">← Revenir au site NORIA HORIZON</a>
   <h1>Mentions <strong>légales</strong></h1>
   <p class="maj">Dernière mise à jour : 30 septembre 2026</p>
 
@@ -71,5 +71,15 @@
 
   <div class="legal-nav"><a href="mentions-legales.html">Mentions légales</a><a href="confidentialite.html">Politique de confidentialité</a><a href="cgv.html">Conditions générales de vente</a></div>
 </main>
+<script>
+/* Ouvert dans un nouvel onglet depuis le site : on ferme l'onglet pour revenir au site */
+function noriaRetour(ev, cible){
+  if(window.opener && !window.opener.closed){
+    ev.preventDefault();
+    try { if(cible) window.opener.location.href = cible; window.opener.focus(); } catch(e){}
+    window.close();
+  }
+}
+</script>
 </body>
 </html>
