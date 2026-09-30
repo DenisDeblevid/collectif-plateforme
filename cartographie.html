@@ -179,7 +179,7 @@ body::before {
 <div class="container">
 
   <div class="page-header">
-    <a href="index.html" class="back-link">← Retour NORIA HORIZON</a>
+    <a href="index.html" class="back-link" onclick="noriaRetour(event)">← Retour NORIA HORIZON</a>
     <span class="kicker">Égogramme · Drivers · Analyse transactionnelle</span>
     <h1 class="page-title">Votre Cartographie <strong>Noria Horizon</strong></h1>
     <p class="page-sub">64 affirmations · environ 12 minutes · une photographie de vos états du moi et des messages qui vous animent.</p>
@@ -258,7 +258,7 @@ body::before {
     <div class="conclusion">Votre égogramme n'est pas un verdict : c'est une photographie de ce moment de votre vie. Chaque état du moi est une ressource, y compris ceux qui ressortent en négatif — ils montrent simplement où l'énergie se dépense sans vous servir. Les drivers, eux, sont des messages reçus tôt, qui vous ont aidé à grandir et qui peuvent aujourd'hui vous freiner. L'équipe NORIA HORIZON lit votre cartographie et vous oriente vers l'accompagnement le plus juste.</div>
 
     <div class="end-actions">
-      <a href="index.html#tunnel" class="btn-copper" style="text-decoration:none;">Réserver mon Instant Horizon →</a>
+      <a href="index.html#tunnel" class="btn-copper" style="text-decoration:none;" onclick="noriaRetour(event,'index.html#tunnel')">Réserver mon Instant Horizon →</a>
       <button class="btn-ghost" onclick="restart()">Refaire ma cartographie</button>
     </div>
   </div>
@@ -657,6 +657,16 @@ function restart(){
   document.getElementById('result-section').style.display='none';
   document.getElementById('intro-section').style.display='block';
   window.scrollTo({top:0});
+}
+</script>
+<script>
+/* Ouvert dans un nouvel onglet depuis le site : on ferme l'onglet pour revenir au site */
+function noriaRetour(ev, cible){
+  if(window.opener && !window.opener.closed){
+    ev.preventDefault();
+    try { if(cible) window.opener.location.href = cible; window.opener.focus(); } catch(e){}
+    window.close();
+  }
 }
 </script>
 </body>
