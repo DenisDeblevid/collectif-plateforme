@@ -18,12 +18,21 @@ const experts = {
   denis: {
     photo:'Denis-Deblevid.png',
     name:'Denis Deblevid',
-    role:'Coach Philosophique · Méthode 4P · Co-fondateur',
+    role:'Co-fondateur · Coach philosophique et physique · Créateur de la Méthode 4P',
     location:'Marseille',
-    phone:'+33 6 00 00 00 00',
+    phone:'+33 7 83 03 88 00',
     email:'denisdeblevidcontact@gmail.com',
-    bio:["Coach philosophique et fondateur de la Méthode 4P (Psychologique, Physique, Philosophique, Pneuma), Denis accompagne ceux qui portent une soif profonde de sens et de transformation. Son approche s'enracine dans le stoïcisme pratique — une philosophie vécue, incarnée, qui ne reste pas dans les livres.","Ancien pratiquant d'arts martiaux pendant dix ans, Denis a traversé ses propres ruptures pour construire une méthode qui touche l'être dans toutes ses dimensions. Il marche à vos côtés, non au-dessus de vous."],
-    tags:['Stoïcisme','Méthode 4P','Identité','Sens','Résilience','Corps & Mental','Philosophie pratique']
+    bio:[
+      "Coach philosophique et créateur de la Méthode 4P, Denis accompagne ceux qui portent une soif profonde de sens et de transformation. Son approche s'enracine dans la philosophie stoïcienne pratique : une philosophie vécue, incarnée, qui ne reste pas dans les livres, comme c'est le cas depuis plus de 2 000 ans.",
+      "<a class=\"modal-site-link\" href=\"https://renaitredelasoif.fr\" target=\"_blank\" rel=\"noopener\">🌐 renaitredelasoif.fr</a>",
+      "Ancien pratiquant d'arts martiaux durant près de 15 ans, Denis a traversé ses propres ruptures, ses propres fissures, pour construire la Méthode 4P, qui repose sur le physique, le psychologique, le philosophique et le pneuma. Une méthode qui touche l'être dans toutes ses dimensions. Il marche à vos côtés, non au-dessus de vous.",
+      "Pour la colonne physique de l'accompagnement, Denis a fondé <strong>Gibbor Roots Process</strong> : une méthode de préparation, de survie et de self-défense, vécue en pleine nature ou en milieu urbain. Ses stages, organisés avec Le POC (<a href=\"https://lepocistres.fr\" target=\"_blank\" rel=\"noopener\">Les Parcours d'Obstacle de la Crau</a>, à Istres), développent l'autonomie, la maîtrise de soi et l'esprit de groupe face à l'imprévu.",
+      "Sa promesse : vous arrivez avec des doutes, vous repartez avec des racines.",
+      "<a class=\"modal-site-link\" href=\"https://gibbor.fr\" target=\"_blank\" rel=\"noopener\">🌐 Gibbor Roots Process — gibbor.fr</a>",
+      "Retrouvez aussi toutes ses compétences et ses relations sur LinkedIn.",
+      "<a class=\"modal-site-link\" href=\"https://www.linkedin.com/in/denisdeblevid\" target=\"_blank\" rel=\"noopener\">🔗 Profil LinkedIn</a><br><a class=\"modal-site-link\" href=\"https://denis-deblevid.fr\" target=\"_blank\" rel=\"noopener\">🌐 denis-deblevid.fr</a>"
+    ],
+    tags:['Stoïcisme','Méthode 4P','Sens','Résilience','Survie','Self-défense','Préparation physique','Préparation mentale','Accompagnement','Guidance']
   },
   emilie: {
     photo:'Emilie-Abraham.jpg',
