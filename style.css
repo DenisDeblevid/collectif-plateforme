@@ -1765,3 +1765,19 @@ a.partner-logo:hover { opacity:1; }
 .prisme-motto { font-family:var(--font-display); font-style:italic; font-size:1.3rem; color:var(--copper); margin:6px 0 18px; line-height:1.4; }
 .service-prix-btn { cursor:pointer; text-align:left; transition:background .3s, border-color .3s, color .3s; }
 .service-prix-btn:hover { background:var(--deep); color:var(--white); border-color:var(--deep); }
+
+/* ═══════════════════════════════════════
+   ALIGNEMENT DES CARTES (30/09/2026)
+   Prisme (prix) + Contact : cartes de même hauteur, boutons alignés en bas
+   ═══════════════════════════════════════ */
+.prisme-pricing { align-items:stretch; }
+.prisme-price-card { display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding:30px 20px 26px; }
+.prisme-price-card .tarif-btn { margin-top:auto; width:100%; }
+.prisme-price-card.best .prisme-price-label {
+  font-size:0.86rem; letter-spacing:0.14em; line-height:1.7; opacity:1;
+  margin:6px 0 22px;
+}
+#contact .contact-levels { align-items:stretch !important; }
+#contact .contact-level { display:flex; flex-direction:column; }
+#contact .contact-level p { flex-grow:1; }
+#contact .contact-level .btn-copper-full { margin-top:auto; }
