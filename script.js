@@ -246,11 +246,48 @@ function closeModal(){
 }
 function closeModalOnBg(e){ if(e.target===document.getElementById('modalOverlay')) closeModal(); }
 
+// ─── ENVOI DES DEMANDES (Instant Horizon + Devis) VERS BREVO ───
+var BREVO_DEMANDES = 'https://2b2aa488.sibforms.com/serve/MUIFALwIDAFp93krYc9zvL9dEN8l0-h4hgXVP45scAvJ0OiCM3LPXwVtGE4q-lcRrh-Rrz50k1AsFY9oMmLjC6NxJPWd-QSbSKSR01DBjEvu4O4ahBKmuvW73Oe9Huooh27tYECrplWe7YSEX_wvqj0VA6qNLbPQM1QXhvfp9YhuIC5WqdHqQPxumc1LeHIvVqRxsR6dpd9d0ABY3A==';
+
+function envoyerDemande(boxId, type, btn, status, labelBtn, onDone){
+  var box = document.getElementById(boxId);
+  var champs = box.querySelectorAll('[data-k]');
+  var consent = box.querySelector('[data-consent]');
+  var manque = false;
+  champs.forEach(function(c){ c.classList.remove('field-error'); if(c.required && !c.value.trim()){ c.classList.add('field-error'); manque = true; } });
+  var email = box.querySelector('[data-k=EMAIL]');
+  if(email && email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){ email.classList.add('field-error'); manque = true; }
+  if(manque){ status.className='form-status err'; status.textContent='Merci de renseigner votre prénom, votre nom et une adresse email valide.'; return; }
+  if(consent && !consent.checked){ status.className='form-status err'; status.textContent='Merci de cocher la case de consentement pour envoyer votre demande.'; return; }
+  var data = new URLSearchParams();
+  champs.forEach(function(c){ data.append(c.getAttribute('data-k'), c.value.trim()); });
+  if(!data.get('POSTE')) data.set('POSTE', 'Non précisé');
+  data.append('TYPE_DEMANDE', type);
+  data.append('email_address_check', '');
+  data.append('locale', 'fr');
+  data.append('html_type', 'simple');
+  btn.disabled = true; btn.textContent = 'Envoi en cours…';
+  fetch(BREVO_DEMANDES, { method:'POST', mode:'no-cors', body:data })
+    .then(function(){
+      status.className = 'form-status ok';
+      status.textContent = (type === 'Devis')
+        ? 'Merci ! Votre demande de devis est bien envoyée. Nous vous répondons sous 48 h.'
+        : 'Merci ! Votre demande d\'Instant Horizon est bien envoyée. Nous vous recontactons très vite pour fixer le rendez-vous.';
+      btn.textContent = 'Demande envoyée ✓';
+      champs.forEach(function(c){ if(c.tagName==='SELECT') c.selectedIndex = 0; else c.value=''; });
+      if(consent) consent.checked = false;
+      if(onDone) onDone();
+    })
+    .catch(function(){
+      status.className = 'form-status err';
+      status.textContent = "L'envoi n'a pas abouti. Vérifiez votre connexion et réessayez, ou écrivez-nous à noriahorizoncontacts@gmail.com.";
+      btn.disabled = false; btn.textContent = labelBtn;
+    });
+}
+
 function handleFormSubmit(e){
-  const btn=e.target;
-  btn.textContent='✓ Demande envoyée — nous vous recontactons vite';
-  btn.style.background='var(--teal)';
-  setTimeout(()=>{ btn.textContent='Réservez gratuitement votre Instant Horizon →'; btn.style.background='var(--copper)'; },3500);
+  if(e && e.preventDefault) e.preventDefault();
+  envoyerDemande('ih-form', 'Instant Horizon', document.getElementById('ih-btn'), document.getElementById('ih-status'), 'Réservez gratuitement votre Instant Horizon →');
 }
 
 // Scroll reveal
@@ -333,9 +370,13 @@ function openService(key){
   document.body.style.overflow="hidden";
 }
 function closeService(){ document.getElementById("serviceOverlay").classList.remove("open"); document.body.style.overflow=""; }
-function openDevis(key){ if(key&&svcData[key])document.getElementById("devis-service").value=svcData[key].title; document.getElementById("devisOverlay").classList.add("open"); document.body.style.overflow="hidden"; }
+function openDevis(key){ var sel=document.getElementById("devis-service"); if(key&&svcData[key]){ var t=svcData[key].title; if(![].some.call(sel.options,function(o){return o.text===t;})){ var o=document.createElement("option"); o.text=t; sel.insertBefore(o, sel.options[1]); } sel.value=t; } document.getElementById("devisOverlay").classList.add("open"); document.body.style.overflow="hidden"; }
 function closeDevis(){ document.getElementById("devisOverlay").classList.remove("open"); document.body.style.overflow=""; }
-function submitDevis(){ document.getElementById("devis-confirm").style.display="block"; setTimeout(function(){ closeDevis(); document.getElementById("devis-confirm").style.display="none"; },3000); }
+function submitDevis(){
+  envoyerDemande('devis-form', 'Devis', document.getElementById('devis-btn'), document.getElementById('devis-status'), 'Envoyer ma demande →', function(){
+    setTimeout(function(){ var b=document.getElementById('devis-btn'); b.disabled=false; b.textContent='Envoyer ma demande →'; }, 6000);
+  });
+}
 
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();closeService();closeDevis();closeMap();} });
 
