@@ -432,26 +432,26 @@
 
 <!-- DEVIS OVERLAY -->
 <div class="devis-overlay" id="devisOverlay" onclick="if(event.target===this)closeDevis()">
-  <div class="devis-modal">
+  <div class="devis-modal" id="devis-form">
     <button class="devis-close" onclick="closeDevis()">&#10005;</button>
     <h2>Demander un devis</h2>
     <p class="sub">R&eacute;ponse sous 48h &middot; <a href="mailto:noriahorizoncontacts@gmail.com" style="color:var(--copper);">noriahorizoncontacts@gmail.com</a></p>
     <div class="devis-row">
-      <div class="devis-field"><label>Pr&eacute;nom</label><input type="text" placeholder="Votre pr&eacute;nom"></div>
-      <div class="devis-field"><label>Nom</label><input type="text" placeholder="Votre nom"></div>
+      <div class="devis-field"><label>Pr&eacute;nom *</label><input type="text" data-k="PRENOM" placeholder="Votre pr&eacute;nom" required></div>
+      <div class="devis-field"><label>Nom *</label><input type="text" data-k="NOM" placeholder="Votre nom" required></div>
     </div>
     <div class="devis-row">
-      <div class="devis-field"><label>Email</label><input type="email" placeholder="votre@email.com"></div>
-      <div class="devis-field"><label>T&eacute;l&eacute;phone</label><input type="tel" placeholder="06 00 00 00 00"></div>
+      <div class="devis-field"><label>Email *</label><input type="email" data-k="EMAIL" placeholder="votre@email.com" required></div>
+      <div class="devis-field"><label>T&eacute;l&eacute;phone</label><input type="tel" data-k="TELEPHONE" placeholder="06 00 00 00 00"></div>
     </div>
     <div class="devis-row">
-      <div class="devis-field"><label>Nom de l'entreprise</label><input type="text" placeholder="Nom de votre entreprise"></div>
-      <div class="devis-field"><label>Intitul&eacute; du poste</label><input type="text" placeholder="Votre poste dans l'entreprise"></div>
+      <div class="devis-field"><label>Nom de l'entreprise</label><input type="text" data-k="ENTREPRISE" placeholder="Nom de votre entreprise"></div>
+      <div class="devis-field"><label>Intitul&eacute; du poste</label><input type="text" data-k="POSTE" placeholder="Votre poste dans l'entreprise"></div>
     </div>
     <div class="devis-field">
       <label>Ce qui vous touche le plus en ce moment</label>
-      <select id="devis-service">
-        <option value="" disabled selected>Choisis une direction</option>
+      <select id="devis-service" data-k="BESOIN">
+        <option value="" disabled selected>Choisissez une direction</option>
         <option>Ma vie professionnelle &middot; sens au travail</option>
         <option>Mes relations &middot; communication</option>
         <option>Ma confiance &middot; identit&eacute;</option>
@@ -469,10 +469,11 @@
     </div>
     <div class="devis-field">
       <label>Votre message</label>
-      <textarea rows="4" placeholder="D&eacute;crivez en quelques lignes le probl&egrave;me sur lequel vous souhaitez qu'on travaille"></textarea>
+      <textarea rows="4" data-k="MESSAGE" placeholder="D&eacute;crivez en quelques lignes le probl&egrave;me sur lequel vous souhaitez qu'on travaille"></textarea>
     </div>
-    <button class="btn-copper-full" onclick="submitDevis()">Envoyer ma demande &rarr;</button>
-    <p class="devis-confirm" id="devis-confirm">&#10003; Demande envoy&eacute;e &mdash; r&eacute;ponse sous 48h !</p>
+    <label class="consent-line"><input type="checkbox" data-consent required> <span>J'accepte que NORIA HORIZON conserve mes coordonn&eacute;es pour r&eacute;pondre &agrave; ma demande et me recontacter. Je peux demander leur suppression &agrave; tout moment. <a href="confidentialite.html" target="_blank" rel="opener">Politique de confidentialit&eacute;</a></span></label>
+    <button class="btn-copper-full" id="devis-btn" onclick="submitDevis()">Envoyer ma demande &rarr;</button>
+    <p class="form-status" id="devis-status" role="status"></p>
     <p style="font-size:0.66rem;opacity:0.3;margin-top:10px;text-align:center;">RGPD &middot; Donn&eacute;es confidentielles</p>
   </div>
 </div>
@@ -572,33 +573,33 @@
     <div class="tunnel-image-wrap">
       <img src="Instant-Horizon.webp" alt="Instant Horizon — La porte d'entrée de Noria Horizon" class="tunnel-image">
     </div>
-    <div class="tunnel-form">
+    <div class="tunnel-form" id="ih-form">
       <h3>Commencer maintenant</h3>
       <p>Inscription sécurisée · Aucun spam</p>
       <div class="form-group">
-        <label>Prénom</label>
-        <input type="text" placeholder="Votre prénom">
+        <label>Prénom *</label>
+        <input type="text" data-k="PRENOM" placeholder="Votre prénom" required>
       </div>
       <div class="form-group">
-        <label>Nom</label>
-        <input type="text" placeholder="Votre nom">
+        <label>Nom *</label>
+        <input type="text" data-k="NOM" placeholder="Votre nom" required>
       </div>
       <div class="form-group">
-        <label>Email</label>
-        <input type="email" placeholder="votre@email.com">
+        <label>Email *</label>
+        <input type="email" data-k="EMAIL" placeholder="votre@email.com" required>
       </div>
       <div class="form-group">
         <label>Nom de l'entreprise</label>
-        <input type="text" placeholder="Nom de votre entreprise">
+        <input type="text" data-k="ENTREPRISE" placeholder="Nom de votre entreprise">
       </div>
       <div class="form-group">
         <label>Intitulé du poste</label>
-        <input type="text" placeholder="Votre poste dans l'entreprise">
+        <input type="text" data-k="POSTE" placeholder="Votre poste dans l'entreprise">
       </div>
       <div class="form-group">
         <label>Ce qui vous touche le plus en ce moment</label>
-        <select>
-          <option value="" disabled selected>Choisis une direction</option>
+        <select data-k="BESOIN">
+          <option value="" disabled selected>Choisissez une direction</option>
           <option>Ma vie professionnelle · sens au travail</option>
           <option>Mes relations · communication</option>
           <option>Ma confiance · identité</option>
@@ -614,7 +615,9 @@
           <option>Reconversion · transition professionnelle</option>
         </select>
       </div>
-      <button class="btn-copper-full action-key" onclick="handleFormSubmit(event)">Réservez gratuitement votre Instant Horizon →</button>
+      <label class="consent-line"><input type="checkbox" data-consent required> <span>J'accepte que NORIA HORIZON conserve mes coordonnées pour organiser mon Instant Horizon et me recontacter. Je peux demander leur suppression à tout moment. <a href="confidentialite.html" target="_blank" rel="opener">Politique de confidentialité</a></span></label>
+      <button class="btn-copper-full action-key" id="ih-btn" onclick="handleFormSubmit(event)">Réservez gratuitement votre Instant Horizon →</button>
+      <p class="form-status" id="ih-status" role="status"></p>
     </div>
   </div>
 </section>
@@ -905,10 +908,9 @@
 
 <!-- BANDEAU RGPD -->
 <div class="cookie-banner" id="cookieBanner">
-  <p>Nous utilisons des cookies uniquement à des fins techniques et statistiques — jamais à des fins commerciales ou publicitaires. En poursuivant votre navigation, vous acceptez leur utilisation.</p>
+  <p>Ce site n'utilise aucun cookie publicitaire ni outil de mesure d'audience. Seuls des éléments techniques nécessaires à son fonctionnement sont enregistrés dans votre navigateur. <a href="confidentialite.html" target="_blank" rel="opener" style="color:var(--copper);">En savoir plus</a></p>
   <div class="cookie-actions">
-    <button class="cookie-btn cookie-refuse" onclick="handleCookieChoice(false)">Refuser</button>
-    <button class="cookie-btn cookie-accept" onclick="handleCookieChoice(true)">J'accepte</button>
+    <button class="cookie-btn cookie-accept" onclick="handleCookieChoice(true)">J'ai compris</button>
   </div>
 </div>
 
