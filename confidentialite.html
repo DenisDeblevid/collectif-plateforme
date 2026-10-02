@@ -29,50 +29,84 @@
   .legal .todo { background:#fff3cd; padding:2px 6px; }
   .legal-nav { margin-top:56px; padding-top:22px; border-top:1px solid rgba(35,75,94,0.15); font-size:0.85rem; }
   .legal-nav a { margin-right:18px; color:var(--teal); text-decoration:none; }
+  .legal .table-wrap { overflow-x:auto; margin:10px 0 18px; }
+  .legal .table-wrap table { margin:0; min-width:560px; }
+  .legal .mediateur { display:flex; gap:26px; align-items:center; flex-wrap:wrap; margin:14px 0 8px; }
+  .legal .mediateur img { width:190px; height:auto; border:1px solid rgba(35,75,94,0.15); }
 </style>
 </head>
 <body>
 <main class="legal">
   <a href="index.html" class="legal-back" onclick="noriaRetour(event)">← Revenir au site NORIA HORIZON</a>
   <h1>Politique de <strong>confidentialité</strong></h1>
-  <p class="maj">Dernière mise à jour : 30 septembre 2026</p>
+  <p class="maj">Dernière mise à jour : 2 octobre 2026</p>
 
-  <p>NORIA HORIZON attache une grande importance à la protection de vos données. Cette page explique quelles données nous collectons, pourquoi, combien de temps nous les gardons et comment exercer vos droits, conformément au Règlement général sur la protection des données (RGPD).</p>
+  <p>Noria Horizon attache une grande importance à la protection de vos données personnelles. La présente politique explique quelles données nous collectons, pour quelles finalités, sur quelles bases juridiques, combien de temps nous les conservons et comment exercer vos droits, conformément au Règlement général sur la protection des données (RGPD).</p>
 
   <h2>Responsable du traitement</h2>
-  <p>Florian Dhaussy, Entrepreneur individuel (EI), nom commercial NORIA HORIZON — 3 rue Louis Bauduin, 59950 Auby — SIRET 941 562 936 00018.<br>
-  Contact : <a href="mailto:noriahorizoncontacts@gmail.com">noriahorizoncontacts@gmail.com</a></p>
+  <p>Florian Dhaussy, entrepreneur individuel, exploitant sous le nom commercial Noria Horizon<br>
+  3 rue Louis Bauduin, 59950 Auby<br>
+  SIRET : 941 562 936 00018<br>
+  Email : <a href="mailto:noriahorizoncontacts@gmail.com">noriahorizoncontacts@gmail.com</a></p>
 
-  <h2>Les données que nous collectons</h2>
-  <table>
-    <tr><th>Quand</th><th>Données</th><th>Pourquoi</th><th>Base légale</th></tr>
-    <tr><td>Cartographie Noria Horizon</td><td>Prénom, nom, email, résultats de la Cartographie</td><td>Vous envoyer votre analyse complète et pouvoir vous recontacter</td><td>Votre consentement (case à cocher)</td></tr>
-    <tr><td>Demande de devis ou d'Instant Horizon</td><td>Nom, prénom, email, téléphone, entreprise et poste le cas échéant, votre besoin</td><td>Répondre à votre demande et vous faire une proposition</td><td>Votre consentement et les mesures précontractuelles</td></tr>
-    <tr><td>Abonnement Continuum</td><td>Nom, email, informations de facturation</td><td>Gérer votre abonnement et la facturation</td><td>L'exécution du contrat et nos obligations légales</td></tr>
-  </table>
-  <p><strong>Paiements :</strong> les paiements sont traités par Stripe. NORIA HORIZON n'a jamais accès à vos numéros de carte bancaire.</p>
+  <h2>Données collectées et finalités</h2>
+  <div class="table-wrap"><table>
+    <tr><th>Situation</th><th>Données susceptibles d’être collectées</th><th>Finalité</th><th>Base juridique</th></tr>
+    <tr><td>Cartographie Noria Horizon</td><td>Nom, prénom, email, réponses et résultats de la Cartographie</td><td>Générer et transmettre votre analyse, permettre son suivi et répondre à vos demandes</td><td>Exécution du service demandé / mesures précontractuelles</td></tr>
+    <tr><td>Demande de devis ou Instant Horizon</td><td>Nom, prénom, email, téléphone, entreprise, fonction, informations relatives à votre besoin</td><td>Répondre à votre demande, qualifier votre situation et préparer une éventuelle proposition</td><td>Mesures précontractuelles</td></tr>
+    <tr><td>Abonnement Continuum</td><td>Nom, prénom, email, téléphone, adresse de facturation, entreprise le cas échéant, formule souscrite</td><td>Gérer l’abonnement, les accès, la relation client et la facturation</td><td>Exécution du contrat et obligations légales</td></tr>
+    <tr><td>Communications commerciales</td><td>Nom, prénom, email et préférences</td><td>Vous adresser des informations sur Noria Horizon, ses offres ou événements lorsque la réglementation le permet</td><td>Consentement ou intérêt légitime selon la situation</td></tr>
+  </table></div>
+  <p>Lorsque votre consentement est requis, vous pouvez le retirer à tout moment.</p>
+  <p><strong>Paiements :</strong> les paiements en ligne sont traités par Stripe. Noria Horizon n’a pas accès à l’intégralité des données de votre carte bancaire.</p>
 
-  <h2>Qui reçoit vos données</h2>
-  <p>Vos données sont réservées à l'équipe NORIA HORIZON et, si votre demande le nécessite, à l'expert qui vous accompagne. Elles ne sont jamais vendues ni cédées. Nous utilisons les prestataires suivants :</p>
+  <h2>Destinataires des données</h2>
+  <p>Les données sont accessibles uniquement aux personnes qui en ont besoin dans le cadre de leur mission : Noria Horizon et, lorsque cela est nécessaire à la prestation ou à la demande formulée, le ou les experts concernés.</p>
+  <p>Elles ne sont jamais vendues.</p>
+  <p>Noria Horizon peut faire appel à des prestataires agissant en qualité de sous-traitants, notamment :</p>
   <ul>
-    <li><strong>Brevo</strong> (Sendinblue SAS, France) : envoi des emails et gestion des contacts ;</li>
-    <li><strong>Stripe</strong> (Stripe Payments Europe, Irlande) : paiement en ligne des abonnements ;</li>
-    <li><strong>GitHub</strong> (GitHub, Inc., États-Unis) : hébergement du site.</li>
+    <li><strong>Brevo</strong> : gestion des contacts et envoi d’emails ;</li>
+    <li><strong>Stripe Payments Europe</strong> : paiements, abonnements et facturation ;</li>
+    <li><strong>GitHub</strong> : hébergement technique du site, lorsque applicable.</li>
   </ul>
+  <p>Ces prestataires ne peuvent traiter les données que dans le cadre des services qu’ils fournissent et conformément à leurs obligations en matière de protection des données.</p>
 
-  <h2>Combien de temps nous les gardons</h2>
+  <h2>Transferts de données hors de l’Union européenne</h2>
+  <p>Certains prestataires peuvent traiter ou héberger des données en dehors de l’Espace économique européen.</p>
+  <p>Dans ce cas, Noria Horizon veille à ce que ces transferts soient réalisés conformément au RGPD, notamment sur la base d’une décision d’adéquation ou de garanties appropriées telles que les clauses contractuelles types de la Commission européenne.</p>
+
+  <h2>Durées de conservation</h2>
+  <p>Les données personnelles ne sont pas conservées indéfiniment. Leur durée de conservation est déterminée en fonction de la finalité du traitement. La CNIL recommande notamment une durée de trois ans pour les données de prospects à compter de leur collecte ou du dernier contact émanant du prospect, et trois ans après la fin de la relation commerciale pour certaines données utilisées à des fins de prospection.</p>
+  <p>Noria Horizon applique notamment les durées suivantes :</p>
   <ul>
-    <li>Contacts et demandes sans suite : 3 ans après le dernier échange ;</li>
-    <li>Clients : pendant la durée de l'abonnement ou de l'accompagnement, puis 3 ans ;</li>
-    <li>Factures et pièces comptables : 10 ans, comme l'exige la loi.</li>
+    <li>demandes de contact, devis et prospects sans suite : 3 ans à compter du dernier contact émanant de la personne ;</li>
+    <li>données nécessaires à la gestion d’un abonnement ou d’une prestation : pendant la relation contractuelle, puis archivage lorsque cela est nécessaire pour respecter les obligations légales ou défendre nos droits ;</li>
+    <li>données utilisées à des fins de prospection commerciale concernant un client : pendant la relation commerciale puis 3 ans après sa fin ;</li>
+    <li>factures et pièces comptables : 10 ans, conformément aux obligations comptables applicables.</li>
   </ul>
+  <p>À l’expiration de ces durées, les données sont supprimées, anonymisées ou archivées lorsqu’une obligation légale l’impose.</p>
 
-  <h2>Cookies et stockage</h2>
-  <p>Ce site n'utilise <strong>aucun cookie publicitaire ni outil de mesure d'audience</strong>. Seuls des éléments techniques sont enregistrés dans votre navigateur : votre choix concernant le bandeau d'information et, si vous faites la Cartographie, l'historique de vos résultats pour vous permettre de les comparer dans le temps. Ces informations restent sur votre appareil ; nous n'y avons pas accès.</p>
+  <h2>Cookies et stockage local</h2>
+  <p>Le site Noria Horizon n’utilise actuellement aucun cookie publicitaire ni outil de mesure d’audience nécessitant un consentement, sous réserve de l’évolution future des outils utilisés.</p>
+  <p>Certaines informations techniques peuvent être enregistrées localement sur votre appareil, par exemple votre choix concernant un bandeau d’information ou certaines données permettant de retrouver l’historique de la Cartographie Noria Horizon.</p>
+  <p>Ces données restent stockées sur votre appareil lorsque le fonctionnement du site le prévoit et ne sont pas accessibles à Noria Horizon.</p>
+  <p>Si de nouveaux cookies ou traceurs nécessitant un consentement étaient ajoutés ultérieurement, le site serait adapté afin de recueillir ce consentement conformément à la réglementation applicable.</p>
 
   <h2>Vos droits</h2>
-  <p>Vous pouvez à tout moment accéder à vos données, les rectifier, les faire supprimer, vous opposer à leur utilisation, en limiter le traitement, en demander la portabilité et retirer votre consentement. Il suffit d'écrire à <a href="mailto:noriahorizoncontacts@gmail.com">noriahorizoncontacts@gmail.com</a>. Chaque email que nous vous envoyons contient aussi un lien de désinscription.</p>
-  <p>Si vous estimez que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL : <a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>.</p>
+  <p>Conformément au RGPD, vous pouvez, selon votre situation :</p>
+  <ul>
+    <li>accéder à vos données ;</li>
+    <li>demander leur rectification ;</li>
+    <li>demander leur effacement ;</li>
+    <li>vous opposer à certains traitements ;</li>
+    <li>demander la limitation du traitement ;</li>
+    <li>exercer votre droit à la portabilité lorsque celui-ci est applicable ;</li>
+    <li>retirer votre consentement à tout moment lorsqu’un traitement repose sur celui-ci.</li>
+  </ul>
+  <p>Pour exercer vos droits, contactez : <a href="mailto:noriahorizoncontacts@gmail.com">noriahorizoncontacts@gmail.com</a></p>
+  <p>Les communications commerciales comportent un moyen simple de vous désinscrire.</p>
+  <p>Afin de protéger vos données, une preuve d’identité pourra être demandée uniquement lorsque cela est nécessaire pour vérifier votre identité.</p>
+  <p>Vous disposez également du droit d’introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>) si vous estimez que vos droits ne sont pas respectés.</p>
 
   <div class="legal-nav"><a href="mentions-legales.html">Mentions légales</a><a href="confidentialite.html">Politique de confidentialité</a><a href="cgv.html">Conditions générales de vente</a></div>
 </main>
