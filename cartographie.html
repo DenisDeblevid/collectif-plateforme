@@ -247,7 +247,8 @@ body::before {
               <input type="text" name="NOM" placeholder="Nom" autocomplete="family-name" required>
             </div>
             <input type="email" name="EMAIL" placeholder="Votre adresse email" autocomplete="email" required>
-            <label class="consent"><input type="checkbox" name="CONSENT" required> <span>J'accepte que NORIA HORIZON conserve mes réponses et mes coordonnées pour m'envoyer mon analyse et me recontacter. Je peux demander leur suppression à tout moment. <a href="confidentialite.html" target="_blank" rel="opener" style="color:var(--copper);">Politique de confidentialité</a></span></label>
+            <label class="consent"><input type="checkbox" name="CONSENT" required> <span>J'accepte que NORIA HORIZON utilise mes réponses et mes coordonnées pour m'envoyer mon analyse et me recontacter à son sujet. <a href="confidentialite.html" target="_blank" rel="opener" style="color:var(--copper);">Politique de confidentialité</a></span></label>
+            <label class="consent"><input type="checkbox" name="OPTIN"> <span>Je souhaite recevoir les actualités et offres de NORIA HORIZON (facultatif, désinscription possible à tout moment).</span></label>
             <button type="submit" class="btn-copper">Recevoir mon analyse complète →</button>
             <p class="form-msg" id="form-msg"></p>
           </form>
@@ -632,6 +633,7 @@ function submitLead(ev){
   data.append('NOM', f.NOM.value.trim());
   data.append('CARTO_CODE', buildCode());
   data.append('CARTO_RESUME', buildResume());
+  data.append('OPT_IN_NEWS', f.OPTIN.checked ? 'Oui' : 'Non');
   data.append('email_address_check', '');
   data.append('locale', 'fr');
   data.append('html_type', 'simple');
