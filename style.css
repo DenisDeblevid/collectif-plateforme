@@ -1814,3 +1814,7 @@ a.partner-logo:hover { opacity:1; }
 .field-error { border-color:#b4472a !important; box-shadow:0 0 0 2px rgba(180,71,42,0.18); }
 .tunnel-form p.form-status, .tunnel-form .consent-line { opacity:1; }
 .tunnel-form .consent-line span { opacity:0.85; }
+/* Badge médiateur CM2C (pied de page) */
+.footer-mediateur { display:inline-block; line-height:0; background:#fff; padding:6px 8px; border-radius:4px; opacity:0.9; transition:opacity .2s; }
+.footer-mediateur:hover { opacity:1; }
+.footer-mediateur img { width:92px; height:auto; display:block; }
