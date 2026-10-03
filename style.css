@@ -1881,3 +1881,24 @@ a.partner-logo:hover { opacity:1; }
 /* Logo d'entreprise dans une fiche expert */
 .modal-partner-logo { display:inline-block; background:#fff; padding:10px 16px; border:1px solid rgba(35,75,94,0.12); margin:4px 0 8px; }
 .modal-partner-logo img { display:block; width:220px; max-width:100%; height:auto; }
+
+/* Carte : plusieurs experts au même endroit */
+.expert-marker .marker-count {
+  position:absolute; top:-9px; right:-11px; z-index:3;
+  min-width:18px; height:18px; padding:0 4px; border-radius:9px;
+  background:var(--deep); color:#fff; border:2px solid #fff;
+  font:600 11px/14px var(--font-body); text-align:center;
+  box-shadow:0 2px 6px rgba(0,0,0,0.3);
+}
+.expert-marker.active .marker-count { background:var(--copper); }
+.map-popup { min-width:190px; }
+.map-popup-count { font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--copper); margin-bottom:6px; }
+.map-popup-item { display:block; padding:7px 9px; margin:0 -9px; text-decoration:none; color:var(--ink); border-left:3px solid transparent; }
+.map-popup-item strong { display:block; font-size:0.86rem; color:var(--deep); }
+.map-popup-item span { display:block; font-size:0.72rem; opacity:0.7; }
+.map-popup-item:hover { background:rgba(184,111,76,0.08); }
+.map-popup-item.is-active { border-left-color:var(--deep); background:rgba(35,75,94,0.07); }
+.map-popup-item + .map-popup-item { border-top:1px solid rgba(35,75,94,0.1); }
+.leaflet-container a.map-popup-item { color:var(--ink); }
+.leaflet-container a.map-popup-item span { color:var(--teal); }
+.expert-marker .marker-count { min-width:20px; height:20px; font-size:12px; line-height:16px; }
