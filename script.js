@@ -143,6 +143,20 @@ const experts = {
       "Sa conviction : un lieu professionnel est le premier message envoyé à un client, avant toute parole ou tout document. Investir dans un mur, c'est investir dans la première impression — et elle se travaille comme le reste de la communication."
     ],
     tags:['Impression murale HD','Supports rigides','Décoration de lieux professionnels','Identité de marque','Hôtels & restaurants','Bureaux & commerces','Intervention sur site']
+  },
+  melaniea: {
+    photo:'Melanie-Aleonard.png',
+    name:'Mélanie Aleonard',
+    role:'RAF de transition · Formatrice',
+    location:'Haute-Savoie',
+    phone:'',
+    email:'',
+    sites:[['Prendre rendez-vous (Calendly)','https://calendly.com/melanie-aleonard/45min']],
+    bio:[
+      "Experte en finance d'entreprise avec près de 15 ans d'expérience, Mélanie accompagne les dirigeants et les PME dans la structuration de leur fonction financière, le pilotage de leur activité et la montée en compétences de leurs équipes. En tant que RAF de transition ou RAF à la demande, elle intervient sur l'organisation comptable, le contrôle de gestion, la trésorerie et la fiabilisation des outils.",
+      "Sa devise : « Structurer. Transmettre. Faire grandir. »"
+    ],
+    tags:['RAF de transition','Finance d\'entreprise','Pilotage & trésorerie','Formation professionnelle','Coaching professionnel','Montée en compétences']
   }
 };
 
@@ -156,7 +170,8 @@ var expertsGeo = {
   gilles:   { lat: 46.6034, lon: 1.8883,  zoom: 5,  ville: "France & International" },
   caroline: { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" },
   josselin: { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" },
-  remi:     { lat: 43.2965, lon: 5.3898,  zoom: 9,  ville: "Marseille (Empreinte Verticale)" }
+  remi:     { lat: 43.2965, lon: 5.3898,  zoom: 9,  ville: "Marseille (Empreinte Verticale)" },
+  melaniea: { lat: 45.8992, lon: 6.1294,  zoom: 9,  ville: "Haute-Savoie" }
 };
 
 var expertsMap = null;
