@@ -1877,3 +1877,7 @@ a.partner-logo:hover { opacity:1; }
   .map-all-btn { width:100%; justify-content:center; }
 }
 @media (prefers-reduced-motion: reduce){ .loc-dot::after { animation:none; } }
+
+/* Logo d'entreprise dans une fiche expert */
+.modal-partner-logo { display:inline-block; background:#fff; padding:10px 16px; border:1px solid rgba(35,75,94,0.12); margin:4px 0 8px; }
+.modal-partner-logo img { display:block; width:220px; max-width:100%; height:auto; }
