@@ -503,3 +503,33 @@ document.addEventListener('keydown', function(e){ if(e.key==='Escape') toggleNav
     setTimeout(function(){ k.classList.add('on'); }, reduce ? 0 : 1200 + i * 1500);
   });
 })();
+
+
+/* ═══ STRIPE — LIENS DE PAIEMENT ═══
+   Coller ici les liens Stripe (compte de production) entre les apostrophes.
+   Tant qu'un lien est vide, le bouton renvoie vers « Contact »
+   et la mention « bientôt disponible » reste affichée. */
+var STRIPE_LIENS = {
+  'part-mensuel':     '',
+  'part-trimestriel': '',
+  'part-semestriel':  '',
+  'part-annuel':      '',
+  'ent5-mensuel':     '',
+  'ent5-annuel':      '',
+  'ent10-mensuel':    '',
+  'ent10-annuel':     '',
+  'portail':          ''   // portail client : https://billing.stripe.com/p/login/...
+};
+(function(){
+  function brancher(){
+    var actif = false;
+    document.querySelectorAll('[data-stripe]').forEach(function(a){
+      var url = STRIPE_LIENS[a.getAttribute('data-stripe')];
+      if(url){ a.href = url; if(a.getAttribute('data-stripe') !== 'portail') actif = true; }
+    });
+    document.querySelectorAll('[data-stripe-on]').forEach(function(e){ e.hidden = !actif; });
+    document.querySelectorAll('[data-stripe-off]').forEach(function(e){ e.hidden = actif; });
+    document.querySelectorAll('[data-portail]').forEach(function(e){ e.hidden = !STRIPE_LIENS.portail; });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', brancher); else brancher();
+})();
