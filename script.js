@@ -75,7 +75,7 @@ const experts = {
     photo:'Gilles-Quillerier.png',
     name:'Gilles Quillerier',
     role:'Consultant en développement de compétences',
-    location:'France & International',
+    location:'Orléans · France & International',
     phone:'À venir',
     email:'À venir',
     bio:[
@@ -102,7 +102,7 @@ const experts = {
     photo:'Josselin-Dionisi.png',
     name:'Josselin Dionisi',
     role:'Développeur Web · Builder IA',
-    location:'France',
+    location:'Metz',
     phone:'',
     email:'contact@boreales-creations.fr',
     bio:[
@@ -116,7 +116,7 @@ const experts = {
     photo:'Florian-Gros.png',
     name:'Florian Gros',
     role:'Expert en publicité en ligne',
-    location:'',
+    location:'Perpignan',
     phone:'+33 6 37 92 52 08',
     email:'floriangrospro@gmail.com',
     sites:[['libertads.fr','https://libertads.fr'],['LinkedIn','https://www.linkedin.com/in/florian-grossea/']],
@@ -167,9 +167,10 @@ var expertsGeo = {
   emilie:   { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" },
   laurence: { lat: 43.6047, lon: 1.4442,  zoom: 9,  ville: "Toulouse" },
   melanie:  { lat: 46.8494, lon: -1.8794, zoom: 9,  ville: "Challans (85)" },
-  gilles:   { lat: 46.6034, lon: 1.8883,  zoom: 5,  ville: "France & International" },
+  gilles:   { lat: 47.9030, lon: 1.9093,  zoom: 9,  ville: "Orléans" },
   caroline: { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" },
-  josselin: { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" },
+  josselin: { lat: 49.1193, lon: 6.1757,  zoom: 9,  ville: "Metz" },
+  floriang: { lat: 42.6887, lon: 2.8948,  zoom: 9,  ville: "Perpignan" },
   remi:     { lat: 43.2965, lon: 5.3898,  zoom: 9,  ville: "Marseille (Empreinte Verticale)" },
   melaniea: { lat: 45.8992, lon: 6.1294,  zoom: 9,  ville: "Haute-Savoie" }
 };
