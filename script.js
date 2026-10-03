@@ -38,7 +38,7 @@ const experts = {
     photo:'Emilie-Abraham.jpg',
     name:'Émilie Abraham',
     role:'Consultante RH · Développement professionnel · Nobel RH',
-    location:'France',
+    location:'Paris',
     phone:'+33 6 65 52 00 00',
     email:'abrahamemilie@gmail.com',
     bio:[
@@ -64,10 +64,12 @@ const experts = {
     location:'Toulouse (distanciel & présentiel)',
     phone:'+33 6 71 82 57 39',
     email:'brouet.laurence@orange.fr',
+    sites:[['prospectives-rh.fr','https://www.prospectives-rh.fr/']],
     bio:[
       "Consultante dans le secteur de la formation et des activités RH, Laurence apporte des solutions concrètes : aux jeunes désireux d'effectuer une formation en alternance par contrat d'apprentissage, aux salariés qui veulent développer leurs compétences professionnelles, aux personnes en reconversion, et aux dirigeants en recherche de talents.",
       "Sa connaissance du monde de l'entreprise et son évolution dans de nombreux secteurs d'activités lui permettent de détecter les attentes et les besoins réels, par l'écoute et l'analyse — pour proposer des solutions adaptées et un accompagnement de qualité jusqu'à la réussite du projet.",
-      "Interventions en distanciel, avec possibilité sur site pour le secteur toulousain."
+      "Interventions en distanciel, avec possibilité sur site pour le secteur toulousain.",
+      "<a class=\"modal-partner-logo\" href=\"https://www.prospectives-rh.fr/\" target=\"_blank\" rel=\"noopener\" title=\"Prospectives RH — site de Laurence Brouet\"><img src=\"logo-prospectives-rh.png\" alt=\"Prospectives RH — Recrutement · Formation · Accompagnement\"></a><br><a class=\"modal-site-link\" href=\"https://www.prospectives-rh.fr/\" target=\"_blank\" rel=\"noopener\">🌐 prospectives-rh.fr</a>"
     ],
     tags:['Formation et e-learning','Éducation','Services RH','Alternance','Reconversion professionnelle','Recherche de talents']
   },
@@ -164,7 +166,7 @@ const experts = {
 var expertsGeo = {
   florian:  { lat: 50.6292, lon: 3.0573,  zoom: 8,  ville: "Lille (Hauts-de-France)" },
   denis:    { lat: 43.2965, lon: 5.3698,  zoom: 9,  ville: "Marseille" },
-  emilie:   { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" },
+  emilie:   { lat: 48.8566, lon: 2.3522,  zoom: 9,  ville: "Paris" },
   laurence: { lat: 43.6047, lon: 1.4442,  zoom: 9,  ville: "Toulouse" },
   melanie:  { lat: 46.8494, lon: -1.8794, zoom: 9,  ville: "Challans (85)" },
   gilles:   { lat: 47.9030, lon: 1.9093,  zoom: 9,  ville: "Orléans" },
