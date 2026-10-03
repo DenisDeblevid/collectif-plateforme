@@ -666,32 +666,35 @@
         <div class="tarifs-mini-grid">
           <div class="tarif-card">
             <span class="tarif-formule">Mensuel</span>
-            <div class="tarif-prix">49 €<span> HT/mois</span></div>
+            <div class="tarif-prix">49 €<span>/mois</span></div>
             <p class="tarif-equiv">Sans engagement</p>
-            <a href="#contact" class="tarif-btn">Choisir cette formule</a>
+            <a href="#contact" class="tarif-btn" data-stripe="part-mensuel">Choisir cette formule</a>
           </div>
           <div class="tarif-card">
             <span class="tarif-formule">Trimestriel</span>
-            <div class="tarif-prix">135 €<span> HT</span></div>
-            <p class="tarif-equiv">Soit 45 € HT/mois</p>
-            <a href="#contact" class="tarif-btn">Choisir cette formule</a>
+            <div class="tarif-prix">135 €<span>/3 mois</span></div>
+            <p class="tarif-equiv">Soit 45 €/mois</p>
+            <a href="#contact" class="tarif-btn" data-stripe="part-trimestriel">Choisir cette formule</a>
           </div>
           <div class="tarif-card">
             <span class="tarif-formule">Semestriel</span>
-            <div class="tarif-prix">255 €<span> HT</span></div>
-            <p class="tarif-equiv">Soit 42,50 € HT/mois</p>
-            <a href="#contact" class="tarif-btn">Choisir cette formule</a>
+            <div class="tarif-prix">255 €<span>/6 mois</span></div>
+            <p class="tarif-equiv">Soit 42,50 €/mois</p>
+            <a href="#contact" class="tarif-btn" data-stripe="part-semestriel">Choisir cette formule</a>
           </div>
           <div class="tarif-card best">
             <span class="tarif-badge">Le plus avantageux</span>
             <span class="tarif-formule">Annuel</span>
-            <div class="tarif-prix">468 €<span> HT</span></div>
-            <p class="tarif-equiv">Soit 39 € HT/mois</p>
-            <p class="tarif-economie">Économie de 120 € HT/an</p>
-            <a href="#contact" class="tarif-btn">Choisir cette formule</a>
+            <div class="tarif-prix">468 €<span>/an</span></div>
+            <p class="tarif-equiv">Soit 39 €/mois</p>
+            <p class="tarif-economie">Économie de 120 €/an</p>
+            <a href="#contact" class="tarif-btn" data-stripe="part-annuel">Choisir cette formule</a>
           </div>
         </div>
-        <p class="tarifs-note">Paiement en ligne sécurisé — bientôt disponible. En attendant, contactez-nous pour activer votre accès.</p>
+        <p class="tarifs-note">Prix en euros. TVA non applicable, art. 293 B du CGI.</p>
+        <p class="tarifs-note" data-stripe-off>Paiement en ligne sécurisé — bientôt disponible. En attendant, contactez-nous pour activer votre accès.</p>
+        <p class="tarifs-note" data-stripe-on hidden>Paiement sécurisé par Stripe. En souscrivant, vous acceptez nos <a href="cgv.html" target="_blank" rel="opener">conditions générales de vente</a> et demandez l'accès immédiat à Continuum. En cas de rétractation dans les 14 jours, la période déjà utilisée reste due au prorata.</p>
+        <p class="tarifs-note" data-portail hidden>Déjà abonné ? <a href="#" data-stripe="portail" target="_blank" rel="noopener">Gérer ou résilier mon abonnement</a></p>
       </div>
 
       <div class="tarifs-block" style="margin-top:56px;">
@@ -701,15 +704,17 @@
         <div class="tarifs-mini-grid">
           <div class="tarif-card">
             <span class="tarif-formule">Jusqu'à 5 accès nominatifs</span>
-            <div class="tarif-prix">199 €<span> HT/mois</span></div>
-            <p class="tarif-equiv">Ou 1&nbsp;990 € HT/an</p>
-            <a href="#contact" class="tarif-btn">Choisir cette formule</a>
+            <div class="tarif-prix">199 €<span>/mois</span></div>
+            <p class="tarif-equiv">Ou 1&nbsp;990 €/an</p>
+            <a href="#contact" class="tarif-btn" data-stripe="ent5-mensuel">Mensuel · 199 €</a>
+            <a href="#contact" class="tarif-btn tarif-btn-2" data-stripe="ent5-annuel">Annuel · 1&nbsp;990 €</a>
           </div>
           <div class="tarif-card">
             <span class="tarif-formule">Jusqu'à 10 accès nominatifs</span>
-            <div class="tarif-prix">349 €<span> HT/mois</span></div>
-            <p class="tarif-equiv">Ou 3&nbsp;490 € HT/an</p>
-            <a href="#contact" class="tarif-btn">Choisir cette formule</a>
+            <div class="tarif-prix">349 €<span>/mois</span></div>
+            <p class="tarif-equiv">Ou 3&nbsp;490 €/an</p>
+            <a href="#contact" class="tarif-btn" data-stripe="ent10-mensuel">Mensuel · 349 €</a>
+            <a href="#contact" class="tarif-btn tarif-btn-2" data-stripe="ent10-annuel">Annuel · 3&nbsp;490 €</a>
           </div>
           <div class="tarif-card best tarif-span-2">
             <span class="tarif-badge">Sur mesure</span>
@@ -718,7 +723,10 @@
             <a href="#contact" class="tarif-btn">Nous contacter</a>
           </div>
         </div>
-        <p class="tarifs-note">Paiement en ligne sécurisé — bientôt disponible. En attendant, contactez-nous pour activer votre accès.</p>
+        <p class="tarifs-note">Prix en euros. TVA non applicable, art. 293 B du CGI.</p>
+        <p class="tarifs-note" data-stripe-off>Paiement en ligne sécurisé — bientôt disponible. En attendant, contactez-nous pour activer votre accès.</p>
+        <p class="tarifs-note" data-stripe-on hidden>Paiement sécurisé par Stripe. En souscrivant, vous acceptez nos <a href="cgv.html" target="_blank" rel="opener">conditions générales de vente</a>.</p>
+        <p class="tarifs-note" data-portail hidden>Déjà abonné ? <a href="#" data-stripe="portail" target="_blank" rel="noopener">Gérer ou résilier mon abonnement</a></p>
       </div>
 
     </div>
@@ -775,7 +783,7 @@
 
         <div class="prisme-pricing">
           <div class="prisme-price-card">
-            <div class="prisme-price">À partir de 1&nbsp;290 €<span> HT</span></div>
+            <div class="prisme-price">À partir de 1&nbsp;290 €</div>
             <a href="#" onclick="openDevis(null);return false;" class="tarif-btn">Demander un devis</a>
           </div>
           <div class="prisme-price-card best">
@@ -784,7 +792,7 @@
             <a href="#" onclick="openDevis(null);return false;" class="tarif-btn">Demander un devis</a>
           </div>
         </div>
-        <p class="tarifs-note" style="text-align:left;margin-top:14px;">Paiement en ligne sécurisé — bientôt disponible.</p>
+        <p class="tarifs-note" style="text-align:left;margin-top:14px;">Prix en euros. TVA non applicable, art. 293 B du CGI.</p>
       </div>
     </div>
   </div>
