@@ -1826,3 +1826,7 @@ a.partner-logo:hover { opacity:1; }
 .rejoindre-btn { display:inline-block; text-decoration:none; margin:18px 0 22px; padding:17px 44px; letter-spacing:0.15em; }
 .rejoindre-box .rejoindre-note { font-size:0.74rem; opacity:0.6; line-height:1.6; max-width:560px; margin:0 auto; }
 @media (max-width:768px){ #rejoindre { padding:64px 22px; } .rejoindre-btn { padding:16px 26px; } }
+
+/* Abonnements Stripe : deuxième bouton (formule annuelle entreprises) */
+.tarifs-mini-grid .tarif-btn.tarif-btn-2 { margin-top:8px; }
+.tarifs-note[hidden] { display:none; }
