@@ -190,7 +190,7 @@ function openMap(activeId){
   document.getElementById('mapOverlay').classList.add('open');
   document.body.style.overflow='hidden';
 
-  var active = expertsGeo[activeId];
+  var active = expertsGeo[activeId] || { lat: 46.6, lon: 2.4, zoom: (window.innerWidth < 700 ? 5 : 6) };
 
   setTimeout(function(){
     if(!expertsMap){
