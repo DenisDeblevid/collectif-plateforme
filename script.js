@@ -180,13 +180,30 @@ var expertsGeo = {
 var expertsMap = null;
 var expertsMapMarkers = [];
 
-function buildMarkerIcon(active){
+function buildMarkerIcon(active, count){
+  var badge = count > 1 ? '<span class="marker-count">' + count + '</span>' : '';
   return L.divIcon({
     className: '',
-    html: '<div class="expert-marker' + (active ? ' active' : '') + '"><div class="dot-pulse"></div><div class="dot-pulse-2"></div><div class="dot-core"></div></div>',
+    html: '<div class="expert-marker' + (active ? ' active' : '') + (count > 1 ? ' group' : '') + '"><div class="dot-pulse"></div><div class="dot-pulse-2"></div><div class="dot-core"></div>' + badge + '</div>',
     iconSize: [26,26],
-    iconAnchor: [13,13]
+    iconAnchor: [13,13],
+    popupAnchor: [0,-10]
   });
+}
+
+// Regroupe les experts installés dans la même zone (moins de ~30 km)
+function groupExperts(){
+  var groups = [];
+  Object.keys(expertsGeo).forEach(function(id){
+    var g = expertsGeo[id];
+    var found = null;
+    groups.forEach(function(gr){
+      if(!found && Math.abs(gr.lat - g.lat) < 0.25 && Math.abs(gr.lon - g.lon) < 0.35) found = gr;
+    });
+    if(found) found.ids.push(id);
+    else groups.push({ lat:g.lat, lon:g.lon, ids:[id] });
+  });
+  return groups;
 }
 
 function openMap(activeId){
@@ -204,8 +221,7 @@ function openMap(activeId){
       }).addTo(expertsMap);
     }
 
-    // Toujours forcer le recalcul de la taille avant de positionner la vue —
-    // évite les bugs d'affichage liés à un conteneur qui vient juste de devenir visible
+    // Toujours forcer le recalcul de la taille avant de positionner la vue
     expertsMap.invalidateSize();
     expertsMap.setView([active.lat, active.lon], active.zoom);
 
@@ -213,20 +229,25 @@ function openMap(activeId){
     expertsMapMarkers.forEach(function(m){ expertsMap.removeLayer(m); });
     expertsMapMarkers = [];
 
-    // Ajouter tous les experts, avec l'expert cliqué mis en avant
-    Object.keys(expertsGeo).forEach(function(id){
-      var g = expertsGeo[id];
-      var e = experts[id];
-      if(!g) return;
-      var isActive = (id === activeId);
-      var marker = L.marker([g.lat, g.lon], { icon: buildMarkerIcon(isActive) }).addTo(expertsMap);
-      marker.bindPopup('<strong>' + (e ? e.name : id) + '</strong><br>' + g.ville);
-      if(isActive) marker.openPopup();
+    // Un seul point par zone : le nombre d'experts s'affiche sur le point,
+    // la bulle liste chaque expert (l'expert sélectionné est mis en avant)
+    groupExperts().forEach(function(gr){
+      var hasActive = gr.ids.indexOf(activeId) !== -1;
+      var ids = gr.ids.slice().sort(function(a,b){ return (b===activeId) - (a===activeId); });
+      var html = '<div class="map-popup">' + (ids.length > 1 ? '<div class="map-popup-count">' + ids.length + ' experts ici</div>' : '');
+      ids.forEach(function(id){
+        var e = experts[id], g = expertsGeo[id];
+        html += '<a href="#" class="map-popup-item' + (id === activeId ? ' is-active' : '') + '" onclick="closeMap();openModal(\'' + id + '\');return false;">'
+              + '<strong>' + (e ? e.name : id) + '</strong><span>' + (e && e.role ? e.role.split(' · ')[0] : '') + ' · ' + g.ville + '</span></a>';
+      });
+      html += '</div>';
+      var marker = L.marker([gr.lat, gr.lon], { icon: buildMarkerIcon(hasActive, ids.length), zIndexOffset: hasActive ? 1000 : 0 }).addTo(expertsMap);
+      marker.bindPopup(html, { maxWidth: 260 });
+      if(hasActive) marker.openPopup();
       expertsMapMarkers.push(marker);
     });
 
-    // Second recalcul après un court instant — garantit que Leaflet a bien
-    // les bonnes dimensions même sur mobile ou après une animation d'ouverture
+    // Second recalcul après un court instant (mobile, animation d'ouverture)
     setTimeout(function(){ expertsMap.invalidateSize(); }, 250);
   }, 80);
 }
