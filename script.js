@@ -572,3 +572,4 @@ var STRIPE_LIENS = {
   }
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', brancher); else brancher();
 })();
+ 
