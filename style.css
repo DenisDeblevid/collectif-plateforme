@@ -1830,3 +1830,50 @@ a.partner-logo:hover { opacity:1; }
 /* Abonnements Stripe : deuxième bouton (formule annuelle entreprises) */
 .tarifs-mini-grid .tarif-btn.tarif-btn-2 { margin-top:8px; }
 .tarifs-note[hidden] { display:none; }
+
+/* ─── Localisation des experts : pastille cliquable + bouton carte ─── */
+.team-location.locatable {
+  display:inline-flex; align-items:center; gap:7px;
+  margin:2px 0 12px; padding:6px 12px 6px 10px;
+  font:inherit; font-size:0.7rem; letter-spacing:0.04em; line-height:1.2;
+  color:var(--copper); opacity:1; text-decoration:none;
+  background:rgba(184,111,76,0.08);
+  border:1px solid rgba(184,111,76,0.45); border-radius:999px;
+  cursor:pointer; text-align:left;
+  transition:background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+}
+.team-location.locatable .loc-cta { opacity:0.75; }
+.team-location.locatable:hover,
+.team-location.locatable:focus-visible {
+  background:var(--copper); color:var(--white); border-color:var(--copper);
+  transform:translateY(-1px); outline:none;
+}
+.team-location.locatable:hover .loc-dot,
+.team-location.locatable:focus-visible .loc-dot { background:var(--white); }
+.loc-dot {
+  position:relative; flex:0 0 auto; width:8px; height:8px; border-radius:50%;
+  background:var(--copper);
+}
+.loc-dot::after {
+  content:''; position:absolute; inset:0; border-radius:50%;
+  background:rgba(184,111,76,0.55);
+  animation: markerPulse 2.4s ease-out infinite;
+}
+.map-all-btn {
+  display:inline-flex; align-items:center; gap:10px;
+  margin-top:22px; padding:13px 24px;
+  font-family:var(--font-body); font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--deep); background:transparent;
+  border:1px solid var(--deep); cursor:pointer;
+  transition:background 0.2s, color 0.2s;
+}
+.map-all-btn:hover, .map-all-btn:focus-visible { background:var(--deep); color:var(--white); outline:none; }
+.map-all-btn:hover .loc-dot { background:var(--white); }
+@media (max-width:768px){
+  .team-location.locatable { display:inline-block; padding:5px 10px; font-size:0.66rem; line-height:1.45; border-radius:14px; }
+  .team-location.locatable .loc-dot { display:inline-block; width:7px; height:7px; margin-right:6px; vertical-align:1px; }
+  .team-location.locatable .loc-cta { display:none; }
+  .team-location.locatable::after { content:' →'; }
+  .map-all-btn { width:100%; justify-content:center; }
+}
+@media (prefers-reduced-motion: reduce){ .loc-dot::after { animation:none; } }
