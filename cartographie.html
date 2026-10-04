@@ -416,12 +416,15 @@ function renderItem(){
   document.getElementById('quiz-block').innerHTML = html+'</div>';
 }
 
+var answering = false;
 function answer(v){
+  if(answering) return;            // évite qu'un double-clic saute une affirmation
   answers[order[pos]] = v;
   var block = document.getElementById('quiz-block');
   if(pos+1 >= ITEMS.length){ showResults(); return; }
+  answering = true;
   block.style.opacity='0';
-  setTimeout(function(){ pos++; renderItem(); block.style.opacity='1'; }, 180);
+  setTimeout(function(){ pos++; renderItem(); block.style.opacity='1'; answering = false; }, 180);
 }
 
 function goBack(){ if(pos>0){ pos--; renderItem(); } }
