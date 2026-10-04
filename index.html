@@ -143,6 +143,28 @@
   </svg>
 </section>
 
+<!-- FILM — NORIA HORIZON EN 50 SECONDES -->
+<section id="film" class="film-section">
+  <div class="film-inner">
+    <span class="section-label" style="justify-content:center;">Découvrir</span>
+    <h2 class="section-title">NORIA HORIZON <strong>en 50 secondes</strong></h2>
+    <div class="film-frame">
+      <video id="noriaFilm" playsinline muted loop preload="none" poster="noria-horizon-video.jpg" aria-label="Présentation vidéo de NORIA HORIZON en 50 secondes">
+        <source src="noria-horizon-50s.mp4" type="video/mp4">
+        Votre navigateur ne permet pas d'afficher cette vidéo.
+      </video>
+      <button type="button" class="film-sound" id="filmSound" aria-label="Activer le son et revoir la vidéo depuis le début">
+        <span class="film-sound-icon" aria-hidden="true">🔊</span>
+        <span class="film-sound-text"><strong>Activer le son</strong><small>La présentation est commentée</small></span>
+      </button>
+      <button type="button" class="film-play" id="filmPlay" aria-label="Lancer la vidéo avec le son" hidden>
+        <span aria-hidden="true">▶</span>
+      </button>
+    </div>
+    <p class="film-hint">🎧 Pour profiter de la présentation, activez le son.</p>
+  </div>
+</section>
+
 <!-- MISSION -->
 <section id="mission">
   <div class="mission-grid">
@@ -347,8 +369,6 @@
         <span class="team-role">Consultant développement de compétences</span>
         <button type="button" class="team-location locatable" onclick="event.stopPropagation();openMap('gilles')" aria-label="Voir Orléans sur la carte des experts"><span class="loc-dot" aria-hidden="true"></span>Orléans<span class="loc-cta"> · Voir sur la carte →</span></button>
         <div class="team-contacts">
-          <a href="#" onclick="event.stopPropagation()">📞 Tél.</a>
-          <a href="#" onclick="event.stopPropagation()">✉ Mail</a>
         </div>
       </div>
     </div>
