@@ -78,8 +78,8 @@ const experts = {
     name:'Gilles Quillerier',
     role:'Consultant en développement de compétences',
     location:'Orléans · France & International',
-    phone:'À venir',
-    email:'À venir',
+    phone:'',   // à compléter
+    email:'',   // à compléter
     bio:[
       "Professionnel du management, du commerce et du développement d'activités depuis plus de 40 ans, Gilles a construit son parcours en France et à l'international à travers des fonctions de direction, de développement commercial et d'accompagnement stratégique.",
       "Il a occupé des postes de responsabilité au sein de grandes enseignes de distribution, notamment dans plusieurs pays du Moyen-Orient, avant de diriger des projets de développement au Cambodge et aux Philippines. Ces expériences lui ont donné une solide expertise en management d'équipes multiculturelles, développement commercial, négociation et conduite du changement.",
@@ -549,14 +549,14 @@ document.addEventListener('keydown', function(e){ if(e.key==='Escape') toggleNav
    Tant qu'un lien est vide, le bouton renvoie vers « Contact »
    et la mention « bientôt disponible » reste affichée. */
 var STRIPE_LIENS = {
-  'part-mensuel':     '',
-  'part-trimestriel': '',
-  'part-semestriel':  '',
-  'part-annuel':      '',
-  'ent5-mensuel':     '',
-  'ent5-annuel':      '',
-  'ent10-mensuel':    '',
-  'ent10-annuel':     '',
+  'part-mensuel':     'https://buy.stripe.com/cNi5kE8yb8Va03aaj9gjC00',
+  'part-trimestriel': 'https://buy.stripe.com/9B63cwdSv0oEeY476XgjC01',
+  'part-semestriel':  'https://buy.stripe.com/7sY7sMcOrfjy5nu62TgjC02',
+  'part-annuel':      'https://buy.stripe.com/bJe14o4hVc7maHOaj9gjC03',
+  'ent5-mensuel':     'https://buy.stripe.com/9B65kE4hV3AQaHOaj9gjC04',
+  'ent5-annuel':      'https://buy.stripe.com/7sY6oIbKn1sI7vCdvlgjC05',
+  'ent10-mensuel':    'https://buy.stripe.com/28E7sMbKn9Zeg2862TgjC06',
+  'ent10-annuel':     'https://buy.stripe.com/fZueVe29N6N28zG0IzgjC07',
   'portail':          ''   // portail client : https://billing.stripe.com/p/login/...
 };
 (function(){
@@ -572,4 +572,56 @@ var STRIPE_LIENS = {
   }
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', brancher); else brancher();
 })();
- 
+
+
+/* ═══ FILM « NORIA HORIZON en 50 secondes » ═══
+   Démarre sans le son quand le bloc devient visible (règle des navigateurs),
+   avec un bouton bien visible pour activer le son et revoir depuis le début.
+   Se met en pause quand on fait défiler plus loin. */
+(function(){
+  var v = document.getElementById('noriaFilm');
+  if(!v) return;
+  var btnSound = document.getElementById('filmSound');
+  var btnPlay  = document.getElementById('filmPlay');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var withSound = false, pausedByScroll = false;
+
+  function showPlay(){ btnPlay.hidden = false; btnSound.classList.add('is-hidden'); }
+
+  function startMuted(){
+    v.muted = true;
+    var p = v.play();
+    if(p && p.catch) p.catch(function(){ showPlay(); });
+  }
+
+  function startWithSound(){
+    withSound = true;
+    v.muted = false; v.loop = false; v.controls = true;
+    v.currentTime = 0;
+    btnSound.classList.add('is-hidden'); btnPlay.hidden = true;
+    var p = v.play();
+    if(p && p.catch) p.catch(function(){ showPlay(); });
+  }
+
+  btnSound.addEventListener('click', startWithSound);
+  btnPlay.addEventListener('click', startWithSound);
+  v.addEventListener('volumechange', function(){
+    if(!v.muted && !withSound){ withSound = true; v.loop = false; btnSound.classList.add('is-hidden'); }
+  });
+
+  if(!('IntersectionObserver' in window)){ if(!reduce) startMuted(); else showPlay(); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        if(reduce && !withSound){ showPlay(); return; }
+        if(v.paused && (pausedByScroll || (!withSound && v.currentTime === 0))){
+          pausedByScroll = false;
+          if(withSound){ v.play().catch(function(){}); } else { startMuted(); }
+        }
+      } else if(!v.paused){
+        v.pause(); pausedByScroll = true;
+      }
+    });
+  }, { threshold: 0.5 });
+  io.observe(v);
+})();
