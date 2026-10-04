@@ -557,7 +557,7 @@ var STRIPE_LIENS = {
   'ent5-annuel':      'https://buy.stripe.com/7sY6oIbKn1sI7vCdvlgjC05',
   'ent10-mensuel':    'https://buy.stripe.com/28E7sMbKn9Zeg2862TgjC06',
   'ent10-annuel':     'https://buy.stripe.com/fZueVe29N6N28zG0IzgjC07',
-  'portail':          ''   // portail client : https://billing.stripe.com/p/login/...
+  'portail':          'https://billing.stripe.com/p/login/cNi5kE8yb8Va03aaj9gjC00'   // portail client (vérifié par Florian le 04/10)
 };
 (function(){
   function brancher(){
