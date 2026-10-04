@@ -1902,3 +1902,51 @@ a.partner-logo:hover { opacity:1; }
 .leaflet-container a.map-popup-item { color:var(--ink); }
 .leaflet-container a.map-popup-item span { color:var(--teal); }
 .expert-marker .marker-count { min-width:20px; height:20px; font-size:12px; line-height:16px; }
+
+/* ═══ FILM « NORIA HORIZON en 50 secondes » ═══ */
+.film-section { background:var(--mist); padding:90px 60px 100px; }
+.film-inner { max-width:1100px; margin:0 auto; text-align:center; }
+.film-inner .section-title { margin-bottom:34px; }
+.film-frame {
+  position:relative; width:100%; aspect-ratio:16/9; overflow:hidden;
+  background:var(--ink); box-shadow:0 24px 60px rgba(26,46,56,0.22);
+}
+.film-frame video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; background:var(--ink); }
+.film-sound {
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  display:flex; align-items:center; gap:14px;
+  padding:16px 28px 16px 20px; border:none; border-radius:999px; cursor:pointer;
+  background:rgba(253,250,245,0.94); color:var(--deep); text-align:left;
+  box-shadow:0 10px 30px rgba(0,0,0,0.28);
+  font-family:var(--font-body);
+  transition:transform 0.25s, background 0.25s, opacity 0.3s;
+  animation: filmPulse 2.2s ease-out infinite;
+}
+.film-sound:hover { transform:translate(-50%,-50%) scale(1.04); background:#fff; }
+.film-sound-icon { font-size:1.7rem; line-height:1; }
+.film-sound-text strong { display:block; font-size:0.95rem; letter-spacing:0.08em; text-transform:uppercase; }
+.film-sound-text small { display:block; font-size:0.72rem; opacity:0.7; margin-top:2px; }
+.film-sound.is-hidden { opacity:0; pointer-events:none; animation:none; }
+@keyframes filmPulse {
+  0%   { box-shadow:0 10px 30px rgba(0,0,0,0.28), 0 0 0 0 rgba(184,111,76,0.55); }
+  70%  { box-shadow:0 10px 30px rgba(0,0,0,0.28), 0 0 0 22px rgba(184,111,76,0); }
+  100% { box-shadow:0 10px 30px rgba(0,0,0,0.28), 0 0 0 0 rgba(184,111,76,0); }
+}
+.film-play {
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  width:84px; height:84px; border-radius:50%; border:none; cursor:pointer;
+  background:rgba(253,250,245,0.94); color:var(--deep); font-size:1.8rem; padding-left:6px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.28);
+}
+.film-play[hidden] { display:none; }
+.film-hint { margin-top:18px; font-size:0.8rem; color:var(--stone); letter-spacing:0.04em; }
+@media (max-width:768px){
+  .film-section { padding:60px 16px 70px; }
+  .film-inner .section-title { margin-bottom:24px; }
+  .film-sound { padding:12px 20px 12px 14px; gap:10px; }
+  .film-sound-icon { font-size:1.35rem; }
+  .film-sound-text strong { font-size:0.8rem; }
+  .film-sound-text small { display:none; }
+}
+@media (prefers-reduced-motion: reduce){ .film-sound { animation:none; } }
+.film-sound-text strong { white-space:nowrap; }
