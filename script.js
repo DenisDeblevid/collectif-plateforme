@@ -77,9 +77,9 @@ const experts = {
     photo:'Gilles-Quillerier.png',
     name:'Gilles Quillerier',
     role:'Consultant en développement de compétences',
-    location:'Orléans · France & International',
-    phone:'',   // à compléter
-    email:'',   // à compléter
+    location:'Saint-Jean-de-la-Ruelle (Orléans) · France & International',
+    phone:'+33 7 81 42 57 89',
+    email:'quillerier59@gmail.com',
     bio:[
       "Professionnel du management, du commerce et du développement d'activités depuis plus de 40 ans, Gilles a construit son parcours en France et à l'international à travers des fonctions de direction, de développement commercial et d'accompagnement stratégique.",
       "Il a occupé des postes de responsabilité au sein de grandes enseignes de distribution, notamment dans plusieurs pays du Moyen-Orient, avant de diriger des projets de développement au Cambodge et aux Philippines. Ces expériences lui ont donné une solide expertise en management d'équipes multiculturelles, développement commercial, négociation et conduite du changement.",
@@ -169,7 +169,7 @@ var expertsGeo = {
   emilie:   { lat: 48.8566, lon: 2.3522,  zoom: 9,  ville: "Paris" },
   laurence: { lat: 43.6047, lon: 1.4442,  zoom: 9,  ville: "Toulouse" },
   melanie:  { lat: 46.8494, lon: -1.8794, zoom: 9,  ville: "Challans (85)" },
-  gilles:   { lat: 47.9030, lon: 1.9093,  zoom: 9,  ville: "Orléans" },
+  gilles:   { lat: 47.9111, lon: 1.8650,  zoom: 10, ville: "Saint-Jean-de-la-Ruelle" },
   caroline: { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" },
   josselin: { lat: 49.1193, lon: 6.1757,  zoom: 9,  ville: "Metz" },
   floriang: { lat: 42.6887, lon: 2.8948,  zoom: 9,  ville: "Perpignan" },
