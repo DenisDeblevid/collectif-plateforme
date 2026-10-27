@@ -35,12 +35,12 @@ const experts = {
   melanie: {
     photo:'Melanie-Allard.png',
     name:'Mélanie Allard',
-    role:'Consultante Emploi · Carrière · Développement',
+    role:'Consultante Emploi & Trajectoires Pro · Coach professionnelle en cours de certification',
     location:'Challans (85) + Visio',
     phone:'+33 6 13 06 31 07',
     email:'melanieallardpro@gmail.com',
-    bio:["Forte de 20 ans d'expérience en intérim, recrutement et gestion d'agence, Mélanie accompagne particuliers et professionnels à clarifier leur situation, structurer leurs démarches et avancer de manière alignée dans leurs projets professionnels.","Pour les particuliers : transitions professionnelles, orientation, repositionnement, diagnostic CV, préparation aux entretiens. Pour les professionnels : audit business, structuration et développement de TPE/PME. Une approche humaine, structurante et orientée solution."],
-    tags:['Carrière','Reconversion','CV & Entretiens','Audit business','TPE·PME','Transitions pro','Bilan carrière']
+    bio:["Forte de 20 ans d'expérience en intérim, recrutement et gestion d'agence, Mélanie accompagne particuliers et professionnels à clarifier leur situation, structurer leurs démarches et avancer de manière alignée dans leurs projets professionnels.","Coach professionnelle en cours de certification, elle propose un accompagnement humain et chaleureux, dans un cadre structuré qui favorise le développement de l’autonomie et la mise en mouvement."],
+    tags:['Carrière','Reconversion','CV & Entretiens','Coaching professionnel','Transitions pro','Bilan carrière']
   },
   laurence: {
     photo:'Laurence-Brouet.png',
