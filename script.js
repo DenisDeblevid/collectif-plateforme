@@ -2,43 +2,28 @@ const experts = {
   florian: {
     photo:'Florian-Dhaussy.png',
     name:'Florian Dhaussy',
-    role:'Cofondateur de NORIA HORIZON · Formateur en management, communication, IA · Consultant RH',
+    role:'Formateur Management · Consultant RH · Co-fondateur',
     location:'Hauts-de-France (France entière)',
-    phone:'+33 6 29 34 09 64',
-    email:'noriahorizoncontacts@gmail.com',
-    bio:[
-      "« Comprendre ce qui se joue. Faire grandir ce qui compte. »",
-      "J’accompagne dirigeants, managers, équipes RH et collaborateurs dans des contextes où il faut à la fois prendre du recul, développer les compétences et remettre du mouvement.",
-      "Mon approche se situe à la croisée du management, des ressources humaines, de la formation et de l’accompagnement des transformations. Je cherche avant tout à comprendre ce qui se joue réellement dans une situation, pour construire des réponses concrètes, utiles et adaptées aux personnes comme à l’organisation.",
-      "Ce qui m’anime particulièrement : révéler les potentiels, faire progresser les pratiques managériales et créer les conditions d’une performance durable, plus humaine et plus collective.",
-      "Au sein de NORIA HORIZON, je porte une conviction simple : on accompagne mieux quand on ne cherche pas à faire entrer les situations dans une méthode toute faite."
-    ],
-    tags:['Management','RH','Formation','Leadership','Développement des compétences','Performance collective','Seven Natural Skills®']
+    phone:'+33 6 00 00 00 00',
+    email:'florian.dhaussy@noria-horizon.fr',
+    bio:["Consultant en développement des compétences, manager d'une équipe de consultants, formateur et coach certifié SEVEN NATURAL SKILLS®, Florian intervient à la croisée des enjeux humains et stratégiques. Sa conviction : la réussite durable repose sur la capacité à développer les compétences, révéler les potentiels et faire grandir les talents.","Il accompagne dirigeants, équipes RH, managers et collaborateurs dans la construction de solutions concrètes favorisant l'engagement, la montée en compétences et la performance collective."],
+    tags:['Management','Formation','Leadership','RH','Compétences','Performance collective','Seven Natural Skills®']
   },
   denis: {
     photo:'Denis-Deblevid.png',
     name:'Denis Deblevid',
-    role:'Co-fondateur · Coach philosophique et physique · Créateur de la Méthode 4P',
+    role:'Coach Philosophique · Méthode 4P · Co-fondateur',
     location:'Marseille',
-    phone:'+33 7 83 03 88 00',
+    phone:'+33 6 00 00 00 00',
     email:'denisdeblevidcontact@gmail.com',
-    bio:[
-      "Coach philosophique et créateur de la Méthode 4P, Denis accompagne ceux qui portent une soif profonde de sens et de transformation. Son approche s'enracine dans la philosophie stoïcienne pratique : une philosophie vécue, incarnée, qui ne reste pas dans les livres, comme c'est le cas depuis plus de 2 000 ans.",
-      "<a class=\"modal-site-link\" href=\"https://renaitredelasoif.fr\" target=\"_blank\" rel=\"noopener\">🌐 renaitredelasoif.fr</a>",
-      "Ancien pratiquant d'arts martiaux durant près de 15 ans, Denis a traversé ses propres ruptures, ses propres fissures, pour construire la Méthode 4P, qui repose sur le physique, le psychologique, le philosophique et le pneuma. Une méthode qui touche l'être dans toutes ses dimensions. Il marche à vos côtés, non au-dessus de vous.",
-      "Pour la colonne physique de l'accompagnement, Denis a fondé <strong>Gibbor Roots Process</strong> : une méthode de préparation, de survie et de self-défense, vécue en pleine nature ou en milieu urbain. Ses stages, organisés avec Le POC (<a href=\"https://lepocistres.fr\" target=\"_blank\" rel=\"noopener\">Les Parcours d'Obstacle de la Crau</a>, à Istres), développent l'autonomie, la maîtrise de soi et l'esprit de groupe face à l'imprévu.",
-      "Sa promesse : vous arrivez avec des doutes, vous repartez avec des racines.",
-      "<a class=\"modal-site-link\" href=\"https://gibbor.fr\" target=\"_blank\" rel=\"noopener\">🌐 Gibbor Roots Process — gibbor.fr</a>",
-      "Retrouvez aussi toutes ses compétences et ses relations sur LinkedIn.",
-      "<a class=\"modal-site-link\" href=\"https://www.linkedin.com/in/denisdeblevid\" target=\"_blank\" rel=\"noopener\">🔗 Profil LinkedIn</a><br><a class=\"modal-site-link\" href=\"https://denis-deblevid.fr\" target=\"_blank\" rel=\"noopener\">🌐 denis-deblevid.fr</a>"
-    ],
-    tags:['Stoïcisme','Méthode 4P','Sens','Résilience','Survie','Self-défense','Préparation physique','Préparation mentale','Accompagnement','Guidance']
+    bio:["Coach philosophique et fondateur de la Méthode 4P (Psychologique, Physique, Philosophique, Pneuma), Denis accompagne ceux qui portent une soif profonde de sens et de transformation. Son approche s'enracine dans le stoïcisme pratique — une philosophie vécue, incarnée, qui ne reste pas dans les livres.","Ancien pratiquant d'arts martiaux pendant dix ans, Denis a traversé ses propres ruptures pour construire une méthode qui touche l'être dans toutes ses dimensions. Il marche à vos côtés, non au-dessus de vous."],
+    tags:['Stoïcisme','Méthode 4P','Identité','Sens','Résilience','Corps & Mental','Philosophie pratique']
   },
   emilie: {
     photo:'Emilie-Abraham.jpg',
     name:'Émilie Abraham',
     role:'Consultante RH · Développement professionnel · Nobel RH',
-    location:'Paris',
+    location:'France',
     phone:'+33 6 65 52 00 00',
     email:'abrahamemilie@gmail.com',
     bio:[
@@ -64,12 +49,10 @@ const experts = {
     location:'Toulouse (distanciel & présentiel)',
     phone:'+33 6 71 82 57 39',
     email:'brouet.laurence@orange.fr',
-    sites:[['prospectives-rh.fr','https://www.prospectives-rh.fr/']],
     bio:[
       "Consultante dans le secteur de la formation et des activités RH, Laurence apporte des solutions concrètes : aux jeunes désireux d'effectuer une formation en alternance par contrat d'apprentissage, aux salariés qui veulent développer leurs compétences professionnelles, aux personnes en reconversion, et aux dirigeants en recherche de talents.",
       "Sa connaissance du monde de l'entreprise et son évolution dans de nombreux secteurs d'activités lui permettent de détecter les attentes et les besoins réels, par l'écoute et l'analyse — pour proposer des solutions adaptées et un accompagnement de qualité jusqu'à la réussite du projet.",
-      "Interventions en distanciel, avec possibilité sur site pour le secteur toulousain.",
-      "<a class=\"modal-partner-logo\" href=\"https://www.prospectives-rh.fr/\" target=\"_blank\" rel=\"noopener\" title=\"Prospectives RH — site de Laurence Brouet\"><img src=\"logo-prospectives-rh.png\" alt=\"Prospectives RH — Recrutement · Formation · Accompagnement\"></a><br><a class=\"modal-site-link\" href=\"https://www.prospectives-rh.fr/\" target=\"_blank\" rel=\"noopener\">🌐 prospectives-rh.fr</a>"
+      "Interventions en distanciel, avec possibilité sur site pour le secteur toulousain."
     ],
     tags:['Formation et e-learning','Éducation','Services RH','Alternance','Reconversion professionnelle','Recherche de talents']
   },
@@ -77,9 +60,9 @@ const experts = {
     photo:'Gilles-Quillerier.png',
     name:'Gilles Quillerier',
     role:'Consultant en développement de compétences',
-    location:'Saint-Jean-de-la-Ruelle (Orléans) · France & International',
-    phone:'+33 7 81 42 57 89',
-    email:'quillerier59@gmail.com',
+    location:'France & International',
+    phone:'À venir',
+    email:'À venir',
     bio:[
       "Professionnel du management, du commerce et du développement d'activités depuis plus de 40 ans, Gilles a construit son parcours en France et à l'international à travers des fonctions de direction, de développement commercial et d'accompagnement stratégique.",
       "Il a occupé des postes de responsabilité au sein de grandes enseignes de distribution, notamment dans plusieurs pays du Moyen-Orient, avant de diriger des projets de développement au Cambodge et aux Philippines. Ces expériences lui ont donné une solide expertise en management d'équipes multiculturelles, développement commercial, négociation et conduite du changement.",
@@ -87,24 +70,11 @@ const experts = {
     ],
     tags:['Management international','Développement commercial','Transitions professionnelles','Conseil stratégique','Négociation','Conduite du changement','Management multiculturel']
   },
-  caroline: {
-    photo:'Caroline-Seure.png',
-    name:'Caroline Seure',
-    role:'Formatrice & ingénieure pédagogique',
-    location:'France',
-    phone:'+33 6 89 90 36 08',
-    email:'caroline.seure@gmail.com',
-    bio:[
-      "Formatrice et ingénieure pédagogique, Caroline aide les personnes et les entreprises à mieux utiliser ce qu'elles ont déjà entre les mains — une compétence, une expertise, un savoir-faire qui dort souvent dans la tête de quelqu'un. Elle intervient autour de la communication, de l'intelligence émotionnelle, des compétences psychosociales, des relations professionnelles, de la relation client et de la coopération.",
-      "Elle développe aussi un axe autour de la transmission des savoir-faire en entreprise par le digital : capitaliser une expertise, transformer une réunion en ressource pédagogique, transmettre autrement, sans perdre la dimension humaine. Sa conviction : une entreprise possède souvent plus de ressources qu'elle ne le pense ; son rôle est de les révéler, les structurer et les rendre transmissibles."
-    ],
-    tags:['Compétences psychosociales','Coopération','Ingénierie pédagogique','Transmission digitale','Haute sensibilité']
-  },
   josselin: {
-    photo:'Josselin-Dionisi.png',
+    photo:'',
     name:'Josselin Dionisi',
     role:'Développeur Web · Builder IA',
-    location:'Metz',
+    location:'France',
     phone:'',
     email:'contact@boreales-creations.fr',
     bio:[
@@ -114,51 +84,20 @@ const experts = {
     ],
     tags:['Web','IA','Agentique','Formation']
   },
-  floriang: {
-    photo:'Florian-Gros.png',
-    name:'Florian Gros',
-    role:'Expert en publicité en ligne',
-    location:'Perpignan',
-    phone:'+33 6 37 92 52 08',
-    email:'floriangrospro@gmail.com',
-    sites:[['libertads.fr','https://libertads.fr'],['LinkedIn','https://www.linkedin.com/in/florian-grossea/']],
-    bio:[
-      "Florian aide les entrepreneurs et les entreprises à développer leur activité grâce à la publicité en ligne. Son travail ne s'arrête pas à la gestion des campagnes : il construit l'ensemble du système d'acquisition, de la publicité jusqu'à la prise de rendez-vous ou à la vente.",
-      "Tunnels de vente, formulaires de qualification, automatisations, intégration de l'intelligence artificielle, suivi des prospects, optimisation de chaque étape du parcours client : l'objectif est un système complet, capable d'attirer les bonnes personnes, de les qualifier et de les convertir en clients.",
-      "« De la publicité au rendez-vous, je construis tout le système d'acquisition. »",
-      "Sa conviction : l'enjeu n'est pas de générer plus de leads, mais de générer plus de bonnes opportunités pour l'entreprise ou l'entrepreneur."
-    ],
-    tags:['Publicité Facebook & Instagram','Génération de prospects','Tunnels de vente','Automatisation IA','Qualification des prospects','Optimisation des conversions']
-  },
-  remi: {
-    photo:'Remi-Rozier.png',
-    name:'Rémi Rozier',
-    role:"Fondateur d'Empreinte Verticale · Impression murale",
-    location:'Marseille · région PACA, et au-delà sur demande',
-    phone:'+33 6 71 23 05 22',
-    email:'contact@empreinteverticale.fr',
-    sites:[['empreinteverticale.fr','https://www.empreinteverticale.fr']],
-    bio:[
-      "Fondateur d'Empreinte Verticale, Rémi transforme les murs en levier d'image. Installé à Marseille, il imprime directement sur les murs, avec une imprimante verticale qu'il amène sur place. Pas de papier peint ni de panneaux collés — sauf si c'est le souhait du client : l'image fait corps avec le lieu.",
-      "Hôtels, restaurants, bureaux, écoles, salles de sport, commerces : il met en scène l'identité d'une marque dans ses locaux, en impression haute définition sur mur et sur supports rigides. Un mur est le seul espace de communication que les clients regardent sans le vouloir ; Rémi en fait une image qu'on remarque, qu'on photographie et dont on se souvient. Chaque projet commence par une conversation sur le lieu, ses clients et ce que l'on veut leur faire ressentir en entrant.",
-      "« Là où il y avait un mur, il y a maintenant une identité. »",
-      "Sa conviction : un lieu professionnel est le premier message envoyé à un client, avant toute parole ou tout document. Investir dans un mur, c'est investir dans la première impression — et elle se travaille comme le reste de la communication."
-    ],
-    tags:['Impression murale HD','Supports rigides','Décoration de lieux professionnels','Identité de marque','Hôtels & restaurants','Bureaux & commerces','Intervention sur site']
-  },
-  melaniea: {
-    photo:'Melanie-Aleonard.png',
-    name:'Mélanie Aleonard',
-    role:'RAF de transition · Formatrice',
-    location:'Haute-Savoie',
-    phone:'',
+  geoffrey: {
+    photo:'Geoffrey-Batut.png',
+    name:'Geoffrey Batut',
+    role:'Consultant en développement de compétences · Formateur',
+    location:'À préciser',
+    phone:'+33 6 59 57 00 90',
     email:'',
-    sites:[['Prendre rendez-vous (Calendly)','https://calendly.com/melanie-aleonard/45min']],
     bio:[
-      "Experte en finance d'entreprise avec près de 15 ans d'expérience, Mélanie accompagne les dirigeants et les PME dans la structuration de leur fonction financière, le pilotage de leur activité et la montée en compétences de leurs équipes. En tant que RAF de transition ou RAF à la demande, elle intervient sur l'organisation comptable, le contrôle de gestion, la trésorerie et la fiabilisation des outils.",
-      "Sa devise : « Structurer. Transmettre. Faire grandir. »"
+      "Issu du monde de l'éducation, Geoffrey poursuit aujourd'hui dans la transmission et la formation. Il intervient en codéveloppement en entreprise et s'apprête à exercer comme praticien en bilan de compétences, et prochainement AAP en VAE.",
+      "Forte expérience de la pédagogie du langage, de la lecture, de l'écriture et des mathématiques pour les enfants de 3 à 8 ans, il va désormais à la rencontre des salariés et dirigeants des TPE et PME pour les accompagner dans leur évolution professionnelle et personnelle.",
+      "Une conviction qui l'anime : l'école joue un rôle primordial, mais l'apprentissage ne s'arrête pas à sa sortie. Les formations doivent continuer, se diversifier pour se compléter, et permettre de gagner en liberté et en autonomie, professionnellement comme intellectuellement.",
+      "« Seul on va plus vite, ensemble on va plus loin »"
     ],
-    tags:['RAF de transition','Finance d\'entreprise','Pilotage & trésorerie','Formation professionnelle','Coaching professionnel','Montée en compétences']
+    tags:['Codéveloppement','Bilan de compétences','VAE','Formation','Pédagogie','Lecture & écriture','Mathématiques','TPE·PME']
   }
 };
 
@@ -166,51 +105,30 @@ const experts = {
 var expertsGeo = {
   florian:  { lat: 50.6292, lon: 3.0573,  zoom: 8,  ville: "Lille (Hauts-de-France)" },
   denis:    { lat: 43.2965, lon: 5.3698,  zoom: 9,  ville: "Marseille" },
-  emilie:   { lat: 48.8566, lon: 2.3522,  zoom: 9,  ville: "Paris" },
+  emilie:   { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" },
   laurence: { lat: 43.6047, lon: 1.4442,  zoom: 9,  ville: "Toulouse" },
   melanie:  { lat: 46.8494, lon: -1.8794, zoom: 9,  ville: "Challans (85)" },
-  gilles:   { lat: 47.9111, lon: 1.8650,  zoom: 10, ville: "Saint-Jean-de-la-Ruelle" },
-  caroline: { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" },
-  josselin: { lat: 49.1193, lon: 6.1757,  zoom: 9,  ville: "Metz" },
-  floriang: { lat: 42.6887, lon: 2.8948,  zoom: 9,  ville: "Perpignan" },
-  remi:     { lat: 43.2965, lon: 5.3898,  zoom: 9,  ville: "Marseille (Empreinte Verticale)" },
-  melaniea: { lat: 45.8992, lon: 6.1294,  zoom: 9,  ville: "Haute-Savoie" }
+  gilles:   { lat: 46.6034, lon: 1.8883,  zoom: 5,  ville: "France & International" },
+  josselin: { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" }
 };
 
 var expertsMap = null;
 var expertsMapMarkers = [];
 
-function buildMarkerIcon(active, count){
-  var badge = count > 1 ? '<span class="marker-count">' + count + '</span>' : '';
+function buildMarkerIcon(active){
   return L.divIcon({
     className: '',
-    html: '<div class="expert-marker' + (active ? ' active' : '') + (count > 1 ? ' group' : '') + '"><div class="dot-pulse"></div><div class="dot-pulse-2"></div><div class="dot-core"></div>' + badge + '</div>',
+    html: '<div class="expert-marker' + (active ? ' active' : '') + '"><div class="dot-pulse"></div><div class="dot-pulse-2"></div><div class="dot-core"></div></div>',
     iconSize: [26,26],
-    iconAnchor: [13,13],
-    popupAnchor: [0,-10]
+    iconAnchor: [13,13]
   });
-}
-
-// Regroupe les experts installés dans la même zone (moins de ~30 km)
-function groupExperts(){
-  var groups = [];
-  Object.keys(expertsGeo).forEach(function(id){
-    var g = expertsGeo[id];
-    var found = null;
-    groups.forEach(function(gr){
-      if(!found && Math.abs(gr.lat - g.lat) < 0.25 && Math.abs(gr.lon - g.lon) < 0.35) found = gr;
-    });
-    if(found) found.ids.push(id);
-    else groups.push({ lat:g.lat, lon:g.lon, ids:[id] });
-  });
-  return groups;
 }
 
 function openMap(activeId){
   document.getElementById('mapOverlay').classList.add('open');
   document.body.style.overflow='hidden';
 
-  var active = expertsGeo[activeId] || { lat: 46.6, lon: 2.4, zoom: (window.innerWidth < 700 ? 5 : 6) };
+  var active = expertsGeo[activeId];
 
   setTimeout(function(){
     if(!expertsMap){
@@ -221,7 +139,8 @@ function openMap(activeId){
       }).addTo(expertsMap);
     }
 
-    // Toujours forcer le recalcul de la taille avant de positionner la vue
+    // Toujours forcer le recalcul de la taille avant de positionner la vue —
+    // évite les bugs d'affichage liés à un conteneur qui vient juste de devenir visible
     expertsMap.invalidateSize();
     expertsMap.setView([active.lat, active.lon], active.zoom);
 
@@ -229,25 +148,20 @@ function openMap(activeId){
     expertsMapMarkers.forEach(function(m){ expertsMap.removeLayer(m); });
     expertsMapMarkers = [];
 
-    // Un seul point par zone : le nombre d'experts s'affiche sur le point,
-    // la bulle liste chaque expert (l'expert sélectionné est mis en avant)
-    groupExperts().forEach(function(gr){
-      var hasActive = gr.ids.indexOf(activeId) !== -1;
-      var ids = gr.ids.slice().sort(function(a,b){ return (b===activeId) - (a===activeId); });
-      var html = '<div class="map-popup">' + (ids.length > 1 ? '<div class="map-popup-count">' + ids.length + ' experts ici</div>' : '');
-      ids.forEach(function(id){
-        var e = experts[id], g = expertsGeo[id];
-        html += '<a href="#" class="map-popup-item' + (id === activeId ? ' is-active' : '') + '" onclick="closeMap();openModal(\'' + id + '\');return false;">'
-              + '<strong>' + (e ? e.name : id) + '</strong><span>' + (e && e.role ? e.role.split(' · ')[0] : '') + ' · ' + g.ville + '</span></a>';
-      });
-      html += '</div>';
-      var marker = L.marker([gr.lat, gr.lon], { icon: buildMarkerIcon(hasActive, ids.length), zIndexOffset: hasActive ? 1000 : 0 }).addTo(expertsMap);
-      marker.bindPopup(html, { maxWidth: 260 });
-      if(hasActive) marker.openPopup();
+    // Ajouter tous les experts, avec l'expert cliqué mis en avant
+    Object.keys(expertsGeo).forEach(function(id){
+      var g = expertsGeo[id];
+      var e = experts[id];
+      if(!g) return;
+      var isActive = (id === activeId);
+      var marker = L.marker([g.lat, g.lon], { icon: buildMarkerIcon(isActive) }).addTo(expertsMap);
+      marker.bindPopup('<strong>' + (e ? e.name : id) + '</strong><br>' + g.ville);
+      if(isActive) marker.openPopup();
       expertsMapMarkers.push(marker);
     });
 
-    // Second recalcul après un court instant (mobile, animation d'ouverture)
+    // Second recalcul après un court instant — garantit que Leaflet a bien
+    // les bonnes dimensions même sur mobile ou après une animation d'ouverture
     setTimeout(function(){ expertsMap.invalidateSize(); }, 250);
   }, 80);
 }
@@ -263,15 +177,14 @@ function openModal(id){
   var tagsHTML=e.tags.map(function(t){ return '<span class="modal-tag">'+t+'</span>'; }).join('');
   document.getElementById('modalBody').innerHTML=
     '<div class="modal-header">' +
-    '<div class="modal-photo" style="overflow:hidden;padding:0;">'+(e.photo ? '<img src="'+e.photo+'" alt="'+e.name+'" onerror="this.remove()" style="width:100%;height:100%;object-fit:cover;object-position:center top;">' : '')+'</div>' +
+    '<div class="modal-photo" style="overflow:hidden;padding:0;">'+(e.photo ? '<img src="'+e.photo+'" alt="'+e.name+'" style="width:100%;height:100%;object-fit:cover;object-position:center top;">' : '')+'</div>' +
     '<div class="modal-info">' +
     '<h2>'+e.name+'</h2>' +
     '<span class="role-badge">'+e.role+'</span><br>' +
-    (e.location ? '<small style="opacity:.4;font-size:.78rem;display:block;margin-bottom:10px;">📍 '+e.location+'</small>' : '') +
+    '<small style="opacity:.4;font-size:.78rem;display:block;margin-bottom:10px;">📍 '+e.location+'</small>' +
     '<div class="contact-links">' +
     (e.phone ? '<a href="tel:'+e.phone+'">📞 '+e.phone+'</a>' : '') +
     (e.email ? '<a href="mailto:'+e.email+'">✉ '+e.email+'</a>' : '') +
-    (e.sites ? e.sites.map(function(s){ return '<a href="'+s[1]+'" target="_blank" rel="noopener">🔗 '+s[0]+'</a>'; }).join('') : '') +
     '</div></div></div>' +
     bioHTML +
     '<div class="modal-tags">'+tagsHTML+'</div>';
@@ -285,51 +198,11 @@ function closeModal(){
 }
 function closeModalOnBg(e){ if(e.target===document.getElementById('modalOverlay')) closeModal(); }
 
-// ─── ENVOI DES DEMANDES (Instant Horizon + Devis) VERS BREVO ───
-var BREVO_DEMANDES = 'https://2b2aa488.sibforms.com/serve/MUIFALwIDAFp93krYc9zvL9dEN8l0-h4hgXVP45scAvJ0OiCM3LPXwVtGE4q-lcRrh-Rrz50k1AsFY9oMmLjC6NxJPWd-QSbSKSR01DBjEvu4O4ahBKmuvW73Oe9Huooh27tYECrplWe7YSEX_wvqj0VA6qNLbPQM1QXhvfp9YhuIC5WqdHqQPxumc1LeHIvVqRxsR6dpd9d0ABY3A==';
-
-function envoyerDemande(boxId, type, btn, status, labelBtn, onDone){
-  var box = document.getElementById(boxId);
-  var champs = box.querySelectorAll('[data-k]');
-  var consent = box.querySelector('[data-consent]');
-  var manque = false;
-  champs.forEach(function(c){ c.classList.remove('field-error'); if(c.required && !c.value.trim()){ c.classList.add('field-error'); manque = true; } });
-  var email = box.querySelector('[data-k=EMAIL]');
-  if(email && email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){ email.classList.add('field-error'); manque = true; }
-  if(manque){ status.className='form-status err'; status.textContent='Merci de renseigner votre prénom, votre nom et une adresse email valide.'; return; }
-  if(consent && !consent.checked){ status.className='form-status err'; status.textContent='Merci de cocher la case de consentement pour envoyer votre demande.'; return; }
-  var data = new URLSearchParams();
-  champs.forEach(function(c){ data.append(c.getAttribute('data-k'), c.value.trim()); });
-  if(!data.get('POSTE')) data.set('POSTE', 'Non précisé');
-  data.append('TYPE_DEMANDE', type);
-  var optin = box.querySelector('[data-optin]');
-  data.append('OPT_IN_NEWS', (optin && optin.checked) ? 'Oui' : 'Non');
-  data.append('email_address_check', '');
-  data.append('locale', 'fr');
-  data.append('html_type', 'simple');
-  btn.disabled = true; btn.textContent = 'Envoi en cours…';
-  fetch(BREVO_DEMANDES, { method:'POST', mode:'no-cors', body:data })
-    .then(function(){
-      status.className = 'form-status ok';
-      status.textContent = (type === 'Devis')
-        ? 'Merci ! Votre demande de devis est bien envoyée. Nous vous répondons sous 48 h.'
-        : 'Merci ! Votre demande d\'Instant Horizon est bien envoyée. Nous vous recontactons très vite pour fixer le rendez-vous.';
-      btn.textContent = 'Demande envoyée ✓';
-      champs.forEach(function(c){ if(c.tagName==='SELECT') c.selectedIndex = 0; else c.value=''; });
-      if(consent) consent.checked = false;
-      if(optin) optin.checked = false;
-      if(onDone) onDone();
-    })
-    .catch(function(){
-      status.className = 'form-status err';
-      status.textContent = "L'envoi n'a pas abouti. Vérifiez votre connexion et réessayez, ou écrivez-nous à noriahorizoncontacts@gmail.com.";
-      btn.disabled = false; btn.textContent = labelBtn;
-    });
-}
-
 function handleFormSubmit(e){
-  if(e && e.preventDefault) e.preventDefault();
-  envoyerDemande('ih-form', 'Instant Horizon', document.getElementById('ih-btn'), document.getElementById('ih-status'), 'Réservez gratuitement votre Instant Horizon →');
+  const btn=e.target;
+  btn.textContent='✓ Vérifiez votre mail — les vidéos arrivent';
+  btn.style.background='var(--teal)';
+  setTimeout(()=>{ btn.textContent='Recevoir les 3 vidéos →'; btn.style.background='var(--copper)'; },3500);
 }
 
 // Scroll reveal
@@ -390,11 +263,11 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 })();
 
 var svcData = {
-  coaching:  {title:"Coaching individuel",   img:"coaching-individuel.png", desc:"Un accompagnement sur-mesure, en profondeur, avec l'expert qui correspond à votre réalité. Blocages, croyances limitantes, objectifs de vie et de carrière.", details:["Séances en visio ou présentiel","Suivi personnalisé","Outils et supports fournis","Fréquence adaptée à votre rythme"], prix:"Sur devis"},
-  stages:    {title:"Stages & Ateliers",      img:"stages-ateliers.png", desc:"Des immersions intenses qui transforment. Nature, dépassement de soi, philosophie pratique — pour ancrer des changements profonds.", details:["Formats d'1 à 3 jours","Groupes de 6 à 12 personnes","Encadrement par plusieurs experts","Suivi post-stage inclus"], prix:"Sur devis"},
+  coaching:  {title:"Coaching individuel",   img:"coaching-individuel.png", desc:"Un accompagnement sur-mesure, en profondeur, avec l'expert qui correspond à votre réalité. Blocages, croyances limitantes, objectifs de vie et de carrière.", details:["Séances en visio ou présentiel","Suivi personnalisé","Outils et supports fournis","Fréquence adaptée à votre rythme"], prix:"À partir de 80€ / séance"},
+  stages:    {title:"Stages & Ateliers",      img:"stages-ateliers.png", desc:"Des immersions intenses qui transforment. Nature, dépassement de soi, philosophie pratique — pour ancrer des changements profonds.", details:["Formats d'1 à 3 jours","Groupes de 6 à 12 personnes","Encadrement par plusieurs experts","Suivi post-stage inclus"], prix:"À partir de 350€ / participant"},
   formation: {title:"Formations entreprises", img:"formations-entreprises.png", desc:"Interventions sur-mesure pour développer les talents, renforcer le leadership et améliorer la cohésion d'équipe.", details:["Audit des besoins en amont","Programme sur-mesure","Interventions ponctuelles ou récurrentes","Rapport de suivi"], prix:"Sur devis"},
-  collectif: {title:"Accompagnement collectif",img:"accompagnement-collectif.png", desc:"Groupes de pairs, cercles de progression, masterminds. L'intelligence collective au service de votre montée en compétence.", details:["Groupes de 6 à 10 personnes","Sessions bi-mensuelles","Animé par un expert","Communauté privée"], prix:"Sur devis"},
-  digital:   {title:"Parcours digitaux",      img:"parcours-digitaux.png", desc:"Séquences email, vidéos pédagogiques, questionnaires. Un tunnel pédagogique complet.", details:["Accès 24h/24","Progression à votre rythme","Vidéo + exercices","Support par email"], prix:"Sur devis"},
+  collectif: {title:"Accompagnement collectif",img:"accompagnement-collectif.png", desc:"Groupes de pairs, cercles de progression, masterminds. L'intelligence collective au service de votre montée en compétence.", details:["Groupes de 6 à 10 personnes","Sessions bi-mensuelles","Animé par un expert","Communauté privée"], prix:"À partir de 150€ / mois"},
+  digital:   {title:"Parcours digitaux",      img:"parcours-digitaux.png", desc:"Séquences email, vidéos pédagogiques, questionnaires. Un tunnel pédagogique complet.", details:["Accès 24h/24","Progression à votre rythme","Vidéo + exercices","Support par email"], prix:"À partir de 49€"},
   ressources:{title:"Ressources & Outils",     img:"ressources-outils.png", desc:"Guides pratiques, fiches méthodologiques et outils concrets pour prolonger le travail entre deux rendez-vous.", details:["Bibliothèque de ressources en ligne","Mise à jour régulière","Fiches téléchargeables","Accès inclus selon la formule"], prix:"Inclus ou en complément"}
 };
 
@@ -405,20 +278,16 @@ function openService(key){
     "<img class=\"service-modal-img\" src=\""+s.img+"\" alt=\""+s.title+"\">"+
     "<h2>"+s.title+"</h2>"+
     "<p class=\"service-modal-desc\">"+s.desc+"</p>"+
-    (s.prix==="Sur devis" ? "<button type=\"button\" class=\"service-prix service-prix-btn\" onclick=\"closeService();openDevis('"+key+"')\"><span>Tarif</span>Sur devis &rarr;</button>" : "<div class=\"service-prix\"><span>Tarif indicatif</span>"+s.prix+"</div>")+
+    "<div class=\"service-prix\"><span>Tarif indicatif</span>"+s.prix+"</div>"+
     "<ul class=\"service-details\">"+det+"</ul>"+
     "<button class=\"btn-copper-full\" onclick=\"closeService();openDevis('"+key+"')\">Demander un devis &rarr;</button>";
   document.getElementById("serviceOverlay").classList.add("open");
   document.body.style.overflow="hidden";
 }
 function closeService(){ document.getElementById("serviceOverlay").classList.remove("open"); document.body.style.overflow=""; }
-function openDevis(key){ var sel=document.getElementById("devis-service"); if(key&&svcData[key]){ var t=svcData[key].title; if(![].some.call(sel.options,function(o){return o.text===t;})){ var o=document.createElement("option"); o.text=t; sel.insertBefore(o, sel.options[1]); } sel.value=t; } document.getElementById("devisOverlay").classList.add("open"); document.body.style.overflow="hidden"; }
+function openDevis(key){ if(key&&svcData[key])document.getElementById("devis-service").value=svcData[key].title; document.getElementById("devisOverlay").classList.add("open"); document.body.style.overflow="hidden"; }
 function closeDevis(){ document.getElementById("devisOverlay").classList.remove("open"); document.body.style.overflow=""; }
-function submitDevis(){
-  envoyerDemande('devis-form', 'Devis', document.getElementById('devis-btn'), document.getElementById('devis-status'), 'Envoyer ma demande →', function(){
-    setTimeout(function(){ var b=document.getElementById('devis-btn'); b.disabled=false; b.textContent='Envoyer ma demande →'; }, 6000);
-  });
-}
+function submitDevis(){ document.getElementById("devis-confirm").style.display="block"; setTimeout(function(){ closeDevis(); document.getElementById("devis-confirm").style.display="none"; },3000); }
 
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();closeService();closeDevis();closeMap();} });
 
@@ -459,169 +328,11 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();close
       else card.classList.remove('swept');
     });
 
-    if(backBtn){
-      if(window.scrollY > 500) backBtn.classList.add('show');
-      else backBtn.classList.remove('show');
-    }
+    if(window.scrollY > 500) backBtn.classList.add('show');
+    else backBtn.classList.remove('show');
   }
 
   window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('load', onScroll);
   onScroll();
-})();
-
-// ─── BANDEAU RGPD ───
-(function(){
-  var banner = document.getElementById('cookieBanner');
-  if(!banner) return;
-  var choice = null;
-  try { choice = localStorage.getItem('noria_cookie_consent'); } catch(e){}
-  if(choice){ banner.classList.add('hidden'); }
-})();
-
-function handleCookieChoice(accepted){
-  var banner = document.getElementById('cookieBanner');
-  try { localStorage.setItem('noria_cookie_consent', accepted ? 'accepted' : 'refused'); } catch(e){}
-  if(banner) banner.classList.add('hidden');
-}
-
-// ─── MENU MOBILE ───
-function toggleNav(force){
-  var nav=document.querySelector('nav'); if(!nav) return;
-  var open = (typeof force==='boolean') ? force : !nav.classList.contains('open');
-  nav.classList.toggle('open', open);
-  var btn=document.querySelector('.nav-toggle');
-  if(btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-}
-document.querySelectorAll('.nav-links a').forEach(function(a){
-  a.addEventListener('click', function(){ toggleNav(false); });
-});
-document.addEventListener('keydown', function(e){ if(e.key==='Escape') toggleNav(false); });
-
-/* ─── HERO DYNAMIQUE « NORIA » ─── */
-(function(){
-  var hero = document.getElementById('hero');
-  if(!hero) return;
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function split(el){
-    var out = [];
-    (function walk(node){
-      Array.prototype.slice.call(node.childNodes).forEach(function(n){
-        if(n.nodeType === 3){
-          var parts = n.textContent.split(/(\s+)/);
-          var frag = document.createDocumentFragment();
-          parts.forEach(function(p){
-            if(!p) return;
-            if(/^\s+$/.test(p)){ frag.appendChild(document.createTextNode(' ')); return; }
-            var s = document.createElement('span'); s.className = 'nx-w'; s.textContent = p;
-            frag.appendChild(s); out.push(s);
-          });
-          node.replaceChild(frag, n);
-        } else if(n.nodeType === 1 && n.tagName !== 'BR'){ walk(n); }
-      });
-    })(el);
-    el.classList.add('nx-ready');
-    return out;
-  }
-  var blocks = hero.querySelectorAll('.nx-reveal');
-  var t = 350;
-  blocks.forEach(function(b, i){
-    var words = split(b);
-    var step = i === 0 ? 240 : 45;
-    words.forEach(function(w, k){
-      setTimeout(function(){ w.classList.add('on'); }, reduce ? 0 : t + k * step);
-    });
-    t += words.length * step + (i === 0 ? 700 : 500);
-    if(b.classList.contains('hero-promise')){
-      setTimeout(function(){ b.classList.add('nx-lit'); }, reduce ? 0 : t);
-    }
-  });
-  var btns = hero.querySelector('.nx-fade');
-  if(btns) setTimeout(function(){ btns.classList.add('on'); }, reduce ? 0 : t + 200);
-  hero.querySelectorAll('.hero-key').forEach(function(k, i){
-    setTimeout(function(){ k.classList.add('on'); }, reduce ? 0 : 1200 + i * 1500);
-  });
-})();
-
-
-/* ═══ STRIPE — LIENS DE PAIEMENT ═══
-   Coller ici les liens Stripe (compte de production) entre les apostrophes.
-   Tant qu'un lien est vide, le bouton renvoie vers « Contact »
-   et la mention « bientôt disponible » reste affichée. */
-var STRIPE_LIENS = {
-  'part-mensuel':     'https://buy.stripe.com/cNi5kE8yb8Va03aaj9gjC00',
-  'part-trimestriel': 'https://buy.stripe.com/9B63cwdSv0oEeY476XgjC01',
-  'part-semestriel':  'https://buy.stripe.com/7sY7sMcOrfjy5nu62TgjC02',
-  'part-annuel':      'https://buy.stripe.com/bJe14o4hVc7maHOaj9gjC03',
-  'ent5-mensuel':     'https://buy.stripe.com/9B65kE4hV3AQaHOaj9gjC04',
-  'ent5-annuel':      'https://buy.stripe.com/7sY6oIbKn1sI7vCdvlgjC05',
-  'ent10-mensuel':    'https://buy.stripe.com/28E7sMbKn9Zeg2862TgjC06',
-  'ent10-annuel':     'https://buy.stripe.com/fZueVe29N6N28zG0IzgjC07',
-  'portail':          'https://billing.stripe.com/p/login/cNi5kE8yb8Va03aaj9gjC00'   // portail client (vérifié par Florian le 04/10)
-};
-(function(){
-  function brancher(){
-    var actif = false;
-    document.querySelectorAll('[data-stripe]').forEach(function(a){
-      var url = STRIPE_LIENS[a.getAttribute('data-stripe')];
-      if(url){ a.href = url; if(a.getAttribute('data-stripe') !== 'portail') actif = true; }
-    });
-    document.querySelectorAll('[data-stripe-on]').forEach(function(e){ e.hidden = !actif; });
-    document.querySelectorAll('[data-stripe-off]').forEach(function(e){ e.hidden = actif; });
-    document.querySelectorAll('[data-portail]').forEach(function(e){ e.hidden = !STRIPE_LIENS.portail; });
-  }
-  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', brancher); else brancher();
-})();
-
-
-/* ═══ FILM « NORIA HORIZON en 50 secondes » ═══
-   Démarre sans le son quand le bloc devient visible (règle des navigateurs),
-   avec un bouton bien visible pour activer le son et revoir depuis le début.
-   Se met en pause quand on fait défiler plus loin. */
-(function(){
-  var v = document.getElementById('noriaFilm');
-  if(!v) return;
-  var btnSound = document.getElementById('filmSound');
-  var btnPlay  = document.getElementById('filmPlay');
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var withSound = false, pausedByScroll = false;
-
-  function showPlay(){ btnPlay.hidden = false; btnSound.classList.add('is-hidden'); }
-
-  function startMuted(){
-    v.muted = true;
-    var p = v.play();
-    if(p && p.catch) p.catch(function(){ showPlay(); });
-  }
-
-  function startWithSound(){
-    withSound = true;
-    v.muted = false; v.loop = false; v.controls = true;
-    v.currentTime = 0;
-    btnSound.classList.add('is-hidden'); btnPlay.hidden = true;
-    var p = v.play();
-    if(p && p.catch) p.catch(function(){ showPlay(); });
-  }
-
-  btnSound.addEventListener('click', startWithSound);
-  btnPlay.addEventListener('click', startWithSound);
-  v.addEventListener('volumechange', function(){
-    if(!v.muted && !withSound){ withSound = true; v.loop = false; btnSound.classList.add('is-hidden'); }
-  });
-
-  if(!('IntersectionObserver' in window)){ if(!reduce) startMuted(); else showPlay(); return; }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(en.isIntersecting){
-        if(reduce && !withSound){ showPlay(); return; }
-        if(v.paused && (pausedByScroll || (!withSound && v.currentTime === 0))){
-          pausedByScroll = false;
-          if(withSound){ v.play().catch(function(){}); } else { startMuted(); }
-        }
-      } else if(!v.paused){
-        v.pause(); pausedByScroll = true;
-      }
-    });
-  }, { threshold: 0.5 });
-  io.observe(v);
 })();
