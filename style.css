@@ -1955,3 +1955,36 @@ a.partner-logo:hover { opacity:1; }
 .tarif-inclus { list-style:none; padding:0; margin:14px 0 18px; text-align:left; font-size:0.85rem; line-height:1.5; opacity:0.85; }
 .tarif-inclus li { padding:4px 0 4px 16px; position:relative; }
 .tarif-inclus li::before { content:"—"; position:absolute; left:0; color:var(--copper); }
+
+
+/* ═══ OFFRES DES EXPERTS — bandeau en fondu au noir ═══ */
+.offres-section { padding:96px 5vw; text-align:center; }
+.offres-top { max-width:760px; margin:0 auto 40px; }
+.offres-stage { position:relative; max-width:920px; height:300px; margin:0 auto; background:#0b0b0b; border-radius:6px; overflow:hidden; transition:background 0.6s ease; }
+.offres-stage.is-black { background:#000; }
+.offre-banner { position:absolute; inset:0; width:100%; display:flex; align-items:center; gap:28px; padding:28px 36px; border:0; background:linear-gradient(90deg, rgba(35,75,94,0.96), rgba(35,75,94,0.7)); color:#fff; text-align:left; cursor:pointer; font:inherit; opacity:0; pointer-events:none; transition:opacity 0.7s ease; }
+.offre-banner.is-on { opacity:1; pointer-events:auto; }
+.offres-stage.is-black .offre-banner { opacity:0; }
+.offre-photo { flex:0 0 150px; height:200px; border-radius:4px; overflow:hidden; background:rgba(255,255,255,0.08); display:block; }
+.offre-photo img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+.offre-text { flex:1; display:flex; flex-direction:column; gap:6px; }
+.offre-expert { font-family:'Cormorant Garamond', serif; font-size:2rem; line-height:1.1; }
+.offre-role { font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase; opacity:0.75; }
+.offre-propose { margin-top:10px; font-size:1rem; opacity:0.9; }
+.offre-titre { font-size:1.15rem; color:var(--copper); letter-spacing:0.06em; }
+.offre-cta { font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--copper); white-space:nowrap; }
+.offres-controls { display:flex; justify-content:center; align-items:center; gap:18px; margin-top:24px; flex-wrap:wrap; }
+.offres-nav { background:none; border:1px solid var(--copper); color:var(--copper); width:40px; height:40px; border-radius:50%; font-size:1.2rem; cursor:pointer; line-height:1; }
+.offres-dots { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; max-width:520px; }
+.offres-dot { width:9px; height:9px; border-radius:50%; border:0; background:rgba(35,75,94,0.25); cursor:pointer; padding:0; }
+.offres-dot.is-on { background:var(--copper); }
+.offre-statut { display:block; color:var(--copper); letter-spacing:0.12em; text-transform:uppercase; font-size:0.78rem; margin-bottom:6px; }
+.offre-h { margin:22px 0 4px; font-family:'Cormorant Garamond', serif; font-size:1.15rem; color:var(--copper); }
+.offre-trame { opacity:0.6; font-style:italic; margin:0; }
+@media (max-width:700px){
+  .offres-stage { height:380px; }
+  .offre-banner { flex-direction:column; justify-content:center; text-align:center; gap:14px; padding:22px; }
+  .offre-photo { flex:0 0 130px; height:150px; }
+  .offre-expert { font-size:1.6rem; }
+  .offre-cta { font-size:0.7rem; }
+}
