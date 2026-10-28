@@ -1988,3 +1988,9 @@ a.partner-logo:hover { opacity:1; }
   .offre-expert { font-size:1.6rem; }
   .offre-cta { font-size:0.7rem; }
 }
+
+/* Contraste : texte clair sur la carte foncée « Pionniers » */
+.tarif-card.best .tarif-inclus { color:var(--white); opacity:0.9; }
+.tarif-card.best .tarif-inclus li::before { color:var(--copper); }
+.tarif-card.best .tarif-badge { color:var(--white); }
+.tarif-card.best .tarif-equiv { color:var(--white); opacity:0.7; }
