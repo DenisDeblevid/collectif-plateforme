@@ -1998,3 +1998,16 @@ a.partner-logo:hover { opacity:1; }
 /* Bouton « Déjà abonné » : discret mais visible */
 .deja-membre { display:inline-block; margin-top:14px; padding:11px 20px; border:1px solid var(--copper); color:var(--copper); font-size:0.74rem; letter-spacing:0.14em; text-transform:uppercase; text-decoration:none; transition:all 0.3s; }
 .deja-membre:hover { background:var(--copper); color:var(--white); }
+
+/* Carrousel des offres : plus d'air */
+.offres-stage { height:360px; }
+.offre-banner { padding:40px 52px; gap:40px; }
+.offre-photo { flex:0 0 170px; height:230px; }
+.offre-expert { font-size:2.2rem; }
+.offre-propose { margin-top:14px; }
+.offres-controls { margin-top:30px; }
+@media (max-width:700px){
+  .offres-stage { height:440px; }
+  .offre-banner { padding:28px 24px; gap:18px; }
+  .offre-photo { flex:0 0 150px; height:180px; }
+}
