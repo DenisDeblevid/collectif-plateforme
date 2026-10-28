@@ -1994,3 +1994,7 @@ a.partner-logo:hover { opacity:1; }
 .tarif-card.best .tarif-inclus li::before { color:var(--copper); }
 .tarif-card.best .tarif-badge { color:var(--white); }
 .tarif-card.best .tarif-equiv { color:var(--white); opacity:0.7; }
+
+/* Bouton « Déjà abonné » : discret mais visible */
+.deja-membre { display:inline-block; margin-top:14px; padding:11px 20px; border:1px solid var(--copper); color:var(--copper); font-size:0.74rem; letter-spacing:0.14em; text-transform:uppercase; text-decoration:none; transition:all 0.3s; }
+.deja-membre:hover { background:var(--copper); color:var(--white); }
