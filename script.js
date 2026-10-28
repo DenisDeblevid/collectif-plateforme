@@ -563,17 +563,9 @@ document.addEventListener('keydown', function(e){ if(e.key==='Escape') toggleNav
    Coller ici les liens Stripe (compte de production) entre les apostrophes.
    Tant qu'un lien est vide, le bouton renvoie vers « Contact »
    et la mention « bientôt disponible » reste affichée. */
-var STRIPE_LIENS = {
-  'part-mensuel':     'https://buy.stripe.com/cNi5kE8yb8Va03aaj9gjC00',
-  'part-trimestriel': 'https://buy.stripe.com/9B63cwdSv0oEeY476XgjC01',
-  'part-semestriel':  'https://buy.stripe.com/7sY7sMcOrfjy5nu62TgjC02',
-  'part-annuel':      'https://buy.stripe.com/bJe14o4hVc7maHOaj9gjC03',
-  'ent5-mensuel':     'https://buy.stripe.com/9B65kE4hV3AQaHOaj9gjC04',
-  'ent5-annuel':      'https://buy.stripe.com/7sY6oIbKn1sI7vCdvlgjC05',
-  'ent10-mensuel':    'https://buy.stripe.com/28E7sMbKn9Zeg2862TgjC06',
-  'ent10-annuel':     'https://buy.stripe.com/fZueVe29N6N28zG0IzgjC07',
-  'portail':          'https://billing.stripe.com/p/login/cNi5kE8yb8Va03aaj9gjC00'   // portail client (vérifié par Florian le 04/10)
-};
+// Liens de paiement Stripe : supprimés (nouvelle structure Continuum, oct. 2026).
+// À remplir une fois les produits créés sur Stripe par Florian.
+var STRIPE_LIENS = {};
 (function(){
   function brancher(){
     var actif = false;
