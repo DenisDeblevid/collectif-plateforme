@@ -632,3 +632,116 @@ var STRIPE_LIENS = {};
   }, { threshold: 0.5 });
   io.observe(v);
 })();
+
+/* ═══ OFFRES DES EXPERTS — bandeau défilant en fondu au noir ═══ */
+var OFFRES_ORDRE = ['florian','denis','emilie','melanie','laurence','gilles','caroline','josselin','floriang','remi','melaniea','geoffrey'];
+var OFFRE_DUREE = 40000;
+var offreIndex = 0, offreTimer = null, offreHover = false;
+var offreReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function offreBanner(id){
+  var e = experts[id]; if(!e) return null;
+  var b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'offre-banner';
+  b.setAttribute('aria-label', "Voir l'offre de " + e.name);
+  b.innerHTML =
+    '<span class="offre-photo">' + (e.photo ? '<img src="' + e.photo + '" alt="' + e.name + '">' : '') + '</span>' +
+    '<span class="offre-text">' +
+      '<span class="offre-expert">' + e.name + '</span>' +
+      '<span class="offre-role">' + e.role + '</span>' +
+      '<span class="offre-propose">vous propose de tester…</span>' +
+      '<span class="offre-titre">Prochainement</span>' +
+    '</span>' +
+    '<span class="offre-cta">Découvrir →</span>';
+  b.addEventListener('click', function(){ openOffre(id); });
+  return b;
+}
+
+function offreUpdateDots(){
+  document.querySelectorAll('.offres-dot').forEach(function(d, i){
+    d.classList.toggle('is-on', i === offreIndex);
+  });
+}
+
+function startOffreTimer(){
+  clearTimeout(offreTimer);
+  offreTimer = setTimeout(function(){
+    if(offreHover){ startOffreTimer(); return; }
+    goOffre(offreIndex + 1);
+  }, OFFRE_DUREE);
+}
+
+function goOffre(n){
+  var stage = document.getElementById('offresStage'); if(!stage) return;
+  var banners = stage.querySelectorAll('.offre-banner');
+  var total = banners.length; if(!total) return;
+  n = ((n % total) + total) % total;
+  if(n === offreIndex) return;
+  clearTimeout(offreTimer);
+  stage.classList.add('is-black');
+  setTimeout(function(){
+    banners[offreIndex].classList.remove('is-on');
+    banners[n].classList.add('is-on');
+    offreIndex = n;
+    offreUpdateDots();
+    stage.classList.remove('is-black');
+    if(!offreReduce) startOffreTimer();
+  }, 700);
+}
+
+function initOffres(){
+  var stage = document.getElementById('offresStage'); if(!stage) return;
+  var dots = document.getElementById('offresDots');
+  OFFRES_ORDRE.forEach(function(id, i){
+    var b = offreBanner(id); if(!b) return;
+    if(i === 0) b.classList.add('is-on');
+    stage.appendChild(b);
+    var d = document.createElement('button');
+    d.type = 'button';
+    d.className = 'offres-dot' + (i === 0 ? ' is-on' : '');
+    d.setAttribute('aria-label', 'Offre ' + (i + 1));
+    d.addEventListener('click', function(){ goOffre(i); });
+    dots.appendChild(d);
+  });
+  document.getElementById('offresPrev').addEventListener('click', function(){ goOffre(offreIndex - 1); });
+  document.getElementById('offresNext').addEventListener('click', function(){ goOffre(offreIndex + 1); });
+  stage.addEventListener('mouseenter', function(){ offreHover = true; });
+  stage.addEventListener('mouseleave', function(){ offreHover = false; });
+  if(!offreReduce) startOffreTimer();
+}
+
+function openOffre(id){
+  var e = experts[id]; if(!e) return;
+  var tags = (e.tags || []).map(function(t){ return '<span class="modal-tag">' + t + '</span>'; }).join('');
+  var trame = [
+    ['Pour qui', 'À compléter : le profil de la personne ou de l\'entreprise concernée.'],
+    ['L\'objectif', 'À compléter : ce que la personne obtient à la fin.'],
+    ['Le déroulé', 'À compléter : les étapes, dans l\'ordre.'],
+    ['Format et durée', 'À compléter : en visio ou en présentiel, nombre de séances, durée.'],
+    ['Ce que vous repartez avec', 'À compléter : supports, outils, suivi éventuel.'],
+    ['Tarif', 'À compléter.']
+  ].map(function(r){
+    return '<h4 class="offre-h">' + r[0] + '</h4><p class="modal-bio offre-trame">' + r[1] + '</p>';
+  }).join('');
+  document.getElementById('modalBody').innerHTML =
+    '<div class="modal-header">' +
+    '<div class="modal-photo" style="overflow:hidden;padding:0;">' + (e.photo ? '<img src="' + e.photo + '" alt="' + e.name + '" onerror="this.remove()" style="width:100%;height:100%;object-fit:cover;object-position:center top;">' : '') + '</div>' +
+    '<div class="modal-info">' +
+    '<span class="offre-statut">Offre à venir</span>' +
+    '<h2>' + e.name + '</h2>' +
+    '<span class="role-badge">' + e.role + '</span>' +
+    '<div class="contact-links">' +
+    (e.phone ? '<a href="tel:' + e.phone + '">📞 ' + e.phone + '</a>' : '') +
+    (e.email ? '<a href="mailto:' + e.email + '">✉ ' + e.email + '</a>' : '') +
+    '</div></div></div>' +
+    '<p class="modal-bio">Cette offre est en préparation. Elle sera détaillée ici dès que l\'expert l\'aura complétée.</p>' +
+    trame +
+    '<div style="margin:28px 0 8px;"><button type="button" class="btn-copper-full" disabled>Acheter · bientôt disponible</button></div>' +
+    '<p class="modal-bio" style="margin-top:14px;"><a href="#" onclick="openModal(\'' + id + '\');return false;">Voir la fiche de l\'expert →</a></p>' +
+    '<div class="modal-tags">' + tags + '</div>';
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+initOffres();
