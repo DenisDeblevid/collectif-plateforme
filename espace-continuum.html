@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espace Continuum — NORIA HORIZON</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#234B5E;--copper:#B86F4C;--sand:#E8DCC9;--white:#FDFAF5;--ink:#1a2e38;--stone:#8a9eaa;}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'DM Sans',system-ui,sans-serif;background:var(--white);color:var(--ink);line-height:1.6;}
+a{color:var(--deep);}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px;}
+header.top{background:var(--deep);color:var(--white);padding:18px 0;}
+header.top a{color:var(--sand);text-decoration:none;font-size:.85rem;letter-spacing:.08em;}
+header.top .brand{font-family:'Cormorant Garamond',serif;font-size:1.4rem;letter-spacing:.2em;color:var(--white);}
+h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:2.4rem;color:var(--deep);margin:40px 0 8px;}
+h1 span{color:var(--copper);}
+.lead{color:var(--stone);margin:0 0 30px;}
+h2{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--deep);margin:44px 0 6px;}
+.sub{color:var(--stone);margin:0 0 18px;font-size:.95rem;}
+.card{background:#fff;border:1px solid rgba(35,75,94,.12);border-radius:6px;padding:18px 22px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.card h3{margin:0;font-size:1.05rem;color:var(--deep);}
+.card p{margin:2px 0 0;font-size:.85rem;color:var(--stone);}
+.btn{display:inline-block;background:var(--copper);color:var(--white);border:0;padding:11px 20px;font:inherit;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;text-decoration:none;border-radius:2px;}
+.btn:hover{background:var(--deep);}
+.btn-ghost{background:transparent;color:var(--deep);border:1px solid var(--deep);}
+.btn-ghost:hover{background:var(--deep);color:var(--white);}
+details{background:#fff;border:1px solid rgba(35,75,94,.12);border-radius:6px;margin-bottom:10px;}
+details summary{cursor:pointer;padding:14px 20px;font-weight:500;color:var(--deep);list-style:none;}
+details summary::-webkit-details-marker{display:none;}
+details summary::after{content:"+";float:right;color:var(--copper);font-size:1.2rem;line-height:1;}
+details[open] summary::after{content:"−";}
+.res{padding:0 20px 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;}
+.res div{border:1px dashed rgba(35,75,94,.25);padding:12px;font-size:.85rem;color:var(--stone);}
+.res b{display:block;color:var(--deep);font-weight:500;margin-bottom:2px;}
+.gate{max-width:380px;margin:60px auto;background:#fff;border:1px solid rgba(35,75,94,.15);padding:30px;border-radius:6px;text-align:center;}
+.gate input{width:100%;padding:12px;font:inherit;font-size:1.2rem;letter-spacing:.4em;text-align:center;border:1px solid rgba(35,75,94,.3);margin:14px 0 8px;}
+.err{color:#a0403a;font-size:.85rem;min-height:1.2em;}
+#espace{display:none;}
+.overlay{position:fixed;inset:0;background:rgba(10,20,26,.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:50;}
+.overlay.open{display:flex;}
+.dialog{background:var(--white);max-width:460px;width:100%;padding:28px;border-radius:6px;position:relative;max-height:90vh;overflow:auto;}
+.dialog h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--deep);margin:0 0 4px;}
+.dialog .sub{margin-bottom:14px;}
+.dialog label{display:block;font-size:.8rem;color:var(--deep);margin:10px 0 4px;letter-spacing:.04em;}
+.dialog input,.dialog textarea{width:100%;padding:10px;font:inherit;border:1px solid rgba(35,75,94,.3);background:#fff;}
+.dialog textarea{min-height:110px;resize:vertical;}
+.dialog .consent{display:flex;gap:8px;font-size:.78rem;color:var(--stone);margin-top:12px;}
+.dialog .close{position:absolute;top:10px;right:14px;background:none;border:0;font-size:1.4rem;cursor:pointer;color:var(--stone);}
+.status{font-size:.85rem;margin-top:10px;min-height:1.2em;}
+.status.ok{color:var(--deep);} .status.err{color:#a0403a;}
+footer{color:var(--stone);font-size:.8rem;text-align:center;padding:50px 0 30px;}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+    <span class="brand">NORIA HORIZON</span>
+    <a href="index.html">← Retour au site</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- Accès (maquette) -->
+  <section id="gate" class="gate">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--deep);margin:0;">Espace <span style="color:var(--copper)">Continuum</span></p>
+    <p class="sub" style="margin-top:6px;">Saisissez votre code d'accès personnel.</p>
+    <input type="password" id="code" inputmode="numeric" autocomplete="off" aria-label="Code d'accès">
+    <button class="btn" id="codeBtn" type="button" style="width:100%;">Accéder</button>
+    <p class="err" id="codeErr"></p>
+  </section>
+
+  <!-- Contenu membres -->
+  <section id="espace">
+    <h1>Votre espace <span>Continuum</span></h1>
+    <p class="lead">Retrouvez les prochains rendez-vous, les cercles, la possibilité de poser une question et les ressources.</p>
+
+    <h2>Prochaines Sessions Horizon</h2>
+    <p class="sub">Un expert, un sujet concret, entre 75 et 90 minutes.</p>
+    <div id="sessions"></div>
+
+    <h2>Cercles NORIA</h2>
+    <p class="sub">Un temps collectif de 60 minutes, animé pour faire émerger des pistes utiles. Thèmes provisoires.</p>
+    <div class="card"><div><h3>Mieux se comprendre au travail</h3><p>Le langage du management et de la coopération · 60 min</p></div><button class="btn btn-ghost" type="button" data-open="cercle" data-title="Cercle NORIA · Mieux se comprendre au travail" data-type="Cercle NORIA – Mieux se comprendre au travail">S'inscrire</button></div>
+    <div class="card"><div><h3>Décider sous pression</h3><p>Rester lucide quand la situation s'accélère · 60 min</p></div><button class="btn btn-ghost" type="button" data-open="cercle" data-title="Cercle NORIA · Décider sous pression" data-type="Cercle NORIA – Décider sous pression">S'inscrire</button></div>
+
+    <h2>Ask NORIA</h2>
+    <p class="sub">Un premier éclairage humain et expert sur une situation professionnelle. Réponse sous 24 h ouvrées.</p>
+    <div class="card"><div><h3>Poser une question</h3><p>Une question par mois, incluse dans votre formule.</p></div><button class="btn" type="button" data-open="ask" data-title="Ask NORIA" data-type="Ask NORIA">Poser votre question</button></div>
+
+    <h2>Ressources &amp; outils</h2>
+    <p class="sub">Classées par expertise. Les contenus arrivent progressivement.</p>
+    <div id="ressources"></div>
+  </section>
+</main>
+
+<footer>NORIA HORIZON — Élever les potentiels</footer>
+
+<!-- Fenêtre d'inscription / de question -->
+<div class="overlay" id="overlay">
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlgTitle">
+    <button class="close" type="button" id="dlgClose" aria-label="Fermer">×</button>
+    <h3 id="dlgTitle"></h3>
+    <p class="sub" id="dlgSub"></p>
+    <form id="dlgForm" novalidate>
+      <label for="f_prenom">Prénom</label>
+      <input id="f_prenom" name="PRENOM" required>
+      <label for="f_nom">Nom</label>
+      <input id="f_nom" name="NOM" required>
+      <label for="f_email">E-mail</label>
+      <input id="f_email" name="EMAIL" type="email" required>
+      <label for="f_message" id="lblMessage">Message</label>
+      <textarea id="f_message" name="MESSAGE"></textarea>
+      <label class="consent"><input type="checkbox" id="f_consent"> <span>J'accepte que NORIA HORIZON utilise mes données pour répondre à ma demande.</span></label>
+      <p class="status" id="dlgStatus" role="status"></p>
+      <button class="btn" type="submit" id="dlgBtn" style="width:100%;margin-top:12px;">Envoyer</button>
+    </form>
+  </div>
+</div>
+
+<script>
+var CODE_MAQUETTE = '1234';
+var BREVO_DEMANDES = 'https://2b2aa488.sibforms.com/serve/MUIFALwIDAFp93krYc9zvL9dEN8l0-h4hgXVP45scAvJ0OiCM3LPXwVtGE4q-lcRrh-Rrz50k1AsFY9oMmLjC6NxJPWd-QSbSKSR01DBjEvu4O4ahBKmuvW73Oe9Huooh27tYECrplWe7YSEX_wvqj0VA6qNLbPQM1QXhvfp9YhuIC5WqdHqQPxumc1LeHIvVqRxsR6dpd9d0ABY3A==';
+
+var SESSIONS = ['Novembre 2026','Décembre 2026','Janvier 2027','Février 2027','Mars 2027','Avril 2027'];
+var RESSOURCES = [
+  'Management & RH','Formation & e-learning','Carrière & emploi','Finance d\'entreprise',
+  'Publicité en ligne','Décoration & impression murale','Web & IA',
+  'Compétences psychosociales & coopération','Développement de compétences',
+  'Philosophie & développement personnel','Préparation physique & survie'
+];
+
+(function(){
+  var sess = document.getElementById('sessions');
+  SESSIONS.forEach(function(m){
+    var d = document.createElement('div'); d.className='card';
+    d.innerHTML = '<div><h3>Session Horizon · '+m+'</h3><p>75 à 90 minutes · avec un expert · date précise à confirmer</p></div>' +
+      '<button class="btn btn-ghost" type="button" data-open="session" data-title="Session Horizon · '+m+'" data-type="Session Horizon – '+m+'">Demander une place</button>';
+    sess.appendChild(d);
+  });
+  var res = document.getElementById('ressources');
+  RESSOURCES.forEach(function(r){
+    var d = document.createElement('details');
+    d.innerHTML = '<summary>'+r+'</summary><div class="res">' +
+      '<div><b>Vidéos</b>À venir</div><div><b>Documents</b>À venir</div><div><b>Supports</b>À venir</div></div>';
+    res.appendChild(d);
+  });
+})();
+
+// Accès (maquette) — mémorisé pour la session du navigateur
+function showEspace(){ document.getElementById('gate').style.display='none'; document.getElementById('espace').style.display='block'; }
+(function(){
+  var ok=false; try{ ok = sessionStorage.getItem('continuum_ok')==='1'; }catch(e){}
+  if(ok) showEspace();
+})();
+document.getElementById('codeBtn').addEventListener('click', function(){
+  var v = document.getElementById('code').value.trim();
+  if(v === CODE_MAQUETTE){ try{ sessionStorage.setItem('continuum_ok','1'); }catch(e){} showEspace(); }
+  else { document.getElementById('codeErr').textContent = 'Code incorrect.'; }
+});
+document.getElementById('code').addEventListener('keydown', function(e){ if(e.key==='Enter') document.getElementById('codeBtn').click(); });
+
+// Fenêtres d'inscription / question
+var overlay = document.getElementById('overlay');
+var dlgType = '';
+document.querySelectorAll('[data-open]').forEach(function(b){
+  b.addEventListener('click', function(){
+    var kind = b.getAttribute('data-open');
+    dlgType = b.getAttribute('data-type');
+    document.getElementById('dlgTitle').textContent = b.getAttribute('data-title');
+    document.getElementById('dlgSub').textContent = kind === 'ask'
+      ? 'Décrivez votre situation en quelques lignes. Réponse sous 24 h ouvrées.'
+      : 'Laissez vos coordonnées, nous revenons vers vous pour confirmer votre place.';
+    document.getElementById('lblMessage').textContent = kind === 'ask' ? 'Votre question' : 'Message (facultatif)';
+    document.getElementById('f_message').required = (kind === 'ask');
+    document.getElementById('dlgStatus').textContent = '';
+    document.getElementById('dlgStatus').className = 'status';
+    document.getElementById('dlgBtn').disabled = false;
+    overlay.classList.add('open');
+  });
+});
+function closeDlg(){ overlay.classList.remove('open'); }
+document.getElementById('dlgClose').addEventListener('click', closeDlg);
+overlay.addEventListener('click', function(e){ if(e.target===overlay) closeDlg(); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDlg(); });
+
+document.getElementById('dlgForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var st = document.getElementById('dlgStatus'), btn = document.getElementById('dlgBtn');
+  var p = document.getElementById('f_prenom').value.trim(), n = document.getElementById('f_nom').value.trim();
+  var em = document.getElementById('f_email').value.trim(), msg = document.getElementById('f_message').value.trim();
+  var needMsg = document.getElementById('f_message').required;
+  if(!p || !n || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em) || (needMsg && !msg)){
+    st.className='status err'; st.textContent='Merci de compléter les champs demandés.'; return;
+  }
+  if(!document.getElementById('f_consent').checked){
+    st.className='status err'; st.textContent='Merci de cocher la case de consentement.'; return;
+  }
+  var data = new URLSearchParams();
+  data.append('PRENOM', p); data.append('NOM', n); data.append('EMAIL', em);
+  data.append('MESSAGE', msg); data.append('TYPE_DEMANDE', dlgType);
+  data.append('email_address_check',''); data.append('locale','fr'); data.append('html_type','simple');
+  btn.disabled = true; btn.textContent = 'Envoi en cours…';
+  fetch(BREVO_DEMANDES, {method:'POST', mode:'no-cors', body:data})
+    .then(function(){
+      st.className='status ok';
+      st.textContent = dlgType.indexOf('Ask')===0 ? 'Merci ! Votre question est bien envoyée. Réponse sous 24 h ouvrées.' : 'Merci ! Votre demande est bien envoyée. Nous revenons vers vous pour confirmer.';
+      btn.textContent = 'Envoyé ✓';
+      document.getElementById('dlgForm').reset();
+    })
+    .catch(function(){
+      st.className='status err'; st.textContent="L'envoi n'a pas abouti. Réessayez, ou écrivez-nous à noriahorizoncontacts@gmail.com.";
+      btn.disabled=false; btn.textContent='Envoyer';
+    });
+});
+</script>
+</body>
+</html>
