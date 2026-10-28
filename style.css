@@ -1950,3 +1950,8 @@ a.partner-logo:hover { opacity:1; }
 }
 @media (prefers-reduced-motion: reduce){ .film-sound { animation:none; } }
 .film-sound-text strong { white-space:nowrap; }
+
+/* ─── CONTINUUM — listes de contenu dans les formules ─── */
+.tarif-inclus { list-style:none; padding:0; margin:14px 0 18px; text-align:left; font-size:0.85rem; line-height:1.5; opacity:0.85; }
+.tarif-inclus li { padding:4px 0 4px 16px; position:relative; }
+.tarif-inclus li::before { content:"—"; position:absolute; left:0; color:var(--copper); }
