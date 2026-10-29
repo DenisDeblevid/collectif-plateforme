@@ -2127,3 +2127,4 @@ section#tarifs .tarifs-columns .section-title,
 section#tarifs .tarifs-columns .section-sub,
 section#tarifs .tarifs-columns .wave-sep { margin-left:0 !important; }
 .offres-top { max-width:1100px; margin:0 auto; }
+@media (min-width:1181px) and (max-width:1320px){ .nav-links { gap:18px; } }
