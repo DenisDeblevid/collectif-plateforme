@@ -2021,3 +2021,10 @@ a.partner-logo:hover { opacity:1; }
   .offre-cta-row { flex-direction: column; }
   .offre-cta-btn { width: 100%; }
 }
+
+/* ===== Carrousel offres : photo pleine, espacement, largeur alignée sur la grille ===== */
+.offres-stage { max-width:1100px; }
+.offre-photo { position:relative; }
+.offre-photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; }
+.offres-block { margin-bottom:110px; }
+@media (max-width:700px){ .offres-block { margin-bottom:72px; } }
