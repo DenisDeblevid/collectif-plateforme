@@ -91,7 +91,7 @@ const experts = {
     photo:'Caroline-Seure.png',
     name:'Caroline Seure',
     role:'Formatrice & ingénieure pédagogique',
-    location:'France',
+    location:'Meung-sur-Loire (Loiret)',
     phone:'+33 6 89 90 36 08',
     email:'caroline.seure@gmail.com',
     bio:[
@@ -118,7 +118,7 @@ const experts = {
     photo:'Geoffrey-Batut.png',
     name:'Geoffrey Batut',
     role:'Consultant en développement de compétences · Formateur',
-    location:'À préciser',
+    location:'Dax',
     phone:'+33 6 59 57 00 90',
     email:'',
     bio:[
@@ -185,7 +185,7 @@ var expertsGeo = {
   laurence: { lat: 43.6047, lon: 1.4442,  zoom: 9,  ville: "Toulouse" },
   melanie:  { lat: 46.8494, lon: -1.8794, zoom: 9,  ville: "Challans (85)" },
   gilles:   { lat: 47.9111, lon: 1.8650,  zoom: 10, ville: "Saint-Jean-de-la-Ruelle" },
-  caroline: { lat: 46.6034, lon: 1.8883,  zoom: 6,  ville: "France" },
+  caroline: { lat: 47.8000, lon: 1.6833,  zoom: 9,  ville: "Meung-sur-Loire (Loiret)" },
   josselin: { lat: 49.1193, lon: 6.1757,  zoom: 9,  ville: "Metz" },
   floriang: { lat: 42.6887, lon: 2.8948,  zoom: 9,  ville: "Perpignan" },
   remi:     { lat: 43.2965, lon: 5.3898,  zoom: 9,  ville: "Marseille (Empreinte Verticale)" },
