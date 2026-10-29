@@ -2167,3 +2167,8 @@ section#tarifs .tarifs-columns .wave-sep { margin-left:0 !important; }
 /* Bouton « Voir tous nos experts sur la carte » : espace avant les cartes */
 .map-all-btn { margin-bottom:56px; display:inline-block; }
 @media (max-width:900px){ .map-all-btn { margin-bottom:40px; } }
+
+/* Carrousel offres : même espace au-dessus et en dessous des flèches */
+.offres-block { margin:0 auto 110px !important; }
+.offres-controls { margin-top:40px !important; }
+@media (max-width:700px){ .offres-block { margin:0 auto 72px !important; } .offres-controls { margin-top:28px !important; } }
