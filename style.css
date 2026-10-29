@@ -2047,3 +2047,22 @@ section:not(#hero) div[style*="text-align:center"] > .section-sub {
 .team-info { flex:1; display:flex; flex-direction:column; }
 .team-role { line-height:1.6; min-height:3.2em; }
 .team-contacts { margin-top:auto; }
+
+/* ===== Titres : bord gauche unique = bord de la grille 1100 px (hors hero) ===== */
+section:not(#hero) .section-label,
+section:not(#hero) .section-title,
+section:not(#hero) .section-sub,
+section:not(#hero) .wave-sep,
+section:not(#hero) div[style*="text-align:center"] > .section-label,
+section:not(#hero) div[style*="text-align:center"] > .section-title,
+section:not(#hero) div[style*="text-align:center"] > .section-sub {
+  margin-left: max(0px, calc(50% - 550px)) !important;
+  margin-right: auto !important;
+}
+/* Boîte « Rejoindre » (760 px) : on ramène ses titres sur le bord de la grille 1100 px */
+@media (min-width:1220px){
+  #rejoindre .rejoindre-box > .section-label,
+  #rejoindre .rejoindre-box > .section-title,
+  #rejoindre .rejoindre-box > .section-sub,
+  #rejoindre .rejoindre-box > .wave-sep { margin-left:-170px !important; }
+}
