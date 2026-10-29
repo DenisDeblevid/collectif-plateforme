@@ -2028,3 +2028,22 @@ a.partner-logo:hover { opacity:1; }
 .offre-photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; }
 .offres-block { margin-bottom:110px; }
 @media (max-width:700px){ .offres-block { margin-bottom:72px; } }
+
+/* ===== Titres : tout aligné à gauche (hors hero) ===== */
+section:not(#hero) .section-label,
+section:not(#hero) .section-title,
+section:not(#hero) .section-sub,
+section:not(#hero) .wave-sep,
+section:not(#hero) div[style*="text-align:center"] > .section-label,
+section:not(#hero) div[style*="text-align:center"] > .section-title,
+section:not(#hero) div[style*="text-align:center"] > .section-sub {
+  text-align:left !important; justify-content:flex-start !important;
+  margin-left:0 !important; margin-right:auto !important;
+}
+.services-header, .offres-top, .equipe-header, .tarifs-top, .tunnel-top { text-align:left !important; }
+
+/* ===== Cartes experts : coordonnées alignées en bas, quelle que soit la longueur du texte ===== */
+.team-card { display:flex !important; flex-direction:column; }
+.team-info { flex:1; display:flex; flex-direction:column; }
+.team-role { line-height:1.6; min-height:3.2em; }
+.team-contacts { margin-top:auto; }
