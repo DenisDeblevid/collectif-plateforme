@@ -537,17 +537,17 @@
       <h3 class="prisme-h">Le diagnostic doit ouvrir une décision, pas ajouter un document.</h3>
       <p class="prisme-intro">À l'issue de Prisme, trois suites sont possibles : vous agissez seul, NORIA construit un accompagnement adapté, ou Continuum vous aide à garder un accès régulier aux bons regards dans la durée.</p>
       <div class="prisme-cards">
-        <a href="#prisme" class="prisme-card"><strong>Vous agissez seul</strong><p>La lecture est suffisamment claire. Prisme a rempli sa mission.</p></a>
-        <a href="#services" class="prisme-card prisme-card-dark"><strong>Accompagnement NORIA</strong><p>Formation, coaching, conseil, recrutement, ateliers ou dispositif sur mesure.</p></a>
-        <a href="#tarifs" class="prisme-card"><strong>Continuum</strong><p>Un accès régulier aux Sessions Horizon, Cercles, Ask NORIA et ressources.</p></a>
+        <a href="#prisme" class="prisme-card seq-item" style="--i:0"><strong>Vous agissez seul</strong><p>La lecture est suffisamment claire. Prisme a rempli sa mission.</p></a>
+        <a href="#services" class="prisme-card prisme-card-dark seq-item seq-final" style="--i:2"><strong>Accompagnement NORIA</strong><p>Formation, coaching, conseil, recrutement, ateliers ou dispositif sur mesure.</p></a>
+        <a href="#tarifs" class="prisme-card seq-item" style="--i:1"><strong>Continuum</strong><p>Un accès régulier aux Sessions Horizon, Cercles, Ask NORIA et ressources.</p></a>
       </div>
     </div>
 
     <div class="prisme-end prisme-reveal">
       <span class="section-label" style="color:var(--copper);">Premier échange</span>
-      <h3 class="prisme-h">Vous avez une situation complexe ?<br>Commençons par la regarder autrement.</h3>
+      <h3 class="prisme-h letters-sweep">Vous avez une situation complexe ?<br>Commençons par la regarder autrement.</h3>
       <p class="prisme-intro">Un premier échange permet de vérifier si Prisme est réellement le bon niveau de réponse.</p>
-      <a href="#contact" class="tarif-btn">Parler de ma situation</a>
+      <a href="#contact" class="tarif-btn"><span class="letters-sweep">Parler de ma situation</span></a>
     </div>
   </div>
 </section>
@@ -1161,11 +1161,18 @@
     entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('visible'); io.unobserve(en.target); } });
   }, { threshold: 0.15 });
   els.forEach(function(el){ io.observe(el); });
-  document.querySelectorAll('#prisme .letters').forEach(function(el){
-    var t = el.textContent; el.textContent = ''; el.setAttribute('aria-label', t);
-    Array.prototype.forEach.call(t, function(ch, i){
-      var sp = document.createElement('span'); sp.className = 'ltr'; sp.setAttribute('aria-hidden','true');
-      sp.style.setProperty('--i', i); sp.textContent = (ch === ' ') ? '\u00a0' : ch; el.appendChild(sp);
+  document.querySelectorAll('#prisme .letters, #prisme .letters-sweep').forEach(function(el){
+    var label = el.textContent.replace(/\s+/g, ' ').trim();
+    var parts = el.innerHTML.split(/<br\s*\/?>/i);
+    el.textContent = ''; el.setAttribute('aria-label', label);
+    var idx = 0;
+    parts.forEach(function(part, p){
+      if(p > 0) el.appendChild(document.createElement('br'));
+      var txt = part.replace(/<[^>]+>/g, '');
+      Array.prototype.forEach.call(txt, function(ch){
+        var sp = document.createElement('span'); sp.className = 'ltr'; sp.setAttribute('aria-hidden','true');
+        sp.style.setProperty('--i', idx++); sp.textContent = (ch === ' ') ? '\u00a0' : ch; el.appendChild(sp);
+      });
     });
   });
   var rowIo = new IntersectionObserver(function(entries){ entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('visible'); rowIo.unobserve(en.target); } }); }, { threshold: 0.4 });
