@@ -2172,3 +2172,35 @@ section#tarifs .tarifs-columns .wave-sep { margin-left:0 !important; }
 .offres-block { margin:0 auto 110px !important; }
 .offres-controls { margin-top:40px !important; }
 @media (max-width:700px){ .offres-block { margin:0 auto 72px !important; } .offres-controls { margin-top:28px !important; } }
+
+/* ===== Prisme : mise en page de la maquette (fond sombre du site conservé) ===== */
+#prisme .prisme-block { text-align:left; margin-top:96px; }
+#prisme .prisme-block .prisme-intro, #prisme .prisme-block .prisme-h { text-align:left; }
+.prisme-h { font-family:'Cormorant Garamond', serif; font-size:2rem; font-weight:500; line-height:1.2; margin:14px 0 14px; color:var(--white); }
+.prisme-cta-row { display:flex; flex-wrap:wrap; gap:14px; margin:28px 0 0; }
+.prisme-when { list-style:none; padding:0; margin:18px 0 28px; }
+.prisme-when li { font-size:0.92rem; line-height:1.6; margin-bottom:12px; padding-left:16px; position:relative; color:var(--white); opacity:0.9; }
+.prisme-when li::before { content:''; position:absolute; left:0; top:9px; width:6px; height:6px; border-radius:50%; background:var(--copper); }
+.prisme-result { color:var(--copper); font-size:0.95rem; margin-top:20px; }
+.prisme-band { margin-top:24px; padding:22px 28px; background:var(--deep); color:var(--white); border-radius:4px; font-family:'Cormorant Garamond', serif; font-size:1.3rem; }
+.prisme-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:24px; }
+.prisme-card { display:block; background:rgba(255,255,255,0.05); padding:22px 20px; border-radius:4px; color:var(--white); text-decoration:none; }
+.prisme-card strong { display:block; font-size:0.95rem; margin-bottom:8px; font-weight:600; }
+.prisme-card p { font-size:0.84rem; line-height:1.6; opacity:0.8; margin:0; }
+.prisme-card-dark { background:var(--copper); }
+.prisme-pricing { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin-top:28px; }
+.prisme-price-card { background:rgba(255,255,255,0.05); padding:28px; border-radius:4px; color:var(--white); }
+.prisme-price-card.best { background:var(--deep); border:1px solid var(--copper); }
+.prisme-price-label { display:block; font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--copper); margin-bottom:10px; }
+.prisme-price { font-family:'Cormorant Garamond', serif; font-size:2.2rem; margin-bottom:16px; }
+.prisme-list { list-style:none; padding:0; margin:0 0 22px; }
+.prisme-list li { font-size:0.88rem; line-height:1.6; margin-bottom:6px; opacity:0.9; }
+.prisme-list li::before { content:'– '; color:var(--copper); }
+.prisme-end { margin-top:96px; padding:48px 40px; background:var(--deep); border-radius:4px; text-align:left; }
+.prisme-end .prisme-h, .prisme-end .prisme-intro { text-align:left; }
+#prisme .prisme-points { margin-top:8px; }
+@media (max-width:900px){
+  .prisme-h { font-size:1.6rem; }
+  .prisme-end { padding:32px 22px; }
+  .prisme-cta-row .tarif-btn { width:100%; text-align:center; }
+}
