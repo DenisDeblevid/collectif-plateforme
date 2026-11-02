@@ -2204,3 +2204,40 @@ section#tarifs .tarifs-columns .wave-sep { margin-left:0 !important; }
   .prisme-end { padding:32px 22px; }
   .prisme-cta-row .tarif-btn { width:100%; text-align:center; }
 }
+
+/* ===== Prisme : animation au défilement (tons bronze, même logique que le reste du site) ===== */
+.js-reveal #prisme .prisme-reveal:not(.visible) { opacity:0; transform:translateY(34px); }
+#prisme .prisme-reveal { transition:opacity 0.9s ease, transform 0.9s cubic-bezier(.2,.7,.2,1); }
+#prisme .prisme-reveal.visible { opacity:1; transform:none; }
+#prisme .prisme-cards .prisme-card { transition:transform .35s ease, box-shadow .35s ease, background .35s ease; }
+#prisme .prisme-cards .prisme-card:hover { transform:translateY(-4px); background:rgba(184,111,76,0.12); box-shadow:0 14px 34px rgba(184,111,76,0.22); }
+.js-reveal #prisme .prisme-cards.prisme-reveal.visible .prisme-card { animation:prismeBronze .9s ease both; }
+.js-reveal #prisme .prisme-cards.prisme-reveal.visible .prisme-card:nth-child(2) { animation-delay:.12s; }
+.js-reveal #prisme .prisme-cards.prisme-reveal.visible .prisme-card:nth-child(3) { animation-delay:.24s; }
+.js-reveal #prisme .prisme-cards.prisme-reveal.visible .prisme-card:nth-child(4) { animation-delay:.36s; }
+@keyframes prismeBronze { from { opacity:0; transform:translateY(18px); box-shadow:0 0 0 rgba(184,111,76,0); } 60% { box-shadow:0 0 26px rgba(184,111,76,.35); } to { opacity:1; transform:none; } }
+
+/* Bande finale : bronze, très visible */
+#prisme .prisme-end {
+  background:linear-gradient(120deg,#c27a54 0%,#8e5536 100%);
+  color:#fff; padding:64px 48px; margin-top:110px; border-radius:6px;
+  box-shadow:0 22px 60px rgba(184,111,76,0.35);
+  position:relative; overflow:hidden;
+}
+#prisme .prisme-end::after {
+  content:''; position:absolute; inset:-40% -20%; background:radial-gradient(circle at 80% 20%, rgba(255,255,255,0.22), transparent 55%);
+  animation:prismeSheen 6s ease-in-out infinite; pointer-events:none;
+}
+@keyframes prismeSheen { 0%,100% { transform:translateX(-8%); opacity:.55; } 50% { transform:translateX(8%); opacity:1; } }
+#prisme .prisme-end .section-label { color:#fff; }
+#prisme .prisme-end .section-label::before { background:#fff; }
+#prisme .prisme-end .prisme-h { color:#fff; font-size:2.6rem; }
+#prisme .prisme-end .prisme-intro { color:#fff; opacity:.92; }
+#prisme .prisme-end .tarif-btn {
+  background:#fff; color:#8e5536; border:1px solid #fff; padding:16px 34px; font-weight:600;
+  box-shadow:0 10px 24px rgba(0,0,0,0.18); transition:transform .25s ease, box-shadow .25s ease;
+  position:relative; z-index:1;
+}
+#prisme .prisme-end .tarif-btn:hover { transform:translateY(-2px); box-shadow:0 14px 30px rgba(0,0,0,0.25); }
+@media (max-width:900px){ #prisme .prisme-end { padding:40px 22px; } #prisme .prisme-end .prisme-h { font-size:1.9rem; } }
+@media (prefers-reduced-motion: reduce){ #prisme .prisme-end::after, .js-reveal #prisme .prisme-cards.prisme-reveal.visible .prisme-card { animation:none !important; } #prisme .prisme-reveal { transition:none; } }
