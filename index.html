@@ -397,7 +397,7 @@
       <a href="#prisme" class="tarif-btn">Comprendre Prisme</a>
     </div>
 
-    <div class="prisme-grid">
+    <div class="prisme-grid prisme-reveal">
       <div class="prisme-visual" id="prismeVisual">
         <img src="Noria-Prisme.webp" alt="NORIA Prisme — Diagnostic premium" class="prisme-image">
       </div>
@@ -446,14 +446,14 @@
       </div>
     </div>
 
-    <div class="prisme-block">
+    <div class="prisme-block prisme-reveal">
       <span class="section-label" style="color:var(--copper);">Pourquoi Prisme ?</span>
       <h3 class="prisme-h">Comprendre avant de décider.</h3>
       <p class="prisme-intro">Parce qu'il coûte souvent moins cher de prendre le temps de comprendre que de lancer trop vite la mauvaise solution.</p>
       <p class="prisme-band">Éviter de traiter parfaitement le mauvais problème.</p>
     </div>
 
-    <div class="prisme-block">
+    <div class="prisme-block prisme-reveal">
       <span class="section-label" style="color:var(--copper);">Ce que vous recevez</span>
       <h3 class="prisme-h">Un diagnostic utile. Pas un rapport de plus.</h3>
       <div class="prisme-cards">
@@ -465,7 +465,7 @@
       </div>
     </div>
 
-    <div class="prisme-block">
+    <div class="prisme-block prisme-reveal">
       <span class="section-label" style="color:var(--copper);">Choisir le bon niveau</span>
       <h3 class="prisme-h">Un Prisme dimensionné à la complexité réelle.</h3>
       <p class="prisme-intro">Le prix dépend du nombre de regards nécessaires, de la profondeur de l'analyse et du niveau de restitution.</p>
@@ -498,7 +498,7 @@
       <p class="tarifs-note" style="text-align:left;margin-top:14px;">Prix en euros. TVA non applicable, art. 293 B du CGI.</p>
     </div>
 
-    <div class="prisme-block">
+    <div class="prisme-block prisme-reveal">
       <span class="section-label" style="color:var(--copper);">Exemple concret</span>
       <h3 class="prisme-h">« Nous avons un problème de recrutement. »</h3>
       <p class="prisme-intro"><em>Et si le recrutement n'était que le symptôme le plus visible ?</em></p>
@@ -511,7 +511,7 @@
       <p class="prisme-intro">Prisme ne cherche pas à décider à votre place. Il vous aide à décider avec une lecture plus juste.</p>
     </div>
 
-    <div class="prisme-block">
+    <div class="prisme-block prisme-reveal">
       <span class="section-label" style="color:var(--copper);">Et après ?</span>
       <h3 class="prisme-h">Le diagnostic doit ouvrir une décision, pas ajouter un document.</h3>
       <p class="prisme-intro">À l'issue de Prisme, trois suites sont possibles : vous agissez seul, NORIA construit un accompagnement adapté, ou Continuum vous aide à garder un accès régulier aux bons regards dans la durée.</p>
@@ -522,7 +522,7 @@
       </div>
     </div>
 
-    <div class="prisme-end">
+    <div class="prisme-end prisme-reveal">
       <span class="section-label" style="color:var(--copper);">Premier échange</span>
       <h3 class="prisme-h">Vous avez une situation complexe ?<br>Commençons par la regarder autrement.</h3>
       <p class="prisme-intro">Un premier échange permet de vérifier si Prisme est réellement le bon niveau de réponse.</p>
@@ -1131,5 +1131,16 @@
   </svg>
 </button>
 
+<script>
+(function(){
+  document.documentElement.classList.add('js-reveal');
+  var els = document.querySelectorAll('#prisme .prisme-reveal');
+  if(!('IntersectionObserver' in window)){ els.forEach(function(el){ el.classList.add('visible'); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('visible'); io.unobserve(en.target); } });
+  }, { threshold: 0.15 });
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
 </body>
 </html>
