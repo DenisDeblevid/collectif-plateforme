@@ -2266,3 +2266,10 @@ section#tarifs .tarifs-columns .wave-sep { margin-left:0 !important; }
 #prisme .prisme-btn-main:hover { background:rgba(184,111,76,.12); box-shadow:0 0 26px rgba(184,111,76,.35); }
 #prisme .prisme-btn-sec { background:#fff; border:2px solid #fff; color:var(--deep); }
 #prisme .prisme-btn-sec:hover { background:#f4efe6; }
+
+/* Bandeau « Éviter de traiter parfaitement le mauvais problème. » : s'illumine en bronze et reste lumineux */
+.js-reveal #prisme .prisme-block.visible .prisme-band { animation:seqFinal 1s ease forwards; animation-delay:.2s; }
+#prisme .prisme-band { position:relative; overflow:hidden; box-shadow:0 0 0 rgba(184,111,76,0); }
+#prisme .prisme-band::after { content:''; position:absolute; inset:0; background:linear-gradient(100deg, transparent 30%, rgba(255,255,255,.25) 50%, transparent 70%); transform:translateX(-100%); animation:bandSheen 2.8s ease-in-out 1.2s infinite; pointer-events:none; }
+@keyframes bandSheen { 0% { transform:translateX(-100%); } 60%,100% { transform:translateX(100%); } }
+@media (prefers-reduced-motion: reduce){ #prisme .prisme-band::after { animation:none; } }
