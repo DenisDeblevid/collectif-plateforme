@@ -50,7 +50,21 @@ p{margin:0;}
 .notif-item small{color:var(--stone);}
 .notif-item a{color:var(--copper);}
 .notif-empty{padding:16px;color:var(--stone);font-size:.88rem;}
-.avatar{width:36px;height:36px;border-radius:50%;background:var(--copper);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:600;}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--copper);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:600;border:0;padding:0;cursor:pointer;font-family:inherit;overflow:hidden;}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+.notif-form{padding:14px 16px;border-bottom:1px solid var(--line);background:#fbf8f3;font-size:.86rem;color:var(--deep);}
+.notif-form p{margin-bottom:10px;color:var(--stone);}
+.notif-form input[type=email]{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:4px;font:inherit;margin-bottom:8px;}
+.notif-form label{display:flex;gap:8px;align-items:flex-start;font-size:.8rem;color:var(--stone);margin-bottom:10px;}
+.notif-form .btn{height:40px;padding:8px 14px;}
+.notif-form .status{font-size:.82rem;margin-top:8px;}
+.notif-form .status.err{color:#9b3d2a;}
+.notif-form[hidden]{display:none;}
+.bell.glow{color:var(--copper);animation:bellGlow 6s ease-in-out infinite;border-radius:50%;}
+@keyframes bellGlow{
+  0%,100%{filter:drop-shadow(0 0 0 rgba(184,111,76,0));}
+  50%{filter:drop-shadow(0 0 7px rgba(184,111,76,.55));}
+}
 
 .content{padding:28px 32px 40px;flex:1;}
 
@@ -79,20 +93,20 @@ p{margin:0;}
 
 /* ---------- Quatre raccourcis : lumière bronze en boucle, une carte après l'autre ---------- */
 .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0 30px;}
-.tile{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:20px;display:flex;flex-direction:column;gap:10px;animation:tileLuz 8s ease-in-out infinite;animation-delay:calc(var(--i) * 1.6s);}
+.tile{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:20px;display:flex;flex-direction:column;gap:10px;animation:tileLuz 10s cubic-bezier(.45,0,.55,1) infinite;animation-delay:calc(var(--i) * 1.6s);}
 .tile .t-ico{font-size:1.5rem;color:var(--copper);}
 .tile h3{font-size:1.25rem;}
 .tile p{font-size:.88rem;color:var(--stone);flex:1;}
-.tile .btn{margin-top:6px;height:46px;white-space:nowrap;animation:tileBtn 8s ease-in-out infinite;animation-delay:calc(var(--i) * 1.6s);}
+.tile .btn{margin-top:6px;height:46px;white-space:nowrap;animation:tileBtn 10s cubic-bezier(.45,0,.55,1) infinite;animation-delay:calc(var(--i) * 1.6s);}
 @keyframes tileLuz{
-  0%{box-shadow:0 0 0 rgba(184,111,76,0);border-color:var(--line);}
-  4%{box-shadow:0 0 28px rgba(184,111,76,.4);border-color:rgba(184,111,76,.55);}
-  10%,100%{box-shadow:0 0 0 rgba(184,111,76,0);border-color:var(--line);}
+  0%,8%{box-shadow:0 0 0 rgba(184,111,76,0);border-color:var(--line);}
+  20%{box-shadow:0 0 22px rgba(184,111,76,.26);border-color:rgba(184,111,76,.42);}
+  34%,100%{box-shadow:0 0 0 rgba(184,111,76,0);border-color:var(--line);}
 }
 @keyframes tileBtn{
-  0%{background:var(--deep);box-shadow:0 0 0 rgba(184,111,76,0);}
-  4%{background:var(--copper);box-shadow:0 0 22px rgba(184,111,76,.7);}
-  10%,100%{background:var(--deep);box-shadow:0 0 0 rgba(184,111,76,0);}
+  0%,8%{background:var(--deep);box-shadow:0 0 0 rgba(184,111,76,0);}
+  20%{background:var(--copper);box-shadow:0 0 16px rgba(184,111,76,.45);}
+  34%,100%{background:var(--deep);box-shadow:0 0 0 rgba(184,111,76,0);}
 }
 
 /* ---------- Deux colonnes ---------- */
@@ -221,9 +235,11 @@ footer.foot .soc a{color:var(--sand);text-decoration:none;margin-left:14px;font-
 @media (max-width:560px){
   .tiles{grid-template-columns:1fr;}
 }
+@keyframes cwSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 @media (prefers-reduced-motion: reduce){
   .tile,.tile .btn,.gem,.gem::after,.carou .slide.on{animation:none !important;}
   .side .brand svg g{animation:none !important;}
+  .bell.glow{animation:none !important;}
 }
 </style>
 </head>
@@ -277,10 +293,18 @@ footer.foot .soc a{color:var(--sand);text-decoration:none;margin-left:14px;font-
           <button class="bell" type="button" id="bell" aria-label="Notifications" aria-expanded="false" aria-controls="notifPanel">🔔<span class="dot" id="bellDot" hidden></span></button>
           <div class="notif-panel" id="notifPanel" role="dialog" aria-label="Notifications" hidden>
             <div class="notif-head"><strong>Notifications</strong><button type="button" class="notif-close" id="notifClose" aria-label="Fermer">×</button></div>
+            <form class="notif-form" id="notifForm" novalidate>
+              <p>Recevez un message quand il y a du nouveau dans l'espace Continuum.</p>
+              <input type="email" id="notifEmail" placeholder="Votre adresse e-mail" autocomplete="email" required>
+              <label><input type="checkbox" id="notifConsent" required> <span>J'accepte de recevoir ces messages. Désinscription possible à tout moment.</span></label>
+              <button class="btn copper block" type="submit" id="notifBtn">Activer les notifications</button>
+              <div class="status" id="notifStatus" role="status"></div>
+            </form>
             <div id="notifList"></div>
           </div>
         </div>
-        <span class="avatar" aria-hidden="true">NH</span>
+        <button class="avatar" type="button" id="avatar" title="Changer ma photo" aria-label="Changer ma photo">NH</button>
+        <input type="file" id="avatarFile" accept="image/*" hidden>
       </div>
     </header>
 
@@ -461,13 +485,20 @@ document.addEventListener('click', function(e){
   if(el){ e.preventDefault(); toast(el.getAttribute('data-soon')); }
 });
 
-/* Notifications */
+/* Notifications : inscription Brevo, cloche qui brille tant que la personne n'est pas inscrite */
 (function(){
+  var KEY = 'continuum_notif_ok';
   var bell = document.getElementById('bell'), panel = document.getElementById('notifPanel'), list = document.getElementById('notifList'), dot = document.getElementById('bellDot');
+  var form = document.getElementById('notifForm'), st = document.getElementById('notifStatus'), btn = document.getElementById('notifBtn');
   var items = ((window.ESPACE_CONTENU && window.ESPACE_CONTENU.notifications) || []).slice();
+  function inscrit(){ try{ return localStorage.getItem(KEY) === '1'; }catch(e){ return false; } }
   function vues(){ try{ return parseInt(sessionStorage.getItem('continuum_notif_vues') || '0', 10) || 0; }catch(e){ return 0; } }
   function marquerVues(){ try{ sessionStorage.setItem('continuum_notif_vues', String(items.length)); }catch(e){} }
   function fermer(){ panel.hidden = true; bell.setAttribute('aria-expanded', 'false'); }
+  function majInscription(){
+    if(inscrit()){ form.hidden = true; bell.classList.remove('glow'); }
+    else { form.hidden = false; bell.classList.add('glow'); }
+  }
   if(!items.length){ list.innerHTML = '<p class="notif-empty">Aucune notification pour le moment.</p>'; }
   items.forEach(function(n){
     var d = document.createElement('div'); d.className = 'notif-item';
@@ -477,6 +508,7 @@ document.addEventListener('click', function(e){
     list.appendChild(d);
   });
   if(items.length > vues()) dot.hidden = false;
+  majInscription();
   bell.addEventListener('click', function(e){
     e.stopPropagation();
     var ouvrir = panel.hidden;
@@ -486,6 +518,63 @@ document.addEventListener('click', function(e){
   document.getElementById('notifClose').addEventListener('click', fermer);
   document.addEventListener('click', function(e){ if(!panel.hidden && !e.target.closest('.bell-wrap')) fermer(); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') fermer(); });
+  panel.addEventListener('click', function(e){ e.stopPropagation(); });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var em = document.getElementById('notifEmail').value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ st.className = 'status err'; st.textContent = 'Merci de saisir une adresse e-mail valide.'; return; }
+    if(!document.getElementById('notifConsent').checked){ st.className = 'status err'; st.textContent = 'Merci de cocher la case de consentement.'; return; }
+    var data = new URLSearchParams();
+    data.append('EMAIL', em); data.append('TYPE_DEMANDE', 'Notifications nouveautés');
+    data.append('email_address_check', ''); data.append('locale', 'fr'); data.append('html_type', 'simple');
+    btn.disabled = true; btn.textContent = 'Envoi en cours…';
+    fetch(BREVO_DEMANDES, {method:'POST', mode:'no-cors', body:data})
+      .then(function(){
+        try{ localStorage.setItem(KEY, '1'); }catch(err){}
+        st.className = 'status'; st.textContent = 'Merci ! Vous serez prévenu(e) des nouveautés.';
+        btn.textContent = 'Activé ✓';
+        majInscription();
+      })
+      .catch(function(){
+        st.className = 'status err'; st.textContent = "L'activation n'a pas abouti. Réessayez plus tard.";
+        btn.disabled = false; btn.textContent = 'Activer les notifications';
+      });
+  });
+})();
+
+/* Photo de profil : enregistrée sur cet appareil uniquement (redimensionnée) */
+(function(){
+  var KEY = 'continuum_avatar';
+  var av = document.getElementById('avatar'), input = document.getElementById('avatarFile');
+  function afficher(url){
+    av.innerHTML = '';
+    if(url){ var img = new Image(); img.alt = 'Ma photo'; img.src = url; av.appendChild(img); }
+    else { av.textContent = 'NH'; }
+  }
+  try{ afficher(localStorage.getItem(KEY)); }catch(e){ afficher(null); }
+  av.addEventListener('click', function(){ input.click(); });
+  input.addEventListener('change', function(){
+    var f = input.files && input.files[0];
+    if(!f) return;
+    if(!/^image\//.test(f.type)){ toast('Merci de choisir une image.'); return; }
+    var r = new FileReader();
+    r.onload = function(){
+      var im = new Image();
+      im.onload = function(){
+        var max = 160, k = Math.min(1, max / Math.max(im.width, im.height));
+        var c = document.createElement('canvas');
+        c.width = Math.round(im.width * k); c.height = Math.round(im.height * k);
+        c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
+        var url = c.toDataURL('image/jpeg', 0.85);
+        try{ localStorage.setItem(KEY, url); afficher(url); toast('Photo mise à jour sur cet appareil.'); }
+        catch(e){ toast("Impossible d'enregistrer la photo sur cet appareil."); }
+      };
+      im.src = r.result;
+    };
+    r.readAsDataURL(f);
+    input.value = '';
+  });
 })();
 
 /* Portail d'abonnement */
