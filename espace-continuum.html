@@ -142,10 +142,10 @@ p{margin:0;}
 .badge{display:inline-block;background:rgba(59,122,120,.12);color:var(--teal);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:3px;}
 
 /* ---------- Défilements (sessions, cercles) ---------- */
-.carou-pistes{display:flex;flex-direction:column;gap:14px;min-width:0;}
+.carou-vue{overflow:hidden;min-width:0;}
+.carou-track{display:flex;flex-direction:column;gap:14px;will-change:transform;}
 .cols > div{min-width:0;}
-.carou .slide{display:none;}
-.carou .slide.vis{display:block;min-width:0;animation:slideIn .7s ease both;}
+.carou .slide{display:block;flex:none;min-width:0;}
 @keyframes slideIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
 .carou .dots{text-align:center;margin-top:12px;}
 .carou .dots span{display:none;width:7px;height:7px;border-radius:50%;background:rgba(35,75,94,.25);margin:0 4px;transition:background .3s;}
@@ -653,69 +653,96 @@ function carrousel(el, items, rendre, duree){
   var cible = 0, cle = moisSuivant().toLowerCase();
   for(var k = 0; k < items.length; k++){ if(moisDe(items[k]) === cle){ cible = k; break; } }
   var ordre = items.slice(cible).concat(items.slice(0, cible));
-  var N = ordre.length;
-  var pistes = document.createElement('div'); pistes.className = 'carou-pistes';
-  var slides = ordre.map(function(it, k){
-    var s = document.createElement('div'); s.className = 'slide'; s.innerHTML = rendre(it, k); pistes.appendChild(s); return s;
+  var N = ordre.length, K = Math.min(3, N), GAP = 14;
+  var vue = document.createElement('div'); vue.className = 'carou-vue';
+  var piste = document.createElement('div'); piste.className = 'carou-track';
+  var cartes = ordre.map(function(it, k){
+    var s = document.createElement('div'); s.className = 'slide'; s.innerHTML = rendre(it, k); piste.appendChild(s); return s;
   });
-  el.appendChild(pistes);
+  // Copies du début à la fin : la liste repart sans saut quand elle arrive au bout
+  var copies = [];
+  for(var c = 0; c < K; c++){
+    var cp = document.createElement('div'); cp.className = 'slide'; cp.setAttribute('aria-hidden', 'true'); cp.innerHTML = rendre(ordre[c], c);
+    piste.appendChild(cp); copies.push(cp);
+  }
+  vue.appendChild(piste); el.appendChild(vue);
+
   var nav = document.createElement('div'); nav.className = 'carou-nav';
   var prev = document.createElement('button'); prev.type = 'button'; prev.className = 'carou-btn'; prev.setAttribute('aria-label', 'Précédent'); prev.textContent = '▲';
   var next = document.createElement('button'); next.type = 'button'; next.className = 'carou-btn'; next.setAttribute('aria-label', 'Suivant'); next.textContent = '▼';
   var dots = document.createElement('div'); dots.className = 'dots';
-  slides.forEach(function(_, j){
+  cartes.forEach(function(_, j){
     var d = document.createElement('button'); d.type = 'button'; d.className = 'dot-btn'; d.setAttribute('aria-label', 'Aller à l\'élément ' + (j + 1));
     dots.appendChild(d);
   });
   nav.appendChild(prev); nav.appendChild(dots); nav.appendChild(next); el.appendChild(nav);
-  var dotEls = dots.children, i = 0, timer = null, repos = null, enPause = false, x0 = null;
+  var dotEls = dots.children, i = 0, timer = null, repos = null, enPause = false, x0 = null, pas = 0;
   var mobile = window.matchMedia('(max-width:560px)');
-  function visibles(){ return mobile.matches ? 1 : Math.min(3, N); }
-
-  // Fenêtre visible : la carte i et les suivantes, dans l'ordre, avec retour au début à la fin
-  function montrer(n){
-    n = (n + N) % N; i = n;
-    var k = visibles();
-    slides.forEach(function(s, j){
-      var rel = (j - i + N) % N;
-      s.style.order = rel;
-      s.classList.toggle('vis', rel < k);
-    });
-    Array.prototype.forEach.call(dotEls, function(d, j){ d.classList.toggle('on', j === n); });
-    nav.hidden = (N <= k);
+  function visibles(){ return mobile.matches ? 1 : K; }
+  function mesurer(){
+    var h = 0;
+    cartes.concat(copies).forEach(function(s){ s.style.height = 'auto'; });
+    cartes.forEach(function(s){ h = Math.max(h, s.offsetHeight); });
+    cartes.concat(copies).forEach(function(s){ s.style.height = h + 'px'; });
+    pas = h + GAP;
+    var v = visibles();
+    vue.style.height = (v * h + (v - 1) * GAP) + 'px';
+  }
+  // Déplacement vers la position n (0 à N ; N = copie de la première carte)
+  function aller(n, animer){
+    piste.style.transition = (animer && !REDUIT) ? 'transform .9s cubic-bezier(.45,0,.55,1)' : 'none';
+    piste.style.transform = 'translateY(' + (-n * pas) + 'px)';
+    var r = i % N;
+    Array.prototype.forEach.call(dotEls, function(d, j){ d.classList.toggle('on', j === ((n % N) + N) % N); });
+    i = n;
+  }
+  piste.addEventListener('transitionend', function(e){
+    if(e.target !== piste || e.propertyName !== 'transform') return;
+    if(i >= N){ aller(i - N, false); }
+  });
+  function avancer(dir){
+    if(dir > 0){ aller(i + 1, true); }
+    else {
+      if(i === 0){ aller(N, false); piste.offsetHeight; }
+      aller(i - 1, true);
+    }
   }
   function auto(){
     if(enPause){ timer = setTimeout(auto, 500); return; }
-    montrer(i + 1);
-    timer = setTimeout(auto, duree(slides[i]));
+    avancer(1);
+    timer = setTimeout(auto, duree(cartes[i % N]));
   }
-  // Action de la personne : la fenêtre change tout de suite, le défilement reprend après 10 s sans action
-  function manuel(n){
-    montrer(n);
+  // Action de la personne : la liste bouge tout de suite, le défilement reprend après 10 s sans action
+  function manuel(fn){
+    fn();
     clearTimeout(timer); clearTimeout(repos);
-    repos = setTimeout(function(){ clearTimeout(timer); timer = setTimeout(auto, duree(slides[i])); }, 10000);
+    repos = setTimeout(function(){ clearTimeout(timer); timer = setTimeout(auto, duree(cartes[i % N])); }, 10000);
   }
-  prev.addEventListener('click', function(){ manuel(i - 1); });
-  next.addEventListener('click', function(){ manuel(i + 1); });
-  Array.prototype.forEach.call(dotEls, function(d, j){ d.addEventListener('click', function(){ manuel(j); }); });
+  prev.addEventListener('click', function(){ manuel(function(){ avancer(-1); }); });
+  next.addEventListener('click', function(){ manuel(function(){ avancer(1); }); });
+  Array.prototype.forEach.call(dotEls, function(d, j){ d.addEventListener('click', function(){ manuel(function(){ aller(j, true); }); }); });
   el.addEventListener('keydown', function(e){
-    if(e.key === 'ArrowDown' || e.key === 'ArrowRight'){ e.preventDefault(); manuel(i + 1); }
-    if(e.key === 'ArrowUp' || e.key === 'ArrowLeft'){ e.preventDefault(); manuel(i - 1); }
+    if(e.key === 'ArrowDown' || e.key === 'ArrowRight'){ e.preventDefault(); manuel(function(){ avancer(1); }); }
+    if(e.key === 'ArrowUp' || e.key === 'ArrowLeft'){ e.preventDefault(); manuel(function(){ avancer(-1); }); }
   });
   el.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive: true});
   el.addEventListener('touchend', function(e){
     if(x0 === null) return;
     var dx = e.changedTouches[0].clientX - x0; x0 = null;
-    if(Math.abs(dx) > 40) manuel(dx < 0 ? i + 1 : i - 1);
+    if(Math.abs(dx) > 40) manuel(function(){ avancer(dx < 0 ? 1 : -1); });
   }, {passive: true});
-  if(mobile.addEventListener){ mobile.addEventListener('change', function(){ montrer(i); }); }
+  if(mobile.addEventListener){ mobile.addEventListener('change', function(){ mesurer(); aller(i % N, false); }); }
 
-  montrer(0);
-  if(N <= visibles()) return;
+  mesurer();
+  aller(0, false);
+  if(N <= visibles()){ nav.hidden = true; return; }
   if(REDUIT) return;
-  timer = setTimeout(auto, duree(slides[0]));
+  timer = setTimeout(auto, duree(cartes[0]));
   el.addEventListener('mouseenter', function(){ enPause = true; });
   el.addEventListener('mouseleave', function(){ enPause = false; });
+  // Mesure à chaque changement de taille, y compris quand l'espace devient visible après le code d'accès
+  if(window.ResizeObserver){ new ResizeObserver(function(){ mesurer(); aller(i % N, false); }).observe(vue); }
+  else { window.addEventListener('resize', function(){ mesurer(); aller(i % N, false); }); }
 }
 
 /* ===== Rendu du contenu depuis espace-contenu.js ===== */
