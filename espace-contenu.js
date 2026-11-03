@@ -36,7 +36,9 @@ var ESPACE_CONTENU = {
     { titre: 'Mieux se comprendre au travail', detail: 'Le langage du management et de la coopération · 60 min · en visio', mois: 'Décembre 2026' },
     { titre: 'Décider sous pression',          detail: 'Rester lucide quand la situation s\'accélère · 60 min · en visio',   mois: 'Janvier 2027' },
     { titre: 'Manager dans l\'incertitude',    detail: 'Repères et pratiques de terrain · 60 min · en visio',               mois: 'Février 2027' },
-    { titre: 'Donner un feedback juste',       detail: 'Mettre des mots sur ce qui compte · 60 min · en visio',             mois: 'Mars 2027' }
+    { titre: 'Donner un feedback juste',       detail: 'Mettre des mots sur ce qui compte · 60 min · en visio',             mois: 'Mars 2027' },
+    { titre: 'Accompagner une équipe en transition', detail: 'Tenir le cap quand tout bouge · 60 min · en visio', mois: 'Avril 2027' },
+    { titre: 'Prendre une décision difficile',     detail: 'Clarifier ses critères et assumer son choix · 60 min · en visio', mois: 'Mai 2027' }
   ],
   // Ressource mise en avant : à choisir à la main, ou null
   une: null,

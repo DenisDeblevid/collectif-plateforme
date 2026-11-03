@@ -100,6 +100,15 @@ p{margin:0;}
 .hero .tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;margin-top:8px;color:var(--sand);}
 .hero .rule{width:60px;height:2px;background:var(--copper);margin:20px 0;}
 .hero .intro{max-width:560px;color:var(--sand);}
+.hero{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px;}
+.hero-txt{flex:1;min-width:280px;}
+.hero-aide{max-width:280px;background:rgba(10,20,26,.28);border:1px solid rgba(240,180,142,.35);border-radius:6px;padding:18px 20px;}
+.hero-aide .qmark{display:block;font-family:'Cormorant Garamond',serif;font-size:2.8rem;line-height:1;color:#F0B48E;animation:qGlow 4s ease-in-out infinite;}
+.hero-aide p{color:var(--white);font-size:1rem;margin:6px 0 14px;}
+.hero-aide .btn{background:var(--copper);}
+.hero-aide .btn:hover{background:var(--copper-d);}
+@keyframes qGlow{0%,100%{text-shadow:0 0 0 rgba(240,180,142,0);}50%{text-shadow:0 0 16px rgba(240,180,142,.9);}}
+.logo-disque{width:92px;height:92px;border-radius:50%;overflow:hidden;background:#F4EFE6;margin:0 auto;}
 
 /* ---------- Quatre raccourcis : lumière bronze en boucle, une carte après l'autre ---------- */
 .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0 30px;}
@@ -133,11 +142,16 @@ p{margin:0;}
 .badge{display:inline-block;background:rgba(59,122,120,.12);color:var(--teal);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:3px;}
 
 /* ---------- Défilements (sessions, cercles) ---------- */
+.carou-pistes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;min-width:0;}
+.cols > div{min-width:0;}
 .carou .slide{display:none;}
-.carou .slide.on{display:block;animation:slideIn .7s ease both;}
+.carou .slide.vis{display:flex;min-width:0;animation:slideIn .7s ease both;}
+.carou .slide > .item{flex:1;flex-direction:column;align-items:stretch;justify-content:flex-start;flex-wrap:nowrap;}
+.carou .slide .item .thumb{width:100%;height:120px;}
+.carou .slide .item > .btn{margin-left:0;width:100%;}
 @keyframes slideIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
 .carou .dots{text-align:center;margin-top:12px;}
-.carou .dots span{display:inline-block;width:7px;height:7px;border-radius:50%;background:rgba(35,75,94,.25);margin:0 4px;transition:background .3s;}
+.carou .dots span{display:none;width:7px;height:7px;border-radius:50%;background:rgba(35,75,94,.25);margin:0 4px;transition:background .3s;}
 .carou .dots span.on{background:var(--copper);}
 .carou-nav{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:12px;}
 .carou-nav .dots{margin:0;}
@@ -206,6 +220,7 @@ details.cat[open] summary::after{content:"−";}
 .dialog label{display:block;font-size:.82rem;color:var(--deep);margin:10px 0 4px;}
 .dialog input,.dialog textarea{width:100%;padding:10px;font:inherit;border:1px solid rgba(35,75,94,.3);background:#fff;}
 .dialog textarea{min-height:110px;resize:vertical;}
+.dialog select{width:100%;padding:10px;font:inherit;border:1px solid rgba(35,75,94,.3);background:#fff;}
 .dialog .consent{display:flex;gap:8px;font-size:.78rem;color:var(--stone);margin-top:12px;align-items:flex-start;}
 .dialog .close{position:absolute;top:10px;right:14px;background:none;border:0;font-size:1.4rem;cursor:pointer;color:var(--stone);}
 .status{font-size:.85rem;margin-top:10px;min-height:1.2em;}
@@ -251,10 +266,12 @@ footer.foot .soc a{color:var(--sand);text-decoration:none;margin-left:14px;font-
 }
 @media (max-width:560px){
   .tiles{grid-template-columns:1fr;}
+  .hero-aide{max-width:none;width:100%;}
+  .carou-pistes{grid-template-columns:1fr !important;}
 }
 @keyframes cwSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 @media (prefers-reduced-motion: reduce){
-  .tile,.tile .btn,.gem,.gem::after,.carou .slide.on{animation:none !important;}
+  .tile,.tile .btn,.gem,.gem::after,.carou .slide.vis,.hero-aide .qmark{animation:none !important;}
   .side .brand svg g{animation:none !important;}
   .bell.glow{animation:none !important;}
 }
@@ -267,25 +284,26 @@ footer.foot .soc a{color:var(--sand);text-decoration:none;margin-left:14px;font-
   <!-- 1. Menu latéral -->
   <aside class="side">
     <div class="brand">
-      <svg viewBox="0 0 88 88" width="92" height="92" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="margin:0 auto;display:block;">
-        <g style="animation:cwSpin 18s linear infinite; transform-origin:44px 44px;">
-          <circle cx="44" cy="44" r="36" stroke="#E8DCC9" stroke-width="2.5"/>
-          <circle cx="44" cy="44" r="26" stroke="#3B7A78" stroke-width="1" stroke-dasharray="3 3"/>
-          <line x1="44" y1="8"  x2="44" y2="80" stroke="#E8DCC9" stroke-width="1.2" opacity="0.6"/>
-          <line x1="8"  y1="44" x2="80" y2="44" stroke="#E8DCC9" stroke-width="1.2" opacity="0.6"/>
-          <line x1="18" y1="18" x2="70" y2="70" stroke="#3B7A78" stroke-width="0.9" opacity="0.45"/>
-          <line x1="70" y1="18" x2="18" y2="70" stroke="#3B7A78" stroke-width="0.9" opacity="0.45"/>
-          <path d="M44 8 C41 12 41 16 44 16 C47 16 47 12 44 8Z" fill="#B86F4C" opacity="0.8"/>
-          <path d="M80 44 C76 41 72 41 72 44 C72 47 76 47 80 44Z" fill="#B86F4C" opacity="0.8"/>
-          <path d="M44 80 C47 76 47 72 44 72 C41 72 41 76 44 80Z" fill="#B86F4C" opacity="0.8"/>
-          <path d="M8 44 C12 47 16 47 16 44 C16 41 12 41 8 44Z" fill="#B86F4C" opacity="0.8"/>
-          <circle cx="44" cy="44" r="5" fill="#B86F4C"/>
-          <circle cx="44" cy="44" r="2.5" fill="#E8DCC9"/>
-        </g>
-        <path d="M4 72 Q22 64 44 72 Q66 80 84 72" stroke="#E8DCC9" stroke-width="1.8" fill="none" opacity="0.5" stroke-linecap="round"/>
-        <path d="M2 78 Q22 71 44 78 Q66 85 86 78" stroke="#3B7A78" stroke-width="1.1" fill="none" opacity="0.5" stroke-linecap="round"/>
-        <circle cx="72" cy="10" r="4" fill="#B86F4C"/>
-      </svg>
+      <div class="logo-disque"><svg viewBox="0 0 88 88" width="92" height="92" fill="none" aria-hidden="true" style="display:block;" xmlns="http://www.w3.org/2000/svg">
+      <g style="animation:cwSpin 18s linear infinite; transform-origin:44px 44px;">
+        <circle cx="44" cy="44" r="36" stroke="#234B5E" stroke-width="2.5"/>
+        <circle cx="44" cy="44" r="26" stroke="#3B7A78" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="44" y1="8"  x2="44" y2="80" stroke="#234B5E" stroke-width="1.2" opacity="0.6"/>
+        <line x1="8"  y1="44" x2="80" y2="44" stroke="#234B5E" stroke-width="1.2" opacity="0.6"/>
+        <line x1="18" y1="18" x2="70" y2="70" stroke="#3B7A78" stroke-width="0.9" opacity="0.45"/>
+        <line x1="70" y1="18" x2="18" y2="70" stroke="#3B7A78" stroke-width="0.9" opacity="0.45"/>
+        <path d="M44 8 C41 12 41 16 44 16 C47 16 47 12 44 8Z" fill="#B86F4C" opacity="0.8"/>
+        <path d="M80 44 C76 41 72 41 72 44 C72 47 76 47 80 44Z" fill="#B86F4C" opacity="0.8"/>
+        <path d="M44 80 C47 76 47 72 44 72 C41 72 41 76 44 80Z" fill="#B86F4C" opacity="0.8"/>
+        <path d="M8 44 C12 47 16 47 16 44 C16 41 12 41 8 44Z" fill="#B86F4C" opacity="0.8"/>
+        <circle cx="44" cy="44" r="5" fill="#B86F4C"/>
+        <circle cx="44" cy="44" r="2.5" fill="#234B5E"/>
+      </g>
+      <rect x="0" y="70" width="88" height="18" fill="#F4EFE6"/>
+      <path d="M4 72 Q22 64 44 72 Q66 80 84 72" stroke="#234B5E" stroke-width="1.8" fill="none" opacity="0.5" stroke-linecap="round"/>
+      <path d="M2 78 Q22 71 44 78 Q66 85 86 78" stroke="#3B7A78" stroke-width="1.1" fill="none" opacity="0.32" stroke-linecap="round"/>
+      <circle cx="72" cy="10" r="4" fill="#B86F4C"/>
+    </svg></div>
       <strong>NORIA</strong>
       <small>HORIZON · Élever les potentiels</small>
     </div>
@@ -340,10 +358,17 @@ footer.foot .soc a{color:var(--sand);text-decoration:none;margin-left:14px;font-
       <div id="espace">
 
         <section class="hero" id="accueil">
-          <h1>Bienvenue dans votre<br><span>espace Continuum</span></h1>
-          <p class="tagline">Le bon regard, au bon moment.</p>
-          <div class="rule"></div>
-          <p class="intro">Votre espace membre vous donne accès à des temps d'échange avec des experts, des ressources concrètes et un appui ponctuel pour avancer dans vos enjeux professionnels.</p>
+          <div class="hero-txt">
+            <h1>Bienvenue dans votre<br><span>espace Continuum</span></h1>
+            <p class="tagline">Le bon regard, au bon moment.</p>
+            <div class="rule"></div>
+            <p class="intro">Votre espace membre vous donne accès à des temps d'échange avec des experts, des ressources concrètes et un appui ponctuel pour avancer dans vos enjeux professionnels.</p>
+          </div>
+          <aside class="hero-aide">
+            <span class="qmark" aria-hidden="true">?</span>
+            <p>Vous ne savez pas par où commencer ?</p>
+            <a class="btn copper" href="mailto:noriahorizoncontacts@gmail.com?subject=Question%20sur%20mon%20espace%20Continuum">Contactez-nous</a>
+          </aside>
         </section>
 
         <!-- Quatre raccourcis -->
@@ -470,6 +495,20 @@ footer.foot .soc a{color:var(--sand);text-decoration:none;margin-left:14px;font-
       <input id="f_email" name="EMAIL" type="email" required>
       <label for="f_message" id="lblMessage">Message</label>
       <textarea id="f_message" name="MESSAGE"></textarea>
+      <div id="fContinuumWrap" hidden>
+        <label for="f_continuum">Type de Continuum</label>
+        <select id="f_continuum" name="TYPE_CONTINUUM">
+          <option value="">Choisir…</option>
+          <option>Pionniers</option>
+          <option>Individuel · mensuel</option>
+          <option>Individuel · annuel</option>
+          <option>Entreprise 5 personnes · mensuel</option>
+          <option>Entreprise 5 personnes · annuel</option>
+          <option>Entreprise 10 personnes · mensuel</option>
+          <option>Entreprise 10 personnes · annuel</option>
+          <option>Pilote</option>
+        </select>
+      </div>
       <label class="consent"><input type="checkbox" id="f_consent"> <span>J'accepte que NORIA HORIZON utilise mes données pour répondre à ma demande.</span></label>
       <p class="status" id="dlgStatus" role="status"></p>
       <button class="btn block" type="submit" id="dlgBtn" style="margin-top:12px;">Envoyer</button>
@@ -618,9 +657,12 @@ function carrousel(el, items, rendre, duree){
   var cible = 0, cle = moisSuivant().toLowerCase();
   for(var k = 0; k < items.length; k++){ if(moisDe(items[k]) === cle){ cible = k; break; } }
   var ordre = items.slice(cible).concat(items.slice(0, cible));
+  var N = ordre.length;
+  var pistes = document.createElement('div'); pistes.className = 'carou-pistes';
   var slides = ordre.map(function(it, k){
-    var s = document.createElement('div'); s.className = 'slide'; s.innerHTML = rendre(it, k); el.appendChild(s); return s;
+    var s = document.createElement('div'); s.className = 'slide'; s.innerHTML = rendre(it, k); pistes.appendChild(s); return s;
   });
+  el.appendChild(pistes);
   var nav = document.createElement('div'); nav.className = 'carou-nav';
   var prev = document.createElement('button'); prev.type = 'button'; prev.className = 'carou-btn'; prev.setAttribute('aria-label', 'Précédent'); prev.textContent = '‹';
   var next = document.createElement('button'); next.type = 'button'; next.className = 'carou-btn'; next.setAttribute('aria-label', 'Suivant'); next.textContent = '›';
@@ -631,19 +673,28 @@ function carrousel(el, items, rendre, duree){
   });
   nav.appendChild(prev); nav.appendChild(dots); nav.appendChild(next); el.appendChild(nav);
   var dotEls = dots.children, i = 0, timer = null, repos = null, enPause = false, x0 = null;
+  var mobile = window.matchMedia('(max-width:560px)');
+  function visibles(){ return mobile.matches ? 1 : Math.min(3, N); }
 
+  // Fenêtre visible : la carte i et les suivantes, dans l'ordre, avec retour au début à la fin
   function montrer(n){
-    n = (n + slides.length) % slides.length;
-    slides.forEach(function(s, j){ s.classList.toggle('on', j === n); });
+    n = (n + N) % N; i = n;
+    var k = visibles();
+    pistes.style.gridTemplateColumns = 'repeat(' + k + ', minmax(0, 1fr))';
+    slides.forEach(function(s, j){
+      var rel = (j - i + N) % N;
+      s.style.order = rel;
+      s.classList.toggle('vis', rel < k);
+    });
     Array.prototype.forEach.call(dotEls, function(d, j){ d.classList.toggle('on', j === n); });
-    i = n;
+    nav.hidden = (N <= k);
   }
   function auto(){
     if(enPause){ timer = setTimeout(auto, 500); return; }
     montrer(i + 1);
     timer = setTimeout(auto, duree(slides[i]));
   }
-  // Action de la personne : on change de carte tout de suite, le défilement automatique reprend après 10 s sans action
+  // Action de la personne : la fenêtre change tout de suite, le défilement reprend après 10 s sans action
   function manuel(n){
     montrer(n);
     clearTimeout(timer); clearTimeout(repos);
@@ -662,9 +713,10 @@ function carrousel(el, items, rendre, duree){
     var dx = e.changedTouches[0].clientX - x0; x0 = null;
     if(Math.abs(dx) > 40) manuel(dx < 0 ? i + 1 : i - 1);
   }, {passive: true});
+  if(mobile.addEventListener){ mobile.addEventListener('change', function(){ montrer(i); }); }
 
   montrer(0);
-  if(slides.length < 2){ nav.hidden = true; return; }
+  if(N <= visibles()) return;
   if(REDUIT) return;
   timer = setTimeout(auto, duree(slides[0]));
   el.addEventListener('mouseenter', function(){ enPause = true; });
@@ -754,6 +806,8 @@ document.addEventListener('click', function(e){
     : 'Laissez vos coordonnées, nous revenons vers vous pour confirmer votre place.';
   document.getElementById('lblMessage').textContent = kind === 'ask' ? 'Votre question' : 'Message (facultatif)';
   document.getElementById('f_message').required = (kind === 'ask');
+  var wrapC = document.getElementById('fContinuumWrap'), selC = document.getElementById('f_continuum');
+  wrapC.hidden = (kind !== 'ask'); selC.required = (kind === 'ask'); selC.value = '';
   document.getElementById('dlgStatus').textContent = '';
   document.getElementById('dlgStatus').className = 'status';
   document.getElementById('dlgBtn').disabled = false;
@@ -777,9 +831,12 @@ document.getElementById('dlgForm').addEventListener('submit', function(e){
   if(!document.getElementById('f_consent').checked){
     st.className = 'status err'; st.textContent = 'Merci de cocher la case de consentement.'; return;
   }
+  var selC = document.getElementById('f_continuum');
+  if(selC.required && !selC.value){ st.className = 'status err'; st.textContent = 'Merci de choisir votre type de Continuum.'; return; }
   var data = new URLSearchParams();
   data.append('PRENOM', p); data.append('NOM', n); data.append('EMAIL', em);
   data.append('MESSAGE', msg); data.append('TYPE_DEMANDE', dlgType);
+  if(selC.required) data.append('TYPE_CONTINUUM', selC.value);
   data.append('email_address_check', ''); data.append('locale', 'fr'); data.append('html_type', 'simple');
   btn.disabled = true; btn.textContent = 'Envoi en cours…';
   fetch(BREVO_DEMANDES, {method:'POST', mode:'no-cors', body:data})
