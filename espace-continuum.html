@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espace Continuum — NORIA HORIZON</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#234B5E; --teal:#3B7A78; --copper:#B86F4C; --copper-d:#9a5a3b;
+  --sand:#E8DCC9; --mist:#F4EFE6; --white:#FDFAF5; --ink:#1a2e38; --stone:#6f8590;
+  --line:rgba(35,75,94,.12);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;font-family:'DM Sans',system-ui,sans-serif;background:var(--mist);color:var(--ink);line-height:1.55;font-size:15px;}
+a{color:inherit;}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--deep);margin:0;}
+p{margin:0;}
+
+/* ---------- Mise en page ---------- */
+.layout{display:grid;grid-template-columns:230px 1fr;min-height:100vh;}
+.side{background:var(--deep);color:var(--sand);padding:26px 18px;display:flex;flex-direction:column;gap:18px;position:sticky;top:0;height:100vh;overflow:auto;}
+.side .brand{text-align:center;color:var(--white);}
+.side .brand strong{display:block;font-family:'Cormorant Garamond',serif;font-size:1.35rem;letter-spacing:.22em;font-weight:600;margin-top:4px;}
+.side .brand small{display:block;font-size:.72rem;color:var(--sand);opacity:.85;margin-top:2px;}
+.side nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:4px;text-decoration:none;color:var(--sand);font-size:.92rem;}
+.side nav a:hover{background:rgba(255,255,255,.06);}
+.side nav a.active{background:rgba(255,255,255,.1);color:var(--white);}
+.side .ico{width:18px;text-align:center;color:var(--copper);flex-shrink:0;}
+
+.main{min-width:0;display:flex;flex-direction:column;}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 32px;background:var(--white);border-bottom:1px solid var(--line);flex-wrap:wrap;}
+.topbar .title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--deep);letter-spacing:.14em;}
+.topbar .title span{color:var(--copper);letter-spacing:0;font-weight:600;}
+.topbar .actions{display:flex;align-items:center;gap:16px;}
+.topbar a.back{color:var(--deep);font-size:.85rem;text-decoration:none;}
+.bell-wrap{position:relative;}
+.bell{background:none;border:0;cursor:pointer;font-size:1.1rem;position:relative;padding:4px;}
+.bell .dot{position:absolute;top:2px;right:0;width:9px;height:9px;border-radius:50%;background:var(--copper);border:2px solid var(--white);}
+.notif-panel{position:absolute;right:0;top:calc(100% + 10px);width:340px;max-width:calc(100vw - 32px);background:var(--white);border:1px solid var(--line);border-radius:6px;box-shadow:0 18px 40px rgba(10,20,26,.18);z-index:40;}
+.notif-panel[hidden]{display:none;}
+.notif-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);color:var(--deep);}
+.notif-close{background:none;border:0;font-size:1.3rem;cursor:pointer;color:var(--stone);}
+.notif-item{padding:12px 16px;border-bottom:1px solid var(--line);font-size:.88rem;}
+.notif-item:last-child{border-bottom:0;}
+.notif-item b{display:block;color:var(--deep);font-weight:600;margin-bottom:2px;}
+.notif-item small{color:var(--stone);}
+.notif-item a{color:var(--copper);}
+.notif-empty{padding:16px;color:var(--stone);font-size:.88rem;}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--copper);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:600;border:0;padding:0;cursor:pointer;font-family:inherit;overflow:hidden;}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+.notif-form{padding:14px 16px;border-bottom:1px solid var(--line);background:#fbf8f3;font-size:.86rem;color:var(--deep);}
+.notif-form p{margin-bottom:10px;color:var(--stone);}
+.notif-form input[type=email]{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:4px;font:inherit;margin-bottom:8px;}
+.notif-form label{display:flex;gap:8px;align-items:flex-start;font-size:.8rem;color:var(--stone);margin-bottom:10px;}
+.notif-form .btn{height:40px;padding:8px 14px;}
+.notif-form .status{font-size:.82rem;margin-top:8px;}
+.notif-form .status.err{color:#9b3d2a;}
+.notif-form[hidden]{display:none;}
+.bell.glow{color:var(--copper);animation:bellSwing 5s ease-in-out infinite,bellGlow 5s ease-in-out infinite;border-radius:50%;transform-origin:50% 15%;display:inline-block;}
+@keyframes bellSwing{
+  0%,8%{transform:rotate(0deg);}
+  11%{transform:rotate(16deg);}
+  14%{transform:rotate(-14deg);}
+  17%{transform:rotate(10deg);}
+  20%{transform:rotate(-7deg);}
+  23%{transform:rotate(3deg);}
+  26%,100%{transform:rotate(0deg);}
+}
+@keyframes bellGlow{
+  0%,8%{filter:drop-shadow(0 0 0 rgba(184,111,76,0));}
+  14%{filter:drop-shadow(0 0 9px rgba(184,111,76,.7));}
+  26%,100%{filter:drop-shadow(0 0 0 rgba(184,111,76,0));}
+}
+
+.content{padding:28px 32px 40px;flex:1;}
+
+/* ---------- Boutons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--deep);color:var(--white);border:0;padding:11px 18px;font:inherit;font-size:.9rem;font-weight:500;cursor:pointer;text-decoration:none;border-radius:4px;transition:background .2s;}
+.btn:hover{background:var(--teal);}
+.btn.copper{background:var(--copper);}
+.btn.copper:hover{background:var(--copper-d);}
+.btn.ghost{background:transparent;color:var(--deep);border:1px solid var(--deep);}
+.btn.ghost:hover{background:var(--deep);color:var(--white);}
+.btn.soon{background:transparent;color:var(--stone);border:1px dashed rgba(111,133,144,.5);cursor:not-allowed;}
+.btn.soon:hover{background:transparent;color:var(--stone);}
+.btn.block{width:100%;}
+
+/* ---------- Accueil ---------- */
+.hero{position:relative;border-radius:6px;overflow:hidden;padding:44px 40px;background:
+  linear-gradient(100deg,rgba(35,75,94,.96) 0%,rgba(35,75,94,.82) 45%,rgba(184,111,76,.35) 100%),
+  url('espace-img-hero.png') right center/cover no-repeat,
+  linear-gradient(120deg,#234B5E 0%,#3B7A78 55%,#E0A27A 100%);
+  color:var(--white);}
+.hero h1{color:var(--white);font-size:2.6rem;line-height:1.1;}
+.hero h1 span{color:#F0B48E;}
+.hero .tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;margin-top:8px;color:var(--sand);}
+.hero .rule{width:60px;height:2px;background:var(--copper);margin:20px 0;}
+.hero .intro{max-width:560px;color:var(--sand);}
+.hero{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px;}
+.hero-txt{flex:1;min-width:280px;}
+.hero-aide{max-width:280px;background:rgba(10,20,26,.28);border:1px solid rgba(240,180,142,.35);border-radius:6px;padding:18px 20px;}
+.hero-aide .qmark{display:block;font-family:'Cormorant Garamond',serif;font-size:2.8rem;line-height:1;color:#F0B48E;animation:qGlow 4s ease-in-out infinite;}
+.hero-aide p{color:var(--white);font-size:1rem;margin:6px 0 14px;}
+.hero-aide .btn{background:var(--copper);}
+.hero-aide .btn:hover{background:var(--copper-d);}
+@keyframes qGlow{0%,100%{text-shadow:0 0 0 rgba(240,180,142,0);}50%{text-shadow:0 0 16px rgba(240,180,142,.9);}}
+.logo-disque{width:92px;height:92px;border-radius:50%;overflow:hidden;background:#F4EFE6;margin:0 auto;}
+
+/* ---------- Quatre raccourcis : lumière bronze en boucle, une carte après l'autre ---------- */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0 30px;}
+.tile{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:20px;display:flex;flex-direction:column;gap:10px;animation:tileLuz 10s cubic-bezier(.45,0,.55,1) infinite;animation-delay:calc(var(--i) * 1.6s);}
+.tile .t-ico{font-size:1.5rem;color:var(--copper);}
+.tile h3{font-size:1.25rem;}
+.tile p{font-size:.88rem;color:var(--stone);flex:1;}
+.tile .btn{margin-top:6px;height:46px;white-space:nowrap;animation:tileBtn 10s cubic-bezier(.45,0,.55,1) infinite;animation-delay:calc(var(--i) * 1.6s);}
+@keyframes tileLuz{
+  0%,8%{box-shadow:0 0 0 rgba(184,111,76,0);border-color:var(--line);}
+  20%{box-shadow:0 0 22px rgba(184,111,76,.26);border-color:rgba(184,111,76,.42);}
+  34%,100%{box-shadow:0 0 0 rgba(184,111,76,0);border-color:var(--line);}
+}
+@keyframes tileBtn{
+  0%,8%{background:var(--deep);box-shadow:0 0 0 rgba(184,111,76,0);}
+  20%{background:var(--copper);box-shadow:0 0 16px rgba(184,111,76,.45);}
+  34%,100%{background:var(--deep);box-shadow:0 0 0 rgba(184,111,76,0);}
+}
+
+/* ---------- Deux colonnes ---------- */
+.cols{display:grid;grid-template-columns:1.65fr 1fr;gap:22px;align-items:start;}
+.panel{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:22px 24px;margin-bottom:22px;}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+.panel-head h2{font-size:1.5rem;}
+.panel .sub{font-size:.9rem;color:var(--stone);margin:-6px 0 14px;}
+
+.item{display:flex;gap:16px;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:4px;padding:16px 18px;flex-wrap:wrap;}
+.item h3{font-size:1.1rem;}
+.item .meta{font-size:.82rem;color:var(--stone);margin-top:4px;}
+.item .txt{flex:1;min-width:220px;}
+.badge{display:inline-block;background:rgba(59,122,120,.12);color:var(--teal);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:3px;}
+
+/* ---------- Défilements (sessions, cercles) ---------- */
+.carou-vue{overflow:hidden;min-width:0;}
+.carou-track{display:flex;flex-direction:column;gap:14px;will-change:transform;}
+.cols > div{min-width:0;}
+.carou .slide{display:block;flex:none;min-width:0;}
+@keyframes slideIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+.carou .dots{text-align:center;margin-top:12px;}
+.carou .dots span{display:none;width:7px;height:7px;border-radius:50%;background:rgba(35,75,94,.25);margin:0 4px;transition:background .3s;}
+.carou .dots span.on{background:var(--copper);}
+.carou-nav{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:12px;}
+.carou-nav .dots{margin:0;}
+.carou-btn{width:36px;height:36px;border-radius:50%;transform:none;border:1px solid var(--deep);background:transparent;color:var(--deep);font-size:1.25rem;line-height:1;cursor:pointer;font-family:inherit;}
+.carou-btn:hover{background:var(--deep);color:var(--white);}
+.dot-btn{display:inline-block;width:10px;height:10px;border-radius:50%;border:0;padding:0;margin:0 4px;background:rgba(35,75,94,.25);cursor:pointer;transition:background .3s;}
+.dot-btn.on{background:var(--copper);}
+.carou-nav[hidden]{display:none;}
+
+/* ---------- Ask NORIA : pépite de bronze et d'or ---------- */
+.gem{position:relative;overflow:hidden;border-radius:8px;padding:26px 24px 24px;color:#FFF8EE;
+  background:radial-gradient(120% 90% at 18% 0%,#F7DCA9 0%,#E0A96C 26%,#B86F4C 58%,#6E3F26 100%);
+  animation:gemGlow 4.5s ease-in-out infinite;}
+.gem::after{content:'';position:absolute;inset:-40%;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.5) 50%,transparent 60%);transform:translateX(-100%);animation:gemSheen 4.5s ease-in-out infinite;pointer-events:none;}
+.gem h2{color:#FFF8EE;font-size:1.7rem;position:relative;z-index:1;}
+.gem .lead{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#FFF8EE;margin:10px 0 6px;position:relative;z-index:1;}
+.gem .meta{font-size:.85rem;color:rgba(255,248,238,.85);margin:0 0 18px;position:relative;z-index:1;}
+.gem .btn{position:relative;z-index:1;background:#FFF8EE;color:#7a4426;font-weight:600;letter-spacing:.02em;}
+.gem .btn:hover{background:#fff;color:#5c311b;}
+@keyframes gemGlow{
+  0%,100%{box-shadow:0 0 0 1px rgba(255,220,170,.45),0 0 22px rgba(240,180,120,.35);}
+  50%{box-shadow:0 0 0 1px rgba(255,235,190,.75),0 0 46px rgba(255,200,120,.7);}
+}
+@keyframes gemSheen{0%,55%{transform:translateX(-100%);}100%{transform:translateX(100%);}}
+
+/* ---------- Abonnement ---------- */
+.plan-list{list-style:none;padding:0;margin:12px 0 16px;}
+.plan-list li{padding:6px 0;font-size:.92rem;}
+.plan-list li::before{content:'✓';color:var(--teal);font-weight:600;margin-right:10px;}
+.plan-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--deep);}
+
+.plus a{display:flex;justify-content:space-between;align-items:center;padding:12px 4px;border-bottom:1px solid var(--line);text-decoration:none;}
+.plus a:last-child{border-bottom:0;}
+.plus strong{display:block;color:var(--deep);font-weight:600;}
+.plus span{font-size:.82rem;color:var(--stone);}
+.plus i{font-style:normal;color:var(--copper);font-size:1.1rem;}
+
+/* ---------- Ressource à la une ---------- */
+.une-card{border:1px solid var(--line);border-radius:6px;padding:20px 22px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:linear-gradient(120deg,rgba(35,75,94,.04),rgba(184,111,76,.08));}
+.une-card h3{font-size:1.25rem;margin-top:6px;}
+.une-card p{font-size:.88rem;color:var(--stone);margin-top:4px;max-width:520px;}
+
+/* ---------- Ressources par domaine ---------- */
+details.cat{background:var(--white);border:1px solid var(--line);border-radius:4px;margin-bottom:10px;}
+details.cat summary{cursor:pointer;padding:14px 18px;font-weight:500;color:var(--deep);list-style:none;}
+details.cat summary::-webkit-details-marker{display:none;}
+details.cat summary::after{content:"+";float:right;color:var(--copper);font-size:1.2rem;line-height:1;}
+details.cat[open] summary::after{content:"−";}
+.res{padding:0 18px 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;}
+.res > div{border:1px dashed rgba(35,75,94,.25);padding:12px;font-size:.85rem;color:var(--stone);border-radius:4px;}
+.res b{display:block;color:var(--deep);font-weight:500;margin-bottom:4px;}
+.res a{color:var(--deep);}
+
+/* ---------- Accès ---------- */
+.gate{max-width:400px;margin:70px auto;background:var(--white);border:1px solid var(--line);padding:32px;border-radius:6px;text-align:center;}
+.gate input{width:100%;padding:12px;font:inherit;font-size:1.2rem;letter-spacing:.4em;text-align:center;border:1px solid rgba(35,75,94,.3);margin:14px 0 8px;}
+.err{color:#a0403a;font-size:.85rem;min-height:1.2em;margin-top:6px;}
+#espace{display:none;}
+
+/* ---------- Fenêtre ---------- */
+.overlay{position:fixed;inset:0;background:rgba(10,20,26,.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:50;}
+.overlay.open{display:flex;}
+.dialog{background:var(--white);max-width:460px;width:100%;padding:28px;border-radius:6px;position:relative;max-height:90vh;overflow:auto;}
+.dialog h3{font-size:1.5rem;margin-bottom:4px;}
+.dialog .sub{font-size:.9rem;color:var(--stone);margin-bottom:14px;}
+.dialog label{display:block;font-size:.82rem;color:var(--deep);margin:10px 0 4px;}
+.dialog input,.dialog textarea{width:100%;padding:10px;font:inherit;border:1px solid rgba(35,75,94,.3);background:#fff;}
+.dialog textarea{min-height:110px;resize:vertical;}
+.dialog select{width:100%;padding:10px;font:inherit;border:1px solid rgba(35,75,94,.3);background:#fff;}
+.dialog.compact{padding:20px 22px 0;}
+.dialog.compact .sub{margin-bottom:6px;}
+.dialog.compact label{margin:6px 0 2px;}
+.dialog.compact input,.dialog.compact select{padding:8px 10px;}
+.dialog.compact textarea{min-height:64px;}
+.dialog .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.dialog .row2 > div{min-width:0;}
+.dialog .dlg-foot{position:sticky;bottom:0;background:var(--white);padding:10px 0 20px;}
+.dialog.compact .dlg-foot{padding:8px 0 16px;}
+.dialog .consent{display:flex;gap:8px;font-size:.78rem;color:var(--stone);margin-top:12px;align-items:flex-start;}
+.dialog .close{position:absolute;top:10px;right:14px;background:none;border:0;font-size:1.4rem;cursor:pointer;color:var(--stone);}
+.status{font-size:.85rem;margin-top:10px;min-height:1.2em;}
+.status.ok{color:var(--deep);} .status.err{color:#a0403a;}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--deep);color:var(--white);padding:10px 18px;border-radius:4px;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .3s;z-index:60;}
+.toast.show{opacity:1;}
+
+/* ---------- Vignettes illustrées ---------- */
+.item{flex-wrap:nowrap;}
+.item .thumb{width:150px;height:96px;object-fit:cover;border-radius:4px;flex-shrink:0;display:block;}
+.item > .btn{flex-shrink:0;margin-left:auto;}
+.item.stack{flex-wrap:wrap;}
+.gem-band{display:block;width:calc(100% + 48px);height:240px;object-fit:contain;background:radial-gradient(120% 100% at 50% 0%,#F7DCA9 0%,#E0A96C 40%,#B86F4C 100%);margin:-26px -24px 18px;position:relative;z-index:1;border-radius:8px 8px 0 0;-webkit-mask-image:linear-gradient(to bottom,#000 62%,rgba(0,0,0,.35) 90%,transparent 100%);mask-image:linear-gradient(to bottom,#000 62%,rgba(0,0,0,.35) 90%,transparent 100%);}
+.une-card .thumb{width:150px;height:96px;object-fit:cover;border-radius:4px;flex-shrink:0;}
+.sum-img{width:40px;height:40px;object-fit:cover;border-radius:4px;vertical-align:middle;margin-right:12px;}
+@media (max-width:560px){ .item{flex-wrap:wrap;} .item .thumb{width:100%;height:140px;} .item > .btn{margin-left:0;width:100%;} }
+
+/* ---------- Pied de page ---------- */
+footer.foot{background:var(--deep);color:var(--sand);padding:22px 32px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;font-size:.88rem;}
+footer.foot .eco-title{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-bottom:8px;}
+footer.foot .links{display:flex;flex-wrap:wrap;gap:6px 22px;}
+footer.foot .links a{color:var(--sand);text-decoration:none;}
+footer.foot .links a:hover{color:var(--white);text-decoration:underline;}
+footer.foot .soc a{color:var(--sand);text-decoration:none;margin-left:14px;font-size:1rem;}
+
+/* ---------- Tablette et téléphone ---------- */
+@media (max-width:1100px){
+  .tiles{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr;}
+  .side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;justify-content:center;padding:16px;gap:10px;}
+  .side .brand{display:flex;align-items:center;gap:12px;}
+  .side .brand strong,.side .brand small{display:none;}
+  .side nav{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;}
+  .side nav a{padding:8px 10px;font-size:.84rem;}
+  .cols{grid-template-columns:1fr;}
+  .content{padding:20px 16px 30px;}
+  .topbar{padding:14px 16px;}
+  .hero{padding:30px 22px;}
+  .hero h1{font-size:2rem;}
+  footer.foot{padding:20px 16px;}
+}
+@media (max-width:560px){
+  .tiles{grid-template-columns:1fr;}
+  .hero-aide{max-width:none;width:100%;}
+}
+@keyframes cwSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@media (prefers-reduced-motion: reduce){
+  .tile,.tile .btn,.gem,.gem::after,.carou .slide.vis,.hero-aide .qmark{animation:none !important;}
+  .side .brand svg g{animation:none !important;}
+  .bell.glow{animation:none !important;}
+}
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- 1. Menu latéral -->
+  <aside class="side">
+    <div class="brand">
+      <div class="logo-disque"><svg viewBox="0 0 88 88" width="92" height="92" fill="none" aria-hidden="true" style="display:block;" xmlns="http://www.w3.org/2000/svg">
+      <g style="animation:cwSpin 18s linear infinite; transform-origin:44px 44px;">
+        <circle cx="44" cy="44" r="36" stroke="#234B5E" stroke-width="2.5"/>
+        <circle cx="44" cy="44" r="26" stroke="#3B7A78" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="44" y1="8"  x2="44" y2="80" stroke="#234B5E" stroke-width="1.2" opacity="0.6"/>
+        <line x1="8"  y1="44" x2="80" y2="44" stroke="#234B5E" stroke-width="1.2" opacity="0.6"/>
+        <line x1="18" y1="18" x2="70" y2="70" stroke="#3B7A78" stroke-width="0.9" opacity="0.45"/>
+        <line x1="70" y1="18" x2="18" y2="70" stroke="#3B7A78" stroke-width="0.9" opacity="0.45"/>
+        <path d="M44 8 C41 12 41 16 44 16 C47 16 47 12 44 8Z" fill="#B86F4C" opacity="0.8"/>
+        <path d="M80 44 C76 41 72 41 72 44 C72 47 76 47 80 44Z" fill="#B86F4C" opacity="0.8"/>
+        <path d="M44 80 C47 76 47 72 44 72 C41 72 41 76 44 80Z" fill="#B86F4C" opacity="0.8"/>
+        <path d="M8 44 C12 47 16 47 16 44 C16 41 12 41 8 44Z" fill="#B86F4C" opacity="0.8"/>
+        <circle cx="44" cy="44" r="5" fill="#B86F4C"/>
+        <circle cx="44" cy="44" r="2.5" fill="#234B5E"/>
+      </g>
+      <rect x="0" y="70" width="88" height="18" fill="#F4EFE6"/>
+      <path d="M4 72 Q22 64 44 72 Q66 80 84 72" stroke="#234B5E" stroke-width="1.8" fill="none" opacity="0.5" stroke-linecap="round"/>
+      <path d="M2 78 Q22 71 44 78 Q66 85 86 78" stroke="#3B7A78" stroke-width="1.1" fill="none" opacity="0.32" stroke-linecap="round"/>
+      <circle cx="72" cy="10" r="4" fill="#B86F4C"/>
+    </svg></div>
+      <strong>NORIA</strong>
+      <small>HORIZON · Élever les potentiels</small>
+    </div>
+    <nav aria-label="Espace membre">
+      <a href="#accueil" class="active"><span class="ico">⌂</span>Accueil Continuum</a>
+      <a href="#sessions"><span class="ico">▦</span>Sessions Horizon</a>
+      <a href="#cercles"><span class="ico">◌</span>Cercles NORIA</a>
+      <a href="#ask"><span class="ico">✎</span>Ask NORIA</a>
+      <a href="#ressources"><span class="ico">≋</span>Ressources</a>
+      <a href="#abonnement"><span class="ico">◉</span>Mon abonnement</a>
+    </nav>
+  </aside>
+
+  <div class="main">
+
+    <!-- En-tête -->
+    <header class="topbar">
+      <div class="title">NORIA HORIZON <span>· Espace Continuum</span></div>
+      <div class="actions">
+        <a class="back" href="index.html">← Retour au site</a>
+        <div class="bell-wrap">
+          <button class="bell" type="button" id="bell" aria-label="Notifications" aria-expanded="false" aria-controls="notifPanel">🔔<span class="dot" id="bellDot" hidden></span></button>
+          <div class="notif-panel" id="notifPanel" role="dialog" aria-label="Notifications" hidden>
+            <div class="notif-head"><strong>Notifications</strong><button type="button" class="notif-close" id="notifClose" aria-label="Fermer">×</button></div>
+            <form class="notif-form" id="notifForm" novalidate>
+              <p>Recevez un message quand il y a du nouveau dans l'espace Continuum.</p>
+              <input type="email" id="notifEmail" placeholder="Votre adresse e-mail" autocomplete="email" required>
+              <label><input type="checkbox" id="notifConsent" required> <span>J'accepte de recevoir ces messages. Désinscription possible à tout moment.</span></label>
+              <button class="btn copper block" type="submit" id="notifBtn">Activer les notifications</button>
+              <div class="status" id="notifStatus" role="status"></div>
+            </form>
+            <div id="notifList"></div>
+          </div>
+        </div>
+        <button class="avatar" type="button" id="avatar" title="Changer ma photo" aria-label="Changer ma photo">NH</button>
+        <input type="file" id="avatarFile" accept="image/*" hidden>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <!-- Accès (maquette : le vrai contrôle d'accès viendra ensuite) -->
+      <section id="gate" class="gate">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--deep);">Espace <span style="color:var(--copper)">Continuum</span></p>
+        <p style="color:var(--stone);font-size:.9rem;margin-top:6px;">Saisissez votre code d'accès personnel.</p>
+        <input type="password" id="code" inputmode="numeric" autocomplete="off" aria-label="Code d'accès">
+        <button class="btn block" id="codeBtn" type="button">Accéder</button>
+        <p class="err" id="codeErr"></p>
+      </section>
+
+      <!-- Contenu membres -->
+      <div id="espace">
+
+        <section class="hero" id="accueil">
+          <div class="hero-txt">
+            <h1>Bienvenue dans votre<br><span>espace Continuum</span></h1>
+            <p class="tagline">Le bon regard, au bon moment.</p>
+            <div class="rule"></div>
+            <p class="intro">Votre espace membre vous donne accès à des temps d'échange avec des experts, des ressources concrètes et un appui ponctuel pour avancer dans vos enjeux professionnels.</p>
+          </div>
+          <aside class="hero-aide">
+            <span class="qmark" aria-hidden="true">?</span>
+            <p>Vous ne savez pas par où commencer ?</p>
+            <a class="btn copper" href="mailto:noriahorizoncontacts@gmail.com?subject=Question%20sur%20mon%20espace%20Continuum" target="_blank" rel="noopener">Contactez-nous</a>
+          </aside>
+        </section>
+
+        <!-- Quatre raccourcis -->
+        <div class="tiles">
+          <div class="tile" style="--i:0">
+            <span class="t-ico">▦</span>
+            <h3>Sessions Horizon</h3>
+            <p>Des rendez-vous experts sur des sujets clés.</p>
+            <a class="btn" href="#sessions">Voir les sessions →</a>
+          </div>
+          <div class="tile" style="--i:1">
+            <span class="t-ico">◌</span>
+            <h3>Cercles NORIA</h3>
+            <p>Des échanges entre pairs pour prendre du recul et s'enrichir.</p>
+            <a class="btn" href="#cercles">Rejoindre un cercle →</a>
+          </div>
+          <div class="tile" style="--i:2">
+            <span class="t-ico">✎</span>
+            <h3>Ask NORIA</h3>
+            <p>Une question, un enjeu, un regard expert rapide.</p>
+            <button class="btn" type="button" data-open="ask" data-title="Ask NORIA" data-type="Ask NORIA">Poser ma question →</button>
+          </div>
+          <div class="tile" style="--i:3">
+            <span class="t-ico">≋</span>
+            <h3>Ressources</h3>
+            <p>Outils, guides et fiches pratiques, directement mobilisables.</p>
+            <a class="btn" href="#ressources">Explorer les ressources →</a>
+          </div>
+        </div>
+
+        <div class="cols">
+
+          <!-- Colonne principale -->
+          <div>
+            <section class="panel" id="sessions">
+              <div class="panel-head"><h2>Prochaines Sessions Horizon</h2></div>
+              <p class="sub">Un expert, un sujet concret, entre 75 et 90 minutes.</p>
+              <div class="carou" id="sessions-carou" aria-live="polite"></div>
+            </section>
+
+            <section class="panel" id="cercles">
+              <div class="panel-head"><h2>Cercles NORIA</h2></div>
+              <p class="sub">Un temps collectif de 60 minutes, animé pour faire émerger des pistes utiles.</p>
+              <div class="carou" id="cercles-carou" aria-live="polite"></div>
+            </section>
+
+            <section class="panel" id="une-section">
+              <div class="panel-head"><h2>Ressource à la une</h2></div>
+              <div id="une"></div>
+            </section>
+
+            <section class="panel" id="ressources">
+              <div class="panel-head"><h2>Ressources</h2></div>
+              <p class="sub">Classées par domaine. Ouvrez un domaine pour voir ses vidéos, documents et supports.</p>
+              <div id="ressources-liste"></div>
+            </section>
+          </div>
+
+          <!-- Colonne latérale -->
+          <div>
+            <section class="panel gem" id="ask" style="border:0;">
+              <img class="gem-band" src="espace-img-ask.jpg" alt="">
+              <h2>Ask NORIA</h2>
+              <p class="lead">Une question professionnelle ? Posez-la à NORIA.</p>
+              <p class="meta">Réponse sous 24 à 48 h ouvrées selon votre formule.</p>
+              <button class="btn block" type="button" data-open="ask" data-title="Ask NORIA" data-type="Ask NORIA">Poser ma question</button>
+            </section>
+
+            <section class="panel" id="abonnement">
+              <div class="panel-head"><h2>Mon abonnement</h2></div>
+              <p class="plan-name">Continuum <span class="badge">Actif</span></p>
+              <ul class="plan-list">
+                <li>Accès aux Sessions Horizon</li>
+                <li>Accès aux Cercles NORIA</li>
+                <li>Ask NORIA : 1 question par mois</li>
+                <li>Accès aux ressources</li>
+              </ul>
+              <button class="btn ghost block" type="button" id="btnPortail">Gérer mon abonnement</button>
+            </section>
+
+            <section class="panel plus">
+              <div class="panel-head"><h2>Besoin d'aller plus loin ?</h2></div>
+              <p class="sub" style="margin-top:-4px;">Découvrez les autres portes de l'écosystème NORIA, selon vos besoins.</p>
+              <a href="index.html#tunnel"><div><strong>Instant Horizon</strong><span>Un regard expert, à la demande.</span></div><i>›</i></a>
+              <a href="index.html#prisme"><div><strong>Prisme</strong><span>Diagnostics et solutions ciblées.</span></div><i>›</i></a>
+              <a href="index.html#services"><div><strong>Accompagnements NORIA</strong><span>Des parcours sur mesure, pour vous et vos équipes.</span></div><i>›</i></a>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Pied de page : écosystème NORIA -->
+    <footer class="foot">
+      <div>
+        <p class="eco-title">L'écosystème NORIA</p>
+        <div class="links">
+          <a href="index.html#tunnel">Instant Horizon</a>
+          <a href="index.html#prisme">Prisme</a>
+          <a href="index.html#services">Accompagnements NORIA</a>
+          <a href="index.html#contact">Aide &amp; contact</a>
+        </div>
+      </div>
+      <div class="soc">
+        <a href="#" data-soon="Lien LinkedIn à renseigner" aria-label="LinkedIn">in</a>
+        <a href="#" data-soon="Lien YouTube à renseigner" aria-label="YouTube">▶</a>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- Fenêtre d'inscription / de question -->
+<div class="overlay" id="overlay">
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlgTitle">
+    <button class="close" type="button" id="dlgClose" aria-label="Fermer">×</button>
+    <h3 id="dlgTitle"></h3>
+    <p class="sub" id="dlgSub"></p>
+    <form id="dlgForm" novalidate>
+      <div class="row2">
+        <div><label for="f_prenom">Prénom</label><input id="f_prenom" name="PRENOM" required></div>
+        <div><label for="f_nom">Nom</label><input id="f_nom" name="NOM" required></div>
+      </div>
+      <label for="f_email">E-mail</label>
+      <input id="f_email" name="EMAIL" type="email" required>
+      <label for="f_message" id="lblMessage">Message</label>
+      <textarea id="f_message" name="MESSAGE"></textarea>
+      <div id="fContinuumWrap" hidden>
+        <label for="f_continuum">Type de Continuum</label>
+        <select id="f_continuum" name="TYPE_CONTINUUM">
+          <option value="">Choisir…</option>
+          <option>Pionniers</option>
+          <option>Individuel · mensuel</option>
+          <option>Individuel · annuel</option>
+          <option>Entreprise 5 personnes · mensuel</option>
+          <option>Entreprise 5 personnes · annuel</option>
+          <option>Entreprise 10 personnes · mensuel</option>
+          <option>Entreprise 10 personnes · annuel</option>
+          <option>Pilote</option>
+        </select>
+      </div>
+      <label class="consent"><input type="checkbox" id="f_consent"> <span>J'accepte que NORIA HORIZON utilise mes données pour répondre à ma demande.</span></label>
+      <p class="status" id="dlgStatus" role="status"></p>
+      <div class="dlg-foot"><button class="btn block" type="submit" id="dlgBtn" style="margin-top:12px;">Envoyer</button></div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="espace-contenu.js"></script>
+<script>
+/* ===== À RENSEIGNER =====
+   PORTAIL_URL : lien Stripe du portail client (gérer l'abonnement).
+   Tant qu'il est vide, le bouton reste indiqué « Bientôt disponible ». */
+var CODE_MAQUETTE = '1234';
+var PORTAIL_URL = 'https://billing.stripe.com/p/login/cNi5kE8yb8Va03aaj9gjC00';
+/* Formulaire Brevo « Noria – Ask NORIA » (compte Noria). Vide = la question part par la messagerie. */
+var BREVO_ASK = 'https://2b2aa488.sibforms.com/serve/MUIFAB5HO2RLeqel8S7eeF7YHm0qDBG4V6jYVAKWOu-cPGP-jG0NCGC90z2OS83J9kHT7J9826brgMbmqYfXjGQypDDqGZQiO0VlJZOn43AssPltTzNvsiFACarWAJmF7boEk7YXtZrB2plFDgotw1hsy17OJSCBNOmQ0VGyVXB2xCstrvSBCA99EIA4ZzWXJjo5F-1CIb8ksz1wHA==';
+var BREVO_DEMANDES = 'https://2b2aa488.sibforms.com/serve/MUIFALwIDAFp93krYc9zvL9dEN8l0-h4hgXVP45scAvJ0OiCM3LPXwVtGE4q-lcRrh-Rrz50k1AsFY9oMmLjC6NxJPWd-QSbSKSR01DBjEvu4O4ahBKmuvW73Oe9Huooh27tYECrplWe7YSEX_wvqj0VA6qNLbPQM1QXhvfp9YhuIC5WqdHqQPxumc1LeHIvVqRxsR6dpd9d0ABY3A==';
+
+/* ===== Petites aides ===== */
+function toast(msg){
+  var t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toast._t); toast._t = setTimeout(function(){ t.classList.remove('show'); }, 2600);
+}
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+var REDUIT = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Boutons « bientôt disponible » */
+document.addEventListener('click', function(e){
+  var el = e.target.closest('[data-soon]');
+  if(el){ e.preventDefault(); toast(el.getAttribute('data-soon')); }
+});
+
+/* Notifications : inscription Brevo, cloche qui brille tant que la personne n'est pas inscrite */
+(function(){
+  var KEY = 'continuum_notif_ok';
+  var bell = document.getElementById('bell'), panel = document.getElementById('notifPanel'), list = document.getElementById('notifList'), dot = document.getElementById('bellDot');
+  var form = document.getElementById('notifForm'), st = document.getElementById('notifStatus'), btn = document.getElementById('notifBtn');
+  var items = ((window.ESPACE_CONTENU && window.ESPACE_CONTENU.notifications) || []).slice();
+  function inscrit(){ try{ return localStorage.getItem(KEY) === '1'; }catch(e){ return false; } }
+  function vues(){ try{ return parseInt(sessionStorage.getItem('continuum_notif_vues') || '0', 10) || 0; }catch(e){ return 0; } }
+  function marquerVues(){ try{ sessionStorage.setItem('continuum_notif_vues', String(items.length)); }catch(e){} }
+  function fermer(){ panel.hidden = true; bell.setAttribute('aria-expanded', 'false'); }
+  function majInscription(){
+    if(inscrit()){ form.hidden = true; bell.classList.remove('glow'); }
+    else { form.hidden = false; bell.classList.add('glow'); }
+  }
+  if(!items.length){ list.innerHTML = '<p class="notif-empty">Aucune notification pour le moment.</p>'; }
+  items.forEach(function(n){
+    var d = document.createElement('div'); d.className = 'notif-item';
+    d.innerHTML = '<b>' + esc(n.titre) + '</b>' + (n.texte ? '<span>' + esc(n.texte) + '</span>' : '') +
+      (n.date ? '<br><small>' + esc(n.date) + '</small>' : '') +
+      (n.url ? '<br><a href="' + esc(n.url) + '">Voir →</a>' : '');
+    list.appendChild(d);
+  });
+  if(items.length > vues()) dot.hidden = false;
+  majInscription();
+  bell.addEventListener('click', function(e){
+    e.stopPropagation();
+    var ouvrir = panel.hidden;
+    panel.hidden = !ouvrir; bell.setAttribute('aria-expanded', String(ouvrir));
+    if(ouvrir){ dot.hidden = true; marquerVues(); }
+  });
+  document.getElementById('notifClose').addEventListener('click', fermer);
+  document.addEventListener('click', function(e){ if(!panel.hidden && !e.target.closest('.bell-wrap')) fermer(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') fermer(); });
+  panel.addEventListener('click', function(e){ e.stopPropagation(); });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var em = document.getElementById('notifEmail').value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ st.className = 'status err'; st.textContent = 'Merci de saisir une adresse e-mail valide.'; return; }
+    if(!document.getElementById('notifConsent').checked){ st.className = 'status err'; st.textContent = 'Merci de cocher la case de consentement.'; return; }
+    var data = new URLSearchParams();
+    data.append('EMAIL', em); data.append('TYPE_DEMANDE', 'Notifications nouveautés');
+    data.append('email_address_check', ''); data.append('locale', 'fr'); data.append('html_type', 'simple');
+    btn.disabled = true; btn.textContent = 'Envoi en cours…';
+    fetch(BREVO_DEMANDES, {method:'POST', mode:'no-cors', body:data})
+      .then(function(){
+        try{ localStorage.setItem(KEY, '1'); }catch(err){}
+        st.className = 'status'; st.textContent = 'Merci ! Vous serez prévenu(e) des nouveautés.';
+        btn.textContent = 'Activé ✓';
+        majInscription();
+      })
+      .catch(function(){
+        st.className = 'status err'; st.textContent = "L'activation n'a pas abouti. Réessayez plus tard.";
+        btn.disabled = false; btn.textContent = 'Activer les notifications';
+      });
+  });
+})();
+
+/* Photo de profil : enregistrée sur cet appareil uniquement (redimensionnée) */
+(function(){
+  var KEY = 'continuum_avatar';
+  var av = document.getElementById('avatar'), input = document.getElementById('avatarFile');
+  function afficher(url){
+    av.innerHTML = '';
+    if(url){ var img = new Image(); img.alt = 'Ma photo'; img.src = url; av.appendChild(img); }
+    else { av.textContent = 'NH'; }
+  }
+  try{ afficher(localStorage.getItem(KEY)); }catch(e){ afficher(null); }
+  av.addEventListener('click', function(){ input.click(); });
+  input.addEventListener('change', function(){
+    var f = input.files && input.files[0];
+    if(!f) return;
+    if(!/^image\//.test(f.type)){ toast('Merci de choisir une image.'); return; }
+    var r = new FileReader();
+    r.onload = function(){
+      var im = new Image();
+      im.onload = function(){
+        var max = 160, k = Math.min(1, max / Math.max(im.width, im.height));
+        var c = document.createElement('canvas');
+        c.width = Math.round(im.width * k); c.height = Math.round(im.height * k);
+        c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
+        var url = c.toDataURL('image/jpeg', 0.85);
+        try{ localStorage.setItem(KEY, url); afficher(url); toast('Photo mise à jour sur cet appareil.'); }
+        catch(e){ toast("Impossible d'enregistrer la photo sur cet appareil."); }
+      };
+      im.src = r.result;
+    };
+    r.readAsDataURL(f);
+    input.value = '';
+  });
+})();
+
+/* Portail d'abonnement */
+(function(){
+  var b = document.getElementById('btnPortail');
+  if(PORTAIL_URL){
+    b.addEventListener('click', function(){ window.open(PORTAIL_URL, '_blank', 'noopener'); });
+    // Le lien « Mon abonnement » du menu latéral va au même endroit
+    var lien = document.querySelector('.side nav a[href="#abonnement"]');
+    if(lien){ lien.href = PORTAIL_URL; lien.target = '_blank'; lien.rel = 'noopener'; }
+  }
+  else { b.classList.add('soon'); b.setAttribute('data-soon', 'Gestion de l\'abonnement bientôt disponible'); }
+})();
+
+/* ===== Défilement : une carte à la fois, boucle, départ sur le mois suivant ===== */
+var MOIS = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+function moisSuivant(){
+  var d = new Date();
+  var n = new Date(d.getFullYear(), d.getMonth() + 1, 1);
+  return (MOIS[n.getMonth()] + ' ' + n.getFullYear());
+}
+function moisDe(it){
+  var m = it.mois || String(it.titre || '').split(' · ').pop();
+  return String(m).trim().toLowerCase();
+}
+function carrousel(el, items, rendre, duree){
+  el.innerHTML = '';
+  if(!items.length){ el.innerHTML = '<p class="notif-empty">Les prochaines dates seront publiées ici.</p>'; return; }
+  var cible = 0, cle = moisSuivant().toLowerCase();
+  for(var k = 0; k < items.length; k++){ if(moisDe(items[k]) === cle){ cible = k; break; } }
+  var ordre = items.slice(cible).concat(items.slice(0, cible));
+  var N = ordre.length, K = Math.min(3, N), GAP = 14;
+  var vue = document.createElement('div'); vue.className = 'carou-vue';
+  var piste = document.createElement('div'); piste.className = 'carou-track';
+  var cartes = ordre.map(function(it, k){
+    var s = document.createElement('div'); s.className = 'slide'; s.innerHTML = rendre(it, k); piste.appendChild(s); return s;
+  });
+  // Copies du début à la fin : la liste repart sans saut quand elle arrive au bout
+  var copies = [];
+  for(var c = 0; c < K; c++){
+    var cp = document.createElement('div'); cp.className = 'slide'; cp.setAttribute('aria-hidden', 'true'); cp.innerHTML = rendre(ordre[c], c);
+    piste.appendChild(cp); copies.push(cp);
+  }
+  vue.appendChild(piste); el.appendChild(vue);
+
+  var nav = document.createElement('div'); nav.className = 'carou-nav';
+  var prev = document.createElement('button'); prev.type = 'button'; prev.className = 'carou-btn'; prev.setAttribute('aria-label', 'Précédent'); prev.textContent = '▲';
+  var next = document.createElement('button'); next.type = 'button'; next.className = 'carou-btn'; next.setAttribute('aria-label', 'Suivant'); next.textContent = '▼';
+  var dots = document.createElement('div'); dots.className = 'dots';
+  cartes.forEach(function(_, j){
+    var d = document.createElement('button'); d.type = 'button'; d.className = 'dot-btn'; d.setAttribute('aria-label', 'Aller à l\'élément ' + (j + 1));
+    dots.appendChild(d);
+  });
+  nav.appendChild(prev); nav.appendChild(dots); nav.appendChild(next); el.appendChild(nav);
+  var dotEls = dots.children, i = 0, timer = null, repos = null, enPause = false, x0 = null, pas = 0;
+  var mobile = window.matchMedia('(max-width:560px)');
+  function visibles(){ return mobile.matches ? 1 : K; }
+  function mesurer(){
+    var h = 0;
+    cartes.concat(copies).forEach(function(s){ s.style.height = 'auto'; });
+    cartes.forEach(function(s){ h = Math.max(h, s.offsetHeight); });
+    cartes.concat(copies).forEach(function(s){ s.style.height = h + 'px'; });
+    pas = h + GAP;
+    var v = visibles();
+    vue.style.height = (v * h + (v - 1) * GAP) + 'px';
+  }
+  // Déplacement vers la position n (0 à N ; N = copie de la première carte)
+  function aller(n, animer){
+    piste.style.transition = (animer && !REDUIT) ? 'transform .9s cubic-bezier(.45,0,.55,1)' : 'none';
+    piste.style.transform = 'translateY(' + (-n * pas) + 'px)';
+    var r = i % N;
+    Array.prototype.forEach.call(dotEls, function(d, j){ d.classList.toggle('on', j === ((n % N) + N) % N); });
+    i = n;
+  }
+  piste.addEventListener('transitionend', function(e){
+    if(e.target !== piste || e.propertyName !== 'transform') return;
+    if(i >= N){ aller(i - N, false); }
+  });
+  function avancer(dir){
+    if(dir > 0){ aller(i + 1, true); }
+    else {
+      if(i === 0){ aller(N, false); piste.offsetHeight; }
+      aller(i - 1, true);
+    }
+  }
+  function auto(){
+    if(enPause){ timer = setTimeout(auto, 500); return; }
+    avancer(1);
+    timer = setTimeout(auto, duree(cartes[i % N]));
+  }
+  // Action de la personne : la liste bouge tout de suite, le défilement reprend après 10 s sans action
+  function manuel(fn){
+    fn();
+    clearTimeout(timer); clearTimeout(repos);
+    repos = setTimeout(function(){ clearTimeout(timer); timer = setTimeout(auto, duree(cartes[i % N])); }, 10000);
+  }
+  prev.addEventListener('click', function(){ manuel(function(){ avancer(-1); }); });
+  next.addEventListener('click', function(){ manuel(function(){ avancer(1); }); });
+  Array.prototype.forEach.call(dotEls, function(d, j){ d.addEventListener('click', function(){ manuel(function(){ aller(j, true); }); }); });
+  el.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowDown' || e.key === 'ArrowRight'){ e.preventDefault(); manuel(function(){ avancer(1); }); }
+    if(e.key === 'ArrowUp' || e.key === 'ArrowLeft'){ e.preventDefault(); manuel(function(){ avancer(-1); }); }
+  });
+  el.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive: true});
+  el.addEventListener('touchend', function(e){
+    if(x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if(Math.abs(dx) > 40) manuel(function(){ avancer(dx < 0 ? 1 : -1); });
+  }, {passive: true});
+  if(mobile.addEventListener){ mobile.addEventListener('change', function(){ mesurer(); aller(i % N, false); }); }
+
+  mesurer();
+  aller(0, false);
+  if(N <= visibles()){ nav.hidden = true; return; }
+  if(REDUIT) return;
+  timer = setTimeout(auto, duree(cartes[0]));
+  el.addEventListener('mouseenter', function(){ enPause = true; });
+  el.addEventListener('mouseleave', function(){ enPause = false; });
+  // Mesure à chaque changement de taille, y compris quand l'espace devient visible après le code d'accès
+  if(window.ResizeObserver){ new ResizeObserver(function(){ mesurer(); aller(i % N, false); }).observe(vue); }
+  else { window.addEventListener('resize', function(){ mesurer(); aller(i % N, false); }); }
+}
+
+/* ===== Rendu du contenu depuis espace-contenu.js ===== */
+(function(){
+  var C = (window.ESPACE_CONTENU || { sessions: [], cercles: [], ressources: [] });
+
+  // Sessions : 5 s par carte
+  var IMG_SESSION = ['espace-img-session-1.png', 'espace-img-session-2.png'];
+  carrousel(document.getElementById('sessions-carou'), C.sessions || [], function(s, k){
+    return '<div class="item"><img class="thumb" src="' + IMG_SESSION[k % IMG_SESSION.length] + '" alt=""><div class="txt"><h3>' + esc(s.titre) + '</h3><p class="meta">' + esc(s.detail) + '</p></div>' +
+      '<button class="btn" type="button" data-open="session" data-title="' + esc(s.titre) + '" data-type="' + esc(s.titre) + '">Réserver ma place</button></div>';
+  }, function(){ return 5000; });
+
+  // Cercles : 8 s par carte (plus de texte à lire)
+  carrousel(document.getElementById('cercles-carou'), C.cercles || [], function(c){
+    return '<div class="item"><img class="thumb" src="espace-img-cercle.png" alt=""><div class="txt"><span class="badge">' + esc(c.mois || '') + '</span><h3 style="margin-top:8px;">' + esc(c.titre) + '</h3><p class="meta">' + esc(c.detail) + '</p></div>' +
+      '<button class="btn copper" type="button" data-open="cercle" data-title="Cercle NORIA · ' + esc(c.titre) + '" data-type="Cercle NORIA – ' + esc(c.titre) + '">Rejoindre le cercle</button></div>';
+  }, function(){ return 8000; });
+
+  // Ressource à la une (choisie à la main dans espace-contenu.js)
+  var u = C.une, une = document.getElementById('une');
+  if(u && u.titre){
+    une.innerHTML = '<div class="une-card"><img class="thumb" src="' + esc(u.image || 'espace-img-res-1.png') + '" alt=""><div style="flex:1;min-width:220px;"><span class="badge">' + esc(u.type || 'Ressource') + '</span>' +
+      '<h3>' + esc(u.titre) + '</h3>' + (u.description ? '<p>' + esc(u.description) + '</p>' : '') + '</div>' +
+      (u.url ? '<a class="btn copper" href="' + esc(u.url) + '" target="_blank" rel="noopener">Ouvrir</a>' :
+        '<button class="btn soon" type="button" data-soon="Lien à renseigner">Bientôt disponible</button>') + '</div>';
+  } else {
+    une.innerHTML = '<div class="une-card"><img class="thumb" src="espace-img-res-1.png" alt=""><div style="flex:1;min-width:220px;"><h3>Ressource à venir</h3>' +
+      '<p>La ressource mise en avant apparaîtra ici.</p></div>' +
+      '<button class="btn soon" type="button" data-soon="Pas encore de ressource à la une">Bientôt disponible</button></div>';
+  }
+
+  // Liste des domaines, en menu déroulant
+  function videos(liste){
+    if(!liste || !liste.length) return 'À venir';
+    var c = liste.filter(function(x){ return x.duree !== 'long'; });
+    var l = liste.filter(function(x){ return x.duree === 'long'; });
+    var out = [];
+    if(c.length) out.push('<em>Courtes</em><br>' + bloc(c));
+    if(l.length) out.push('<em>Longues</em><br>' + bloc(l));
+    return out.join('<br>');
+  }
+  function bloc(liste){
+    if(!liste || !liste.length) return 'À venir';
+    return liste.map(function(x){
+      return x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.titre) + '</a>' : esc(x.titre);
+    }).join('<br>');
+  }
+  var list = document.getElementById('ressources-liste');
+  var IMG_RES = ['espace-img-res-1.png', 'espace-img-res-2.png', 'espace-img-res-3.png', 'espace-img-res-4.png'];
+  (C.ressources || []).forEach(function(r, k){
+    var d = document.createElement('details'); d.className = 'cat';
+    d.innerHTML = '<summary><img class="sum-img" src="' + IMG_RES[k % IMG_RES.length] + '" alt="">' + esc(r.categorie) + '</summary><div class="res">' +
+      '<div><b>Vidéos</b>' + videos(r.videos) + '</div><div><b>Documents</b>' + bloc(r.documents) + '</div><div><b>Supports</b>' + bloc(r.supports) + '</div></div>';
+    list.appendChild(d);
+  });
+})();
+
+/* ===== Accès (maquette) — mémorisé pour la session du navigateur ===== */
+function showEspace(){ document.getElementById('gate').style.display='none'; document.getElementById('espace').style.display='block'; }
+(function(){
+  var ok = false; try{ ok = sessionStorage.getItem('continuum_ok') === '1'; }catch(e){}
+  if(ok) showEspace();
+})();
+document.getElementById('codeBtn').addEventListener('click', function(){
+  var v = document.getElementById('code').value.trim();
+  if(v === CODE_MAQUETTE){ try{ sessionStorage.setItem('continuum_ok', '1'); }catch(e){} showEspace(); }
+  else { document.getElementById('codeErr').textContent = 'Code incorrect.'; }
+});
+document.getElementById('code').addEventListener('keydown', function(e){ if(e.key === 'Enter') document.getElementById('codeBtn').click(); });
+
+/* ===== Fenêtres d'inscription / question ===== */
+var overlay = document.getElementById('overlay');
+var dlgType = '';
+document.addEventListener('click', function(e){
+  var b = e.target.closest('[data-open]');
+  if(!b) return;
+  var kind = b.getAttribute('data-open');
+  dlgType = b.getAttribute('data-type');
+  document.getElementById('dlgTitle').textContent = b.getAttribute('data-title');
+  document.getElementById('dlgSub').textContent = kind === 'ask'
+    ? 'Décrivez votre situation en quelques lignes. Réponse sous 24 h ouvrées.'
+    : 'Laissez vos coordonnées, nous revenons vers vous pour confirmer votre place.';
+  document.getElementById('lblMessage').textContent = kind === 'ask' ? 'Votre question' : 'Message (facultatif)';
+  document.getElementById('f_message').required = (kind === 'ask');
+  var wrapC = document.getElementById('fContinuumWrap'), selC = document.getElementById('f_continuum');
+  wrapC.hidden = (kind !== 'ask'); selC.required = (kind === 'ask'); selC.value = '';
+  document.querySelector('.dialog').classList.toggle('compact', kind === 'ask');
+  document.getElementById('dlgStatus').textContent = '';
+  document.getElementById('dlgStatus').className = 'status';
+  document.getElementById('dlgBtn').disabled = false;
+  document.getElementById('dlgBtn').textContent = 'Envoyer';
+  overlay.classList.add('open');
+});
+function closeDlg(){ overlay.classList.remove('open'); }
+document.getElementById('dlgClose').addEventListener('click', closeDlg);
+overlay.addEventListener('click', function(e){ if(e.target === overlay) closeDlg(); });
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeDlg(); });
+
+document.getElementById('dlgForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var st = document.getElementById('dlgStatus'), btn = document.getElementById('dlgBtn');
+  var p = document.getElementById('f_prenom').value.trim(), n = document.getElementById('f_nom').value.trim();
+  var em = document.getElementById('f_email').value.trim(), msg = document.getElementById('f_message').value.trim();
+  var needMsg = document.getElementById('f_message').required;
+  if(!p || !n || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em) || (needMsg && !msg)){
+    st.className = 'status err'; st.textContent = 'Merci de compléter les champs demandés.'; return;
+  }
+  if(!document.getElementById('f_consent').checked){
+    st.className = 'status err'; st.textContent = 'Merci de cocher la case de consentement.'; return;
+  }
+  var selC = document.getElementById('f_continuum');
+  if(selC.required && !selC.value){ st.className = 'status err'; st.textContent = 'Merci de choisir votre type de Continuum.'; return; }
+  if(dlgType.indexOf('Ask') === 0 && !BREVO_ASK){
+    // Ask NORIA (solution de secours tant que BREVO_ASK est vide) : pas de Brevo, la question part par la messagerie de la personne vers la boîte Noria
+    var msgAsk = document.getElementById('f_message').value.trim();
+    var sujet = 'Ask NORIA – ' + selC.value + ' – ' + p + ' ' + n;
+    var corps = 'Prénom : ' + p + '\nNom : ' + n + '\nE-mail : ' + em + '\nType de Continuum : ' + selC.value + '\n\nQuestion :\n' + msgAsk;
+    st.className = 'status ok';
+    st.textContent = "Votre messagerie s'ouvre : envoyez le message pour que votre question nous parvienne. Si rien ne s'ouvre, écrivez-nous à noriahorizoncontacts@gmail.com.";
+    window.location.href = 'mailto:noriahorizoncontacts@gmail.com?subject=' + encodeURIComponent(sujet) + '&body=' + encodeURIComponent(corps);
+    return;
+  }
+  var data = new URLSearchParams();
+  data.append('PRENOM', p); data.append('NOM', n); data.append('EMAIL', em);
+  data.append('MESSAGE', msg); data.append('TYPE_DEMANDE', dlgType);
+  if(dlgType.indexOf('Ask') === 0){ data.append('TYPE_CONTINUUM', selC.value); }
+  data.append('email_address_check', ''); data.append('locale', 'fr'); data.append('html_type', 'simple');
+  btn.disabled = true; btn.textContent = 'Envoi en cours…';
+  fetch(dlgType.indexOf('Ask') === 0 ? BREVO_ASK : BREVO_DEMANDES, {method:'POST', mode:'no-cors', body:data})
+    .then(function(){
+      st.className = 'status ok';
+      st.textContent = dlgType.indexOf('Ask') === 0 ? 'Merci ! Votre question est bien envoyée. Réponse sous 24 h ouvrées.' : 'Merci ! Votre demande est bien envoyée. Nous revenons vers vous pour confirmer.';
+      btn.textContent = 'Envoyé ✓';
+      document.getElementById('dlgForm').reset();
+      if(dlgType.indexOf('Ask') === 0){ btn.disabled = true; setTimeout(closeDlg, 2200); }
+    })
+    .catch(function(){
+      st.className = 'status err'; st.textContent = "L'envoi n'a pas abouti. Réessayez, ou écrivez-nous à noriahorizoncontacts@gmail.com.";
+      btn.disabled = false; btn.textContent = 'Envoyer';
+    });
+});
+</script>
+</body>
+</html>
