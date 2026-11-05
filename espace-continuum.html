@@ -780,14 +780,20 @@ function carrousel(el, items, rendre, duree){
   // Sessions : 5 s par carte
   var IMG_SESSION = ['espace-img-session-1.png', 'espace-img-session-2.png'];
   carrousel(document.getElementById('sessions-carou'), C.sessions || [], function(s, k){
-    return '<div class="item"><img class="thumb" src="' + esc(s.image || IMG_SESSION[k % IMG_SESSION.length]) + '" alt=""><div class="txt"><h3>' + esc(s.titre) + '</h3><p class="meta">' + esc(s.detail) + '</p></div>' +
-      '<button class="btn" type="button" data-open="session" data-title="' + esc(s.titre) + '" data-type="' + esc(s.titre) + '">Réserver ma place</button></div>';
+    var bouton = s.expert
+      ? '<button class="btn" type="button" data-open="session" data-title="' + esc(s.titre) + '" data-type="' + esc(s.titre) + '">Réserver ma place</button>'
+      : '<button class="btn soon" type="button" data-soon="Date à venir">Bientôt disponible</button>';
+    return '<div class="item"><img class="thumb" src="' + esc(s.image || IMG_SESSION[k % IMG_SESSION.length]) + '" alt=""><div class="txt"><span class="badge">' + esc(s.mois || '') + '</span><h3 style="margin-top:8px;">' + esc(s.titre) + '</h3><p class="meta">' + esc(s.detail) + '</p>' +
+      (s.expert ? '<p class="meta"><b>' + esc(s.expert) + '</b></p>' : '') + '</div>' + bouton + '</div>';
   }, function(){ return 5000; });
 
   // Cercles : 8 s par carte (plus de texte à lire)
   carrousel(document.getElementById('cercles-carou'), C.cercles || [], function(c){
-    return '<div class="item"><img class="thumb" src="' + esc(c.image || 'espace-img-cercle.png') + '" alt=""><div class="txt"><span class="badge">' + esc(c.mois || '') + '</span><h3 style="margin-top:8px;">' + esc(c.titre) + '</h3><p class="meta">' + esc(c.detail) + '</p></div>' +
-      '<button class="btn copper" type="button" data-open="cercle" data-title="Cercle NORIA · ' + esc(c.titre) + '" data-type="Cercle NORIA – ' + esc(c.titre) + '">Rejoindre le cercle</button></div>';
+    var bouton = c.animateur
+      ? '<button class="btn copper" type="button" data-open="cercle" data-title="Cercle NORIA · ' + esc(c.titre) + '" data-type="Cercle NORIA – ' + esc(c.titre) + '">Rejoindre le cercle</button>'
+      : '<button class="btn soon" type="button" data-soon="Date à venir">Bientôt disponible</button>';
+    return '<div class="item"><img class="thumb" src="' + esc(c.image || 'espace-img-cercle.png') + '" alt=""><div class="txt"><span class="badge">' + esc(c.mois || '') + '</span><h3 style="margin-top:8px;">' + esc(c.titre) + '</h3><p class="meta">' + esc(c.detail) + '</p>' +
+      (c.animateur ? '<p class="meta"><b>Cercle NORIA · animé par ' + esc(c.animateur) + '</b></p>' : '') + '</div>' + bouton + '</div>';
   }, function(){ return 8000; });
 
   // Ressource à la une (choisie à la main dans espace-contenu.js)

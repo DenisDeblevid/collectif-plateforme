@@ -24,14 +24,20 @@
    ===================================================================== */
 var ESPACE_CONTENU = {
   sessions: [
-    { titre: 'Conversations difficiles', detail: 'Dire ce qui doit être dit, sans abîmer la relation.', mois: 'novembre 2026', image: 'Florian-Dhaussy.png' },
-    { titre: 'Priorités & charge mentale', detail: 'Quand tout semble urgent, retrouver de la clarté et reprendre la main sur l’essentiel.', mois: 'décembre 2026', image: 'Denis-Deblevid.png' },
-    { titre: 'IA au travail', detail: 'Gagner du temps sans perdre son expertise.', mois: 'janvier 2027', image: 'Florian-Dhaussy.png' }
+    { titre: 'Conversations difficiles', detail: 'Dire ce qui doit être dit, sans abîmer la relation.', mois: 'Novembre 2026', expert: 'Présentée par notre expert · Florian Dhaussy' },
+    { titre: 'Priorités & charge mentale', detail: 'Quand tout semble urgent, retrouver de la clarté et reprendre la main sur l’essentiel.', mois: 'Décembre 2026', expert: 'Présentée par votre expert · Denis Deblevid' },
+    { titre: 'IA au travail', detail: 'Gagner du temps sans perdre son expertise.', mois: 'Janvier 2027', expert: 'Présentée par votre expert · Denis Deblevid' },
+    { titre: 'À venir', detail: 'Thème et expert annoncés prochainement.', mois: 'Février 2027' },
+    { titre: 'À venir', detail: 'Thème et expert annoncés prochainement.', mois: 'Mars 2027' },
+    { titre: 'À venir', detail: 'Thème et expert annoncés prochainement.', mois: 'Avril 2027' }
   ],
   cercles: [
-    { titre: 'Sortir d’une situation bloquée', detail: 'Apporter une situation concrète qui n’avance plus et faire émerger de nouvelles pistes grâce au regard du groupe.', mois: 'Novembre 2026', image: 'Florian-Dhaussy.png' },
-    { titre: 'Faire le tri avant de repartir', detail: 'Prendre du recul ensemble sur ce qu’il faut continuer, arrêter ou faire évoluer avant la nouvelle année.', mois: 'Décembre 2026', image: 'Denis-Deblevid.png' },
-    { titre: 'Débloquer une décision importante', detail: 'Clarifier un choix, une hésitation ou une décision professionnelle grâce à l’intelligence collective.', mois: 'Janvier 2027', image: 'Florian-Dhaussy.png' }
+    { titre: 'Sortir d’une situation bloquée', detail: 'Apporter une situation concrète qui n’avance plus et faire émerger de nouvelles pistes grâce au regard du groupe.', mois: 'Novembre 2026', animateur: 'Denis Deblevid' },
+    { titre: 'Faire le tri avant de repartir', detail: 'Prendre du recul ensemble sur ce qu’il faut continuer, arrêter ou faire évoluer avant la nouvelle année.', mois: 'Décembre 2026', animateur: 'Florian Dhaussy' },
+    { titre: 'Débloquer une décision importante', detail: 'Clarifier un choix, une hésitation ou une décision professionnelle grâce à l’intelligence collective.', mois: 'Janvier 2027', animateur: 'Denis Deblevid' },
+    { titre: 'À venir', detail: 'Thème annoncé prochainement.', mois: 'Février 2027' },
+    { titre: 'À venir', detail: 'Thème annoncé prochainement.', mois: 'Mars 2027' },
+    { titre: 'À venir', detail: 'Thème annoncé prochainement.', mois: 'Avril 2027' }
   ],
   // Ressource mise en avant : à choisir à la main, ou null
   une: null,
