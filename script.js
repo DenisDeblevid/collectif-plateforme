@@ -32,7 +32,19 @@ const experts = {
       "Retrouvez aussi toutes ses compétences et ses relations sur LinkedIn.",
       "<a class=\"modal-site-link\" href=\"https://www.linkedin.com/in/denisdeblevid\" target=\"_blank\" rel=\"noopener\">🔗 Profil LinkedIn</a><br><a class=\"modal-site-link\" href=\"https://denis-deblevid.fr\" target=\"_blank\" rel=\"noopener\">🌐 denis-deblevid.fr</a>"
     ],
-    tags:['Stoïcisme','Méthode 4P','Sens','Résilience','Survie','Self-défense','Préparation physique','Préparation mentale','Accompagnement','Guidance']
+    tags:['Stoïcisme','Méthode 4P','Sens','Résilience','Survie','Self-défense','Préparation physique','Préparation mentale','Accompagnement','Guidance'],
+    offre:{
+      titre:'Boire à la source',
+      sousTitre:'Une journée d\'accompagnement philosophique',
+      accroche:'Une journée pour vous poser les bonnes questions, et trouver vos propres réponses.',
+      pourQui:'Toute personne qui veut clarifier une situation, une décision ou un changement, et réfléchir par elle-même.',
+      objectif:'Trouver vos propres réponses, grâce à des questions guidées. L\'accompagnant questionne et clarifie : il ne décide pas à votre place.',
+      deroule:'Le matin (9h–12h) : la situation qui vous occupe, ce qui dépend de vous, le bon moment et le petit pas. L\'après-midi (14h–17h) : l\'objectif et ses ressources, l\'exercice quotidien, puis le plan d\'action. Les outils : maïeutique, philosophie stoïcienne et coaching traditionnel.',
+      format:'Visio, en petit groupe, 20 places maximum. Lien de connexion envoyé par invitation.',
+      repartir:'Un plan d\'action écrit, un exercice à pratiquer chaque jour, et le programme détaillé.',
+      tarif:'350 € par personne',
+      pdf:'journee-boire-a-la-source.pdf'
+    }
   },
   emilie: {
     photo:'Emilie-Abraham.jpg',
@@ -662,7 +674,7 @@ function offreBanner(id){
       '<span class="offre-expert">' + e.name + '</span>' +
       '<span class="offre-role">' + e.role + '</span>' +
       '<span class="offre-propose">vous propose de tester…</span>' +
-      '<span class="offre-titre">Prochainement</span>' +
+      '<span class="offre-titre">' + (e.offre ? e.offre.titre : 'Prochainement') + '</span>' +
     '</span>' +
     '<span class="offre-cta">Découvrir →</span>';
   b.addEventListener('click', function(){ openOffre(id); });
@@ -724,31 +736,46 @@ function initOffres(){
 
 function openOffre(id){
   var e = experts[id]; if(!e) return;
+  var o = e.offre;
   var tags = (e.tags || []).map(function(t){ return '<span class="modal-tag">' + t + '</span>'; }).join('');
-  var trame = [
+  var lignes = o ? [
+    ['Pour qui', o.pourQui],
+    ['L\'objectif', o.objectif],
+    ['Le déroulé', o.deroule],
+    ['Format et durée', o.format],
+    ['Ce que vous repartez avec', o.repartir],
+    ['Tarif', o.tarif]
+  ] : [
     ['Pour qui', 'À compléter : le profil de la personne ou de l\'entreprise concernée.'],
     ['L\'objectif', 'À compléter : ce que la personne obtient à la fin.'],
     ['Le déroulé', 'À compléter : les étapes, dans l\'ordre.'],
     ['Format et durée', 'À compléter : en visio ou en présentiel, nombre de séances, durée.'],
     ['Ce que vous repartez avec', 'À compléter : supports, outils, suivi éventuel.'],
     ['Tarif', 'À compléter.']
-  ].map(function(r){
+  ];
+  var trame = lignes.map(function(r){
     return '<h4 class="offre-h">' + r[0] + '</h4><p class="modal-bio offre-trame">' + r[1] + '</p>';
   }).join('');
+  var pdf = (o && o.pdf) ? '<p class="modal-bio" style="margin-top:14px;"><a class="modal-site-link" href="' + o.pdf + '" download>📄 Télécharger le programme (PDF)</a></p>' : '';
+  var cta = o
+    ? '<a class="btn-copper-full" href="mailto:' + e.email + '?subject=' + encodeURIComponent(o.titre) + '">Demander une place</a>'
+    : '<button type="button" class="btn-copper-full" disabled>Acheter · bientôt disponible</button>';
+  var intro = o
+    ? '<p class="modal-bio">' + o.accroche + '</p>'
+    : '<p class="modal-bio">Cette offre est en préparation. Elle sera détaillée ici dès que l\'expert l\'aura complétée.</p>';
   document.getElementById('modalBody').innerHTML =
     '<div class="modal-header">' +
     '<div class="modal-photo" style="overflow:hidden;padding:0;">' + (e.photo ? '<img src="' + e.photo + '" alt="' + e.name + '" onerror="this.remove()" style="width:100%;height:100%;object-fit:cover;object-position:center top;">' : '') + '</div>' +
     '<div class="modal-info">' +
-    '<span class="offre-statut">Offre à venir</span>' +
+    '<span class="offre-statut">' + (o ? o.titre : 'Offre à venir') + '</span>' +
     '<h2>' + e.name + '</h2>' +
     '<span class="role-badge">' + e.role + '</span>' +
     '<div class="contact-links">' +
     (e.phone ? '<a href="tel:' + e.phone + '">📞 ' + e.phone + '</a>' : '') +
     (e.email ? '<a href="mailto:' + e.email + '">✉ ' + e.email + '</a>' : '') +
     '</div></div></div>' +
-    '<p class="modal-bio">Cette offre est en préparation. Elle sera détaillée ici dès que l\'expert l\'aura complétée.</p>' +
-    trame +
-    '<div style="margin:28px 0 8px;"><button type="button" class="btn-copper-full" disabled>Acheter · bientôt disponible</button></div>' +
+    intro + trame + pdf +
+    '<div style="margin:28px 0 8px;">' + cta + '</div>' +
     '<p class="modal-bio" style="margin-top:14px;"><a href="#" onclick="openModal(\'' + id + '\');return false;">Voir la fiche de l\'expert →</a></p>' +
     '<div class="modal-tags">' + tags + '</div>';
   document.getElementById('modalOverlay').classList.add('open');
