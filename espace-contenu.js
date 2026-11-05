@@ -71,7 +71,9 @@ var ESPACE_CONTENU = {
       { titre: 'Capsule 2', fichier: 'philosophie-capsule-2.mp4' },
       { titre: 'Capsule 3', fichier: 'philosophie-capsule-3.mp4' },
       { titre: 'Capsule 4', fichier: 'philosophie-capsule-4.mp4' }
-    ], supports: [], documents: [
+    ], supports: [
+      { titre: 'La dichotomie du contrôle', url: 'philosophie-dichotomie-du-controle.pdf' }
+    ], documents: [
       { titre: 'Renaître de la soif · guide de transformation intérieure', url: 'philosophie-booklet-renaitre-de-la-soif.pdf', vignette: 'philosophie-booklet-couverture.jpg' }
     ] },
     { categorie: 'Préparation physique & survie',            videos: [], documents: [], supports: [] }
