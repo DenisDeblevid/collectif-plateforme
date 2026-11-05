@@ -344,13 +344,6 @@ footer.foot .soc a{color:var(--sand);text-decoration:none;margin-left:14px;font-
           <button class="bell" type="button" id="bell" aria-label="Notifications" aria-expanded="false" aria-controls="notifPanel">🔔<span class="dot" id="bellDot" hidden></span></button>
           <div class="notif-panel" id="notifPanel" role="dialog" aria-label="Notifications" hidden>
             <div class="notif-head"><strong>Notifications</strong><button type="button" class="notif-close" id="notifClose" aria-label="Fermer">×</button></div>
-            <form class="notif-form" id="notifForm" novalidate>
-              <p>Recevez un message quand il y a du nouveau dans l'espace Continuum.</p>
-              <input type="email" id="notifEmail" placeholder="Votre adresse e-mail" autocomplete="email" required>
-              <label><input type="checkbox" id="notifConsent" required> <span>J'accepte de recevoir ces messages. Désinscription possible à tout moment.</span></label>
-              <button class="btn copper block" type="submit" id="notifBtn">Activer les notifications</button>
-              <div class="status" id="notifStatus" role="status"></div>
-            </form>
             <div id="notifList"></div>
           </div>
         </div>
@@ -561,20 +554,15 @@ document.addEventListener('click', function(e){
   if(el){ e.preventDefault(); toast(el.getAttribute('data-soon')); }
 });
 
-/* Notifications : inscription Brevo, cloche qui brille tant que la personne n'est pas inscrite */
+/* Notifications : cloche qui liste les nouveautés. Le point rouge apparaît seulement
+   s'il y a plus de nouveautés que lors de la dernière visite (mémorisé sur ce navigateur). */
 (function(){
-  var KEY = 'continuum_notif_ok';
+  var KEY = 'continuum_notif_vues';
   var bell = document.getElementById('bell'), panel = document.getElementById('notifPanel'), list = document.getElementById('notifList'), dot = document.getElementById('bellDot');
-  var form = document.getElementById('notifForm'), st = document.getElementById('notifStatus'), btn = document.getElementById('notifBtn');
   var items = ((window.ESPACE_CONTENU && window.ESPACE_CONTENU.notifications) || []).slice();
-  function inscrit(){ try{ return localStorage.getItem(KEY) === '1'; }catch(e){ return false; } }
-  function vues(){ try{ return parseInt(sessionStorage.getItem('continuum_notif_vues') || '0', 10) || 0; }catch(e){ return 0; } }
-  function marquerVues(){ try{ sessionStorage.setItem('continuum_notif_vues', String(items.length)); }catch(e){} }
+  function vues(){ try{ return parseInt(localStorage.getItem(KEY) || '0', 10) || 0; }catch(e){ return 0; } }
+  function marquerVues(){ try{ localStorage.setItem(KEY, String(items.length)); }catch(e){} }
   function fermer(){ panel.hidden = true; bell.setAttribute('aria-expanded', 'false'); }
-  function majInscription(){
-    if(inscrit()){ form.hidden = true; bell.classList.remove('glow'); }
-    else { form.hidden = false; bell.classList.add('glow'); }
-  }
   if(!items.length){ list.innerHTML = '<p class="notif-empty">Aucune notification pour le moment.</p>'; }
   items.forEach(function(n){
     var d = document.createElement('div'); d.className = 'notif-item';
@@ -584,7 +572,6 @@ document.addEventListener('click', function(e){
     list.appendChild(d);
   });
   if(items.length > vues()) dot.hidden = false;
-  majInscription();
   bell.addEventListener('click', function(e){
     e.stopPropagation();
     var ouvrir = panel.hidden;
@@ -595,28 +582,6 @@ document.addEventListener('click', function(e){
   document.addEventListener('click', function(e){ if(!panel.hidden && !e.target.closest('.bell-wrap')) fermer(); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') fermer(); });
   panel.addEventListener('click', function(e){ e.stopPropagation(); });
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    var em = document.getElementById('notifEmail').value.trim();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ st.className = 'status err'; st.textContent = 'Merci de saisir une adresse e-mail valide.'; return; }
-    if(!document.getElementById('notifConsent').checked){ st.className = 'status err'; st.textContent = 'Merci de cocher la case de consentement.'; return; }
-    var data = new URLSearchParams();
-    data.append('EMAIL', em); data.append('TYPE_DEMANDE', 'Notifications nouveautés');
-    data.append('email_address_check', ''); data.append('locale', 'fr'); data.append('html_type', 'simple');
-    btn.disabled = true; btn.textContent = 'Envoi en cours…';
-    fetch(BREVO_DEMANDES, {method:'POST', mode:'no-cors', body:data})
-      .then(function(){
-        try{ localStorage.setItem(KEY, '1'); }catch(err){}
-        st.className = 'status'; st.textContent = 'Merci ! Vous serez prévenu(e) des nouveautés.';
-        btn.textContent = 'Activé ✓';
-        majInscription();
-      })
-      .catch(function(){
-        st.className = 'status err'; st.textContent = "L'activation n'a pas abouti. Réessayez plus tard.";
-        btn.disabled = false; btn.textContent = 'Activer les notifications';
-      });
-  });
 })();
 
 /* Photo de profil : enregistrée sur cet appareil uniquement (redimensionnée) */
