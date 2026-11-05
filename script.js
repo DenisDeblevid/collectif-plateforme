@@ -42,7 +42,7 @@ const experts = {
       deroule:'Le matin (9h–12h) : la situation qui vous occupe, ce qui dépend de vous, le bon moment et le petit pas. L\'après-midi (14h–17h) : l\'objectif et ses ressources, l\'exercice quotidien, puis le plan d\'action. Les outils : maïeutique, philosophie stoïcienne et coaching traditionnel.',
       format:'Visio, en petit groupe, 20 places maximum. Lien de connexion envoyé par invitation.',
       repartir:'Un plan d\'action écrit, un exercice à pratiquer chaque jour, et le programme détaillé.',
-      tarif:'350 € par personne',
+      tarif:'350 € par personne. Prix en euros. TVA non applicable, art. 293 B du CGI.',
       pdf:'journee-boire-a-la-source.pdf'
     }
   },
@@ -657,7 +657,7 @@ var STRIPE_LIENS = {
 })();
 
 /* ═══ OFFRES DES EXPERTS — bandeau défilant en fondu au noir ═══ */
-var OFFRES_ORDRE = ['florian','denis','emilie','melanie','laurence','gilles','caroline','josselin','floriang','remi','melaniea','geoffrey'];
+var OFFRES_ORDRE = ['denis','florian','emilie','melanie','laurence','gilles','caroline','josselin','floriang','remi','melaniea','geoffrey'];
 var OFFRE_DUREE = 40000;
 var offreIndex = 0, offreTimer = null, offreHover = false;
 var offreReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -676,7 +676,7 @@ function offreBanner(id){
       '<span class="offre-propose">vous propose de tester…</span>' +
       '<span class="offre-titre">' + (e.offre ? e.offre.titre : 'Prochainement') + '</span>' +
     '</span>' +
-    '<span class="offre-cta">Découvrir →</span>';
+    '<span class="offre-cta">' + (e.offre ? 'Découvrir · ' + e.offre.titre : 'Découvrir →') + '</span>';
   b.addEventListener('click', function(){ openOffre(id); });
   return b;
 }
@@ -756,10 +756,13 @@ function openOffre(id){
   var trame = lignes.map(function(r){
     return '<h4 class="offre-h">' + r[0] + '</h4><p class="modal-bio offre-trame">' + r[1] + '</p>';
   }).join('');
-  var pdf = (o && o.pdf) ? '<p class="modal-bio" style="margin-top:14px;"><a class="modal-site-link" href="' + o.pdf + '" download>📄 Télécharger le programme (PDF)</a></p>' : '';
-  var cta = o
-    ? '<a class="btn-copper-full" href="mailto:' + e.email + '?subject=' + encodeURIComponent(o.titre) + '">Demander une place</a>'
-    : '<button type="button" class="btn-copper-full" disabled>Acheter · bientôt disponible</button>';
+  var pdf = (o && o.pdf) ? '<p class="modal-bio" style="margin-top:14px;"><a class="offre-btn" href="' + o.pdf + '" download>📄 Télécharger le programme (PDF)</a></p>' : '';
+  var cta = o ? '' : '<button type="button" class="btn-copper-full" disabled>Acheter · bientôt disponible</button>';
+  var contact = o
+    ? '<a class="btn-copper-full" href="mailto:' + e.email + '?subject=' + encodeURIComponent(o.titre) + '" target="_blank" rel="noopener">Demander une place</a>' +
+      '<p class="modal-bio" style="margin-top:14px;">Ou préférez-vous m\'appeler ?</p>' +
+      '<a class="offre-btn" href="tel:' + String(e.phone || '').replace(/\s/g, '') + '">📞 ' + e.phone + '</a>'
+    : '';
   var intro = o
     ? '<p class="modal-bio">' + o.accroche + '</p>'
     : '<p class="modal-bio">Cette offre est en préparation. Elle sera détaillée ici dès que l\'expert l\'aura complétée.</p>';
@@ -775,8 +778,8 @@ function openOffre(id){
     (e.email ? '<a href="mailto:' + e.email + '">✉ ' + e.email + '</a>' : '') +
     '</div></div></div>' +
     intro + trame + pdf +
-    '<div style="margin:28px 0 8px;">' + cta + '</div>' +
-    '<p class="modal-bio" style="margin-top:14px;"><a href="#" onclick="openModal(\'' + id + '\');return false;">Voir la fiche de l\'expert →</a></p>' +
+    '<div style="margin:28px 0 8px;">' + cta + contact + '</div>' +
+    '<p class="modal-bio" style="margin-top:14px;"><a class="offre-btn" href="#" onclick="openModal(\'' + id + '\');return false;">Voir la fiche de l\'expert →</a></p>' +
     '<div class="modal-tags">' + tags + '</div>';
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
