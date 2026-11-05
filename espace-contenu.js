@@ -66,7 +66,12 @@ var ESPACE_CONTENU = {
     ] },
     { categorie: 'Compétences psychosociales & coopération', videos: [], documents: [], supports: [] },
     { categorie: 'Développement de compétences',             videos: [], documents: [], supports: [] },
-    { categorie: 'Philosophie & développement personnel',   videos: [], supports: [], documents: [
+    { categorie: 'Philosophie & développement personnel',   videos: [
+      { titre: 'Capsule 1', fichier: 'philosophie-capsule-1.mp4' },
+      { titre: 'Capsule 2', fichier: 'philosophie-capsule-2.mp4' },
+      { titre: 'Capsule 3', fichier: 'philosophie-capsule-3.mp4' },
+      { titre: 'Capsule 4', fichier: 'philosophie-capsule-4.mp4' }
+    ], supports: [], documents: [
       { titre: 'Renaître de la soif · guide de transformation intérieure', url: 'philosophie-booklet-renaitre-de-la-soif.pdf', vignette: 'philosophie-booklet-couverture.jpg' }
     ] },
     { categorie: 'Préparation physique & survie',            videos: [], documents: [], supports: [] }

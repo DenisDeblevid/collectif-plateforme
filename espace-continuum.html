@@ -209,6 +209,9 @@ details.cat[open] summary::after{content:"−";}
 .dl{display:inline-block;margin:0 6px 4px 0;padding:6px 12px;border:1px solid var(--deep);border-radius:4px;color:var(--deep);text-decoration:none;font-size:.8rem;}
 .dl:hover{background:var(--deep);color:var(--white);}
 .dl.soon{border-style:dashed;border-color:rgba(111,133,144,.5);color:var(--stone);}
+.carte-video{margin-bottom:12px;}
+.carte-video video{display:block;width:100%;border-radius:4px;background:#000;}
+.carte-video b{display:block;font-size:.85rem;color:var(--deep);font-weight:500;margin-top:6px;}
 
 /* ---------- Accès ---------- */
 .gate{max-width:400px;margin:70px auto;background:var(--white);border:1px solid var(--line);padding:32px;border-radius:6px;text-align:center;}
@@ -815,9 +818,19 @@ function carrousel(el, items, rendre, duree){
     var c = liste.filter(function(x){ return x.duree !== 'long'; });
     var l = liste.filter(function(x){ return x.duree === 'long'; });
     var out = [];
-    if(c.length) out.push('<em>Courtes</em><br>' + bloc(c));
-    if(l.length) out.push('<em>Longues</em><br>' + bloc(l));
+    if(c.length) out.push('<em>Courtes</em><br>' + lecteurs(c));
+    if(l.length) out.push('<em>Longues</em><br>' + lecteurs(l));
     return out.join('<br>');
+  }
+  // Vidéos hébergées sur le site : lecteur intégré, chargé seulement au clic
+  function lecteurs(liste){
+    if(!liste || !liste.length) return 'À venir';
+    return liste.map(function(x){
+      if(x.fichier){
+        return '<div class="carte-video"><video controls preload="none" playsinline controlsList="nodownload" src="' + esc(x.fichier) + '"></video><b>' + esc(x.titre) + '</b></div>';
+      }
+      return x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.titre) + '</a>' : esc(x.titre);
+    }).join('');
   }
   function bloc(liste){
     if(!liste || !liste.length) return 'À venir';
