@@ -2374,10 +2374,34 @@ section#tarifs .tarifs-columns .wave-sep { margin-left:0 !important; }
   .offre-cta { white-space:normal; font-size:0.66rem; line-height:1.3; }
 }
 
-/* En-tête (téléphone) : « Élever » juste après « Horizon · », « les potentiels » dessous, aligné sur le É */
+/* En-tête (téléphone) : « Horizon » sous NORIA ; « Élever les potentiels » sur une seule ligne, poussée vers la droite */
 @media (max-width:900px){
-  .brand-sub { display:grid !important; grid-template-columns:auto 1fr; font-size:10px !important; letter-spacing:0.12em; line-height:1.35; }
-  .brand-sub .bs-h { grid-column:1; grid-row:1; }
-  .brand-sub .bs-e { grid-column:2; grid-row:1; }
-  .brand-sub .bs-p { grid-column:2; grid-row:2; }
+  .brand-sub { display:block !important; font-size:9px !important; letter-spacing:0.1em; line-height:1.4; white-space:nowrap; }
+  .brand-sub .bs-h { display:block; }
+  .brand-sub .bs-e { display:inline-block; padding-left:var(--bs-shift, 56px); }
+  .brand-sub .bs-p { display:inline; }
+}
+
+/* Héros (téléphone) : colonne contrainte à la largeur de l'écran, rien ne déborde à droite */
+@media (max-width:900px){
+  #hero .hero-layout { display:block; width:100%; max-width:100%; min-width:0; }
+  #hero .hero-content, #hero .hero-title, #hero .hero-sub, #hero .hero-promise, #hero .hero-buttons, #hero .hero-cta, #hero .hero-links {
+    width:100%; max-width:100%; min-width:0; box-sizing:border-box; margin-left:0; margin-right:0;
+  }
+  #hero .hero-title, #hero .hero-sub, #hero .hero-promise { overflow-wrap:break-word; }
+  #hero .hero-sub { max-width:100%; }
+  #hero .hero-btn.primary { min-width:0; width:100%; max-width:100%; padding:16px 18px; }
+  #hero .hero-links { display:flex; flex-wrap:wrap; justify-content:center; gap:6px 10px; }
+  #hero .hero-links span { margin:0; }
+}
+
+/* Boutons (téléphone) : pas de trait sous le texte ; retour visuel au toucher et au survol */
+@media (max-width:900px){
+  .btn-copper-full, .btn-copper-full:hover, .btn-copper-full:focus, .btn-copper-full:active { text-decoration:none; }
+  .btn-copper-full { transition:background-color .25s ease, transform .2s ease, box-shadow .25s ease; }
+  .btn-copper-full:active { background:#A2603F; transform:translateY(1px); box-shadow:inset 0 0 0 1px rgba(255,255,255,0.18); }
+  .hero-btn:active, .btn-ghost:active { transform:translateY(1px); }
+}
+@media (max-width:900px) and (hover:hover){
+  .btn-copper-full:hover { opacity:1; background:#A2603F; transform:translateY(-2px); box-shadow:0 8px 22px rgba(184,111,76,0.28); }
 }
