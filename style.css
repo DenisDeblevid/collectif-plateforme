@@ -2332,3 +2332,52 @@ section#tarifs .tarifs-columns .wave-sep { margin-left:0 !important; }
 @keyframes offreShine{0%{left:-80%}60%,100%{left:130%}}
 @keyframes offreGlow{0%,100%{box-shadow:0 0 0 rgba(184,111,76,0)}50%{box-shadow:0 0 18px rgba(184,111,76,.55)}}
 @media (prefers-reduced-motion: reduce){ .offre-cta,.offre-cta::after{animation:none;} }
+
+/* ===== MOBILE UNIQUEMENT (corrections du 6 nov. 2026) — l'ordinateur n'est pas touché ===== */
+@media (max-width:900px){
+  /* Cercle vertueux : cartes plus compactes, « Élever » mise en avant */
+  .valeur-card { padding:18px 20px; }
+  .valeur-num { font-size:1.6rem; margin-bottom:6px; }
+  .valeur-card h3 { font-size:1rem; margin-bottom:4px; }
+  .valeur-card p { font-size:0.78rem; line-height:1.5; }
+  .valeur-card:nth-child(5) {
+    background:rgba(184,111,76,0.16);
+    border-top-color:var(--copper);
+    box-shadow:inset 0 0 0 1px rgba(184,111,76,0.55), 0 0 26px rgba(184,111,76,0.22);
+  }
+  .valeur-card:nth-child(5) h3 { color:var(--copper); }
+  .valeur-card:nth-child(5) .valeur-num { opacity:0.8; }
+
+  /* Équipe : cartes identiques, lignes alignées d'une carte à l'autre */
+  .team-info { padding:16px 14px 18px; }
+  .team-role { min-height:7.5em !important; line-height:1.5; font-size:0.7rem; margin-bottom:8px; }
+  .team-location, .team-location.locatable {
+    display:flex !important; align-items:center; justify-content:center; text-align:center;
+    width:100%; min-height:44px; box-sizing:border-box; margin-bottom:8px;
+    white-space:normal; line-height:1.3;
+  }
+  .team-contacts { display:grid !important; grid-template-rows:auto auto; justify-items:start; gap:2px; }
+  .team-contacts a { white-space:nowrap; min-height:1.5em; display:block; }
+  .team-contacts a[href^="tel"] { grid-row:1; }
+  .team-contacts a[href^="mailto"] { grid-row:2; }
+}
+
+/* Carrousel des experts (téléphone) : photo visible, « Découvrir » entièrement dans la bannière */
+@media (max-width:700px){
+  .offre-banner { padding:16px 18px; gap:10px; justify-content:flex-start; }
+  .offre-photo { flex:0 0 auto; width:96px; height:96px; margin:0 auto; }
+  .offre-text { gap:3px; }
+  .offre-expert { font-size:1.35rem; }
+  .offre-role { font-size:0.66rem; line-height:1.4; }
+  .offre-propose { margin-top:2px; font-size:0.84rem; }
+  .offre-titre { font-size:0.95rem; }
+  .offre-cta { white-space:normal; font-size:0.66rem; line-height:1.3; }
+}
+
+/* En-tête (téléphone) : « Élever » juste après « Horizon · », « les potentiels » dessous, aligné sur le É */
+@media (max-width:900px){
+  .brand-sub { display:grid !important; grid-template-columns:auto 1fr; font-size:10px !important; letter-spacing:0.12em; line-height:1.35; }
+  .brand-sub .bs-h { grid-column:1; grid-row:1; }
+  .brand-sub .bs-e { grid-column:2; grid-row:1; }
+  .brand-sub .bs-p { grid-column:2; grid-row:2; }
+}
