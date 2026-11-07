@@ -2405,3 +2405,16 @@ section#tarifs .tarifs-columns .wave-sep { margin-left:0 !important; }
 @media (max-width:900px) and (hover:hover){
   .btn-copper-full:hover { opacity:1; background:#A2603F; transform:translateY(-2px); box-shadow:0 8px 22px rgba(184,111,76,0.28); }
 }
+
+
+/* ═══ OFFRE « BOIRE À LA SOURCE » — contenu de la fenêtre ═══ */
+.offre-prix { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 16px; background:var(--deep); color:var(--white); padding:18px 22px; margin:8px 0 26px; }
+.offre-prix-barre { font-family:'Cormorant Garamond', serif; font-size:1.25rem; text-decoration:line-through; opacity:.55; }
+.offre-prix-new { font-family:'Cormorant Garamond', serif; font-size:2.3rem; font-weight:600; color:var(--copper); line-height:1; }
+.offre-prix-note { flex-basis:100%; font-size:.76rem; letter-spacing:.04em; opacity:.85; line-height:1.5; }
+.offre-actions { display:flex; flex-direction:column; gap:12px; margin:28px 0 8px; }
+.offre-action, .offre-action-main { display:flex; align-items:center; justify-content:center; width:100%; min-height:52px; padding:14px 20px; margin:0; box-sizing:border-box; font-family:var(--font-body); font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; text-decoration:none; text-align:center; border:1px solid var(--copper); color:var(--copper); background:transparent; cursor:pointer; transition:background .25s, color .25s, border-color .25s; }
+.offre-action-main { background:var(--copper); color:var(--white); }
+.offre-action:hover { background:var(--deep); border-color:var(--deep); color:var(--white); }
+.offre-action-main:hover { background:var(--deep); border-color:var(--deep); color:var(--white); }
+.offre-action:disabled { opacity:.5; cursor:not-allowed; }

@@ -40,9 +40,14 @@ const experts = {
       pourQui:'Toute personne qui veut clarifier une situation, une décision ou un changement, et réfléchir par elle-même.',
       objectif:'Trouver vos propres réponses, grâce à des questions guidées. L\'accompagnant questionne et clarifie : il ne décide pas à votre place.',
       deroule:'Le matin (9h–12h) : la situation qui vous occupe, ce qui dépend de vous, le bon moment et le petit pas. L\'après-midi (14h–17h) : l\'objectif et ses ressources, l\'exercice quotidien, puis le plan d\'action. Les outils : maïeutique, philosophie stoïcienne et coaching traditionnel.',
-      format:'Visio, en petit groupe, 20 places maximum. Lien de connexion envoyé par invitation.',
-      repartir:'Un plan d\'action écrit, un exercice à pratiquer chaque jour, et le programme détaillé.',
+      format:'Visio, en petit groupe de 10 personnes maximum. Horaires : 9h–12h et 14h–17h. Lien de connexion envoyé par invitation, avant la journée.',
+      repartir:'Un plan d\'action écrit, un exercice à pratiquer chaque jour, et le programme détaillé, à garder sous la main.',
       tarif:'350 € par personne. Prix en euros. TVA non applicable, art. 293 B du CGI.',
+      prixBarre:'350 €',
+      prix:'290 €',
+      prixNote:'pour les 10 premières inscriptions · TVA non applicable, art. 293 B du CGI',
+      vivre:'L\'accompagnant pose des questions et guide la réflexion. Il ne décide pas à votre place : les réponses qui comptent sont les vôtres.',
+      suivi:'Offert pendant 4 semaines. Dans le mois qui suit la journée, vous pouvez échanger avec Denis et travailler en coaching, en visio, lors de séances de 45 minutes à 1 heure. L\'accompagnement débute au plus tôt une semaine après la journée.',
       pdf:'journee-boire-a-la-source.pdf'
     }
   },
@@ -743,29 +748,37 @@ function openOffre(id){
     ['L\'objectif', o.objectif],
     ['Le déroulé', o.deroule],
     ['Format et durée', o.format],
-    ['Ce que vous repartez avec', o.repartir],
-    ['Tarif', o.tarif]
+    ['Ce que vous emportez', o.repartir],
+    ['Accompagnement après la journée', o.suivi]
   ] : [
     ['Pour qui', 'À compléter : le profil de la personne ou de l\'entreprise concernée.'],
     ['L\'objectif', 'À compléter : ce que la personne obtient à la fin.'],
     ['Le déroulé', 'À compléter : les étapes, dans l\'ordre.'],
     ['Format et durée', 'À compléter : en visio ou en présentiel, nombre de séances, durée.'],
-    ['Ce que vous repartez avec', 'À compléter : supports, outils, suivi éventuel.'],
+    ['Ce que vous emportez', 'À compléter : supports, outils, suivi éventuel.'],
     ['Tarif', 'À compléter.']
   ];
   var trame = lignes.map(function(r){
     return '<h4 class="offre-h">' + r[0] + '</h4><p class="modal-bio offre-trame">' + r[1] + '</p>';
   }).join('');
-  var pdf = (o && o.pdf) ? '<p class="modal-bio" style="margin-top:14px;"><a class="offre-btn" href="' + o.pdf + '" download>📄 Télécharger le programme (PDF)</a></p>' : '';
-  var cta = o ? '' : '<button type="button" class="btn-copper-full" disabled>Acheter · bientôt disponible</button>';
-  var contact = o
-    ? '<a class="btn-copper-full" href="mailto:' + e.email + '?subject=' + encodeURIComponent(o.titre) + '" target="_blank" rel="noopener">Demander une place</a>' +
-      '<p class="modal-bio" style="margin-top:14px;">Ou préférez-vous m\'appeler ?</p>' +
-      '<a class="offre-btn" href="tel:' + String(e.phone || '').replace(/\s/g, '') + '">📞 ' + e.phone + '</a>'
+  var prix = (o && o.prix)
+    ? '<div class="offre-prix">' +
+        '<span class="offre-prix-barre">' + o.prixBarre + '</span>' +
+        '<span class="offre-prix-new">' + o.prix + '</span>' +
+        '<span class="offre-prix-note">' + o.prixNote + '</span>' +
+      '</div>'
     : '';
   var intro = o
-    ? '<p class="modal-bio">' + o.accroche + '</p>'
+    ? '<p class="modal-bio">' + o.accroche + '</p>' + '<p class="modal-bio">' + o.vivre + '</p>'
     : '<p class="modal-bio">Cette offre est en préparation. Elle sera détaillée ici dès que l\'expert l\'aura complétée.</p>';
+  var actions = o
+    ? '<div class="offre-actions">' +
+        '<a class="offre-action-main" href="mailto:noriahorizoncontacts@gmail.com?subject=' + encodeURIComponent(o.titre) + '" target="_blank" rel="noopener">Réserver ma place</a>' +
+        '<a class="offre-action" href="' + o.pdf + '" download>Télécharger le programme (PDF)</a>' +
+        '<a class="offre-action" href="tel:' + String(e.phone || '').replace(/\s/g, '') + '">Appeler · ' + e.phone + '</a>' +
+        '<a class="offre-action" href="#" onclick="openModal(\'' + id + '\');return false;">Voir la fiche de l\'expert</a>' +
+      '</div>'
+    : '<div class="offre-actions"><button type="button" class="offre-action" disabled>Réserver · bientôt disponible</button></div>';
   document.getElementById('modalBody').innerHTML =
     '<div class="modal-header">' +
     '<div class="modal-photo" style="overflow:hidden;padding:0;">' + (e.photo ? '<img src="' + e.photo + '" alt="' + e.name + '" onerror="this.remove()" style="width:100%;height:100%;object-fit:cover;object-position:center top;">' : '') + '</div>' +
@@ -773,13 +786,8 @@ function openOffre(id){
     '<span class="offre-statut">' + (o ? o.titre : 'Offre à venir') + '</span>' +
     '<h2>' + e.name + '</h2>' +
     '<span class="role-badge">' + e.role + '</span>' +
-    '<div class="contact-links">' +
-    (e.phone ? '<a href="tel:' + e.phone + '">📞 ' + e.phone + '</a>' : '') +
-    (e.email ? '<a href="mailto:' + e.email + '">✉ ' + e.email + '</a>' : '') +
-    '</div></div></div>' +
-    intro + trame + pdf +
-    '<div style="margin:28px 0 8px;">' + cta + contact + '</div>' +
-    '<p class="modal-bio" style="margin-top:14px;"><a class="offre-btn" href="#" onclick="openModal(\'' + id + '\');return false;">Voir la fiche de l\'expert →</a></p>' +
+    '</div></div>' +
+    intro + prix + trame + actions +
     '<div class="modal-tags">' + tags + '</div>';
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
