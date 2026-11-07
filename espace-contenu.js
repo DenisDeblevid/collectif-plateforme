@@ -72,8 +72,12 @@ var ESPACE_CONTENU = {
       { titre: 'Capsule 3', fichier: 'philosophie-capsule-3.mp4' },
       { titre: 'Capsule 4', fichier: 'philosophie-capsule-4.mp4' }
     ], supports: [
-      { titre: 'La dichotomie du contrôle', url: 'philosophie-dichotomie-du-controle.pdf' }
+      { titre: 'Fiche 1/4 — Ce qui dépend de moi', url: 'philosophie-dichotomie-du-controle.pdf' },
+      { titre: 'Fiche 2/4 — Rentrer en soi', url: 'philosophie-dichotomie-rentrer-en-soi.pdf' },
+      { titre: 'Fiche 3/4 — Le cap face à l’épuisement', url: 'philosophie-dichotomie-le-cap.pdf' },
+      { titre: 'Fiche 4/4 — Une question, répétée chaque jour', url: 'philosophie-dichotomie-une-question.pdf' }
     ], documents: [
+      { titre: 'La dichotomie du contrôle — L’article', url: 'philosophie-dichotomie-article.pdf' },
       { titre: 'Renaître de la soif · guide de transformation intérieure', url: 'philosophie-booklet-renaitre-de-la-soif.pdf', vignette: 'philosophie-booklet-couverture.jpg' }
     ] },
     { categorie: 'Préparation physique & survie',            videos: [], documents: [], supports: [] }
