@@ -889,7 +889,7 @@ function normaliserCode(v){
   return c.length === 8 ? c.slice(0, 4) + '-' + c.slice(4) : c;
 }
 function verifierCode(code){
-  return fetch(VERIFIER_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({code: code})})
+  return fetch(VERIFIER_URL, {method:'POST', body: JSON.stringify({code: code})})
     .then(function(r){ return r.json(); })
     .then(function(d){ return d.acces === true; });
 }
