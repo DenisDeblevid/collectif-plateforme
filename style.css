@@ -2418,3 +2418,39 @@ section#tarifs .tarifs-columns .wave-sep { margin-left:0 !important; }
 .offre-action:hover { background:var(--deep); border-color:var(--deep); color:var(--white); }
 .offre-action-main:hover { background:var(--deep); border-color:var(--deep); color:var(--white); }
 .offre-action:disabled { opacity:.5; cursor:not-allowed; }
+
+
+/* ===== Corrections du 10 nov. 2026 (ordinateur et téléphone) ===== */
+/* Cercle vertueux : illumination par derrière, de gauche à droite, la 5e plus forte, cycle de 7,5 s */
+.valeur-card { position:relative; }
+.valeur-card::after {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:1;
+  box-shadow:0 0 36px 4px rgba(184,111,76,0.50), inset 0 0 26px rgba(184,111,76,0.22), inset 0 0 0 1px rgba(184,111,76,0.45);
+  opacity:0; animation:valeurHalo 7.5s ease-in-out infinite;
+}
+.valeur-card:nth-child(1)::after { animation-delay:0s; }
+.valeur-card:nth-child(2)::after { animation-delay:1.2s; }
+.valeur-card:nth-child(3)::after { animation-delay:2.4s; }
+.valeur-card:nth-child(4)::after { animation-delay:3.6s; }
+.valeur-card:nth-child(5)::after {
+  animation:valeurHaloFort 7.5s ease-in-out infinite 4.8s;
+  box-shadow:0 0 60px 10px rgba(184,111,76,0.70), inset 0 0 40px rgba(184,111,76,0.38), inset 0 0 0 2px rgba(184,111,76,0.80);
+}
+@keyframes valeurHalo { 0%{opacity:0;} 10%{opacity:1;} 24%{opacity:0;} 100%{opacity:0;} }
+@keyframes valeurHaloFort { 0%{opacity:0;} 10%{opacity:1;} 30%{opacity:1;} 42%{opacity:0;} 100%{opacity:0;} }
+
+/* Boutons « illuminés par derrière » : halo cuivré qui respire en continu */
+.halo-btn { animation:haloRespire 3.6s ease-in-out infinite; }
+@keyframes haloRespire {
+  0%,100% { box-shadow:0 0 14px rgba(184,111,76,0.35), 0 0 0 1px rgba(184,111,76,0.30); }
+  50%     { box-shadow:0 0 34px rgba(184,111,76,0.70), 0 0 0 2px rgba(184,111,76,0.45), 0 0 60px rgba(184,111,76,0.25); }
+}
+/* Version plus flagrante (Découvrir ma cartographie) */
+.halo-btn.halo-fort { animation:haloRespireFort 3.2s ease-in-out infinite; }
+@keyframes haloRespireFort {
+  0%,100% { box-shadow:0 0 22px rgba(184,111,76,0.55), 0 0 0 2px rgba(184,111,76,0.45); }
+  50%     { box-shadow:0 0 50px rgba(184,111,76,0.95), 0 0 0 2px rgba(214,140,100,0.85), 0 0 95px rgba(184,111,76,0.45); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .valeur-card::after, .halo-btn { animation:none !important; }
+}

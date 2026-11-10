@@ -345,7 +345,7 @@ function envoyerDemande(boxId, type, btn, status, labelBtn, onDone){
     .then(function(){
       status.className = 'form-status ok';
       status.textContent = (type === 'Devis')
-        ? 'Merci ! Votre demande de devis est bien envoyée. Nous vous répondons sous 48 h.'
+        ? 'Devis envoyé ✓ Nous revenons vers vous sous 48 h.'
         : 'Merci ! Votre demande d\'Instant Horizon est bien envoyée. Nous vous recontactons très vite pour fixer le rendez-vous.';
       btn.textContent = 'Demande envoyée ✓';
       champs.forEach(function(c){ if(c.tagName==='SELECT') c.selectedIndex = 0; else c.value=''; });
@@ -450,7 +450,11 @@ function openDevis(key){ var sel=document.getElementById("devis-service"); if(ke
 function closeDevis(){ document.getElementById("devisOverlay").classList.remove("open"); document.body.style.overflow=""; }
 function submitDevis(){
   envoyerDemande('devis-form', 'Devis', document.getElementById('devis-btn'), document.getElementById('devis-status'), 'Envoyer ma demande →', function(){
-    setTimeout(function(){ var b=document.getElementById('devis-btn'); b.disabled=false; b.textContent='Envoyer ma demande →'; }, 6000);
+    setTimeout(function(){
+      closeDevis();
+      var b=document.getElementById('devis-btn'); b.disabled=false; b.textContent='Envoyer ma demande →';
+      var st=document.getElementById('devis-status'); st.className='form-status'; st.textContent='';
+    }, 3500);
   });
 }
 
