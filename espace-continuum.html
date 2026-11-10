@@ -542,7 +542,7 @@ footer.foot .soc a{color:var(--sand);text-decoration:none;margin-left:14px;font-
 /* ===== À RENSEIGNER =====
    PORTAIL_URL : lien Stripe du portail client (gérer l'abonnement).
    Tant qu'il est vide, le bouton reste indiqué « Bientôt disponible ». */
-var CODE_MAQUETTE = '1234';
+var VERIFIER_URL = 'https://fkmpfzfyoxbatficwech.supabase.co/functions/v1/verifier-code';
 var PORTAIL_URL = 'https://billing.stripe.com/p/login/cNi5kE8yb8Va03aaj9gjC00';
 /* Formulaire Brevo « Noria – Ask NORIA » (compte Noria). Vide = la question part par la messagerie. */
 var BREVO_ASK = 'https://2b2aa488.sibforms.com/serve/MUIFAB5HO2RLeqel8S7eeF7YHm0qDBG4V6jYVAKWOu-cPGP-jG0NCGC90z2OS83J9kHT7J9826brgMbmqYfXjGQypDDqGZQiO0VlJZOn43AssPltTzNvsiFACarWAJmF7boEk7YXtZrB2plFDgotw1hsy17OJSCBNOmQ0VGyVXB2xCstrvSBCA99EIA4ZzWXJjo5F-1CIb8ksz1wHA==';
@@ -882,16 +882,38 @@ function carrousel(el, items, rendre, duree){
   });
 })();
 
-/* ===== Accès (maquette) — mémorisé pour la session du navigateur ===== */
+/* ===== Accès : code personnel vérifié dans Supabase ===== */
 function showEspace(){ document.getElementById('gate').style.display='none'; document.getElementById('espace').style.display='block'; }
+function normaliserCode(v){
+  var c = String(v || '').replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+  return c.length === 8 ? c.slice(0, 4) + '-' + c.slice(4) : c;
+}
+function verifierCode(code){
+  return fetch(VERIFIER_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({code: code})})
+    .then(function(r){ return r.json(); })
+    .then(function(d){ return d.acces === true; });
+}
+/* Au retour sur la page, le code enregistré est revérifié : un accès expiré est refusé */
 (function(){
-  var ok = false; try{ ok = sessionStorage.getItem('continuum_ok') === '1'; }catch(e){}
-  if(ok) showEspace();
+  var code = null; try{ code = sessionStorage.getItem('continuum_code'); }catch(e){}
+  if(!code) return;
+  verifierCode(code).then(function(ok){
+    if(ok){ showEspace(); }
+    else {
+      try{ sessionStorage.removeItem('continuum_code'); }catch(e){}
+      document.getElementById('codeErr').textContent = "Votre accès n'est plus valide.";
+    }
+  }).catch(function(){ document.getElementById('codeErr').textContent = 'Vérification impossible, réessayez.'; });
 })();
 document.getElementById('codeBtn').addEventListener('click', function(){
-  var v = document.getElementById('code').value.trim();
-  if(v === CODE_MAQUETTE){ try{ sessionStorage.setItem('continuum_ok', '1'); }catch(e){} showEspace(); }
-  else { document.getElementById('codeErr').textContent = 'Code incorrect.'; }
+  var v = normaliserCode(document.getElementById('code').value);
+  var err = document.getElementById('codeErr');
+  if(!v){ err.textContent = 'Saisissez votre code.'; return; }
+  err.textContent = 'Vérification…';
+  verifierCode(v).then(function(ok){
+    if(ok){ try{ sessionStorage.setItem('continuum_code', v); }catch(e){} err.textContent = ''; showEspace(); }
+    else { err.textContent = 'Code incorrect ou accès expiré.'; }
+  }).catch(function(){ err.textContent = 'Vérification impossible, réessayez.'; });
 });
 document.getElementById('code').addEventListener('keydown', function(e){ if(e.key === 'Enter') document.getElementById('codeBtn').click(); });
 
