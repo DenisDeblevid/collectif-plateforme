@@ -131,6 +131,23 @@ const experts = {
     ],
     tags:['Web','IA','Agentique','Formation']
   },
+  vivitra: {
+    photo:'Vivitra-Kirouba.png',
+    name:'Vivitra Kirouba',
+    role:"Architecte d'intérieur · Fondatrice de Vivitra Studio",
+    location:'Vigneux-sur-Seine (Essonne)',
+    phone:'+33 6 52 15 10 35',
+    email:'contact@vivitra-studio.com',
+    sites:[['vivitra-studio.com','https://www.vivitra-studio.com']],
+    bio:[
+      "Architecte d'intérieur et ingénieure en génie civil, Vivitra fonde Vivitra Studio avec une conviction : un espace bien pensé révèle le potentiel de celles et ceux qui l'habitent. Son parcours croise l'ingénierie, l'architecture et le design (prépa PCSI, cycle ingénieur à HEI Lille spécialité Bâtiment Aménagement Architecture, modules d'architecture à l'ENSAPL), ce qui lui permet d'allier rigueur technique, sensibilité esthétique et compréhension fine des usages.",
+      "Elle a conduit des projets à forte exigence, dont l'ouverture de deux maisons Dior en Inde, rédigé cahiers des charges et comptes-rendus techniques, et créé des contenus pédagogiques pour les enfants de 3 à 6 ans. Elle est aussi ambassadrice My Job Glasses.",
+      "Sa signature repose sur quatre piliers : le raisonnement paramétrique, le design biophilique, la lumière circadienne, et la calligraphie chinoise alliée à la rigueur des DTU. Elle accompagne rénovations, aménagements résidentiels et professionnels, conception sur mesure et optimisation des espaces : restaurants, cafés, lieux de culture et de bien-être, agro-alimentaire, espaces Montessori.",
+      "Sa méthode en 5 étapes : écoute et diagnostic, intentions et concept, conception détaillée, coordination des travaux, livraison et accompagnement. Avec clarté sur les coûts et les délais, respect des normes et matériaux durables et sains.",
+      "« Je révèle la structure. » Derrière chaque lieu, il y a une structure — technique, spatiale, humaine — à révéler pour lui donner tout son potentiel."
+    ],
+    tags:['Architecture d\'intérieur','Matériaux & couleurs','Pilotage de projet','Coordination des travaux','Rénovation & aménagement','Design biophilique','Lumière circadienne','Éco-conception','Espaces Montessori','Génie civil']
+  },
   geoffrey: {
     photo:'Geoffrey-Batut.png',
     name:'Geoffrey Batut',
@@ -207,7 +224,8 @@ var expertsGeo = {
   josselin: { lat: 49.1193, lon: 6.1757,  zoom: 9,  ville: "Metz" },
   floriang: { lat: 42.6887, lon: 2.8948,  zoom: 9,  ville: "Perpignan" },
   remi:     { lat: 43.2965, lon: 5.3898,  zoom: 9,  ville: "Marseille (Empreinte Verticale)" },
-  melaniea: { lat: 45.8992, lon: 6.1294,  zoom: 9,  ville: "Haute-Savoie" }
+  melaniea: { lat: 45.8992, lon: 6.1294,  zoom: 9,  ville: "Haute-Savoie" },
+  vivitra:  { lat: 48.7016, lon: 2.4163,  zoom: 10, ville: "Vigneux-sur-Seine (Essonne)" }
 };
 
 var expertsMap = null;
@@ -666,7 +684,7 @@ var STRIPE_LIENS = {
 })();
 
 /* ═══ OFFRES DES EXPERTS — bandeau défilant en fondu au noir ═══ */
-var OFFRES_ORDRE = ['denis','florian','emilie','melanie','laurence','gilles','caroline','josselin','floriang','remi','melaniea','geoffrey'];
+var OFFRES_ORDRE = ['denis','florian','emilie','melanie','laurence','gilles','caroline','josselin','floriang','remi','melaniea','geoffrey','vivitra'];
 var OFFRE_DUREE = 40000;
 var offreIndex = 0, offreTimer = null, offreHover = false;
 var offreReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
