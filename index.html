@@ -612,7 +612,7 @@
   </div>
 
   <div class="experts-area">
-  <div class="team-grid">
+  <div class="team-grid team-founders">
 
     <!-- 1. Florian — co-fondateur -->
     <div class="team-card reveal" onclick="openModal('florian')">
@@ -650,7 +650,11 @@
       </div>
     </div>
 
-    <!-- 3. Émilie — juste après Denis -->
+  </div>
+
+  <div class="team-grid team-experts">
+
+    <!-- 3. Émilie -->
     <div class="team-card reveal" onclick="openModal('emilie')">
       <div class="team-photo">
         <img src="Emilie-Abraham.jpg" alt="Émilie Abraham">
@@ -816,6 +820,24 @@
         </div>
       </div>
     </div>
+
+    <!-- Vivitra Kirouba -->
+    <div class="team-card reveal" onclick="openModal('vivitra')">
+      <div class="team-photo">
+        <img src="Vivitra-Kirouba.png" alt="Vivitra Kirouba" onerror="this.remove()">
+        <div class="team-overlay"><p>Je révèle la structure.</p></div>
+      </div>
+      <div class="team-info">
+        <div class="team-name">Vivitra Kirouba</div>
+        <span class="team-role">Architecte d'intérieur · Ingénieure génie civil</span>
+        <button type="button" class="team-location locatable" onclick="event.stopPropagation();openMap('vivitra')" aria-label="Voir Vigneux-sur-Seine sur la carte des experts"><span class="loc-dot" aria-hidden="true"></span>Vigneux-sur-Seine<span class="loc-cta"> · Voir sur la carte →</span></button>
+        <div class="team-contacts">
+          <a href="tel:+33652151035" onclick="event.stopPropagation()">📞 06 52 15 10 35</a>
+          <a href="mailto:contact@vivitra-studio.com" onclick="event.stopPropagation()">✉ Mail</a>
+        </div>
+      </div>
+    </div>
+
 
   </div>
   </div>
