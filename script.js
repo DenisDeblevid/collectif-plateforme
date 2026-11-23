@@ -73,7 +73,12 @@ const experts = {
       prixNote:'pour les 10 premières inscriptions · TVA non applicable, art. 293 B du CGI',
       vivre:'L\'accompagnant pose des questions et guide la réflexion. Il ne décide pas à votre place : les réponses qui comptent sont les vôtres.',
       suivi:'Offert pendant 4 semaines. Dans le mois qui suit la journée, vous pouvez échanger avec Denis et travailler en coaching, en visio, lors de séances de 45 minutes à 1 heure. L\'accompagnement débute au plus tôt une semaine après la journée.',
-      pdf:'journee-boire-a-la-source.pdf'
+      pdf:'journee-boire-a-la-source.pdf',
+      autresTitre:'Ses autres propositions',
+      autres:[
+        ['Accompagnement Renaître de la Soif','programme-renaitre-de-la-soif.pdf'],
+        ['Team building Gibbor · 24\u00a0h','programme-gibbor-team-building-24h.pdf']
+      ]
     }
   },
   emilie: {
