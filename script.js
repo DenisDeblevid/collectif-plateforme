@@ -13,7 +13,32 @@ const experts = {
       "Ce qui m’anime particulièrement : révéler les potentiels, faire progresser les pratiques managériales et créer les conditions d’une performance durable, plus humaine et plus collective.",
       "Au sein de NORIA HORIZON, je porte une conviction simple : on accompagne mieux quand on ne cherche pas à faire entrer les situations dans une méthode toute faite."
     ],
-    tags:['Management','RH','Formation','Leadership','Développement des compétences','Performance collective','Seven Natural Skills®']
+    tags:['Management','RH','Formation','Leadership','Développement des compétences','Performance collective','Seven Natural Skills®'],
+    offre:{
+      titre:'Devenir Manager',
+      sousTitre:'Prendre sa place. Créer son impact.',
+      accroche:'Devenir manager, ce n\'est pas seulement changer de fonction : c\'est adopter une nouvelle posture, affirmer sa légitimité et apprendre à mobiliser une équipe.',
+      vivre:'La méthode de Florian : on s\'entraîne à manager plutôt que d\'en parler. Chaque notion est aussitôt vécue — mises en situation, jeux de rôle, simulations d\'entretien et de réunion — puis observée et débriefée ensemble. On expérimente, on ajuste, on recommence. La confiance se construit dans l\'action, et le groupe devient un véritable terrain d\'entraînement pour apprendre à fédérer, à poser le cadre, à décider et à guider une équipe.',
+      pourQui:'Managers récemment nommés, chefs d\'équipe, cadres, responsables de proximité, dirigeants, salariés qui préparent une évolution et toute personne qui vise une première fonction d\'encadrement. Aucune expérience managériale n\'est requise.',
+      objectif:'Réussir sa prise de fonction : trouver le juste équilibre entre proximité et autorité, clarifier les rôles et les attentes, déléguer sans micro-manager, conduire ses premiers entretiens et ses premières réunions, et transformer les premiers défis en leviers de confiance et d\'autonomie.',
+      methode:'Des apports courts, toujours reliés à une situation réelle. Un autodiagnostic de posture, des études de cas et des scénarios immersifs, des jeux de rôle suivis d\'un débriefing structuré et de feedbacks ciblés, des ateliers collaboratifs et la résolution collective de situations managériales. Les managers en poste travaillent sur leurs propres situations ; les futurs managers sur des scénarios reconstitués.',
+      deroule:'Jour 1 · Posture et relation : passer de collaborateur à manager, construire sa légitimité et poser le cadre, communiquer avec impact, réussir les premiers échanges. Jour 2 · Action et pilotage : adapter son management, déléguer et responsabiliser, piloter l\'activité et les difficultés, construire sa feuille de route des 100 premiers jours.',
+      format:'14 heures, en 2 journées de 7 heures. En présentiel ou en visio en direct, groupe de 6 à 10 participants. Formation non certifiante, avec évaluation des acquis et attestation de réalisation.',
+      repartir:'Un kit de 5 outils (diagnostic managérial, premier entretien collaborateur, fiche de délégation, première réunion d\'équipe, feuille de route des 100 jours), un livret du participant et votre plan d\'action à 30, 60 et 100 jours.',
+      prixBarre:'870 €',
+      prix:'720 €',
+      prixNote:'par participant · prix de lancement pour les 10 premières inscriptions · TVA non applicable, art. 293 B du CGI',
+      pdf:'formation-devenir-manager.pdf',
+      autresTitre:'Ses autres formations',
+      autres:[
+        ['Feedback Mindset · 7 h','formation-feedback-mindset.pdf'],
+        ['Relation commerciale · 7 h','formation-relation-commerciale.pdf'],
+        ['Savoir transmettre · 12 h','formation-savoir-transmettre.pdf'],
+        ['Premiers pas de formateur · 12 h','formation-premiers-pas-formateur.pdf'],
+        ['Transmettre les compétences · 21 h','formation-transmettre-competences.pdf'],
+        ['Manager avec l\'IA · 8 h','formation-manager-avec-ia.pdf']
+      ]
+    }
   },
   denis: {
     photo:'Denis-Deblevid.png',
@@ -691,9 +716,10 @@ var offreReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motio
 
 function offreBanner(id){
   var e = experts[id]; if(!e) return null;
-  var b = document.createElement('button');
-  b.type = 'button';
-  b.className = 'offre-banner';
+  var avecAutres = !!(e.offre && e.offre.autres && e.offre.autres.length);
+  var b = document.createElement(avecAutres ? 'div' : 'button');
+  if(avecAutres){ b.setAttribute('role','button'); b.tabIndex = 0; } else { b.type = 'button'; }
+  b.className = 'offre-banner' + (avecAutres ? ' has-side' : '');
   b.setAttribute('aria-label', "Voir l'offre de " + e.name);
   b.innerHTML =
     '<span class="offre-photo">' + (e.photo ? '<img src="' + e.photo + '" alt="' + e.name + '">' : '') + '</span>' +
@@ -703,8 +729,15 @@ function offreBanner(id){
       '<span class="offre-propose">vous propose de tester…</span>' +
       '<span class="offre-titre">' + (e.offre ? e.offre.titre : 'Prochainement') + '</span>' +
     '</span>' +
-    '<span class="offre-cta">' + (e.offre ? 'Découvrir · ' + e.offre.titre : 'Découvrir →') + '</span>';
-  b.addEventListener('click', function(){ openOffre(id); });
+    '<span class="offre-cta">' + (e.offre ? 'Découvrir · ' + e.offre.titre : 'Découvrir →') + '</span>' +
+    (avecAutres
+      ? '<span class="offre-side"><span class="offre-side-titre">' + (e.offre.autresTitre || 'Autres formations') + '</span>' +
+          e.offre.autres.map(function(a){ return '<a class="offre-mini" href="' + a[1] + '" target="_blank" rel="noopener">' + a[0] + '</a>'; }).join('') +
+        '</span>'
+      : '');
+  if(avecAutres){ var cta = b.querySelector('.offre-cta'), txt = b.querySelector('.offre-text'); if(cta && txt) txt.appendChild(cta); }
+  b.addEventListener('click', function(ev){ if(ev.target.closest && ev.target.closest('.offre-mini')) return; openOffre(id); });
+  if(avecAutres) b.addEventListener('keydown', function(ev){ if((ev.key === 'Enter' || ev.key === ' ') && ev.target === b){ ev.preventDefault(); openOffre(id); } });
   return b;
 }
 
@@ -733,6 +766,7 @@ function goOffre(n){
   setTimeout(function(){
     banners[offreIndex].classList.remove('is-on');
     banners[n].classList.add('is-on');
+    stage.classList.toggle('side-on', banners[n].classList.contains('has-side'));
     offreIndex = n;
     offreUpdateDots();
     stage.classList.remove('is-black');
@@ -745,7 +779,7 @@ function initOffres(){
   var dots = document.getElementById('offresDots');
   OFFRES_ORDRE.forEach(function(id, i){
     var b = offreBanner(id); if(!b) return;
-    if(i === 0) b.classList.add('is-on');
+    if(i === 0){ b.classList.add('is-on'); stage.classList.toggle('side-on', b.classList.contains('has-side')); }
     stage.appendChild(b);
     var d = document.createElement('button');
     d.type = 'button';
@@ -768,6 +802,7 @@ function openOffre(id){
   var lignes = o ? [
     ['Pour qui', o.pourQui],
     ['L\'objectif', o.objectif],
+    ['La méthode', o.methode],
     ['Le déroulé', o.deroule],
     ['Format et durée', o.format],
     ['Ce que vous emportez', o.repartir],
@@ -780,7 +815,7 @@ function openOffre(id){
     ['Ce que vous emportez', 'À compléter : supports, outils, suivi éventuel.'],
     ['Tarif', 'À compléter.']
   ];
-  var trame = lignes.map(function(r){
+  var trame = lignes.filter(function(r){ return r[1]; }).map(function(r){
     return '<h4 class="offre-h">' + r[0] + '</h4><p class="modal-bio offre-trame">' + r[1] + '</p>';
   }).join('');
   var prix = (o && o.prix)
@@ -796,7 +831,7 @@ function openOffre(id){
   var actions = o
     ? '<div class="offre-actions">' +
         '<a class="offre-action-main" href="mailto:noriahorizoncontacts@gmail.com?subject=' + encodeURIComponent(o.titre) + '" target="_blank" rel="noopener">Réserver ma place</a>' +
-        '<a class="offre-action" href="' + o.pdf + '" download>Télécharger le programme (PDF)</a>' +
+        '<a class="offre-action" href="' + o.pdf + '" target="_blank" rel="noopener">Télécharger le programme (PDF)</a>' +
         '<a class="offre-action" href="tel:' + String(e.phone || '').replace(/\s/g, '') + '">Appeler · ' + e.phone + '</a>' +
         '<a class="offre-action" href="#" onclick="openModal(\'' + id + '\');return false;">Voir la fiche de l\'expert</a>' +
       '</div>'
