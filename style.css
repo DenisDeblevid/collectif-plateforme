@@ -2454,3 +2454,10 @@ section#tarifs .tarifs-columns .wave-sep { margin-left:0 !important; }
 @media (prefers-reduced-motion: reduce) {
   .valeur-card::after, .halo-btn { animation:none !important; }
 }
+
+
+/* ===== Équipe : les deux cofondateurs seuls en haut, les experts en dessous (23 nov. 2026) ===== */
+.team-grid.team-founders { grid-template-columns:repeat(2,1fr); max-width:50%; margin:0 auto 36px; }
+@media (max-width:900px){
+  .team-grid.team-founders { max-width:100%; margin-bottom:28px; }
+}
