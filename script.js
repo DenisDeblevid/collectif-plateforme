@@ -28,15 +28,15 @@ const experts = {
       prixBarre:'870 €',
       prix:'720 €',
       prixNote:'par participant · prix de lancement pour les 10 premières inscriptions · TVA non applicable, art. 293 B du CGI',
-      pdf:'01_NORIA_Devenir_Manager_14h.pdf',
+      pdf:'formation-devenir-manager.pdf',
       autresTitre:'Ses autres formations',
       autres:[
-        ['Feedback Mindset · 7 h','02_NORIA_Feedback_Mindset_7h.pdf'],
-        ['Relation commerciale · 7 h','03_NORIA_Relation_Commerciale_7h.pdf'],
-        ['Savoir transmettre · 12 h','04_NORIA_Savoir_Transmettre_12h.pdf'],
-        ['Premiers pas de formateur · 12 h','05_NORIA_Premiers_Pas_Formateur_12h.pdf'],
-        ['Transmettre les compétences · 21 h','06_NORIA_Transmettre_Competences_Entreprise_21h.pdf'],
-        ['Manager avec l\'IA · 8 h','07_NORIA_Manager_Avec_IA_8h.pdf']
+        ['Feedback Mindset · 7 h','formation-feedback-mindset.pdf'],
+        ['Relation commerciale · 7 h','formation-relation-commerciale.pdf'],
+        ['Savoir transmettre · 12 h','formation-savoir-transmettre.pdf'],
+        ['Premiers pas de formateur · 12 h','formation-premiers-pas-formateur.pdf'],
+        ['Transmettre les compétences · 21 h','formation-transmettre-competences.pdf'],
+        ['Manager avec l\'IA · 8 h','formation-manager-avec-ia.pdf']
       ]
     }
   },
@@ -709,7 +709,7 @@ var STRIPE_LIENS = {
 })();
 
 /* ═══ OFFRES DES EXPERTS — bandeau défilant en fondu au noir ═══ */
-var OFFRES_ORDRE = ['denis','florian','emilie','melanie','laurence','gilles','caroline','josselin','floriang','remi','melaniea','geoffrey','vivitra'];
+var OFFRES_ORDRE = ['florian','denis','emilie','melanie','laurence','gilles','caroline','josselin','floriang','remi','melaniea','geoffrey','vivitra'];
 var OFFRE_DUREE = 40000;
 var offreIndex = 0, offreTimer = null, offreHover = false;
 var offreReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;

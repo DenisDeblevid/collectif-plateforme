@@ -1,0 +1,28 @@
+/* ===== Décor de Noël NORIA (sobre, premium) — actif jusqu'au 6 janvier inclus ===== */
+.noel-neige { position:fixed; inset:0; pointer-events:none; z-index:150; }
+.noel-guirlande { position:absolute; left:0; right:0; bottom:-7px; height:12px; pointer-events:none; display:flex; justify-content:space-around; align-items:center; padding:0 2%; }
+.noel-guirlande::before { content:''; position:absolute; left:0; right:0; top:2px; height:1px; background:linear-gradient(90deg,transparent,rgba(184,111,76,.55) 8%,rgba(184,111,76,.55) 92%,transparent); }
+.noel-guirlande i { position:relative; width:5px; height:5px; border-radius:50%; background:#E8C27A; box-shadow:0 0 6px 2px rgba(232,194,122,.65); animation:noelBrille 2.8s ease-in-out infinite; }
+.noel-guirlande i:nth-child(3n+2) { animation-delay:.9s; background:#F3E3C0; }
+.noel-guirlande i:nth-child(3n) { animation-delay:1.8s; background:#D79A6E; box-shadow:0 0 6px 2px rgba(215,154,110,.6); }
+@keyframes noelBrille { 0%,100%{ opacity:.35; transform:scale(.8); } 50%{ opacity:1; transform:scale(1.15); } }
+.noel-traineau { position:fixed; top:96px; left:0; width:260px; height:auto; pointer-events:none; z-index:150; opacity:0; transform:translateX(-300px); filter:drop-shadow(0 0 6px rgba(232,194,122,.45)); }
+.noel-traineau.passe { animation:noelVol 11s linear forwards; }
+@keyframes noelVol {
+  0%   { opacity:0; transform:translate(-300px, 30px) rotate(-3deg); }
+  8%   { opacity:.9; }
+  50%  { transform:translate(50vw, -10px) rotate(-1deg); }
+  92%  { opacity:.9; }
+  100% { opacity:0; transform:translate(calc(100vw + 60px), 10px) rotate(-3deg); }
+}
+.noel-scene { position:fixed; left:18px; bottom:18px; width:150px; pointer-events:none; z-index:110; opacity:.95; }
+.noel-lanterne-flamme { animation:noelFlamme 2.2s ease-in-out infinite; transform-origin:center; }
+@keyframes noelFlamme { 0%,100%{ opacity:.75; } 50%{ opacity:1; } }
+@media (max-width:700px){
+  .noel-traineau { width:170px; top:84px; }
+  .noel-scene { width:92px; left:8px; bottom:10px; opacity:.85; }
+}
+@media (prefers-reduced-motion: reduce){
+  .noel-neige, .noel-traineau { display:none; }
+  .noel-guirlande i, .noel-lanterne-flamme { animation:none; opacity:1; }
+}
