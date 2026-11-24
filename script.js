@@ -579,7 +579,34 @@ function openDevisIntra(){
 }
 
 window.addEventListener('load', function(){ if(location.hash === '#devis-intra'){ openDevisIntra(); } });
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeIntra();closeModal();closeService();closeDevis();closeMap();} });
+// Lien direct vers une offre (#offre-florian, #offre-denis…) : ouvre sa fiche (pages « Agir avec NORIA »)
+function offreDepuisAncre(){
+  var m = location.hash.match(/^#offre-([a-z]+)$/);
+  if(m && typeof experts !== 'undefined' && experts[m[1]] && experts[m[1]].offre){
+    try{ history.replaceState(null, '', location.pathname + location.search); }catch(e){}
+    openOffre(m[1]);
+  }
+}
+// ─── « Agir avec NORIA » : pages ouvertes en grand, fermeture en pivotant ───
+function openAgir(url){
+  var ov = document.getElementById('agirOverlay'), fr = document.getElementById('agirFrame');
+  if(!ov || !fr) { location.href = url; return; }
+  fr.setAttribute('src', url);
+  ov.classList.add('open'); document.body.style.overflow = 'hidden';
+}
+function closeAgir(){
+  var ov = document.getElementById('agirOverlay');
+  if(!ov || !ov.classList.contains('open')) return;
+  ov.classList.remove('open'); document.body.style.overflow = '';
+}
+document.addEventListener('click', function(e){
+  var a = e.target.closest && e.target.closest('#agir-avec-noria a[href^="/agir-avec-noria/"]');
+  if(!a) return;
+  e.preventDefault(); openAgir(a.getAttribute('href'));
+});
+window.addEventListener('load', offreDepuisAncre);
+window.addEventListener('hashchange', offreDepuisAncre);
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeAgir();closeIntra();closeModal();closeService();closeDevis();closeMap();} });
 
 // ─── MENU ACTIF + SILLAGE SCROLL + BACK TO TOP ───
 (function(){
@@ -787,7 +814,9 @@ var STRIPE_LIENS = {
 })();
 
 /* ═══ OFFRES DES EXPERTS — bandeau défilant en fondu au noir ═══ */
-var OFFRES_ORDRE = ['florian','remi','denis','vivitra','emilie','melanie','laurence','gilles','caroline','josselin','floriang','melaniea','geoffrey'];
+// Carrousel : seulement les experts qui ont une offre complète (24 nov. 2026).
+// En réserve, à rajouter quand leur offre sera prête : 'emilie','melanie','laurence','gilles','caroline','josselin','floriang','melaniea','geoffrey'
+var OFFRES_ORDRE = ['florian','denis','remi','vivitra'];
 var OFFRE_DUREE = 40000;
 var offreIndex = 0, offreTimer = null, offreHover = false;
 var offreReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
