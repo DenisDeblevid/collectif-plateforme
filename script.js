@@ -86,8 +86,6 @@ const experts = {
     name:'Émilie Abraham',
     role:'Consultante RH · Développement professionnel · Nobel RH',
     location:'Paris',
-    phone:'+33 6 65 52 00 00',
-    email:'abrahamemilie@gmail.com',
     bio:[
       "Professionnelle des Ressources Humaines avec plus de 15 ans d'expérience, Émilie accompagne les organisations publiques et privées dans la prévention des risques professionnels, le développement des compétences et l'amélioration de la qualité de vie au travail.",
       "Ancienne Cheffe de service QVT, Adjointe DRH, Responsable formation et recrutement, elle apporte une vision 360° de l'organisation — humaine, stratégique et opérationnelle. Son diagnostic est le point de départ pour définir des objectifs clairs et activer la croissance."
@@ -99,8 +97,6 @@ const experts = {
     name:'Mélanie Allard',
     role:'Consultante Emploi & Trajectoires Pro · Coach professionnelle en cours de certification',
     location:'Challans (85) + Visio',
-    phone:'+33 6 13 06 31 07',
-    email:'melanieallardpro@gmail.com',
     bio:["Forte de 20 ans d'expérience en intérim, recrutement et gestion d'agence, Mélanie accompagne particuliers et professionnels à clarifier leur situation, structurer leurs démarches et avancer de manière alignée dans leurs projets professionnels.","Coach professionnelle en cours de certification, elle propose un accompagnement humain et chaleureux, dans un cadre structuré qui favorise le développement de l’autonomie et la mise en mouvement."],
     tags:['Carrière','Reconversion','CV & Entretiens','Coaching professionnel','Transitions pro','Bilan carrière']
   },
@@ -109,14 +105,11 @@ const experts = {
     name:'Laurence Brouet',
     role:'Consultante RH · Formation · E-learning',
     location:'Toulouse (distanciel & présentiel)',
-    phone:'+33 6 71 82 57 39',
-    email:'brouet.laurence@orange.fr',
-    sites:[['prospectives-rh.fr','https://www.prospectives-rh.fr/']],
     bio:[
       "Consultante dans le secteur de la formation et des activités RH, Laurence apporte des solutions concrètes : aux jeunes désireux d'effectuer une formation en alternance par contrat d'apprentissage, aux salariés qui veulent développer leurs compétences professionnelles, aux personnes en reconversion, et aux dirigeants en recherche de talents.",
       "Sa connaissance du monde de l'entreprise et son évolution dans de nombreux secteurs d'activités lui permettent de détecter les attentes et les besoins réels, par l'écoute et l'analyse — pour proposer des solutions adaptées et un accompagnement de qualité jusqu'à la réussite du projet.",
       "Interventions en distanciel, avec possibilité sur site pour le secteur toulousain.",
-      "<a class=\"modal-partner-logo\" href=\"https://www.prospectives-rh.fr/\" target=\"_blank\" rel=\"noopener\" title=\"Prospectives RH — site de Laurence Brouet\"><img src=\"logo-prospectives-rh.png\" alt=\"Prospectives RH — Recrutement · Formation · Accompagnement\"></a><br><a class=\"modal-site-link\" href=\"https://www.prospectives-rh.fr/\" target=\"_blank\" rel=\"noopener\">🌐 prospectives-rh.fr</a>"
+      "<span class=\"modal-partner-logo\"><img src=\"logo-prospectives-rh.png\" alt=\"Prospectives RH — Recrutement · Formation · Accompagnement\"></span>"
     ],
     tags:['Formation et e-learning','Éducation','Services RH','Alternance','Reconversion professionnelle','Recherche de talents']
   },
@@ -125,8 +118,6 @@ const experts = {
     name:'Gilles Quillerier',
     role:'Consultant en développement de compétences',
     location:'Saint-Jean-de-la-Ruelle (Orléans) · France & International',
-    phone:'+33 7 81 42 57 89',
-    email:'quillerier59@gmail.com',
     bio:[
       "Professionnel du management, du commerce et du développement d'activités depuis plus de 40 ans, Gilles a construit son parcours en France et à l'international à travers des fonctions de direction, de développement commercial et d'accompagnement stratégique.",
       "Il a occupé des postes de responsabilité au sein de grandes enseignes de distribution, notamment dans plusieurs pays du Moyen-Orient, avant de diriger des projets de développement au Cambodge et aux Philippines. Ces expériences lui ont donné une solide expertise en management d'équipes multiculturelles, développement commercial, négociation et conduite du changement.",
@@ -139,8 +130,6 @@ const experts = {
     name:'Caroline Seure',
     role:'Formatrice & ingénieure pédagogique',
     location:'Meung-sur-Loire (Loiret)',
-    phone:'+33 6 89 90 36 08',
-    email:'caroline.seure@gmail.com',
     bio:[
       "Formatrice et ingénieure pédagogique, Caroline aide les personnes et les entreprises à mieux utiliser ce qu'elles ont déjà entre les mains — une compétence, une expertise, un savoir-faire qui dort souvent dans la tête de quelqu'un. Elle intervient autour de la communication, de l'intelligence émotionnelle, des compétences psychosociales, des relations professionnelles, de la relation client et de la coopération.",
       "Elle développe aussi un axe autour de la transmission des savoir-faire en entreprise par le digital : capitaliser une expertise, transformer une réunion en ressource pédagogique, transmettre autrement, sans perdre la dimension humaine. Sa conviction : une entreprise possède souvent plus de ressources qu'elle ne le pense ; son rôle est de les révéler, les structurer et les rendre transmissibles."
@@ -152,8 +141,6 @@ const experts = {
     name:'Josselin Dionisi',
     role:'Développeur Web · Builder IA',
     location:'Metz',
-    phone:'',
-    email:'contact@boreales-creations.fr',
     bio:[
       "Professionnel de la tech et de l'IA depuis de nombreuses années, Josselin a accompagné des entreprises de toutes tailles — start-up et multinationales — dans leurs processus numériques. Aujourd'hui il se diversifie en gérant un collectif de développeurs, en ayant créé un logiciel en ligne pour faciliter la présence sur les réseaux sociaux, et en cherchant avant tout à étoffer son réseau pour de nouvelles perspectives.",
       "« J'aime faciliter la vie des gens et la technologie est ma meilleure alliée pour ça. »",
@@ -166,9 +153,6 @@ const experts = {
     name:'Vivitra Kirouba',
     role:"Architecte d'intérieur · Fondatrice de Vivitra Studio",
     location:'Vigneux-sur-Seine (Essonne)',
-    phone:'+33 6 52 15 10 35',
-    email:'contact@vivitra-studio.com',
-    sites:[['vivitra-studio.com','https://www.vivitra-studio.com']],
     bio:[
       "Architecte d'intérieur et ingénieure en génie civil, Vivitra fonde Vivitra Studio avec une conviction : un espace bien pensé révèle le potentiel de celles et ceux qui l'habitent. Son parcours croise l'ingénierie, l'architecture et le design (prépa PCSI, cycle ingénieur à HEI Lille spécialité Bâtiment Aménagement Architecture, modules d'architecture à l'ENSAPL), ce qui lui permet d'allier rigueur technique, sensibilité esthétique et compréhension fine des usages.",
       "Elle a conduit des projets à forte exigence, dont l'ouverture de deux maisons Dior en Inde, rédigé cahiers des charges et comptes-rendus techniques, et créé des contenus pédagogiques pour les enfants de 3 à 6 ans. Elle est aussi ambassadrice My Job Glasses.",
@@ -183,8 +167,6 @@ const experts = {
     name:'Geoffrey Batut',
     role:'Consultant en développement de compétences · Formateur',
     location:'Dax',
-    phone:'+33 6 59 57 00 90',
-    email:'',
     bio:[
       "Issu du monde de l'éducation, Geoffrey poursuit aujourd'hui dans la transmission et la formation. Il intervient en codéveloppement en entreprise et s'apprête à exercer comme praticien en bilan de compétences, et prochainement AAP en VAE.",
       "Forte expérience de la pédagogie du langage, de la lecture, de l'écriture et des mathématiques pour les enfants de 3 à 8 ans, il va désormais à la rencontre des salariés et dirigeants des TPE et PME pour les accompagner dans leur évolution professionnelle et personnelle.",
@@ -198,9 +180,6 @@ const experts = {
     name:'Florian Gros',
     role:'Expert en publicité en ligne',
     location:'Perpignan',
-    phone:'+33 6 37 92 52 08',
-    email:'floriangrospro@gmail.com',
-    sites:[['libertads.fr','https://libertads.fr'],['LinkedIn','https://www.linkedin.com/in/florian-grossea/']],
     bio:[
       "Florian aide les entrepreneurs et les entreprises à développer leur activité grâce à la publicité en ligne. Son travail ne s'arrête pas à la gestion des campagnes : il construit l'ensemble du système d'acquisition, de la publicité jusqu'à la prise de rendez-vous ou à la vente.",
       "Tunnels de vente, formulaires de qualification, automatisations, intégration de l'intelligence artificielle, suivi des prospects, optimisation de chaque étape du parcours client : l'objectif est un système complet, capable d'attirer les bonnes personnes, de les qualifier et de les convertir en clients.",
@@ -214,25 +193,34 @@ const experts = {
     name:'Rémi Rozier',
     role:"Fondateur d'Empreinte Verticale · Impression murale",
     location:'Marseille · région PACA, et au-delà sur demande',
-    phone:'+33 6 71 23 05 22',
-    email:'contact@empreinteverticale.fr',
-    sites:[['empreinteverticale.fr','https://www.empreinteverticale.fr']],
     bio:[
       "Fondateur d'Empreinte Verticale, Rémi transforme les murs en levier d'image. Installé à Marseille, il imprime directement sur les murs, avec une imprimante verticale qu'il amène sur place. Pas de papier peint ni de panneaux collés — sauf si c'est le souhait du client : l'image fait corps avec le lieu.",
       "Hôtels, restaurants, bureaux, écoles, salles de sport, commerces : il met en scène l'identité d'une marque dans ses locaux, en impression haute définition sur mur et sur supports rigides. Un mur est le seul espace de communication que les clients regardent sans le vouloir ; Rémi en fait une image qu'on remarque, qu'on photographie et dont on se souvient. Chaque projet commence par une conversation sur le lieu, ses clients et ce que l'on veut leur faire ressentir en entrant.",
       "« Là où il y avait un mur, il y a maintenant une identité. »",
       "Sa conviction : un lieu professionnel est le premier message envoyé à un client, avant toute parole ou tout document. Investir dans un mur, c'est investir dans la première impression — et elle se travaille comme le reste de la communication."
     ],
-    tags:['Impression murale HD','Supports rigides','Décoration de lieux professionnels','Identité de marque','Hôtels & restaurants','Bureaux & commerces','Intervention sur site']
+    tags:['Impression murale HD','Supports rigides','Décoration de lieux professionnels','Identité de marque','Hôtels & restaurants','Bureaux & commerces','Intervention sur site'],
+    offre:{
+      titre:'Vos murs racontent qui vous êtes',
+      accroche:'Un lieu professionnel est le premier message envoyé à vos collaborateurs et à vos visiteurs. Rémi en fait une image qui vous ressemble : votre logo, vos valeurs, une photo de votre territoire ou un visuel créé avec vos équipes.',
+      vivre:'Le visuel est imprimé directement sur le mur, en haute définition, sans papier peint ni sticker. L\'intervention se fait sur place, sans travaux et sans fermer vos locaux.',
+      image:'Empreinte-Verticale-realisation.jpg',
+      imageAlt:'Réalisation Empreinte Verticale : photo du port imprimée sur un mur',
+      pourQui:'Les dirigeants, équipes RH et entreprises qui veulent que leurs locaux reflètent leur identité : valeurs, histoire, mission, ou simplement une ambiance qui donne envie de venir travailler. Aussi pour les lieux qui accueillent du public (cabinets, salles de sport, écoles, commerces) et veulent marquer les esprits dès l\'entrée.',
+      objectif:'Un mur qui fait sens. Votre logo, vos valeurs, une photo de votre territoire ou un visuel créé avec vos équipes, imprimé directement sur le mur, en haute définition, sans papier peint ni sticker. Un espace où vos collaborateurs se reconnaissent et que vos visiteurs retiennent.',
+      deroule:'1. Un premier échange pour comprendre votre projet et ce que vous voulez transmettre.<br>2. Vous envoyez une photo et les dimensions du mur : Rémi vérifie la faisabilité à distance.<br>3. Choix du visuel : vos photos, votre logo, ou une création sur mesure si besoin.<br>4. Simulation du rendu sur la photo de votre mur, puis devis sous 24 h.<br>5. Impression sur place, sans travaux, sans fermer vos locaux.<br>6. Remise des photos et vidéos de la réalisation pour votre communication.',
+      format:'Premier échange en visio ou par téléphone (30 minutes). Intervention en présentiel, dans vos locaux, à Marseille et dans toute la région PACA. La durée dépend de la surface et vous est précisée dans le devis.',
+      repartir:'Un mur imprimé en haute définition, avec un vernis protecteur intégré à l\'encre. La simulation de votre projet avant toute décision. Les photos et vidéos de la réalisation, à partager sur vos réseaux ou en interne. Des conseils d\'entretien, et un suivi si vous souhaitez faire évoluer vos espaces.',
+      prix:'Sur devis',
+      prixNote:'devis sous 24 h, après simulation du rendu sur la photo de votre mur',
+      reserverLabel:'Demander un premier échange'
+    }
   },
   melaniea: {
     photo:'Melanie-Aleonard.png',
     name:'Mélanie Aleonard',
     role:'RAF de transition · Formatrice',
     location:'Haute-Savoie',
-    phone:'',
-    email:'',
-    sites:[['Prendre rendez-vous (Calendly)','https://calendly.com/melanie-aleonard/45min']],
     bio:[
       "Experte en finance d'entreprise avec près de 15 ans d'expérience, Mélanie accompagne les dirigeants et les PME dans la structuration de leur fonction financière, le pilotage de leur activité et la montée en compétences de leurs équipes. En tant que RAF de transition ou RAF à la demande, elle intervient sur l'organisation comptable, le contrôle de gestion, la trésorerie et la fiabilisation des outils.",
       "Sa devise : « Structurer. Transmettre. Faire grandir. »"
@@ -350,6 +338,7 @@ function openModal(id){
     '<span class="role-badge">'+e.role+'</span><br>' +
     (e.location ? '<small style="opacity:.4;font-size:.78rem;display:block;margin-bottom:10px;">📍 '+e.location+'</small>' : '') +
     '<div class="contact-links">' +
+    (!e.phone && !e.email ? '<a href="#" onclick="closeModal();openContactExpert(\''+id+'\');return false;">✉ Contacter '+e.name.split(' ')[0]+' via NORIA</a>' : '') +
     (e.phone ? '<a href="tel:'+e.phone+'">📞 '+e.phone+'</a>' : '') +
     (e.email ? '<a href="mailto:'+e.email+'">✉ '+e.email+'</a>' : '') +
     (e.sites ? e.sites.map(function(s){ return '<a href="'+s[1]+'" target="_blank" rel="noopener">🔗 '+s[0]+'</a>'; }).join('') : '') +
@@ -495,8 +484,33 @@ function openService(key){
 }
 function closeService(){ document.getElementById("serviceOverlay").classList.remove("open"); document.body.style.overflow=""; }
 function openDevis(key){ var sel=document.getElementById("devis-service"); if(key&&svcData[key]){ var t=svcData[key].title; if(![].some.call(sel.options,function(o){return o.text===t;})){ var o=document.createElement("option"); o.text=t; sel.insertBefore(o, sel.options[1]); } sel.value=t; } document.getElementById("devisOverlay").classList.add("open"); document.body.style.overflow="hidden"; }
-function closeDevis(){ document.getElementById("devisOverlay").classList.remove("open"); document.body.style.overflow=""; }
+var contactExpert = null;
+var DEVIS_SUB = '', DEVIS_PH = '';
+function openContactExpert(id, offre){
+  var e = experts[id]; if(!e) return;
+  var f = document.getElementById('devis-form');
+  if(!contactExpert){ DEVIS_SUB = f.querySelector('.sub').innerHTML; DEVIS_PH = f.querySelector('[data-k=MESSAGE]').placeholder; }
+  contactExpert = e.name + (offre ? ' · ' + offre : '');
+  var prenom = e.name.split(' ')[0];
+  f.querySelector('h2').textContent = 'Contacter ' + e.name;
+  f.querySelector('.sub').textContent = 'Votre demande est transmise à ' + prenom + ' par l\'équipe NORIA HORIZON · réponse sous 48 h';
+  f.querySelector('[data-k=MESSAGE]').placeholder = 'Décrivez votre besoin en quelques lignes : nous le transmettons à ' + prenom + '.';
+  document.getElementById('devisOverlay').classList.add('open'); document.body.style.overflow = 'hidden';
+}
+function closeDevis(){
+  document.getElementById("devisOverlay").classList.remove("open"); document.body.style.overflow="";
+  if(contactExpert){
+    contactExpert = null;
+    var f = document.getElementById('devis-form');
+    f.querySelector('h2').textContent = 'Demander un devis';
+    f.querySelector('.sub').innerHTML = DEVIS_SUB;
+    f.querySelector('[data-k=MESSAGE]').placeholder = DEVIS_PH;
+  }
+}
 function submitDevis(){
+  var msg = document.querySelector('#devis-form [data-k=MESSAGE]');
+  var original = msg.value;
+  if(contactExpert){ msg.value = '[Contact expert : ' + contactExpert + '] ' + original; }
   envoyerDemande('devis-form', 'Devis', document.getElementById('devis-btn'), document.getElementById('devis-status'), 'Envoyer ma demande →', function(){
     setTimeout(function(){
       closeDevis();
@@ -504,6 +518,7 @@ function submitDevis(){
       var st=document.getElementById('devis-status'); st.className='form-status'; st.textContent='';
     }, 3500);
   });
+  msg.value = original;
 }
 
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();closeService();closeDevis();closeMap();} });
@@ -825,19 +840,22 @@ function openOffre(id){
   }).join('');
   var prix = (o && o.prix)
     ? '<div class="offre-prix">' +
-        '<span class="offre-prix-barre">' + o.prixBarre + '</span>' +
+        (o.prixBarre ? '<span class="offre-prix-barre">' + o.prixBarre + '</span>' : '') +
         '<span class="offre-prix-new">' + o.prix + '</span>' +
         '<span class="offre-prix-note">' + o.prixNote + '</span>' +
       '</div>'
     : '';
   var intro = o
-    ? '<p class="modal-bio">' + o.accroche + '</p>' + '<p class="modal-bio">' + o.vivre + '</p>'
+    ? '<p class="modal-bio">' + o.accroche + '</p>' + '<p class="modal-bio">' + o.vivre + '</p>' +
+      (o.image ? '<img src="' + o.image + '" alt="' + (o.imageAlt || o.titre) + '" loading="lazy" style="display:block;width:100%;height:auto;border-radius:6px;margin:6px 0 18px;">' : '')
     : '<p class="modal-bio">Cette offre est en préparation. Elle sera détaillée ici dès que l\'expert l\'aura complétée.</p>';
   var actions = o
     ? '<div class="offre-actions">' +
-        '<a class="offre-action-main" href="mailto:noriahorizoncontacts@gmail.com?subject=' + encodeURIComponent(o.titre) + '" target="_blank" rel="noopener">Réserver ma place</a>' +
-        '<a class="offre-action" href="' + o.pdf + '" target="_blank" rel="noopener">Télécharger le programme (PDF)</a>' +
-        '<a class="offre-action" href="tel:' + String(e.phone || '').replace(/\s/g, '') + '">Appeler · ' + e.phone + '</a>' +
+        (e.phone
+          ? '<a class="offre-action-main" href="' + (o.reserverUrl || ('mailto:noriahorizoncontacts@gmail.com?subject=' + encodeURIComponent(o.titre))) + '" target="_blank" rel="noopener">' + (o.reserverLabel || 'Réserver ma place') + '</a>'
+          : '<a class="offre-action-main" href="#" onclick="closeModal();openContactExpert(\'' + id + '\', \'' + String(o.titre).replace(/'/g, "\\'") + '\');return false;">' + (o.reserverLabel || 'Réserver ma place') + '</a>') +
+        (o.pdf ? '<a class="offre-action" href="' + o.pdf + '" target="_blank" rel="noopener">Télécharger le programme (PDF)</a>' : '') +
+        (e.phone ? '<a class="offre-action" href="tel:' + String(e.phone).replace(/\s/g, '') + '">Appeler · ' + e.phone + '</a>' : '') +
         '<a class="offre-action" href="#" onclick="openModal(\'' + id + '\');return false;">Voir la fiche de l\'expert</a>' +
       '</div>'
     : '<div class="offre-actions"><button type="button" class="offre-action" disabled>Réserver · bientôt disponible</button></div>';
