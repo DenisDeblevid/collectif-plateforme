@@ -161,6 +161,31 @@ const experts = {
       "« Je révèle la structure. » Derrière chaque lieu, il y a une structure — technique, spatiale, humaine — à révéler pour lui donner tout son potentiel."
     ],
     tags:['Architecture d\'intérieur','Matériaux & couleurs','Pilotage de projet','Coordination des travaux','Rénovation & aménagement','Design biophilique','Lumière circadienne','Éco-conception','Espaces Montessori','Génie civil']
+,
+    offre:{
+      titre:'Révéler le potentiel de votre lieu',
+      accroche:"Derrière chaque lieu, il y a une structure — technique, spatiale, humaine — à révéler pour lui donner tout son potentiel. Vivitra transforme votre aménagement intérieur en un espace qui répond vraiment à vos besoins : bureaux, commerces, restaurants, lieux d'accueil ou de bien-être, logements.",
+      vivre:"Architecte d'intérieur et ingénieure en génie civil, elle réunit le regard du designer et la rigueur du bâtiment : des ambiances qui donnent envie de rester, des matériaux choisis avec soin, et de la clarté sur les coûts et les délais.",
+      image:'Vivitra-offre-restaurant.jpg',
+      imageAlt:'Extrait du portfolio de Vivitra : salle de restaurant',
+      galerieTitre:'Extraits du portfolio de Vivitra',
+      galerie:[
+        ['Vivitra-offre-bar.jpg','Espace bar aux tons bois et cuivre'],
+        ['Vivitra-offre-hall.jpg','Hall d\'accueil et installation florale'],
+        ['Vivitra-offre-accueil.jpg','Réception et escalier d\'un lieu d\'accueil'],
+        ['Vivitra-offre-moodboard.jpg','Moodboard d\'aménagement de salle de bain'],
+        ['Vivitra-offre-newwave.jpg','The New Wave : restructuration d\'un immeuble de 21 000 m² de bureaux']
+      ],
+      pourQui:"Les entreprises, commerces, restaurants, cabinets, lieux culturels et de bien-être qui s'installent, rénovent ou veulent repenser leurs espaces. Aussi les particuliers qui souhaitent transformer leur intérieur.",
+      objectif:"Un lieu qui respire et qui fait du bien. <strong>Qualité d'ambiance</strong> : lumière, volumes, matières, circulation. <strong>Bien-être</strong> : confort, ergonomie, calme et équilibre. <strong>Couleur et matière</strong> : des choix qui rendent le lieu vivant. <strong>Plus de choix</strong> : plusieurs ambiances et agencements, pour décider en confiance.",
+      methode:"Schematic design, analyse SWOT, méthode 4P, analyse des profils des occupants, moodboards d'ambiance et conception sur Vectorworks. Avec une attention constante à la qualité architecturale, aux normes environnementales et à des matériaux durables et sains.",
+      deroule:"1. <strong>Écoute et diagnostic</strong> : comprendre vos besoins, vos usages et votre lieu, avec les métrés.<br>2. <strong>Intentions et concept</strong> : moodboards et plusieurs propositions d'ambiance.<br>3. <strong>Conception détaillée</strong> : plans d'aménagement, choix des matériaux, des couleurs et des fournisseurs, budget.<br>4. <strong>Coordination des travaux</strong> : sélection des artisans et suivi de la réalisation.<br>5. <strong>Livraison et accompagnement</strong> : un lieu prêt à vivre, conforme à ce qui a été décidé ensemble.",
+      format:"Un premier échange pour comprendre votre projet, puis une visite du lieu. Le périmètre de la mission (conseil, conception, ou suivi jusqu'à la livraison), le lieu d'intervention et les délais sont définis avec vous dans le devis. Vivitra est basée à Vigneux-sur-Seine, en Essonne.",
+      repartir:"Selon le périmètre choisi : le diagnostic de votre lieu, des moodboards d'ambiance, plusieurs propositions d'aménagement, les plans de conception, le choix des matériaux, des couleurs et des fournisseurs, un budget détaillé, et une liste d'artisans pour la réalisation.",
+      prix:'Sur devis',
+      prixNote:'établi après un premier échange, selon la surface et le périmètre de la mission',
+      reserverLabel:'Demander un devis'
+    }
   },
   geoffrey: {
     photo:'Geoffrey-Batut.png',
@@ -762,7 +787,7 @@ var STRIPE_LIENS = {
 })();
 
 /* ═══ OFFRES DES EXPERTS — bandeau défilant en fondu au noir ═══ */
-var OFFRES_ORDRE = ['florian','denis','emilie','melanie','laurence','gilles','caroline','josselin','floriang','remi','melaniea','geoffrey','vivitra'];
+var OFFRES_ORDRE = ['florian','denis','emilie','melanie','laurence','gilles','caroline','josselin','floriang','remi','vivitra','melaniea','geoffrey'];
 var OFFRE_DUREE = 40000;
 var offreIndex = 0, offreTimer = null, offreHover = false;
 var offreReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -880,7 +905,8 @@ function openOffre(id){
     : '';
   var intro = o
     ? '<p class="modal-bio">' + o.accroche + '</p>' + '<p class="modal-bio">' + o.vivre + '</p>' +
-      (o.image ? '<img src="' + o.image + '" alt="' + (o.imageAlt || o.titre) + '" loading="lazy" style="display:block;width:100%;height:auto;border-radius:6px;margin:6px 0 18px;">' : '')
+      (o.image ? '<img src="' + o.image + '" alt="' + (o.imageAlt || o.titre) + '" loading="lazy" style="display:block;width:100%;height:auto;border-radius:6px;margin:6px 0 18px;">' : '') +
+      (o.galerie && o.galerie.length ? (o.galerieTitre ? '<p class="offre-galerie-titre">' + o.galerieTitre + '</p>' : '') + '<div class="offre-galerie">' + o.galerie.map(function(g){ return '<figure><a href="' + g[0] + '" target="_blank" rel="noopener" title="' + g[1] + '"><img src="' + g[0] + '" alt="' + g[1] + '" loading="lazy"></a><figcaption>' + g[1] + '</figcaption></figure>'; }).join('') + '</div>' : '')
     : '<p class="modal-bio">Cette offre est en préparation. Elle sera détaillée ici dès que l\'expert l\'aura complétée.</p>';
   var actions = o
     ? '<div class="offre-actions">' +
