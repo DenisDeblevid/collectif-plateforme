@@ -787,7 +787,7 @@ var STRIPE_LIENS = {
 })();
 
 /* ═══ OFFRES DES EXPERTS — bandeau défilant en fondu au noir ═══ */
-var OFFRES_ORDRE = ['florian','denis','emilie','melanie','laurence','gilles','caroline','josselin','floriang','remi','vivitra','melaniea','geoffrey'];
+var OFFRES_ORDRE = ['florian','remi','denis','vivitra','emilie','melanie','laurence','gilles','caroline','josselin','floriang','melaniea','geoffrey'];
 var OFFRE_DUREE = 40000;
 var offreIndex = 0, offreTimer = null, offreHover = false;
 var offreReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
