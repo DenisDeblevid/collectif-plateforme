@@ -533,7 +533,7 @@ function openIntra(){
   if(band){ band.classList.add('flipping'); }
   setTimeout(function(){
     ov.classList.add('open'); document.body.style.overflow = 'hidden';
-    try{ fr.contentWindow.scrollTo(0,0); }catch(e){}
+    try{ fr.contentWindow.scrollTo(0,0); if(fr.contentWindow.intraReset) fr.contentWindow.intraReset(); }catch(e){}
     if(band){ band.classList.remove('flipping'); }
   }, band ? 450 : 0);
 }

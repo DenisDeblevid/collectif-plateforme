@@ -2495,22 +2495,25 @@ section#tarifs .tarifs-columns .wave-sep { margin-left:0 !important; }
 
 /* ===== Bandeau CONTINUUM INTRA (24 nov. 2026) ===== */
 .intra-band { background:#F7F3EC; padding:56px 5vw; }
-.intra-band-inner { transition:transform .45s ease, opacity .45s ease; max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1.1fr 1fr; background:#234B5E; border-radius:6px; overflow:hidden; box-shadow:0 18px 40px rgba(35,75,94,.18); }
+.intra-band-inner { transition:transform .45s ease, opacity .45s ease; max-width:1140px; margin:0 auto; display:grid; grid-template-columns:1.3fr 1fr; background:#234B5E; border-radius:6px; overflow:hidden; box-shadow:0 18px 40px rgba(35,75,94,.18); }
 .intra-band-text { padding:40px 44px; color:#fff; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; }
-.intra-band-eyebrow { font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:#E8DCC9; opacity:.85; }
+.intra-band-eyebrow { font-size:1.02rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:#F0C6A6; }
 .intra-band-title { font-family:'Cormorant Garamond',Georgia,serif; font-weight:500; font-size:2.3rem; line-height:1.1; margin:10px 0 6px; color:#fff; }
 .intra-band-title em { font-style:normal; color:#D99A75; }
 .intra-band-sign { font-size:1.05rem; color:#fff; margin:0 0 12px; }
 .intra-band-desc { font-size:.9rem; line-height:1.65; color:rgba(255,255,255,.82); margin:0 0 22px; max-width:46ch; }
-.intra-band-btn { border:0; cursor:pointer; font-family:inherit; display:inline-flex; align-items:center; gap:10px; background:#B86F4C; color:#fff; text-decoration:none; font-size:.85rem; font-weight:600; letter-spacing:.04em; padding:13px 22px; border-radius:999px; animation:haloRespire 3.6s ease-in-out infinite; transition:background .25s, transform .2s; }
+.intra-band-btn { position:relative; overflow:hidden; border:0; cursor:pointer; font-family:inherit; display:inline-flex; align-items:center; gap:12px; background:#B86F4C; color:#fff; text-decoration:none; font-size:1.02rem; font-weight:700; letter-spacing:.05em; padding:17px 34px; border-radius:999px; animation:haloRespire 3.6s ease-in-out infinite; transition:background .25s, transform .2s; }
 .intra-band-btn:hover { background:#A2603F; transform:translateY(-2px); }
 .intra-band-photo { position:relative; min-height:280px; }
 .intra-band-photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; }
 .intra-band-photo::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg, #234B5E 0%, rgba(35,75,94,0) 28%); }
 .intra-band { perspective:1600px; }
+.intra-band-btn::after, .shine-btn::after { content:''; position:absolute; top:0; left:-60%; width:45%; height:100%; background:linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 100%); transform:skewX(-20deg); animation:btnShine 3.2s ease-in-out infinite; pointer-events:none; }
+@keyframes btnShine { 0%,55% { left:-60%; } 85%,100% { left:130%; } }
+@media (max-width:1000px){ .intra-band-actions { flex-wrap:wrap; } }
 .intra-band-inner.flipping { transform:rotateY(90deg) scale(.96); opacity:.4; }
-.intra-band-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
-.intra-mini { font-family:inherit; font-size:.76rem; letter-spacing:.03em; color:#fff; background:rgba(255,255,255,.06); border:1px solid rgba(232,220,201,.45); border-radius:999px; padding:8px 14px; cursor:pointer; text-decoration:none; transition:background .25s, border-color .25s; }
+.intra-band-actions { display:flex; flex-wrap:nowrap; gap:8px; margin-top:18px; }
+.intra-mini { white-space:nowrap; font-family:inherit; font-size:.72rem; letter-spacing:.02em; color:#fff; background:rgba(255,255,255,.06); border:1px solid rgba(232,220,201,.45); border-radius:999px; padding:7px 12px; cursor:pointer; text-decoration:none; transition:background .25s, border-color .25s; }
 .intra-mini:hover { background:rgba(184,111,76,.35); border-color:#D99A75; }
 .intra-overlay { position:fixed; inset:0; z-index:280; background:rgba(26,46,56,.9); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; padding:2.5vh 2.5vw; opacity:0; visibility:hidden; transition:opacity .35s ease, visibility .35s; }
 .intra-overlay.open { opacity:1; visibility:visible; }
@@ -2519,7 +2522,7 @@ section#tarifs .tarifs-columns .wave-sep { margin-left:0 !important; }
 .intra-sheet iframe { width:100%; height:100%; border:0; display:block; }
 .intra-close { position:absolute; top:12px; right:14px; z-index:2; font-family:inherit; font-size:.8rem; letter-spacing:.06em; color:#fff; background:#234B5E; border:1px solid rgba(255,255,255,.35); border-radius:999px; padding:9px 16px; cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,.25); }
 .intra-close:hover { background:#B86F4C; }
-@media (prefers-reduced-motion:reduce){ .intra-band-inner, .intra-sheet { transition:none; } }
+@media (prefers-reduced-motion:reduce){ .intra-band-inner, .intra-sheet { transition:none; } .intra-band-btn::after, .shine-btn::after { animation:none; display:none; } }
 @media (max-width:800px){
   .intra-overlay { padding:0; }
   .intra-sheet { border-radius:0; }
@@ -2531,5 +2534,26 @@ section#tarifs .tarifs-columns .wave-sep { margin-left:0 !important; }
   .intra-band-photo::after { background:linear-gradient(0deg, #234B5E 0%, rgba(35,75,94,0) 45%); }
   .intra-band-text { padding:24px 22px 28px; }
   .intra-band-title { font-size:1.9rem; }
+  .intra-band-eyebrow { font-size:.9rem; }
+  .intra-band-btn { font-size:.95rem; padding:16px 20px; }
   .intra-band-btn { width:100%; justify-content:center; }
+}
+
+
+/* ===== Ouverture / fermeture des fenêtres avec retournement (24 nov. 2026) ===== */
+.modal-overlay, .service-overlay, .devis-overlay, .map-overlay, .intra-overlay {
+  display:flex; visibility:hidden; opacity:0; pointer-events:none; perspective:1600px;
+  transition:opacity .35s ease, visibility 0s linear .5s;
+}
+.modal-overlay.open, .service-overlay.open, .devis-overlay.open, .map-overlay.open, .intra-overlay.open {
+  visibility:visible; opacity:1; pointer-events:auto;
+  transition:opacity .3s ease, visibility 0s;
+}
+.modal, .service-modal, .devis-modal, .map-modal {
+  animation:none; transform:rotateY(-90deg) scale(.94);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1);
+}
+.modal-overlay.open .modal, .service-overlay.open .service-modal, .devis-overlay.open .devis-modal, .map-overlay.open .map-modal { transform:none; }
+@media (prefers-reduced-motion:reduce){
+  .modal, .service-modal, .devis-modal, .map-modal, .intra-sheet { transform:none !important; transition:none; }
 }

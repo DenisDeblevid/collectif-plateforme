@@ -20,6 +20,33 @@
 .intra-foot a{color:#234B5E}
 @keyframes cwSpin{to{transform:rotate(360deg)}}
 html.in-overlay .intra-back{display:none}
+/* ---- Animations (24 nov. 2026) ---- */
+.glow-btn{position:relative;overflow:hidden;animation:ciHalo 3.2s ease-in-out infinite}
+.glow-btn::after{content:'';position:absolute;top:0;left:-60%;width:45%;height:100%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));transform:skewX(-20deg);animation:ciShine 3.2s ease-in-out infinite;pointer-events:none}
+@keyframes ciShine{0%,55%{left:-60%}85%,100%{left:130%}}
+@keyframes ciHalo{0%,100%{box-shadow:0 0 0 0 rgba(217,156,117,.0),0 0 14px rgba(217,156,117,.35)}50%{box-shadow:0 0 0 7px rgba(217,156,117,.18),0 0 34px rgba(217,156,117,.75)}}
+.benefit{position:relative;border-right:none!important;border-radius:10px;padding:10px 14px;margin:-10px 0;transition:background .25s ease,box-shadow .25s ease}
+.benefit:not(:last-child)::after{content:'';position:absolute;right:-25px;top:8px;bottom:8px;width:1px;background:#74a0a5}
+@media(max-width:760px){.benefit{padding:8px;margin:-8px 0}.benefit:not(:last-child)::after{right:-5px}}
+.benefit .benefit-num,.benefit strong{transition:color .25s ease,text-shadow .25s ease}
+.benefit.lit{background:rgba(217,156,117,.34);box-shadow:0 0 0 1px rgba(240,190,150,.8),0 0 34px rgba(217,156,117,.6)}
+.benefit.lit .benefit-num{color:#FFD2B0;text-shadow:0 0 16px rgba(240,170,120,.95)}
+.benefit.lit strong{color:#FFE3CC}
+.benefit.slow,.benefit.slow .benefit-num,.benefit.slow strong{transition-duration:1.4s}
+.format-card{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease,background .3s ease}
+.format-card.lit{transform:translateY(-6px);border-color:#C98760;box-shadow:0 0 0 2px rgba(184,111,76,.55),0 18px 40px rgba(184,111,76,.28)}
+.format-card.lit.selected{background:#F8E3D3}
+.format-card.slow{transition-duration:.9s}
+.cases-grid article{border-radius:0 10px 10px 0;transition:background .14s ease,box-shadow .14s ease,border-color .14s ease}
+.cases-grid article .case-index,.cases-grid article h3{transition:color .14s ease}
+.cases-grid article.lit{background:#fff;border-left-color:#E0874F;box-shadow:-4px 0 18px rgba(184,111,76,.35),0 10px 26px rgba(184,111,76,.18)}
+.cases-grid article.lit .case-index{color:#C9632F}
+.cases-grid article.lit h3{color:#9A4F2C}
+.process-grid>div{padding:16px 16px 14px 12px;border-radius:12px;border:1px solid transparent;transition:background .35s ease,box-shadow .35s ease,border-color .35s ease}
+.process-grid span{transition:color .3s ease,text-shadow .3s ease,transform .3s ease}
+.process-grid span.lit{color:#E0874F;text-shadow:0 0 14px rgba(224,135,79,.7);transform:scale(1.12)}
+.process-grid>div.lit{background:#fff;border-color:#E2C2AC;box-shadow:0 0 0 1px rgba(184,111,76,.25),0 14px 30px rgba(184,111,76,.2)}
+@media(prefers-reduced-motion:reduce){.glow-btn,.glow-btn::after{animation:none}.glow-btn::after{display:none}}
 html.in-overlay .intra-top{padding-right:130px}
 </style>
 </head>
@@ -61,7 +88,7 @@ html.in-overlay .intra-top{padding-right:130px}
       <h2>L'intelligence collective<br>au cœur de vos équipes.</h2>
       <p>Des <strong>ateliers privés, animés par NORIA</strong>, pour travailler avec vos collaborateurs sur leurs situations de terrain, croiser les regards et faire émerger des pistes d'action concrètes.</p>
       <div class="pills"><span>Ateliers privés</span><span>Sur mesure</span><span>Sans abonnement obligatoire</span></div>
-      <div class="cta-line"><a class="btn primary js-devis" target="_blank" rel="noopener" href="index.html#devis-intra">Construire un atelier pour mon équipe <span aria-hidden="true">↗</span></a></div>
+      <div class="cta-line"><a class="btn primary js-devis glow-btn" target="_blank" rel="noopener" href="index.html#devis-intra">Construire un atelier pour mon équipe <span aria-hidden="true">↗</span></a></div>
       <div class="legal-small">Sur devis · Périmètre défini avec votre entreprise</div>
     </div>
     <div class="photo-panel">
@@ -130,6 +157,53 @@ html.in-overlay .intra-top{padding-right:130px}
   var logo = document.querySelector('.intra-top .nav-brand');
   if(logo) logo.addEventListener('click', function(ev){ ev.preventDefault(); window.parent.closeIntra(); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') window.parent.closeIntra(); });
+})();
+</script>
+<script>
+/* Animations CONTINUUM INTRA (24 nov. 2026) */
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $$(s){ return [].slice.call(document.querySelectorAll(s)); }
+  var timers = [];
+  function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
+  function on(el){ el.classList.remove('slow'); el.classList.add('lit'); }
+  function off(el, slow){ if(slow) el.classList.add('slow'); el.classList.remove('lit'); }
+  // steps : [element, 'on' | 'off' | 'slow', attente après (ms)]
+  function run(steps, loop, i){
+    i = i || 0;
+    if(i >= steps.length){ if(loop) run(steps, loop, 0); return; }
+    var s = steps[i];
+    if(s[0]){ if(s[1] === 'on') on(s[0]); else off(s[0], s[1] === 'slow'); }
+    later(function(){ run(steps, loop, i + 1); }, s[2]);
+  }
+  var b = $$('.benefit'), fc = $$('.format-card'), cs = $$('.cases-grid article');
+  var pr = $$('.process-grid > div'), pn = pr.map(function(d){ return d.querySelector('span'); });
+  var openC = fc[0], intraC = fc[1], hybC = fc[2];
+  var anims = [
+    { el: document.querySelector('.benefits'), loop: true, steps: [
+      [b[0],'on',900],[b[0],'off',300],[b[1],'on',900],[b[1],'off',300],[b[2],'on',2300],[b[2],'slow',2200] ] },
+    { el: document.querySelector('.formats-grid'), loop: true, steps: [
+      [openC,'on',1000],[openC,'off',350],[hybC,'on',1000],[hybC,'off',350],[intraC,'on',3200],[intraC,'slow',1300] ] },
+    { el: document.querySelector('.cases-grid'), loop: true, steps: [
+      [cs[0],'on',360],[cs[0],'off',110],[cs[1],'on',360],[cs[1],'off',110],[cs[2],'on',360],[cs[2],'off',420] ] },
+    { el: document.querySelector('.process-grid'), loop: false, steps: [
+      [pn[0],'on',380],[pr[0],'on',520],[pn[1],'on',380],[pr[1],'on',520],[pn[2],'on',380],[pr[2],'on',0] ] }
+  ];
+  function reset(){
+    timers.forEach(clearTimeout); timers = [];
+    $$('.lit').forEach(function(e){ e.classList.remove('lit','slow'); });
+    anims.forEach(function(a){ a.started = false; });
+    if(reduce){ pn.concat(pr).forEach(on); return; }
+    anims.forEach(function(a){ if(a.el && isVisible(a.el)) start(a); });
+  }
+  function start(a){ if(a.started || reduce) return; a.started = true; run(a.steps, a.loop); }
+  function isVisible(el){ var r = el.getBoundingClientRect(); return r.top < innerHeight * .85 && r.bottom > 0; }
+  if(reduce){ pn.concat(pr).forEach(on); }
+  else if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ anims.forEach(function(a){ if(a.el === e.target) start(a); }); } }); }, { threshold: .35 });
+    anims.forEach(function(a){ if(a.el) io.observe(a.el); });
+  } else { anims.forEach(start); }
+  window.intraReset = reset;
 })();
 </script>
 </body>
