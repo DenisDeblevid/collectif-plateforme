@@ -499,6 +499,7 @@ function openContactExpert(id, offre){
 }
 function closeDevis(){
   document.getElementById("devisOverlay").classList.remove("open"); document.body.style.overflow="";
+  if(devisIntra){ devisIntra = false; document.querySelector('#devis-form h2').textContent = 'Demander un devis'; }
   if(contactExpert){
     contactExpert = null;
     var f = document.getElementById('devis-form');
@@ -511,6 +512,7 @@ function submitDevis(){
   var msg = document.querySelector('#devis-form [data-k=MESSAGE]');
   var original = msg.value;
   if(contactExpert){ msg.value = '[Contact expert : ' + contactExpert + '] ' + original; }
+  else if(devisIntra){ msg.value = '[CONTINUUM INTRA] ' + original; }
   envoyerDemande('devis-form', 'Devis', document.getElementById('devis-btn'), document.getElementById('devis-status'), 'Envoyer ma demande →', function(){
     setTimeout(function(){
       closeDevis();
@@ -521,7 +523,38 @@ function submitDevis(){
   msg.value = original;
 }
 
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModal();closeService();closeDevis();closeMap();} });
+// ─── CONTINUUM INTRA : bandeau qui se retourne, page en grand, devis ───
+var devisIntra = false;
+function openIntra(){
+  var band = document.querySelector('.intra-band-inner');
+  var ov = document.getElementById('intraOverlay');
+  var fr = document.getElementById('intraFrame');
+  if(!fr.getAttribute('src')) fr.setAttribute('src', 'continuum-intra.html');
+  if(band){ band.classList.add('flipping'); }
+  setTimeout(function(){
+    ov.classList.add('open'); document.body.style.overflow = 'hidden';
+    try{ fr.contentWindow.scrollTo(0,0); }catch(e){}
+    if(band){ band.classList.remove('flipping'); }
+  }, band ? 450 : 0);
+}
+function closeIntra(){
+  var ov = document.getElementById('intraOverlay');
+  if(!ov || !ov.classList.contains('open')) return;
+  ov.classList.remove('open'); document.body.style.overflow = '';
+}
+function openDevisIntra(){
+  closeIntra();
+  var sel = document.getElementById('devis-service');
+  var t = 'CONTINUUM INTRA · atelier privé pour mon équipe';
+  if(![].some.call(sel.options, function(o){ return o.text === t; })){ var o = document.createElement('option'); o.text = t; sel.insertBefore(o, sel.options[1]); }
+  sel.value = t;
+  devisIntra = true;
+  document.querySelector('#devis-form h2').textContent = 'Demander un devis · CONTINUUM INTRA';
+  document.getElementById('devisOverlay').classList.add('open'); document.body.style.overflow = 'hidden';
+}
+
+window.addEventListener('load', function(){ if(location.hash === '#devis-intra'){ openDevisIntra(); } });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeIntra();closeModal();closeService();closeDevis();closeMap();} });
 
 // ─── MENU ACTIF + SILLAGE SCROLL + BACK TO TOP ───
 (function(){

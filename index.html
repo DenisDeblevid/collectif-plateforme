@@ -407,6 +407,24 @@
   </div>
 </section>
 
+<section id="continuum-intra" class="intra-band" aria-labelledby="intraBandTitle">
+  <div class="intra-band-inner">
+    <div class="intra-band-text">
+      <span class="intra-band-eyebrow">Vous êtes une entreprise ?</span>
+      <h2 id="intraBandTitle" class="intra-band-title">CONTINUUM <em>INTRA</em></h2>
+      <p class="intra-band-sign">L'intelligence collective au cœur de vos équipes.</p>
+      <p class="intra-band-desc">Vous souhaitez travailler uniquement avec les collaborateurs de votre entreprise ? NORIA vous propose aussi la formule Intra : des ateliers privés, animés par NORIA, sur vos situations de terrain, pour faire émerger des pistes d'action concrètes. Sur devis, sans abonnement obligatoire.</p>
+      <button type="button" class="intra-band-btn" onclick="openIntra()">Découvrir CONTINUUM INTRA <span aria-hidden="true">→</span></button>
+      <div class="intra-band-actions">
+        <button type="button" class="intra-mini" onclick="openDevisIntra()">Construire un atelier pour mon équipe</button>
+        <button type="button" class="intra-mini" onclick="openDevisIntra()">Demander un devis</button>
+        <a class="intra-mini" href="https://koalendar.com/e/noria-horizon" target="_blank" rel="noopener">Échanger avec NORIA ↗</a>
+      </div>
+    </div>
+    <div class="intra-band-photo" aria-hidden="true"><img src="continuum-intra-photo.jpg" alt="" loading="lazy"></div>
+  </div>
+</section>
+
 <section id="prisme">
   <div class="prisme-inner">
     <span class="section-label" style="color:var(--copper);">NORIA Prisme</span>
@@ -1043,6 +1061,14 @@
   <div class="service-modal">
     <button class="svc-close" onclick="closeService()">&#10005;</button>
     <div id="serviceBody"></div>
+  </div>
+</div>
+
+<!-- CONTINUUM INTRA : page de présentation en grand -->
+<div class="intra-overlay" id="intraOverlay" onclick="if(event.target===this)closeIntra()">
+  <div class="intra-sheet">
+    <button type="button" class="intra-close" onclick="closeIntra()" aria-label="Fermer la présentation CONTINUUM INTRA">✕ Fermer</button>
+    <iframe id="intraFrame" title="Présentation CONTINUUM INTRA" loading="lazy"></iframe>
   </div>
 </div>
 
