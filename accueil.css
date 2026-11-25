@@ -1,0 +1,93 @@
+/* ===== Nouvel accueil NORIA (25 nov. 2026) — bandeaux, fenêtres, visages ===== */
+
+/* --- Bandeaux Continuum / Prisme --- */
+.porte-band { background:#F4EFE6; padding:70px 24px; }
+.porte-band.alt { background:#E8DCC9; }
+.porte-band-inner { max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; background:#234B5E; border-radius:22px; overflow:hidden; box-shadow:0 26px 60px rgba(35,75,94,.22); }
+.porte-band.alt .porte-band-inner { grid-template-columns:1fr 1fr; }
+.porte-band-photo { position:relative; min-height:420px; }
+.porte-band-photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.porte-band-text { padding:52px 50px; color:#fff; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:14px; }
+.porte-band.alt .porte-band-photo { order:2; }
+.porte-eyebrow { font-size:.78rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#F0C6A6; }
+.porte-title { font-family:var(--font-display); font-weight:500; font-size:clamp(2.4rem,4vw,3.4rem); line-height:1.02; margin:0; color:#fff; letter-spacing:.02em; }
+.porte-title em { font-style:normal; color:#E3A47F; }
+.porte-tagline { font-family:var(--font-display); font-style:italic; font-size:1.35rem; color:#E8DCC9; margin:0; }
+.porte-desc { font-size:.98rem; line-height:1.65; color:rgba(255,255,255,.88); margin:0; max-width:470px; }
+.porte-chips { display:flex; flex-wrap:wrap; gap:8px; margin:4px 0 6px; }
+.porte-chips button { cursor:pointer; font-family:inherit; background:transparent; transition:background .25s, border-color .25s; font-size:.74rem; letter-spacing:.04em; border:1px solid rgba(232,220,201,.45); border-radius:999px; padding:6px 12px; color:#fff; }
+.porte-btn { position:relative; overflow:hidden; border:0; cursor:pointer; font-family:inherit; display:inline-flex; align-items:center; gap:12px; background:#B86F4C; color:#fff; font-size:1rem; font-weight:700; letter-spacing:.05em; padding:16px 30px; border-radius:999px; box-shadow:0 10px 26px rgba(184,111,76,.35); transition:transform .25s, background .25s; margin-top:6px; }
+.porte-btn:hover { transform:translateY(-2px); background:#C77E5A; }
+.porte-btn::after, .visages-btn.shine::after { content:''; position:absolute; top:0; left:-60%; width:45%; height:100%; background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0)); transform:skewX(-20deg); animation:btnShine 3.2s ease-in-out infinite; pointer-events:none; }
+.porte-chips button:hover { background:#B86F4C; border-color:#B86F4C; }
+.porte-link { font-size:.82rem; color:#E8DCC9; text-decoration:underline; text-underline-offset:4px; }
+.porte-link:hover { color:#fff; }
+
+/* --- Fenêtres (même retournement que les autres) --- */
+.porte-overlay { z-index:190; }
+.porte-sheet { background:#F4EFE6; }
+.porte-scroll { position:absolute; inset:0; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+.porte-scroll > section { margin:0; }
+.porte-subnav { position:sticky; top:0; z-index:5; display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:14px 150px 14px 22px; background:rgba(35,75,94,.97); backdrop-filter:blur(6px); }
+.porte-subnav strong { color:#F0C6A6; font-size:.74rem; letter-spacing:.18em; text-transform:uppercase; margin-right:8px; }
+.porte-subnav button { position:relative; overflow:hidden; font-family:inherit; font-size:.8rem; color:#fff; background:rgba(255,255,255,.06); border:1px solid rgba(232,220,201,.5); border-radius:999px; padding:8px 14px; cursor:pointer; transition:background .25s; }
+.porte-subnav button:hover { background:#B86F4C; border-color:#B86F4C; }
+.porte-subnav button.intra { background:#B86F4C; border-color:#B86F4C; }
+.porte-subnav button.intra::after { content:''; position:absolute; top:0; left:-60%; width:45%; height:100%; background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.5),rgba(255,255,255,0)); transform:skewX(-20deg); animation:btnShine 3.2s ease-in-out infinite; }
+.porte-overlay .intra-close { z-index:8; }
+
+/* --- Les visages de NORIA --- */
+.visages { background:linear-gradient(180deg,#234B5E,#1C3D4C); color:#fff; padding:80px 24px 90px; text-align:center; }
+.visages-eyebrow { font-size:.76rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:#F0C6A6; }
+.visages h2 { font-family:var(--font-display); font-weight:500; font-size:clamp(2rem,3.6vw,3rem); margin:12px 0 10px; color:#fff; }
+.visages-intro { max-width:720px; margin:0 auto 38px; color:rgba(255,255,255,.85); line-height:1.65; }
+.visages-grid { max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.visage-card { display:flex; flex-direction:column; justify-content:flex-start; background:rgba(255,255,255,.06); border:1px solid rgba(232,220,201,.22); border-radius:20px; padding:16px 16px 22px; text-align:left; cursor:pointer; transition:transform .3s, border-color .3s, box-shadow .3s; font-family:inherit; color:inherit; }
+.visage-card:hover { transform:translateY(-4px); border-color:rgba(227,164,127,.7); box-shadow:0 18px 40px rgba(0,0,0,.25); }
+.visage-photo { aspect-ratio:4/4.2; border-radius:14px; overflow:hidden; background:#3B7A78; }
+.visage-photo img { width:100%; height:100%; object-fit:cover; object-position:50% 20%; display:block; }
+.visage-card h3 { font-family:var(--font-display); font-size:1.6rem; font-weight:600; margin:16px 4px 2px; color:#fff; }
+.visage-role { font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:#E3A47F; margin:0 4px 8px; }
+.visage-desc { font-size:.93rem; color:rgba(255,255,255,.85); margin:0 4px; line-height:1.55; }
+.visages-outro { margin:34px auto 26px; color:rgba(255,255,255,.88); font-size:1.02rem; }
+/* bandeau carré « Découvrir tous les experts » : lettres qui arrivent de la droite et rebondissent */
+.visages-btn { position:relative; overflow:hidden; display:inline-flex; flex-wrap:wrap; max-width:100%; align-items:center; justify-content:center; gap:4px; min-width:min(520px,100%); padding:22px 34px; border:0; border-radius:0; background:#B86F4C; color:#fff; font-family:inherit; font-size:1.08rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; cursor:pointer; box-shadow:0 14px 34px rgba(184,111,76,.4); }
+.visages-btn .mot { display:inline-flex; white-space:nowrap; }
+.visages-btn .esp { display:inline-block; width:.6em; }
+.visages-btn .lt { display:inline-block; opacity:0; transform:translateX(160px); white-space:pre; }
+.visages-btn.go .lt { animation:ltIn .7s cubic-bezier(.3,1.5,.5,1) forwards; animation-delay:calc(var(--i) * 45ms); }
+@keyframes ltIn { 0% { opacity:0; transform:translateX(160px); } 60% { opacity:1; transform:translateX(-10px); } 80% { transform:translateX(4px); } 100% { opacity:1; transform:translateX(0); } }
+.visages-btn:hover { background:#C77E5A; }
+
+/* --- Premier pas (conclusion) --- */
+.premier-pas { background:#234B5E; color:#fff; text-align:center; padding:70px 24px 40px; }
+.premier-pas .visages-eyebrow { display:block; }
+.premier-pas h2 { font-family:var(--font-display); font-weight:500; font-size:clamp(2rem,3.6vw,3rem); margin:12px auto 10px; max-width:820px; color:#fff; }
+.premier-pas p { max-width:680px; margin:0 auto; color:rgba(255,255,255,.85); line-height:1.6; }
+.premier-pas-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin-top:26px; }
+.premier-pas-actions a { position:relative; overflow:hidden; text-decoration:none; font-weight:700; letter-spacing:.04em; padding:14px 24px; border-radius:999px; }
+.premier-pas-actions a.p1 { background:#B86F4C; color:#fff; }
+.premier-pas-actions a.p1::after { content:''; position:absolute; top:0; left:-60%; width:45%; height:100%; background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0)); transform:skewX(-20deg); animation:btnShine 3.2s ease-in-out infinite; }
+.premier-pas-actions a.p2 { border:1px solid rgba(232,220,201,.6); color:#fff; }
+
+/* le héros de Florian sous la barre de navigation fixe */
+#accueil.nh-hero { padding-top:76px; }
+
+@media (max-width:860px){
+  .porte-band { padding:44px 14px; }
+  .porte-band-inner, .porte-band.alt .porte-band-inner { grid-template-columns:1fr; }
+  .porte-band.alt .porte-band-photo { order:0; }
+  .porte-band-photo { min-height:240px; }
+  .porte-band-text { padding:30px 24px 34px; }
+  .porte-btn { width:100%; justify-content:center; }
+  .porte-subnav { padding:12px 112px 12px 14px; }
+  .porte-subnav strong { display:none; }
+  .visages-grid { grid-template-columns:1fr 1fr; gap:12px; }
+  .visage-card h3 { font-size:1.2rem; }
+  .visages-btn { min-width:0; width:100%; font-size:.8rem; letter-spacing:.04em; padding:18px 10px; row-gap:4px; }
+}
+@media (max-width:520px){ .visages-grid { grid-template-columns:1fr; max-width:360px; } }
+@media (prefers-reduced-motion:reduce){
+  .visages-btn .lt { opacity:1; transform:none; animation:none !important; }
+  .porte-btn::after, .visages-btn.shine::after, .porte-subnav button.intra::after, .premier-pas-actions a.p1::after { animation:none; display:none; }
+}

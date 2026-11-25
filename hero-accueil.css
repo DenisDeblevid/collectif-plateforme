@@ -1,0 +1,139 @@
+/* NORIA HORIZON / HERO 2026 — composant isolé. NE MODIFIE PAS le header, le menu ni les autres sections. */
+:root {
+  --noria-font-titre:var(--font-display); --noria-font-texte:var(--font-body);
+  --nh-navy:#234B5E; --nh-deep:#092D3B; --nh-petrol:#3B7A78; --nh-copper:#B86F4C;
+  --nh-sand:#E8DCC9; --nh-cream:#F7F1E8; --nh-ink:#173644;
+  --nh-serif:var(--noria-font-titre, var(--font-heading, Georgia, "Times New Roman", serif));
+  --nh-sans:var(--noria-font-texte, var(--font-body, Lato, "Segoe UI", sans-serif));
+}
+.nh-hero, .nh-hero * { box-sizing:border-box; }
+.nh-hero { color:var(--nh-ink); font-family:var(--nh-sans); width:100%; isolation:isolate; overflow:hidden; position:relative; -webkit-font-smoothing:antialiased; }
+.nh-hero h1,.nh-hero h2,.nh-hero p{margin:0}
+.nh-hero a {text-decoration:none}
+.nh-hero a:focus-visible {outline:3px solid #DE9D62;outline-offset:4px}
+.nh-hero .nh-container {width:min(1440px,calc(100% - 100px));margin:0 auto;position:relative;z-index:3}
+.nh-hero .nh-eyebrow {font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--nh-copper);line-height:1.7;display:flex;gap:17px;align-items:center}
+.nh-hero .nh-eyebrow::before {content:'';width:36px;height:2px;background:var(--nh-copper);flex-shrink:0}
+.nh-hero .nh-headline {font-family:var(--nh-serif);font-weight:400;font-size:clamp(51px,4.7vw,78px);letter-spacing:-.043em;line-height:1.02;color:var(--nh-navy);margin-top:18px;margin-bottom:19px}
+.nh-hero .nh-headline span {color:var(--nh-copper)}
+.nh-hero .nh-intro {font-size:clamp(17px,1.21vw,20px);line-height:1.62;max-width:675px;color:#294753}
+.nh-hero .nh-offers {font-size:14px;font-weight:700;letter-spacing:.009em;line-height:1.55;color:var(--nh-navy);margin-top:24px}
+.nh-hero .nh-offers::before {content:'';display:block;width:78px;height:2px;background:var(--nh-copper);margin-bottom:15px}
+.nh-hero .nh-conditions {font-size:15px;line-height:1.6;margin-top:8px;color:#55717D}
+.nh-hero .nh-signature {font-family:var(--nh-serif);font-size:24px;font-style:italic;letter-spacing:-.025em;color:var(--nh-navy)}
+.nh-hero .nh-section-label {font-size:11px;letter-spacing:.22em;font-weight:800;color:var(--nh-copper);margin-bottom:14px;text-transform:uppercase}
+.nh-hero .nh-paths {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:0}
+.nh-hero .nh-path {min-width:0;position:relative;padding:23px 24px 20px;border-radius:20px;display:flex;flex-direction:column;gap:10px;border:1px solid rgba(184,111,76,.23);background:rgba(255,251,245,.93);box-shadow:0 14px 40px rgba(20,50,62,.075);transition:transform .2s,border-color .2s,box-shadow .2s}
+.nh-hero .nh-path:hover {transform:translateY(-4px);border-color:rgba(184,111,76,.7);box-shadow:0 18px 36px rgba(20,50,62,.14)}
+.nh-hero .nh-path-top {display:flex;align-items:center;gap:12px;min-height:38px}
+.nh-hero .nh-path-icon {width:39px;height:39px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#F3E2D0;color:var(--nh-copper);flex-shrink:0}
+.nh-hero .nh-path-icon svg {width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round}
+.nh-hero .nh-path:nth-child(2) .nh-path-icon {background:#E3EDE9;color:var(--nh-petrol)}
+.nh-hero .nh-path-kicker {font-size:14px;text-transform:uppercase;font-weight:800;letter-spacing:.075em;color:var(--nh-navy)}
+.nh-hero .nh-question {font-family:var(--nh-serif);font-size:clamp(19px,1.65vw,25px);line-height:1.16;color:var(--nh-navy);font-weight:400;margin:0}
+.nh-hero .nh-description {font-size:14px;line-height:1.57;color:#51636A;min-height:67px;flex:1}
+.nh-hero .nh-cta {color:#A45B38;display:inline-flex;align-items:center;gap:9px;font-size:13.5px;line-height:1.35;font-weight:800;margin-top:5px;align-self:flex-start;border-bottom:1px solid rgba(184,111,76,.35);padding-bottom:4px}
+.nh-hero .nh-path:hover .nh-cta {color:#82401E}
+.nh-hero .nh-cta::after {content:'↗';font-size:19px;line-height:1}
+.nh-hero .nh-bottom {display:flex;align-items:center;gap:25px;justify-content:space-between;margin-top:20px;padding:18px 24px;border-radius:17px;border:1px solid rgba(35,75,94,.16);background:rgba(239,229,214,.62)}
+.nh-hero .nh-help {display:flex;align-items:center;gap:16px}
+.nh-hero .nh-help-icon {width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:var(--nh-navy);color:#F6E4D2;border-radius:50%;flex-shrink:0}
+.nh-hero .nh-help-icon svg {width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.6}
+.nh-hero .nh-help-copy {display:flex;flex-direction:column;gap:3px}
+.nh-hero .nh-help-copy strong {font-size:14px;color:var(--nh-navy)}
+.nh-hero .nh-help-copy span {font-size:13px;color:#4D6470;line-height:1.4}
+.nh-hero .nh-help-button {display:inline-flex;align-items:center;gap:12px;padding:12px 16px;background:var(--nh-navy);color:#FFF9F0;border-radius:99px;white-space:nowrap;font-weight:750;font-size:13px;transition:background .2s}
+.nh-hero .nh-help-button:hover{background:var(--nh-petrol)}
+.nh-hero .nh-signature-row {display:flex;justify-content:center;align-items:center;gap:18px;margin-top:16px}
+.nh-hero .nh-signature-row::before,.nh-hero .nh-signature-row::after{content:'';width:62px;height:1px;background:linear-gradient(90deg,transparent,var(--nh-copper))}
+.nh-hero .nh-signature-row::after{transform:rotate(180deg)}
+.nh-hero .nh-sweep {position:absolute;z-index:2;pointer-events:none;stroke:#d1a37d;fill:none;stroke-width:1.5}
+/* Composition A : chaleureux, humain, photo originale du prototype précédent, jamais superposée au texte. */
+.nh-hero--photo {background:radial-gradient(ellipse at 0% 0%,#FFF9EF 0,transparent 62%),linear-gradient(147deg,#F7F1E8 0%,#EFE3D5 75%,#E8DCC9 100%)}
+.nh-hero--photo .nh-intro-section {position:relative;min-height:529px;padding:55px 0 15px}
+.nh-hero--photo .nh-intro-content {position:relative;z-index:2;max-width:770px}
+.nh-hero--photo .nh-photo {position:absolute;right:0;top:0;width:51%;height:100%;overflow:hidden;z-index:0;clip-path:polygon(17% 0%,100% 0%,100% 100%,0 100%,0 25%)}
+.nh-hero--photo .nh-photo img {width:100%;height:100%;object-fit:cover;object-position:53% center;filter:saturate(.87) contrast(.95)}
+.nh-hero--photo .nh-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(247,241,232,.6),transparent 34%),linear-gradient(0deg,rgba(247,241,232,.48),transparent 33%)}
+.nh-hero--photo .nh-photo-arc {position:absolute;width:60%;height:520px;right:-10%;top:20px;z-index:1;pointer-events:none}
+.nh-hero--photo .nh-photo-arc path {stroke:#F5CE9F;stroke-width:2;fill:none;filter:drop-shadow(0 0 4px rgba(255,203,125,.45))}
+.nh-hero--photo .nh-bottom-area{padding:0 0 25px;background:linear-gradient(180deg,rgba(247,241,232,.3),rgba(247,241,232,.9) 50%)}
+.nh-hero--photo .nh-intro,.nh-hero--photo .nh-offers,.nh-hero--photo .nh-conditions {max-width:684px}
+/* Composition B : sans photo, composition fondée exclusivement sur typographie et trajectoires vectorielles. */
+.nh-hero--graphic {background:radial-gradient(ellipse at 90% 10%,rgba(88,140,133,.43),transparent 45%),linear-gradient(120deg,#0E3545 0%,#234B5E 50%,#194557 100%);color:#F7EEE1}
+.nh-hero--graphic::before {content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 16% 25%,rgba(212,147,94,.12),transparent 43%);z-index:0}
+.nh-hero--graphic .nh-geometry {position:absolute;right:-3%;top:0;width:62%;height:610px;z-index:0;pointer-events:none;opacity:.8}
+.nh-hero--graphic .nh-geometry path {fill:none;stroke-width:1.25}
+.nh-hero--graphic .nh-intro-section{padding:62px 0 20px;min-height:528px;position:relative}
+.nh-hero--graphic .nh-intro-content {max-width:990px;z-index:2}
+.nh-hero--graphic .nh-eyebrow {color:#E1AB81}
+.nh-hero--graphic .nh-eyebrow::before {background:#E1AB81}
+.nh-hero--graphic .nh-headline {color:#FFF4E7;font-size:clamp(55px,5.0vw,81px);max-width:900px}
+.nh-hero--graphic .nh-headline span{color:#DDA17C}
+.nh-hero--graphic .nh-intro{color:#E9EDEB;max-width:830px}
+.nh-hero--graphic .nh-offers {color:#F7E7D3;max-width:960px}
+.nh-hero--graphic .nh-offers::before{background:#C8845D}
+.nh-hero--graphic .nh-conditions{color:#D2E1DF}
+.nh-hero--graphic .nh-bottom-area{padding-bottom:25px}
+.nh-hero--graphic .nh-section-label{color:#e2b38a}
+.nh-hero--graphic .nh-path{background:rgba(244,238,228,.96);border-color:rgba(239,200,171,.4);box-shadow:0 21px 43px rgba(0,15,26,.18)}
+.nh-hero--graphic .nh-bottom{border-color:rgba(235,212,190,.28);background:rgba(7,42,55,.57)}
+.nh-hero--graphic .nh-help-copy strong{color:#FFFFFF}
+.nh-hero--graphic .nh-help-copy span{color:#DFE7E4}
+.nh-hero--graphic .nh-help-icon{background:#E9D3BB;color:#234B5E}
+.nh-hero--graphic .nh-help-button{background:var(--nh-copper)}
+.nh-hero--graphic .nh-help-button:hover{background:#A65F3A}
+.nh-hero--graphic .nh-signature{color:#E8DCC9}
+/* Standalone preview header for the screenshots ONLY; actual component excludes it. */
+.nh-preview {margin:0;background:#EDE4D9;font-family:var(--nh-sans)}
+@media(max-width:1250px){
+  .nh-hero .nh-container{width:calc(100% - 64px)}
+  .nh-hero .nh-headline{font-size:clamp(49px,4.4vw,66px)}
+  .nh-hero--photo .nh-intro-content{max-width:690px}
+  .nh-hero--photo .nh-photo{width:52%}
+  .nh-hero .nh-path{padding:19px 18px}
+  .nh-hero .nh-description{font-size:13px}
+  .nh-hero .nh-question{font-size:21px}
+}
+@media(max-width:780px){
+  .nh-hero .nh-container{width:calc(100% - 36px)}
+  .nh-hero .nh-eyebrow{font-size:10px;letter-spacing:.11em;gap:9px}
+  .nh-hero .nh-eyebrow::before{width:24px}
+  .nh-hero .nh-headline{font-size:clamp(41px,10.3vw,55px);margin:17px 0 14px;letter-spacing:-.045em}
+  .nh-hero .nh-intro{font-size:15px;line-height:1.55}
+  .nh-hero .nh-offers{font-size:13px;margin-top:22px}
+  .nh-hero .nh-conditions{font-size:13px}
+  .nh-hero .nh-paths{grid-template-columns:1fr;gap:12px;margin-top:0}
+  .nh-hero .nh-path{padding:18px;border-radius:15px;gap:9px;min-height:185px}
+  .nh-hero .nh-path-top{min-height:31px}
+  .nh-hero .nh-path-icon{width:35px;height:35px}
+  .nh-hero .nh-question{font-size:23px}
+  .nh-hero .nh-description{font-size:13px;min-height:0}
+  .nh-hero .nh-cta{font-size:13px}
+  .nh-hero .nh-bottom{padding:18px;flex-direction:column;align-items:stretch;gap:13px}
+  .nh-hero .nh-help{align-items:flex-start;gap:12px}
+  .nh-hero .nh-help-copy strong{font-size:14px}
+  .nh-hero .nh-help-copy span{font-size:13px}
+  .nh-hero .nh-help-button{justify-content:center;font-size:13px;width:100%}
+  .nh-hero .nh-signature{font-size:22px}
+  .nh-hero .nh-signature-row{margin-top:20px}
+  .nh-hero--photo .nh-intro-section{padding:30px 0 256px;min-height:0}
+  .nh-hero--photo .nh-intro-content{max-width:100%}
+  .nh-hero--photo .nh-photo{width:100%;left:0;top:auto;bottom:0;height:230px;clip-path:none}
+  .nh-hero--photo .nh-photo::after{background:linear-gradient(0deg,rgba(247,241,232,.85),transparent 21%)}
+  .nh-hero--photo .nh-photo-arc{width:100%;height:270px;top:auto;bottom:0;right:0}
+  .nh-hero--photo .nh-bottom-area{padding:0 0 25px}
+  .nh-hero--graphic .nh-intro-section{min-height:0;padding:43px 0 230px}
+  .nh-hero--graphic .nh-intro-section::after{content:"";position:absolute;bottom:31px;left:calc(50% - 68px);width:136px;height:136px;border:1px solid rgba(221,160,111,.5);box-shadow:0 0 0 25px rgba(221,160,111,.035),0 0 0 52px rgba(221,160,111,.025);border-radius:50%;pointer-events:none}
+  .nh-hero--graphic .nh-geometry{width:135%;right:-52%;top:5px;height:560px;opacity:.45}
+  .nh-hero--graphic .nh-headline{font-size:clamp(43px,10.4vw,56px)}
+  .nh-hero--graphic .nh-intro-content{max-width:100%}
+}
+@media(max-width:400px){.nh-hero--photo .nh-intro-section{padding-bottom:245px}.nh-hero--photo .nh-photo{height:218px}}
+@media(prefers-reduced-motion:reduce){.nh-hero *, .nh-hero::before{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+/* animation is CSS only, disabled for reduced motion */
+@media(prefers-reduced-motion:no-preference){
+  .nh-hero .nh-photo-arc{animation:nh-float 10s ease-in-out infinite alternate}
+  .nh-hero .nh-geometry{animation:nh-float 12s ease-in-out infinite alternate}
+  @keyframes nh-float{from{transform:translateY(-6px)}to{transform:translateY(12px)}}
+}
