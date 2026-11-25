@@ -32,3 +32,12 @@ html.in-overlay .site-header{top:0}
 .btn-primary::after{content:'';position:absolute;top:0;left:-60%;width:45%;height:100%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.5),rgba(255,255,255,0));transform:skewX(-20deg);animation:ctShine 3.2s ease-in-out infinite;pointer-events:none;z-index:1}
 @keyframes ctShine{0%,55%{left:-60%}85%,100%{left:130%}}
 @media(prefers-reduced-motion:reduce){.btn-primary::after{animation:none;display:none}}
+
+/* 3 blocs tarifaires + bloc mis en avant (Pionniers, Pilote) — 25 nov. 2026 */
+.price-grid.three{grid-template-columns:repeat(3,1fr)}
+.price-card.pilot{border:2px solid var(--copper);background:linear-gradient(160deg,#fff7ee,#f6e4d2);box-shadow:0 0 0 6px rgba(184,111,76,.12),0 24px 50px rgba(184,111,76,.22);animation:ctGlow 3.4s ease-in-out infinite}
+.price-badge{position:absolute;top:-13px;left:26px;background:var(--copper);color:#fff;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:99px;box-shadow:0 6px 14px rgba(184,111,76,.35)}
+@keyframes ctGlow{0%,100%{box-shadow:0 0 0 4px rgba(184,111,76,.10),0 22px 46px rgba(184,111,76,.18)}50%{box-shadow:0 0 0 9px rgba(184,111,76,.18),0 26px 56px rgba(184,111,76,.32)}}
+@media(max-width:1050px){.price-grid.three{grid-template-columns:1fr 1fr}}
+@media(max-width:850px){.price-grid.three{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.price-card.pilot{animation:none}}
