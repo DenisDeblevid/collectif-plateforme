@@ -121,6 +121,14 @@
     var a = e.target.closest && e.target.closest('a[href]'); if(!a) return;
     var m = a.getAttribute('href').match(/^\/#offre-([a-z]+)$/);
     if(m){ e.preventDefault(); p.closeAgir(); setTimeout(function(){ p.openOffre(m[1]); }, 350); }
+    var h = a.getAttribute('href');
+    if(/^contact\.html/.test(h) && typeof p.openDevisNoria === 'function'){
+      e.preventDefault();
+      var t = (document.querySelector('h1') || {}).innerText || 'Agir avec NORIA';
+      var page = location.pathname.split('/').pop();
+      var sujet = /^fiche-/.test(page) ? t.replace(/\s+/g,' ').trim() : 'Agir avec NORIA';
+      p.openDevisNoria('Agir avec NORIA · ' + sujet, '', 'Demander un devis · Agir avec NORIA');
+    }
   });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') p.closeAgir(); });
 })();

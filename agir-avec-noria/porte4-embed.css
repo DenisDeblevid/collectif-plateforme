@@ -10,3 +10,5 @@
 .noria-p4 .np-link.np-outline::after,.noria-p4 .np-resource a::after{background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.35),rgba(255,255,255,0))}
 @keyframes npShine{0%,55%{left:-60%}85%,100%{left:130%}}
 @media(prefers-reduced-motion:reduce){.noria-p4 .np-link::after,.noria-p4 .np-resource a::after{animation:none;display:none}}
+.noria-p4 .np-link,.noria-p4 .np-resource a{white-space:nowrap}
+@media(max-width:520px){.noria-p4 .np-link,.noria-p4 .np-resource a{font-size:.88rem;padding:11px 16px}}
