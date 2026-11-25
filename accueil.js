@@ -102,14 +102,18 @@
 
   // Demande depuis le parcours CONTINUUM : formulaire de devis NORIA (Brevo)
   var devisTitre = null;
-  window.openDevisContinuum = function(sujet, message){
+  window.openDevisNoria = function(libelle, message, titre){
     if(typeof closeAgir === 'function') closeAgir();
-    var sel = document.getElementById('devis-service'), t = 'CONTINUUM · ' + (sujet || 'Conseil sur le bon parcours');
+    var sel = document.getElementById('devis-service'), t = libelle || 'Demande NORIA';
     if(sel){ if(![].some.call(sel.options, function(o){ return o.text === t; })){ var o = document.createElement('option'); o.text = t; sel.insertBefore(o, sel.options[1]); } sel.value = t; }
     var msg = document.querySelector('#devis-form [data-k=MESSAGE]'); if(msg) msg.value = message || '';
-    var h2 = document.querySelector('#devis-form h2'); if(h2){ devisTitre = h2.textContent; h2.textContent = 'Échanger avec NORIA · CONTINUUM'; }
+    var h2 = document.querySelector('#devis-form h2'); if(h2){ if(devisTitre === null) devisTitre = h2.textContent; h2.textContent = titre || 'Demander un devis'; }
     setTimeout(function(){ document.getElementById('devisOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; }, 300);
   };
+  window.openDevisContinuum = function(sujet, message){
+    openDevisNoria('CONTINUUM · ' + (sujet || 'Conseil sur le bon parcours'), message, 'Échanger avec NORIA · CONTINUUM');
+  };
+
   if(typeof window.closeDevis === 'function'){
     var _closeDevis = window.closeDevis;
     window.closeDevis = function(){ _closeDevis.apply(this, arguments); if(devisTitre !== null){ var h2 = document.querySelector('#devis-form h2'); if(h2) h2.textContent = devisTitre; devisTitre = null; } };
