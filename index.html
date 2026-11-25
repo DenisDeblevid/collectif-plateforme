@@ -50,6 +50,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="noel.css">
+<link rel="stylesheet" href="hero-accueil.css">
+<link rel="stylesheet" href="accueil.css">
 </head>
 <body>
 
@@ -67,7 +69,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#hero" class="nav-brand">
+  <a href="#accueil" class="nav-brand">
     <svg class="logo-svg" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g style="animation:cwSpin 18s linear infinite; transform-origin:44px 44px;">
         <circle cx="44" cy="44" r="36" stroke="#234B5E" stroke-width="2.5"/>
@@ -94,12 +96,11 @@
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="#tarifs" class="nav-anchor">Nos solutions</a></li>
-    <li><a href="#services" class="nav-anchor">Accompagnement</a></li>
-    <li><a href="#equipe" class="nav-anchor">Experts</a></li>
+    <li><a href="#solutions" class="nav-anchor">Nos solutions</a></li>
+    <li><a href="#agir-avec-noria" class="nav-anchor">Accompagnement</a></li>
+    <li><a href="#visages" class="nav-anchor">Experts</a></li>
     <li><a href="#disc" class="nav-anchor">Cartographie</a></li>
-    <li><a href="#mission" class="nav-anchor">Valeurs</a></li>
-    <li><a href="#contact" class="nav-anchor">Contact</a></li>
+        <li><a href="#contact" class="nav-anchor">Contact</a></li>
     <li><a href="espace-continuum.html" class="nav-espace">Espace membre</a></li>
     <li><a href="#tunnel" class="nav-cta"><span class="nav-cta-top">Réserver</span><span class="nav-cta-sub">mon instant Horizon</span></a></li>
   </ul>
@@ -107,35 +108,32 @@
 </nav>
 
 <!-- HERO -->
-<section id="hero">
-  <div class="hero-layout">
-    <div class="hero-content">
-      <span class="hero-eyebrow">Intelligence collective · Développement humain</span>
-      <h1 class="hero-title nx-reveal">
-        Élever<br>
-        <strong>les potentiels.</strong>
-      </h1>
-      <p class="hero-sub nx-reveal">
-        Une situation professionnelle ne rentre pas toujours dans une seule case. NORIA HORIZON réunit les regards et les expertises nécessaires pour comprendre ce qui se joue, éclairer les décisions et mettre les transformations en mouvement.
-      </p>
-      <p class="hero-promise nx-reveal">Pour révéler, développer et élever les personnes, les équipes et les organisations.</p>
-      <div class="hero-buttons nx-fade">
-        <div class="hero-cta">
-          <a href="#tunnel" class="hero-btn primary"><span class="hero-btn-main">Réserver mon Instant Horizon</span><span class="hero-btn-sub">Entretien offert · Sans engagement</span></a>
-        </div>
-        <p class="hero-links"><a href="#equipe">Découvrir l'équipe</a><span>·</span><a href="#tarifs">Nos solutions</a><span>·</span><a href="#contact">Une question ? Un projet ?</a></p>
-      </div>
-    </div>
-    <ul class="hero-keys" aria-label="Notre démarche">
-      <li class="hero-key">Comprendre</li>
-      <li class="hero-key">Éclairer</li>
-      <li class="hero-key">Mettre en mouvement</li>
-    </ul>
-  </div>
-  <svg class="hero-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <path d="M0 40 Q180 0 360 40 Q540 80 720 40 Q900 0 1080 40 Q1260 80 1440 40 L1440 80 L0 80Z" fill="#E8DCC9" opacity="0.5"/>
-    <path d="M0 55 Q200 20 400 55 Q600 90 800 55 Q1000 20 1200 55 Q1320 75 1440 55" stroke="#3B7A78" stroke-width="1" fill="none" opacity="0.25"/>
-  </svg>
+<section id="accueil" class="nh-hero nh-hero--graphic" aria-labelledby="nh-hero-title">
+ <svg class="nh-geometry nh-noria" viewBox="0 0 1020 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="nhGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3d8a7" stop-opacity=".12"/><stop offset=".6" stop-color="#dba070" stop-opacity=".73"/><stop offset="1" stop-color="#f5e3b8" stop-opacity=".17"/></linearGradient></defs>
+<path d="M-50 595 C300 125 550 735 1080 105" stroke="url(#nhGold)"/><path d="M120 640 C390 290 550 650 1020 365" stroke="#E9BE8A" opacity=".4"/>
+<circle cx="610" cy="315" r="245" fill="none" stroke="url(#nhGold)" stroke-width="1.6"/>
+<g class="nr-spin nr-wheel"><circle cx="610" cy="315" r="188" fill="none" stroke="#DCA679" stroke-width=".9" stroke-dasharray="4 7" opacity=".6"/>
+<line x1="610" y1="127" x2="610" y2="503" stroke="#E9D3AF" stroke-width=".7" opacity=".28"/><line x1="422" y1="315" x2="798" y2="315" stroke="#E9D3AF" stroke-width=".7" opacity=".28"/><line x1="477" y1="182" x2="743" y2="448" stroke="#E9D3AF" stroke-width=".6" opacity=".2"/><line x1="743" y1="182" x2="477" y2="448" stroke="#E9D3AF" stroke-width=".6" opacity=".2"/>
+<path d="M610 127 c-5 7 -5 13 0 13 c5 0 5 -6 0 -13Z M798 315 c-7 -5 -13 -5 -13 0 c0 5 6 5 13 0Z M610 503 c5 -7 5 -13 0 -13 c-5 0 -5 6 0 13Z M422 315 c7 5 13 5 13 0 c0 -5 -6 -5 -13 0Z" fill="#C9855C" opacity=".85"/></g>
+<circle cx="610" cy="315" r="120" fill="none" stroke="#E9D3AF" stroke-width="1.1" opacity=".42"/>
+<circle cx="610" cy="315" r="9" fill="#C9855C" opacity=".9"/><circle cx="610" cy="315" r="4" fill="#234B5E"/>
+<g class="nr-orb nr-o1"><circle cx="610" cy="70" r="8" fill="#F3CF9D"/></g>
+<g class="nr-orb nr-o2"><circle cx="798" cy="315" r="5.5" fill="#F3CF9D" opacity=".95"/></g>
+<g class="nr-orb nr-o3"><circle cx="610" cy="435" r="4.5" fill="#E7B486" opacity=".9"/></g>
+<g class="nr-orb nr-o4"><circle cx="365" cy="315" r="4" fill="#F3CF9D" opacity=".7"/></g>
+</svg>
+ <div class="nh-intro-section"><div class="nh-container"><div class="nh-intro-content">
+ <p class="nh-eyebrow">NORIA HORIZON · MAISON D'INTELLIGENCE COLLECTIVE</p>
+ <h1 id="nh-hero-title" class="nh-headline">Des expertises réunies.<br><span>Des projets qui avancent.</span></h1>
+ <p class="nh-intro">NORIA HORIZON réunit des professionnels aux compétences complémentaires pour vous aider à développer vos compétences, éclairer vos décisions et concrétiser vos projets.</p>
+ <p class="nh-offers">Formation · Coaching · Conseil · Diagnostic · Intelligence collective · Savoir-faire spécialisés</p>
+ <p class="nh-conditions">Des interventions ponctuelles ou un accompagnement dans la durée, selon vos besoins.</p>
+ </div></div></div>
+ <div class="nh-bottom-area"><div class="nh-container">
+ <p class="nh-section-label" id="solutions">TROIS SOLUTIONS POUR AVANCER</p><div class="nh-paths" aria-label="Trois solutions pour avancer"><a class="nh-path" href="#" data-nh-link="agir" aria-label="Vous avez un besoin concret ? Découvrir nos formations et savoir-faire"><div class="nh-path-top"><span class="nh-path-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M18 11a3 3 0 1 0-1-5M17 14a5 5 0 0 1 4 5v1"/></svg></span><span class="nh-path-kicker">AGIR AVEC NORIA</span></div><h2 class="nh-question">Vous avez un besoin concret ?</h2><p class="nh-description">Formation, coaching, conseil ou projet spécialisé : nous mobilisons les compétences adaptées pour le réaliser.</p><span class="nh-cta">Découvrir nos formations et savoir-faire</span></a><a class="nh-path" href="#" data-nh-link="continuum" aria-label="Vous souhaitez progresser dans la durée ? Découvrir CONTINUUM"><div class="nh-path-top"><span class="nh-path-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c-3-5-5.5-7-8-7a5 5 0 0 0 0 10c2.5 0 5-2 8-5 3 3 5.5 5 8 5a5 5 0 0 0 0-10c-2.5 0-5 2-8 7Z"/></svg></span><span class="nh-path-kicker">CONTINUUM</span></div><h2 class="nh-question">Vous souhaitez progresser dans la durée ?</h2><p class="nh-description">Échangez avec d'autres professionnels, bénéficiez de regards d'experts et prenez régulièrement du recul sur vos pratiques.</p><span class="nh-cta">Découvrir CONTINUUM</span></a><a class="nh-path" href="#" data-nh-link="prisme" aria-label="Votre situation est complexe ? Découvrir NORIA Prisme"><div class="nh-path-top"><span class="nh-path-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 9 5-9 5-9-5 9-5ZM3 12l9 5 9-5M3 17l9 5 9-5"/></svg></span><span class="nh-path-kicker">NORIA PRISME</span></div><h2 class="nh-question">Votre situation est complexe ?</h2><p class="nh-description">Un diagnostic approfondi croisant plusieurs regards d'experts pour mieux comprendre les enjeux avant de décider.</p><span class="nh-cta">Découvrir NORIA Prisme</span></a></div>
+ <div class="nh-bottom"><div class="nh-help"><span class="nh-help-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></span><div class="nh-help-copy"><strong>Vous ne savez pas par où commencer ?</strong><span>Instant Horizon : un premier échange offert pour faire le point sur votre situation.</span></div></div><a href="#" data-nh-link="instant" class="nh-help-button">Réserver mon premier échange <span aria-hidden="true">↗</span></a></div>
+ <div class="nh-signature-row"><p class="nh-signature">Élever les potentiels.</p></div>
+ </div></div>
 </section>
 
 <section id="film" class="film-section">
@@ -157,6 +155,99 @@
     </div>
     <p class="film-hint">🎧 Pour profiter de la présentation, activez le son.</p>
   </div>
+</section>
+
+<link rel="stylesheet" href="/agir-avec-noria/porte4-embed.css">
+<section id="agir-avec-noria" class="noria-p4" aria-label="Agir avec NORIA : formations, coaching, conseil et savoir-faire">
+  <div class="np-hero"><div class="np-wrap"><span class="np-eyebrow">FORMATIONS · ATELIERS · COACHING · CONSEIL · SAVOIR-FAIRE</span><h2>AGIR AVEC <em>NORIA</em></h2><p>Formations, ateliers, coaching, conseil et savoir-faire spécialisés : découvrez les solutions de notre collectif pour vos projets.</p></div></div>
+  <div class="np-main np-wrap">
+    <div class="np-row"><h3>À la une chez NORIA</h3><div class="np-controls"><button class="np-control" type="button" data-np4-prev aria-label="Offre précédente">‹</button><span data-np4-counter aria-live="polite">1 / 4</span><button class="np-control" type="button" data-np4-next aria-label="Offre suivante">›</button><button class="np-control" type="button" data-np4-play aria-label="Mettre le défilement en pause">Ⅱ</button></div></div>
+    <div data-np4-carousel role="region" aria-roledescription="carrousel" aria-label="Offres à la une"><div class="np-track"><article class="np-slide np-active" data-np4-slide="0" aria-hidden="false"><img src="/agir-avec-noria/formation-atelier.webp" alt="Devenir Manager" loading="eager"><div class="np-slide-content"><span class="np-pill">FORMATION</span><h4>Devenir Manager</h4><p>Adopter une nouvelle posture, affirmer sa légitimité et mobiliser une équipe. Avec Florian Dhaussy.</p><a class="np-link" href="#offre-florian">Découvrir la formation →</a></div></article><article class="np-slide " data-np4-slide="1" aria-hidden="true"><img src="/agir-avec-noria/hero-horizon.webp" alt="Boire à la source" loading="lazy"><div class="np-slide-content"><span class="np-pill">COACHING</span><h4>Boire à la source</h4><p>Une journée pour vous poser les bonnes questions, et trouver vos propres réponses. Avec Denis Deblevid.</p><a class="np-link" href="#offre-denis">Découvrir la journée →</a></div></article><article class="np-slide " data-np4-slide="2" aria-hidden="true"><img src="/agir-avec-noria/remi-murale.jpg" alt="Vos murs racontent qui vous êtes" loading="lazy"><div class="np-slide-content"><span class="np-pill">SAVOIR-FAIRE</span><h4>Vos murs racontent qui vous êtes</h4><p>Impression murale professionnelle : votre lieu devient une image qui vous ressemble. Avec Rémi Rozier.</p><a class="np-link" href="#offre-remi">Découvrir le savoir-faire →</a></div></article><article class="np-slide " data-np4-slide="3" aria-hidden="true"><img src="/agir-avec-noria/vivitra-lieu.jpg" alt="Révéler le potentiel de votre lieu" loading="lazy"><div class="np-slide-content"><span class="np-pill">SAVOIR-FAIRE</span><h4>Révéler le potentiel de votre lieu</h4><p>Architecture d&#x27;intérieur : des espaces qui répondent vraiment à vos besoins. Avec Vivitra Kirouba.</p><a class="np-link" href="#offre-vivitra">Découvrir le savoir-faire →</a></div></article></div><div class="np-dots"><button type="button" data-np4-dot="0" aria-label="Voir offre 1" aria-current="true"></button><button type="button" data-np4-dot="1" aria-label="Voir offre 2" aria-current="false"></button><button type="button" data-np4-dot="2" aria-label="Voir offre 3" aria-current="false"></button><button type="button" data-np4-dot="3" aria-label="Voir offre 4" aria-current="false"></button></div></div>
+    <p class="np-hint">Cycle complet : 40 secondes · pause au survol et au focus · commande manuelle.</p>
+    <div class="np-panels">
+      <article class="np-panel" style="--np-photo:url('/agir-avec-noria/coaching-collectif.webp')"><div><span class="np-eyebrow">DÉVELOPPER · ACCOMPAGNER</span><h4>Accompagnements NORIA</h4><p>Développer les personnes, les compétences et les organisations.</p><div class="np-mini-tags">Formations · Ateliers · Coaching · Conseil & RH</div><a class="np-link" href="/agir-avec-noria/accompagnements.html">Découvrir les accompagnements →</a></div></article>
+      <article class="np-panel" style="--np-photo:url('/agir-avec-noria/savoir-faire-atelier.webp');background-position:center 22%"><div><span class="np-eyebrow">CRÉER · CONCEVOIR · RÉALISER</span><h4>Les Savoir-faire NORIA</h4><p>Mobiliser des expertises spécialisées pour concrétiser les projets.</p><div class="np-mini-tags">Architecture · Impression murale · Publicité · Digital</div><a class="np-link np-outline" href="/agir-avec-noria/savoir-faire.html">Découvrir les savoir-faire →</a></div></article>
+    </div>
+    <div class="np-resource"><div><span class="np-eyebrow" style="color:#B86F4C">ACCÈS LIBRE</span><h4>Ressources NORIA</h4><p>Des outils, des repères et des fiches pratiques à découvrir gratuitement.</p></div><a href="/agir-avec-noria/ressources.html">Explorer les ressources gratuites →</a></div>
+  </div>
+</section>
+
+<!-- Fenêtre « Agir avec NORIA » : les pages s'ouvrent en grand et se referment en pivotant -->
+<div class="intra-overlay" id="agirOverlay" onclick="if(event.target===this)closeAgir()">
+  <div class="intra-sheet">
+    <button type="button" class="intra-close" onclick="closeAgir()" aria-label="Fermer la fenêtre Agir avec NORIA">✕ Fermer</button>
+    <iframe id="agirFrame" title="Agir avec NORIA"></iframe>
+  </div>
+</div>
+<script defer src="/agir-avec-noria/porte4-embed.js"></script>
+
+
+
+
+<section id="continuum" class="porte-band" aria-labelledby="ctBandTitle">
+  <div class="porte-band-inner">
+    <div class="porte-band-photo"><img src="Continuum-Particuliers.webp" alt="CONTINUUM, l'abonnement de NORIA HORIZON" loading="lazy"></div>
+    <div class="porte-band-text">
+      <span class="porte-eyebrow">Progresser dans la durée</span>
+      <h2 id="ctBandTitle" class="porte-title">CONTINUUM</h2>
+      <p class="porte-tagline">Le bon regard, au bon moment.</p>
+      <p class="porte-desc">Échangez avec d'autres professionnels, bénéficiez de regards d'experts et prenez régulièrement du recul sur vos pratiques. Avant, après ou indépendamment d'une intervention.</p>
+      <div class="porte-chips"><button type="button" onclick="openContinuum('individuel.html')">Particuliers &amp; indépendants</button><button type="button" onclick="openContinuum('entreprises.html')">Entreprises · 5, 10 &amp; Pilote</button><button type="button" onclick="openIntra()">CONTINUUM INTRA</button></div>
+      <button type="button" class="porte-btn" onclick="openPorte('continuum')">Découvrir CONTINUUM <span aria-hidden="true">→</span></button>
+      <a class="porte-link" href="espace-continuum.html">Déjà abonné ? Accéder à mon espace</a>
+    </div>
+  </div>
+</section>
+
+<section id="noria-prisme" class="porte-band alt" aria-labelledby="prBandTitle">
+  <div class="porte-band-inner">
+    <div class="porte-band-photo"><img src="Noria-Prisme.webp" alt="NORIA Prisme, diagnostic à plusieurs regards" loading="lazy"></div>
+    <div class="porte-band-text">
+      <span class="porte-eyebrow">Comprendre avant de décider</span>
+      <h2 id="prBandTitle" class="porte-title">NORIA <em>Prisme</em></h2>
+      <p class="porte-tagline">Une situation. Plusieurs regards. Une compréhension plus juste.</p>
+      <p class="porte-desc">Un diagnostic approfondi croisant plusieurs regards d'experts pour mieux comprendre les enjeux d'une situation complexe, avant d'engager une décision, un budget ou une transformation.</p>
+      <button type="button" class="porte-btn" onclick="openPorte('prisme')">Découvrir NORIA Prisme <span aria-hidden="true">→</span></button>
+    </div>
+  </div>
+</section>
+
+<section id="visages" class="visages" aria-labelledby="visagesTitle">
+  <span class="visages-eyebrow">Les visages de NORIA</span>
+  <h2 id="visagesTitle">Deux fondateurs. Une vision commune.</h2>
+  <p class="visages-intro">Nous avons créé NORIA HORIZON autour d'une conviction : les expertises prennent davantage de valeur lorsqu'elles se rencontrent.</p>
+  <div class="visages-grid">
+    <button type="button" class="visage-card" onclick="openModal('florian')">
+      <div class="visage-photo"><img src="Florian-Dhaussy.png" alt="Florian Dhaussy" loading="lazy"></div>
+      <h3>Florian Dhaussy</h3><p class="visage-role">Cofondateur</p>
+    </button>
+    <button type="button" class="visage-card" onclick="openModal('denis')">
+      <div class="visage-photo"><img src="Denis-Deblevid.png" alt="Denis Deblevid" loading="lazy"></div>
+      <h3>Denis Deblevid</h3><p class="visage-role">Cofondateur</p>
+    </button>
+  </div>
+  <p class="visages-outro">Autour de cette vision, un collectif d'experts indépendants aux savoir-faire complémentaires.</p>
+  <button type="button" class="visages-btn" data-texte="Découvrir tous les experts" onclick="openPorte('experts')">Découvrir tous les experts</button>
+</section>
+
+<section id="rejoindre">
+  <div class="rejoindre-box reveal">
+    <span class="section-label" style="justify-content:center;">Experts &amp; professionnels</span>
+    <h2 class="section-title">Rejoindre l’écosystème <strong>NORIA HORIZON</strong></h2>
+    <div class="wave-sep" style="margin-left:auto;margin-right:auto;"></div>
+    <p>Vous êtes consultant, formateur, coach, expert RH, facilitateur, professionnel de l’accompagnement ou vous disposez d’une expertise forte dans un domaine particulier, rare ou différenciant ?</p>
+    <p>NORIA HORIZON réunit des expertises complémentaires autour d’une même exigence : <strong>comprendre la situation avant de proposer une réponse.</strong></p>
+    <p>Nous étudions chaque candidature avec attention afin de préserver la cohérence, la qualité et la complémentarité de l’écosystème.</p>
+    <a href="https://form.jotform.com/262742975173062" target="_blank" rel="noopener" class="btn-primary rejoindre-btn">Proposer ma candidature →</a>
+    <p class="rejoindre-note">Rejoindre l’écosystème NORIA HORIZON ne constitue ni une promesse de mission ni une garantie de volume d’activité. Les experts restent indépendants dans l’exercice de leur activité.</p>
+  </div>
+</section>
+
+<section id="premier-pas" class="premier-pas" aria-labelledby="ppTitle">
+  <span class="visages-eyebrow">Votre premier pas avec NORIA</span>
+  <h2 id="ppTitle">Un besoin, une question ou un projet ? Commençons par faire le point.</h2>
+  <p>Instant Horizon : un premier échange humain offert, sans engagement, pour comprendre votre situation et identifier une suite adaptée. Ou la Cartographie NORIA, pour explorer vos fonctionnements et ouvrir de nouvelles pistes de réflexion.</p>
+  <div class="premier-pas-actions"><a class="p1" href="#tunnel">Réserver mon échange</a><a class="p2" href="#disc">Découvrir la Cartographie NORIA</a><a class="p2" href="#contact">Nous contacter</a></div>
 </section>
 
 <section id="tunnel">
@@ -220,211 +311,121 @@
   </div>
 </section>
 
-<!-- CONTINUUM (maquette de Florian, validée) -->
-<section id="tarifs">
-  <div class="tarifs-top">
-    <span class="section-label">Continuum</span>
-    <h2 class="section-title">CONTINU<span style="color:var(--copper);">U</span>M</h2>
-    <div class="wave-sep"></div>
-    <p class="tarifs-quote">Pas plus de contenu. Le bon regard au bon moment.</p>
-    <p class="deja-line"><a href="espace-continuum.html" class="deja-membre">Déjà abonné ? Accéder à mon espace Continuum</a></p>
+<section id="disc" style="background:var(--deep); color:var(--white); position:relative; overflow:hidden;">
+  <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto;text-align:center;">
+    <span class="section-label" style="color:var(--copper);justify-content:center;">Cartographie &middot; Connaissance de soi</span>
+    <h2 class="section-title" style="color:var(--white);">Votre Cartographie <strong style="color:var(--copper);">Noria Horizon</strong></h2>
+    <div class="wave-sep" style="margin:0 auto 32px;"></div>
+    <p class="section-sub" style="color:var(--white);opacity:0.5;margin:0 auto 48px;">Vos &eacute;tats du moi et les messages qui vous animent, inspir&eacute;s de l'analyse transactionnelle. Une photographie de vos appuis et de vos pistes de progression, lue par l'&eacute;quipe NORIA HORIZON.</p>
+    <a href="cartographie.html" target="_blank" rel="opener" class="btn-primary action-key halo-btn halo-fort" style="font-size:0.9rem;padding:18px 52px;letter-spacing:0.2em;display:inline-block;">
+      D&eacute;couvrir ma cartographie &rarr;
+    </a>
+    <p style="font-size:0.78rem;color:var(--white);opacity:0.35;margin-top:14px;">64 affirmations &middot; environ 12 minutes &middot; &Eacute;gogramme et drivers</p>
   </div>
+</section>
 
-  <div class="tarifs-columns">
-
-    <!-- COLONNE GAUCHE — IMAGE (fixe pendant le défilement, comme aujourd'hui) -->
-    <div class="tarifs-image-col">
-      <img src="Continuum-Particuliers.webp" alt="Continuum — L'abonnement de Noria Horizon, rester en mouvement" class="tarifs-image">
+<section id="contact">
+  <span class="section-label">Nous contacter</span>
+  <h2 class="section-title">Une question ? <strong>Un projet ?</strong></h2>
+  <div class="wave-sep" style="margin-bottom:20px;background:linear-gradient(to right,var(--copper),var(--teal));"></div>
+  <p class="section-sub">Vous avez un projet ? Écrivez-nous, ou demandez directement un devis personnalisé.</p>
+  <div class="contact-levels" style="grid-template-columns:repeat(2,1fr);max-width:720px;align-items:end;">
+    <div class="contact-level">
+      <span class="contact-level-tag">Par mail</span>
+      <h3>Contactez-nous</h3>
+      <p>Une question, un échange. Écrivez-nous directement.</p>
+      <a href="mailto:noriahorizoncontacts@gmail.com" target="_blank" rel="noopener" class="btn-copper-full" style="display:block;text-align:center;text-decoration:none;">Nous écrire →</a>
     </div>
-
-    <div class="tarifs-content-col">
-
-      <div class="tarifs-block">
-        <h3 class="tarifs-block-title">Vous n'avez pas besoin d'un consultant tous les jours. Mais vous avez parfois besoin du bon regard, au bon moment.</h3>
-        <p class="section-sub">Continuum vous donne accès toute l'année à des rendez-vous experts, des temps d'intelligence collective, des ressources utiles et un premier éclairage humain pour avancer sans attendre qu'un problème devienne une urgence.</p>
-        <p class="tarifs-precision">Continuum ne remplace pas une mission de conseil, un coaching, une formation ou un accompagnement personnalisé. Lorsqu'une situation nécessite une intervention plus approfondie, NORIA vous oriente vers la réponse la plus adaptée.</p>
-        <div class="offre-cta-row">
-          <a href="#formules" class="btn-copper-full offre-cta-btn">Rejoindre Continuum</a>
-          <a href="#formules" class="tarif-btn offre-cta-btn">Découvrir les formules</a>
-        </div>
-      </div>
-
-      <div class="tarifs-block" style="margin-top:48px;">
-        <h3 class="tarifs-block-title">Des situations très concrètes. Des réponses légères, au bon moment.</h3>
-        <div class="tarifs-mini-grid">
-          <div class="tarif-card"><h4 class="tarif-formule">Vous prenez un nouveau poste de manager</h4><p class="tarif-equiv">Une Session Horizon vous aide à structurer vos premières semaines.</p></div>
-          <div class="tarif-card"><h4 class="tarif-formule">Vous devez gérer une situation délicate</h4><p class="tarif-equiv">Ask NORIA vous apporte un premier éclairage humain et utile.</p></div>
-          <div class="tarif-card"><h4 class="tarif-formule">Vous voulez progresser sans repartir en formation complète</h4><p class="tarif-equiv">Un Cercle NORIA ou une Session Horizon vous fait avancer sur un sujet précis.</p></div>
-          <div class="tarif-card"><h4 class="tarif-formule">Vous avez besoin d'un outil immédiatement utilisable</h4><p class="tarif-equiv">Une grille, une checklist, un canevas ou une méthode vous seront remis dans les ressources.</p></div>
-          <div class="tarif-card"><h4 class="tarif-formule">Le sujet devient plus complexe</h4><p class="tarif-equiv">NORIA vous aide à identifier et à accompagner la bonne expertise, si nécessaire.</p></div>
-        </div>
-      </div>
-
-      <div class="tarifs-block" id="formules" style="margin-top:56px;">
-        <span class="section-label">Pour vous</span>
-        <h3 class="tarifs-block-title">Vous êtes indépendant, manager, dirigeant ou professionnel en mouvement</h3>
-        <p class="section-sub">Vous n'avez pas besoin d'être accompagné en permanence. Mais vous ne voulez plus rester seul face à toutes vos questions.</p>
-        <p class="tarifs-precision">Pour 59 € par mois, vous n'achetez pas une bibliothèque de contenus. Vous achetez la possibilité de ne pas rester bloqué seul.</p>
-        <div class="tarifs-mini-grid">
-          <div class="tarif-card best">
-            <span class="tarif-badge">30 places</span>
-            <span class="tarif-formule">Pionniers</span>
-            <div class="tarif-prix">39 €<span>/mois</span></div>
-            <p class="tarif-equiv">Pendant 6 mois · mêmes accès que l'offre individuelle</p>
-            <ul class="tarif-inclus">
-              <li>Sessions Horizon (75–90 min, avec un expert)</li>
-              <li>Cercles NORIA (60 min, intelligence collective)</li>
-              <li>1 Ask NORIA par mois, réponse sous 24 h ouvrées</li>
-              <li>Ressources &amp; outils pratiques</li>
-            </ul>
-            <p class="pion-left">Places restantes : <strong class="pion-count">30</strong> / 30</p>
-            <div class="tarif-actions">
-              <p class="tarif-save">&nbsp;</p>
-              <a href="#contact" class="tarif-btn" data-stripe="pionniers">Réserver les Pionniers · 39 € par mois</a>
-              <p class="tarif-save">&nbsp;</p>
-              <a class="tarif-btn tarif-btn-2 tarif-placeholder" aria-hidden="true">&nbsp;</a>
-            </div>
-          </div>
-          <div class="tarif-card">
-            <span class="tarif-formule">Individuel</span>
-            <div class="tarif-prix">59 €<span>/mois</span></div>
-
-            <ul class="tarif-inclus">
-              <li>Sessions Horizon (75–90 min, avec un expert)</li>
-              <li>Cercles NORIA (60 min, intelligence collective)</li>
-              <li>1 Ask NORIA par mois, réponse sous 24 h ouvrées</li>
-              <li>Ressources &amp; outils pratiques</li>
-            </ul>
-            <div class="tarif-actions">
-              <p class="tarif-save">&nbsp;</p>
-              <a href="#contact" class="tarif-btn" data-stripe="individuel-mois">Choisir Continuum · 59 € par mois</a>
-              <p class="tarif-save">Vous économisez 118 €</p>
-              <a href="#contact" class="tarif-btn tarif-btn-2" data-stripe="individuel-an">Choisir Continuum · 590 € par an</a>
-            </div>
-          </div>
-        </div>
-        <p class="tarifs-note" data-stripe-off>Paiement en ligne sécurisé — bientôt disponible. En attendant, contactez-nous pour activer votre accès.</p>
-      </div>
-
-      <div class="tarifs-block" style="margin-top:56px;">
-        <span class="section-label">Pour vos équipes</span>
-        <h3 class="tarifs-block-title">Continuum pour les entreprises</h3>
-        <p class="section-sub">Donnez à vos collaborateurs un espace où ils peuvent trouver du recul, des outils et un regard expert avant que les petites difficultés ne deviennent de vrais problèmes.</p>
-        <p class="tarifs-precision">Moins de problèmes qui restent sans réponse. Plus d'autonomie. Plus de recul. Plus de mouvement.</p>
-        <div class="tarifs-mini-grid">
-          <div class="tarif-card">
-            <span class="tarif-formule">Entreprise 5</span>
-            <div class="tarif-prix">249 €<span>/mois</span></div>
-            <p class="tarif-equiv">Pour une équipe pilote ou un petit collectif</p>
-            <ul class="tarif-inclus">
-              <li>5 accès nominatifs</li>
-              <li>3 Ask NORIA mutualisées par mois</li>
-              <li>Sessions Horizon</li>
-              <li>Cercles NORIA</li>
-              <li>Ressources &amp; outils</li>
-            </ul>
-            <div class="tarif-actions">
-              <p class="tarif-save">&nbsp;</p>
-              <a href="#contact" class="tarif-btn" data-stripe="entreprise5-mois">Doter mon équipe · 249 € par mois</a>
-              <p class="tarif-save">Vous économisez 498 €</p>
-              <a href="#contact" class="tarif-btn tarif-btn-2" data-stripe="entreprise5-an">Doter mon équipe · 2 490 € par an</a>
-            </div>
-          </div>
-          <div class="tarif-card">
-            <span class="tarif-formule">Entreprise 10</span>
-            <div class="tarif-prix">449 €<span>/mois</span></div>
-            <p class="tarif-equiv">Pour diffuser Continuum plus largement</p>
-            <ul class="tarif-inclus">
-              <li>10 accès nominatifs</li>
-              <li>5 Ask NORIA mutualisées par mois</li>
-              <li>Sessions Horizon</li>
-              <li>Cercles NORIA</li>
-              <li>Ressources &amp; outils</li>
-            </ul>
-            <div class="tarif-actions">
-              <p class="tarif-save">&nbsp;</p>
-              <a href="#contact" class="tarif-btn" data-stripe="entreprise10-mois">Déployer Continuum · 449 € par mois</a>
-              <p class="tarif-save">Vous économisez 898 €</p>
-              <a href="#contact" class="tarif-btn tarif-btn-2" data-stripe="entreprise10-an">Déployer Continuum · 4 490 € par an</a>
-            </div>
-          </div>
-        </div>
-        <p class="tarifs-note">Ask supplémentaire : 29 €. Les Ask non utilisés ne se cumulent pas. Prix en euros. TVA non applicable, art. 293 B du CGI. <a href="cgv.html" target="_blank" rel="noopener">Conditions générales de vente</a>.</p>
-        <p class="tarifs-note" data-stripe-off>Paiement en ligne sécurisé — bientôt disponible. En attendant, contactez-nous pour activer votre accès.</p>
-      </div>
-
-      <div class="tarifs-block" style="margin-top:56px;">
-        <span class="section-label">Pilote</span>
-        <h3 class="tarifs-block-title">Vous hésitez encore ?</h3>
-        <p class="tarifs-subtitle">Testez Continuum pendant 3 mois avec 5 collaborateurs.</p>
-        <p class="section-sub">Pas besoin de vous engager sur un abonnement annuel. Pendant 3 mois, vos équipes découvrent le dispositif en conditions réelles, avec un suivi des usages et un bilan à la fin du pilote.</p>
-        <div class="tarifs-mini-grid">
-          <div class="tarif-card tarif-span-2">
-            <div class="tarif-prix">690 €<span>/3 mois</span></div>
-            <p class="tarif-equiv">5 accès nominatifs</p>
-            <p class="tarifs-note">Si vous poursuivez ensuite en annuel, ces 3 mois constituent le début de votre première année.</p>
-            <a href="#contact" class="tarif-btn" data-stripe="pilote">Lancer un pilote</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="tarifs-block" style="margin-top:56px;">
-        <span class="section-label">Imaginez…</span>
-        <h3 class="tarifs-block-title">Une semaine avec Continuum</h3>
-        <div class="tarifs-mini-grid">
-          <div class="tarif-card"><span class="tarif-formule">Lundi</span><p class="tarif-equiv"><strong>Un manager prépare un entretien difficile.</strong><br>Il pose une question à Ask NORIA.</p></div>
-          <div class="tarif-card"><span class="tarif-formule">Jeudi</span><p class="tarif-equiv"><strong>Il veut progresser sur son feedback.</strong><br>Il participe à une Session Horizon.</p></div>
-          <div class="tarif-card"><span class="tarif-formule">Mois suivant</span><p class="tarif-equiv"><strong>Son équipe travaille la coopération.</strong><br>Elle rejoint un Cercle NORIA.</p></div>
-          <div class="tarif-card"><span class="tarif-formule">Entre-temps</span><p class="tarif-equiv"><strong>Il cherche un support concret.</strong><br>Il utilise les ressources disponibles dans son espace.</p></div>
-        </div>
-        <p class="tarifs-precision">Pas besoin de déclencher quatre prestations différentes. Continuum permet de rester accompagné, sans être dépendant.</p>
-      </div>
-
-      <div class="tarifs-block" style="margin-top:56px;">
-        <span class="section-label">Ce que Continuum n'est pas</span>
-        <h3 class="tarifs-block-title">Un abonnement clair, avec des limites claires.</h3>
-        <div class="tarifs-mini-grid">
-          <div class="tarif-card"><p class="tarif-equiv">Une hotline illimitée</p></div>
-          <div class="tarif-card"><p class="tarif-equiv">Une formation permanente</p></div>
-          <div class="tarif-card"><p class="tarif-equiv">Un catalogue de vidéos</p></div>
-          <div class="tarif-card"><p class="tarif-equiv">Un accès libre à tous les experts</p></div>
-          <div class="tarif-card"><p class="tarif-equiv">Un accompagnement individuel sans limite</p></div>
-        </div>
-        <p class="tarifs-precision">Continuum est un espace de respiration professionnelle : le bon format, le bon regard, au bon moment.</p>
-      </div>
-
-      <div class="tarifs-block" style="margin-top:56px;">
-        <span class="section-label">Rester en mouvement</span>
-        <h3 class="tarifs-block-title">Une question aujourd'hui. Un déclic demain. Un regard utile quand vous en avez besoin.</h3>
-        <p class="section-sub">Rejoignez Continuum et gardez toute l'année une porte ouverte vers l'écosystème NORIA HORIZON.</p>
-        <div class="offre-cta-row">
-          <a href="#formules" class="btn-copper-full offre-cta-btn">Rejoindre Continuum</a>
-          <a href="#contact" class="tarif-btn offre-cta-btn" data-stripe="pilote">Lancer un pilote</a>
-        </div>
-      </div>
-
+    <div class="contact-level highlight" style="display:flex;flex-direction:column;justify-content:flex-end;">
+      <span class="contact-level-tag">Vous êtes décidés</span>
+      <h3>Demander un devis</h3>
+      <p>Proposition personnalisée sous 48h.</p>
+      <button class="btn-copper-full action-key" onclick="openDevis(null)" style="margin-top:auto;">Demander un devis →</button>
     </div>
   </div>
 </section>
 
-<section id="continuum-intra" class="intra-band" aria-labelledby="intraBandTitle">
-  <div class="intra-band-inner">
-    <div class="intra-band-text">
-      <span class="intra-band-eyebrow">Vous êtes une entreprise ?</span>
-      <h2 id="intraBandTitle" class="intra-band-title">CONTINUUM <em>INTRA</em></h2>
-      <p class="intra-band-sign">L'intelligence collective au cœur de vos équipes.</p>
-      <p class="intra-band-desc">Vous souhaitez travailler uniquement avec les collaborateurs de votre entreprise ? NORIA vous propose aussi la formule Intra : des ateliers privés, animés par NORIA, sur vos situations de terrain, pour faire émerger des pistes d'action concrètes. Sur devis, sans abonnement obligatoire.</p>
-      <button type="button" class="intra-band-btn" onclick="openIntra()">Découvrir CONTINUUM INTRA <span aria-hidden="true">→</span></button>
-      <div class="intra-band-actions">
-        <button type="button" class="intra-mini" onclick="openDevisIntra()">Construire un atelier pour mon équipe</button>
-        <button type="button" class="intra-mini" onclick="openDevisIntra()">Demander un devis</button>
-        <a class="intra-mini" href="https://koalendar.com/e/noria-horizon" target="_blank" rel="noopener">Échanger avec NORIA ↗</a>
-      </div>
+<section id="partenaires">
+  <span class="section-label">Synergies & Partenariats</span>
+  <h2 class="section-title">Ceux qui avancent <strong>avec nous</strong></h2>
+  <div class="wave-sep"></div>
+  <p class="section-sub">Entreprises, structures et organisations qui partagent nos valeurs et avec qui nous créons, formons et agissons.</p>
+
+  <div class="partners-ticker-wrap">
+    <!-- Ligne 1 → droite -->
+    <div class="partners-track partners-track-right">
+      <a class="partner-logo" href="https://www.18h01.fr/" target="_blank" rel="noopener" title="18h01 — Talents et compétences"><img src="logo-18h01.png" alt="18h01 — Talents et compétences" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.resulta-formation.fr/" target="_blank" rel="noopener" title="Résult'A Formation"><img src="logo-resulta-formation.png" alt="Résult'A Formation" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.rouge-hexagone.com/" target="_blank" rel="noopener" title="Rouge Hexagone"><img src="logo-rouge-hexagone.png" alt="Rouge Hexagone" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.boreales-creations.fr/" target="_blank" rel="noopener" title="Boréales Créations"><img src="logo-boreales-creations.png" alt="Boréales Créations" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.empreinteverticale.fr/" target="_blank" rel="noopener" title="Empreinte Verticale"><img src="logo-Empreinte-Verticale.png" alt="Empreinte Verticale" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.prospectives-rh.fr/" target="_blank" rel="noopener" title="Prospectives RH — Recrutement · Formation · Accompagnement"><img src="logo-prospectives-rh.png" alt="Prospectives RH — Recrutement · Formation · Accompagnement" loading="lazy"></a>
+      <a class="partner-logo" href="partenaire-en-construction.html" target="_blank" rel="noopener" title="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)"><img src="logo-CS-Sensylis.png" alt="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.18h01.fr/" target="_blank" rel="noopener" title="18h01 — Talents et compétences" tabindex="-1" aria-hidden="true"><img src="logo-18h01.png" alt="18h01 — Talents et compétences" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.resulta-formation.fr/" target="_blank" rel="noopener" title="Résult'A Formation" tabindex="-1" aria-hidden="true"><img src="logo-resulta-formation.png" alt="Résult'A Formation" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.rouge-hexagone.com/" target="_blank" rel="noopener" title="Rouge Hexagone" tabindex="-1" aria-hidden="true"><img src="logo-rouge-hexagone.png" alt="Rouge Hexagone" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.boreales-creations.fr/" target="_blank" rel="noopener" title="Boréales Créations" tabindex="-1" aria-hidden="true"><img src="logo-boreales-creations.png" alt="Boréales Créations" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.empreinteverticale.fr/" target="_blank" rel="noopener" title="Empreinte Verticale" tabindex="-1" aria-hidden="true"><img src="logo-Empreinte-Verticale.png" alt="Empreinte Verticale" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.prospectives-rh.fr/" target="_blank" rel="noopener" title="Prospectives RH — Recrutement · Formation · Accompagnement" tabindex="-1" aria-hidden="true"><img src="logo-prospectives-rh.png" alt="Prospectives RH — Recrutement · Formation · Accompagnement" loading="lazy"></a>
+      <a class="partner-logo" href="partenaire-en-construction.html" target="_blank" rel="noopener" title="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" tabindex="-1" aria-hidden="true"><img src="logo-CS-Sensylis.png" alt="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" loading="lazy"></a>
+      <!-- Doublon pour boucle infinie -->
+      <a class="partner-logo" href="https://www.18h01.fr/" target="_blank" rel="noopener" title="18h01 — Talents et compétences" tabindex="-1" aria-hidden="true"><img src="logo-18h01.png" alt="18h01 — Talents et compétences" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.resulta-formation.fr/" target="_blank" rel="noopener" title="Résult'A Formation" tabindex="-1" aria-hidden="true"><img src="logo-resulta-formation.png" alt="Résult'A Formation" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.rouge-hexagone.com/" target="_blank" rel="noopener" title="Rouge Hexagone" tabindex="-1" aria-hidden="true"><img src="logo-rouge-hexagone.png" alt="Rouge Hexagone" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.boreales-creations.fr/" target="_blank" rel="noopener" title="Boréales Créations" tabindex="-1" aria-hidden="true"><img src="logo-boreales-creations.png" alt="Boréales Créations" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.empreinteverticale.fr/" target="_blank" rel="noopener" title="Empreinte Verticale" tabindex="-1" aria-hidden="true"><img src="logo-Empreinte-Verticale.png" alt="Empreinte Verticale" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.prospectives-rh.fr/" target="_blank" rel="noopener" title="Prospectives RH — Recrutement · Formation · Accompagnement" tabindex="-1" aria-hidden="true"><img src="logo-prospectives-rh.png" alt="Prospectives RH — Recrutement · Formation · Accompagnement" loading="lazy"></a>
+      <a class="partner-logo" href="partenaire-en-construction.html" target="_blank" rel="noopener" title="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" tabindex="-1" aria-hidden="true"><img src="logo-CS-Sensylis.png" alt="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.18h01.fr/" target="_blank" rel="noopener" title="18h01 — Talents et compétences" tabindex="-1" aria-hidden="true"><img src="logo-18h01.png" alt="18h01 — Talents et compétences" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.resulta-formation.fr/" target="_blank" rel="noopener" title="Résult'A Formation" tabindex="-1" aria-hidden="true"><img src="logo-resulta-formation.png" alt="Résult'A Formation" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.rouge-hexagone.com/" target="_blank" rel="noopener" title="Rouge Hexagone" tabindex="-1" aria-hidden="true"><img src="logo-rouge-hexagone.png" alt="Rouge Hexagone" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.boreales-creations.fr/" target="_blank" rel="noopener" title="Boréales Créations" tabindex="-1" aria-hidden="true"><img src="logo-boreales-creations.png" alt="Boréales Créations" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.empreinteverticale.fr/" target="_blank" rel="noopener" title="Empreinte Verticale" tabindex="-1" aria-hidden="true"><img src="logo-Empreinte-Verticale.png" alt="Empreinte Verticale" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.prospectives-rh.fr/" target="_blank" rel="noopener" title="Prospectives RH — Recrutement · Formation · Accompagnement" tabindex="-1" aria-hidden="true"><img src="logo-prospectives-rh.png" alt="Prospectives RH — Recrutement · Formation · Accompagnement" loading="lazy"></a>
+      <a class="partner-logo" href="partenaire-en-construction.html" target="_blank" rel="noopener" title="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" tabindex="-1" aria-hidden="true"><img src="logo-CS-Sensylis.png" alt="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" loading="lazy"></a>
     </div>
-    <div class="intra-band-photo" aria-hidden="true"><img src="continuum-intra-photo.jpg" alt="" loading="lazy"></div>
+    <!-- Ligne 2 → gauche -->
+    <div class="partners-track partners-track-left">
+      <a class="partner-logo" href="partenaire-en-construction.html" target="_blank" rel="noopener" title="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)"><img src="logo-CS-Sensylis.png" alt="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.empreinteverticale.fr/" target="_blank" rel="noopener" title="Empreinte Verticale"><img src="logo-Empreinte-Verticale.png" alt="Empreinte Verticale" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.prospectives-rh.fr/" target="_blank" rel="noopener" title="Prospectives RH — Recrutement · Formation · Accompagnement"><img src="logo-prospectives-rh.png" alt="Prospectives RH — Recrutement · Formation · Accompagnement" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.boreales-creations.fr/" target="_blank" rel="noopener" title="Boréales Créations"><img src="logo-boreales-creations.png" alt="Boréales Créations" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.rouge-hexagone.com/" target="_blank" rel="noopener" title="Rouge Hexagone"><img src="logo-rouge-hexagone.png" alt="Rouge Hexagone" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.resulta-formation.fr/" target="_blank" rel="noopener" title="Résult'A Formation"><img src="logo-resulta-formation.png" alt="Résult'A Formation" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.18h01.fr/" target="_blank" rel="noopener" title="18h01 — Talents et compétences"><img src="logo-18h01.png" alt="18h01 — Talents et compétences" loading="lazy"></a>
+      <a class="partner-logo" href="partenaire-en-construction.html" target="_blank" rel="noopener" title="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" tabindex="-1" aria-hidden="true"><img src="logo-CS-Sensylis.png" alt="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.empreinteverticale.fr/" target="_blank" rel="noopener" title="Empreinte Verticale" tabindex="-1" aria-hidden="true"><img src="logo-Empreinte-Verticale.png" alt="Empreinte Verticale" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.prospectives-rh.fr/" target="_blank" rel="noopener" title="Prospectives RH — Recrutement · Formation · Accompagnement" tabindex="-1" aria-hidden="true"><img src="logo-prospectives-rh.png" alt="Prospectives RH — Recrutement · Formation · Accompagnement" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.boreales-creations.fr/" target="_blank" rel="noopener" title="Boréales Créations" tabindex="-1" aria-hidden="true"><img src="logo-boreales-creations.png" alt="Boréales Créations" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.rouge-hexagone.com/" target="_blank" rel="noopener" title="Rouge Hexagone" tabindex="-1" aria-hidden="true"><img src="logo-rouge-hexagone.png" alt="Rouge Hexagone" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.resulta-formation.fr/" target="_blank" rel="noopener" title="Résult'A Formation" tabindex="-1" aria-hidden="true"><img src="logo-resulta-formation.png" alt="Résult'A Formation" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.18h01.fr/" target="_blank" rel="noopener" title="18h01 — Talents et compétences" tabindex="-1" aria-hidden="true"><img src="logo-18h01.png" alt="18h01 — Talents et compétences" loading="lazy"></a>
+      <!-- Doublon pour boucle infinie -->
+      <a class="partner-logo" href="partenaire-en-construction.html" target="_blank" rel="noopener" title="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" tabindex="-1" aria-hidden="true"><img src="logo-CS-Sensylis.png" alt="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.empreinteverticale.fr/" target="_blank" rel="noopener" title="Empreinte Verticale" tabindex="-1" aria-hidden="true"><img src="logo-Empreinte-Verticale.png" alt="Empreinte Verticale" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.prospectives-rh.fr/" target="_blank" rel="noopener" title="Prospectives RH — Recrutement · Formation · Accompagnement" tabindex="-1" aria-hidden="true"><img src="logo-prospectives-rh.png" alt="Prospectives RH — Recrutement · Formation · Accompagnement" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.boreales-creations.fr/" target="_blank" rel="noopener" title="Boréales Créations" tabindex="-1" aria-hidden="true"><img src="logo-boreales-creations.png" alt="Boréales Créations" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.rouge-hexagone.com/" target="_blank" rel="noopener" title="Rouge Hexagone" tabindex="-1" aria-hidden="true"><img src="logo-rouge-hexagone.png" alt="Rouge Hexagone" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.resulta-formation.fr/" target="_blank" rel="noopener" title="Résult'A Formation" tabindex="-1" aria-hidden="true"><img src="logo-resulta-formation.png" alt="Résult'A Formation" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.18h01.fr/" target="_blank" rel="noopener" title="18h01 — Talents et compétences" tabindex="-1" aria-hidden="true"><img src="logo-18h01.png" alt="18h01 — Talents et compétences" loading="lazy"></a>
+      <a class="partner-logo" href="partenaire-en-construction.html" target="_blank" rel="noopener" title="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" tabindex="-1" aria-hidden="true"><img src="logo-CS-Sensylis.png" alt="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.empreinteverticale.fr/" target="_blank" rel="noopener" title="Empreinte Verticale" tabindex="-1" aria-hidden="true"><img src="logo-Empreinte-Verticale.png" alt="Empreinte Verticale" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.prospectives-rh.fr/" target="_blank" rel="noopener" title="Prospectives RH — Recrutement · Formation · Accompagnement" tabindex="-1" aria-hidden="true"><img src="logo-prospectives-rh.png" alt="Prospectives RH — Recrutement · Formation · Accompagnement" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.boreales-creations.fr/" target="_blank" rel="noopener" title="Boréales Créations" tabindex="-1" aria-hidden="true"><img src="logo-boreales-creations.png" alt="Boréales Créations" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.rouge-hexagone.com/" target="_blank" rel="noopener" title="Rouge Hexagone" tabindex="-1" aria-hidden="true"><img src="logo-rouge-hexagone.png" alt="Rouge Hexagone" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.resulta-formation.fr/" target="_blank" rel="noopener" title="Résult'A Formation" tabindex="-1" aria-hidden="true"><img src="logo-resulta-formation.png" alt="Résult'A Formation" loading="lazy"></a>
+      <a class="partner-logo" href="https://www.18h01.fr/" target="_blank" rel="noopener" title="18h01 — Talents et compétences" tabindex="-1" aria-hidden="true"><img src="logo-18h01.png" alt="18h01 — Talents et compétences" loading="lazy"></a>
+    </div>
   </div>
+
+  <p class="partner-note">Rejoindre l'écosystème ? <a href="#contact" style="color:var(--copper);text-decoration:none;">Parlons-en →</a></p>
 </section>
 
+
+<div class="intra-overlay porte-overlay" id="porte-prisme" onclick="if(event.target===this)closePorte()">
+  <div class="intra-sheet porte-sheet">
+    <button type="button" class="intra-close" onclick="closePorte()" aria-label="Fermer la présentation NORIA Prisme">✕ Fermer</button>
+    <div class="porte-scroll">
 <section id="prisme">
   <div class="prisme-inner">
     <span class="section-label" style="color:var(--copper);">NORIA Prisme</span>
@@ -557,7 +558,7 @@
       <p class="prisme-intro">À l'issue de Prisme, trois suites sont possibles : vous agissez seul, NORIA construit un accompagnement adapté, ou Continuum vous aide à garder un accès régulier aux bons regards dans la durée.</p>
       <div class="prisme-cards">
         <a href="#prisme" class="prisme-card seq-item" style="--i:0"><strong>Vous agissez seul</strong><p>La lecture est suffisamment claire. Prisme a rempli sa mission.</p></a>
-        <a href="#services" class="prisme-card prisme-card-dark seq-item seq-final" style="--i:2"><strong>Accompagnement NORIA</strong><p>Formation, coaching, conseil, recrutement, ateliers ou dispositif sur mesure.</p></a>
+        <a href="#agir-avec-noria" class="prisme-card prisme-card-dark seq-item seq-final" style="--i:2"><strong>Accompagnement NORIA</strong><p>Formation, coaching, conseil, recrutement, ateliers ou dispositif sur mesure.</p></a>
         <a href="#tarifs" class="prisme-card seq-item" style="--i:1"><strong>Continuum</strong><p>Un accès régulier aux Sessions Horizon, Cercles, Ask NORIA et ressources.</p></a>
       </div>
     </div>
@@ -570,31 +571,15 @@
     </div>
   </div>
 </section>
-
-<section id="services">
-  <div class="services-header">
-    <span class="section-label" style="justify-content:center;">Ce que nous proposons</span>
-    <h2 class="section-title">Accompagnement <strong>NORIA</strong></h2>
-    <div class="wave-sep"></div>
-    <p class="section-sub">Nous agissons là où ça compte vraiment.</p>
-  </div>
-  <div class="offres-block">
-  <div class="offres-top">
-    <span class="section-label">Offres des experts</span>
-    <h2 class="section-title">Ce que nos experts <strong>vous proposent</strong></h2>
-    <div class="wave-sep"></div>
-    <p class="section-sub">Une offre après l'autre. Cliquez pour découvrir ce qu'elle contient, ou faites défiler à votre rythme.</p>
-  </div>
-  <div class="offres-stage" id="offresStage" aria-live="polite"></div>
-  <div class="offres-controls">
-    <button type="button" class="offres-nav" id="offresPrev" aria-label="Offre précédente">&#8249;</button>
-    <div class="offres-dots" id="offresDots"></div>
-    <button type="button" class="offres-nav" id="offresNext" aria-label="Offre suivante">&#8250;</button>
+    </div>
   </div>
 </div>
 
-</section>
 
+<div class="intra-overlay porte-overlay" id="porte-experts" onclick="if(event.target===this)closePorte()">
+  <div class="intra-sheet porte-sheet">
+    <button type="button" class="intra-close" onclick="closePorte()" aria-label="Fermer la présentation des experts">✕ Fermer</button>
+    <div class="porte-scroll">
 <section id="equipe">
   <div class="equipe-header">
     <span class="section-label">Les experts</span>
@@ -827,208 +812,9 @@
   </div>
   </div>
 </section>
-
-<section id="rejoindre">
-  <div class="rejoindre-box reveal">
-    <span class="section-label" style="justify-content:center;">Experts &amp; professionnels</span>
-    <h2 class="section-title">Rejoindre l’écosystème <strong>NORIA HORIZON</strong></h2>
-    <div class="wave-sep" style="margin-left:auto;margin-right:auto;"></div>
-    <p>Vous êtes consultant, formateur, coach, expert RH, facilitateur, professionnel de l’accompagnement ou vous disposez d’une expertise forte dans un domaine particulier, rare ou différenciant ?</p>
-    <p>NORIA HORIZON réunit des expertises complémentaires autour d’une même exigence : <strong>comprendre la situation avant de proposer une réponse.</strong></p>
-    <p>Nous étudions chaque candidature avec attention afin de préserver la cohérence, la qualité et la complémentarité de l’écosystème.</p>
-    <a href="https://form.jotform.com/262742975173062" target="_blank" rel="noopener" class="btn-primary rejoindre-btn">Proposer ma candidature →</a>
-    <p class="rejoindre-note">Rejoindre l’écosystème NORIA HORIZON ne constitue ni une promesse de mission ni une garantie de volume d’activité. Les experts restent indépendants dans l’exercice de leur activité.</p>
-  </div>
-</section>
-
-<section id="disc" style="background:var(--deep); color:var(--white); position:relative; overflow:hidden;">
-  <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto;text-align:center;">
-    <span class="section-label" style="color:var(--copper);justify-content:center;">Cartographie &middot; Connaissance de soi</span>
-    <h2 class="section-title" style="color:var(--white);">Votre Cartographie <strong style="color:var(--copper);">Noria Horizon</strong></h2>
-    <div class="wave-sep" style="margin:0 auto 32px;"></div>
-    <p class="section-sub" style="color:var(--white);opacity:0.5;margin:0 auto 48px;">Vos &eacute;tats du moi et les messages qui vous animent, inspir&eacute;s de l'analyse transactionnelle. Une photographie de vos appuis et de vos pistes de progression, lue par l'&eacute;quipe NORIA HORIZON.</p>
-    <a href="cartographie.html" target="_blank" rel="opener" class="btn-primary action-key halo-btn halo-fort" style="font-size:0.9rem;padding:18px 52px;letter-spacing:0.2em;display:inline-block;">
-      D&eacute;couvrir ma cartographie &rarr;
-    </a>
-    <p style="font-size:0.78rem;color:var(--white);opacity:0.35;margin-top:14px;">64 affirmations &middot; environ 12 minutes &middot; &Eacute;gogramme et drivers</p>
-  </div>
-</section>
-
-<!-- CYCLE VERTUEUX + VALEURS (un seul bloc) -->
-<div class="cycle-valeurs-bloc">
-<section id="mission">
-  <div class="mission-grid">
-    <div>
-      <span class="section-label">Notre raison d'être</span>
-      <h2 class="section-title">Un cycle <strong>vertueux</strong></h2>
-      <div class="wave-sep"></div>
-      <p class="section-sub">Accompagner chaque trajectoire humaine et professionnelle pour révéler, développer et élever les potentiels. Mettre en mouvement les transformations.</p>
-      <div class="mission-pillars">
-        <div class="pillar reveal">
-          <div class="pillar-mark"></div>
-          <div>
-            <h4>Pourquoi nous existons</h4>
-            <p>La NORIA est un mécanisme qui élève l'eau en mouvement permanent. Nous faisons de même avec les potentiels humains — un cycle continu, une élévation sans fin.</p>
-          </div>
-        </div>
-        <div class="pillar reveal">
-          <div class="pillar-mark"></div>
-          <div>
-            <h4>Comment nous travaillons</h4>
-            <p>En synergie. Chaque expert apporte sa discipline — ensemble nous créons un écosystème de progression cohérent, sur-mesure et durable.</p>
-          </div>
-        </div>
-        <div class="pillar reveal">
-          <div class="pillar-mark"></div>
-          <div>
-            <h4>Avec qui nous avançons</h4>
-            <p>Des femmes et des hommes qui ont soif de sens, d'exigence et d'une vie construite — pas subie. L'intelligence collective au service des trajectoires.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="mission-visual">
-      <div class="mission-rings">
-        <div class="m-ring m-ring-a"><div class="ring-dot"></div></div>
-        <div class="m-ring m-ring-b"><div class="ring-dot"></div></div>
-        <div class="m-ring m-ring-c"><div class="ring-dot"></div></div>
-      </div>
-      <svg class="noria-wheel-mission" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg"
-           style="position:absolute;width:160px;height:160px;animation:cwSpin 20s linear infinite;">
-        <g style="transform-origin:44px 44px;">
-          <circle cx="44" cy="44" r="38" stroke="#234B5E" stroke-width="2.5" opacity="0.5"/>
-          <circle cx="44" cy="44" r="28" stroke="#3B7A78" stroke-width="1" stroke-dasharray="3 3" opacity="0.35"/>
-          <line x1="44" y1="6"  x2="44" y2="82" stroke="#234B5E" stroke-width="1.4" opacity="0.4"/>
-          <line x1="6"  y1="44" x2="82" y2="44" stroke="#234B5E" stroke-width="1.4" opacity="0.4"/>
-          <line x1="17" y1="17" x2="71" y2="71" stroke="#3B7A78" stroke-width="1" opacity="0.3"/>
-          <line x1="71" y1="17" x2="17" y2="71" stroke="#3B7A78" stroke-width="1" opacity="0.3"/>
-          <line x1="6"  y1="24" x2="82" y2="64" stroke="#234B5E" stroke-width="0.7" opacity="0.2"/>
-          <line x1="6"  y1="64" x2="82" y2="24" stroke="#234B5E" stroke-width="0.7" opacity="0.2"/>
-          <line x1="24" y1="6"  x2="64" y2="82" stroke="#234B5E" stroke-width="0.7" opacity="0.2"/>
-          <line x1="64" y1="6"  x2="24" y2="82" stroke="#234B5E" stroke-width="0.7" opacity="0.2"/>
-          <path d="M44 6  C41 10 41 14 44 14 C47 14 47 10 44 6Z"  fill="#B86F4C" opacity="0.7"/>
-          <path d="M82 44 C78 41 74 41 74 44 C74 47 78 47 82 44Z" fill="#B86F4C" opacity="0.7"/>
-          <path d="M44 82 C47 78 47 74 44 74 C41 74 41 78 44 82Z" fill="#B86F4C" opacity="0.7"/>
-          <path d="M6  44 C10 47 14 47 14 44 C14 41 10 41 6  44Z" fill="#B86F4C" opacity="0.7"/>
-          <circle cx="44" cy="44" r="5.5" fill="#B86F4C" opacity="0.8"/>
-          <circle cx="44" cy="44" r="2.5" fill="#234B5E" opacity="0.9"/>
-        </g>
-      </svg>
-      <div class="mission-center-dot"></div>
     </div>
   </div>
-</section>
-<section id="valeurs">
-  <span class="section-label">Notre ADN</span>
-  <h2 class="section-title">Cinq valeurs, <strong>une vision</strong></h2>
-  <div class="wave-sep" style="background:linear-gradient(to right, var(--copper), var(--teal));"></div>
-  <p class="section-sub" style="color:var(--white);opacity:0.5;">L'intelligence collective au service des trajectoires humaines et professionnelles.</p>
-  <div class="valeurs-grid">
-    <div class="valeur-card reveal"><span class="valeur-num">01</span><h3>Comprendre</h3><p>Observer avec justesse avant d'agir. Cultiver le discernement et la profondeur de réflexion.</p></div>
-    <div class="valeur-card reveal"><span class="valeur-num">02</span><h3>Développer</h3><p>Faire émerger les potentiels. Encourager l'apprentissage continu et la progression.</p></div>
-    <div class="valeur-card reveal"><span class="valeur-num">03</span><h3>Agir</h3><p>Transformer les intentions en actions concrètes. Passer du savoir à l'impact.</p></div>
-    <div class="valeur-card reveal"><span class="valeur-num">04</span><h3>Transmettre</h3><p>Partager les connaissances et les expériences. Faire grandir les autres autant que soi-même.</p></div>
-    <div class="valeur-card reveal"><span class="valeur-num">05</span><h3 class="action-key">Élever</h3><p>Viser l'amélioration continue. Chercher l'excellence sans perdre de vue l'humain.</p></div>
-  </div>
-</section>
 </div>
-
-<section id="contact">
-  <span class="section-label">Nous contacter</span>
-  <h2 class="section-title">Une question ? <strong>Un projet ?</strong></h2>
-  <div class="wave-sep" style="margin-bottom:20px;background:linear-gradient(to right,var(--copper),var(--teal));"></div>
-  <p class="section-sub">Vous avez un projet ? Écrivez-nous, ou demandez directement un devis personnalisé.</p>
-  <div class="contact-levels" style="grid-template-columns:repeat(2,1fr);max-width:720px;align-items:end;">
-    <div class="contact-level">
-      <span class="contact-level-tag">Par mail</span>
-      <h3>Contactez-nous</h3>
-      <p>Une question, un échange. Écrivez-nous directement.</p>
-      <a href="mailto:noriahorizoncontacts@gmail.com" target="_blank" rel="noopener" class="btn-copper-full" style="display:block;text-align:center;text-decoration:none;">Nous écrire →</a>
-    </div>
-    <div class="contact-level highlight" style="display:flex;flex-direction:column;justify-content:flex-end;">
-      <span class="contact-level-tag">Vous êtes décidés</span>
-      <h3>Demander un devis</h3>
-      <p>Proposition personnalisée sous 48h.</p>
-      <button class="btn-copper-full action-key" onclick="openDevis(null)" style="margin-top:auto;">Demander un devis →</button>
-    </div>
-  </div>
-</section>
-
-<section id="partenaires">
-  <span class="section-label">Synergies & Partenariats</span>
-  <h2 class="section-title">Ceux qui avancent <strong>avec nous</strong></h2>
-  <div class="wave-sep"></div>
-  <p class="section-sub">Entreprises, structures et organisations qui partagent nos valeurs et avec qui nous créons, formons et agissons.</p>
-
-  <div class="partners-ticker-wrap">
-    <!-- Ligne 1 → droite -->
-    <div class="partners-track partners-track-right">
-      <a class="partner-logo" href="https://www.18h01.fr/" target="_blank" rel="noopener" title="18h01 — Talents et compétences"><img src="logo-18h01.png" alt="18h01 — Talents et compétences" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.resulta-formation.fr/" target="_blank" rel="noopener" title="Résult'A Formation"><img src="logo-resulta-formation.png" alt="Résult'A Formation" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.rouge-hexagone.com/" target="_blank" rel="noopener" title="Rouge Hexagone"><img src="logo-rouge-hexagone.png" alt="Rouge Hexagone" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.boreales-creations.fr/" target="_blank" rel="noopener" title="Boréales Créations"><img src="logo-boreales-creations.png" alt="Boréales Créations" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.empreinteverticale.fr/" target="_blank" rel="noopener" title="Empreinte Verticale"><img src="logo-Empreinte-Verticale.png" alt="Empreinte Verticale" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.prospectives-rh.fr/" target="_blank" rel="noopener" title="Prospectives RH — Recrutement · Formation · Accompagnement"><img src="logo-prospectives-rh.png" alt="Prospectives RH — Recrutement · Formation · Accompagnement" loading="lazy"></a>
-      <a class="partner-logo" href="partenaire-en-construction.html" target="_blank" rel="noopener" title="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)"><img src="logo-CS-Sensylis.png" alt="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.18h01.fr/" target="_blank" rel="noopener" title="18h01 — Talents et compétences" tabindex="-1" aria-hidden="true"><img src="logo-18h01.png" alt="18h01 — Talents et compétences" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.resulta-formation.fr/" target="_blank" rel="noopener" title="Résult'A Formation" tabindex="-1" aria-hidden="true"><img src="logo-resulta-formation.png" alt="Résult'A Formation" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.rouge-hexagone.com/" target="_blank" rel="noopener" title="Rouge Hexagone" tabindex="-1" aria-hidden="true"><img src="logo-rouge-hexagone.png" alt="Rouge Hexagone" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.boreales-creations.fr/" target="_blank" rel="noopener" title="Boréales Créations" tabindex="-1" aria-hidden="true"><img src="logo-boreales-creations.png" alt="Boréales Créations" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.empreinteverticale.fr/" target="_blank" rel="noopener" title="Empreinte Verticale" tabindex="-1" aria-hidden="true"><img src="logo-Empreinte-Verticale.png" alt="Empreinte Verticale" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.prospectives-rh.fr/" target="_blank" rel="noopener" title="Prospectives RH — Recrutement · Formation · Accompagnement" tabindex="-1" aria-hidden="true"><img src="logo-prospectives-rh.png" alt="Prospectives RH — Recrutement · Formation · Accompagnement" loading="lazy"></a>
-      <a class="partner-logo" href="partenaire-en-construction.html" target="_blank" rel="noopener" title="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" tabindex="-1" aria-hidden="true"><img src="logo-CS-Sensylis.png" alt="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" loading="lazy"></a>
-      <!-- Doublon pour boucle infinie -->
-      <a class="partner-logo" href="https://www.18h01.fr/" target="_blank" rel="noopener" title="18h01 — Talents et compétences" tabindex="-1" aria-hidden="true"><img src="logo-18h01.png" alt="18h01 — Talents et compétences" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.resulta-formation.fr/" target="_blank" rel="noopener" title="Résult'A Formation" tabindex="-1" aria-hidden="true"><img src="logo-resulta-formation.png" alt="Résult'A Formation" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.rouge-hexagone.com/" target="_blank" rel="noopener" title="Rouge Hexagone" tabindex="-1" aria-hidden="true"><img src="logo-rouge-hexagone.png" alt="Rouge Hexagone" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.boreales-creations.fr/" target="_blank" rel="noopener" title="Boréales Créations" tabindex="-1" aria-hidden="true"><img src="logo-boreales-creations.png" alt="Boréales Créations" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.empreinteverticale.fr/" target="_blank" rel="noopener" title="Empreinte Verticale" tabindex="-1" aria-hidden="true"><img src="logo-Empreinte-Verticale.png" alt="Empreinte Verticale" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.prospectives-rh.fr/" target="_blank" rel="noopener" title="Prospectives RH — Recrutement · Formation · Accompagnement" tabindex="-1" aria-hidden="true"><img src="logo-prospectives-rh.png" alt="Prospectives RH — Recrutement · Formation · Accompagnement" loading="lazy"></a>
-      <a class="partner-logo" href="partenaire-en-construction.html" target="_blank" rel="noopener" title="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" tabindex="-1" aria-hidden="true"><img src="logo-CS-Sensylis.png" alt="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.18h01.fr/" target="_blank" rel="noopener" title="18h01 — Talents et compétences" tabindex="-1" aria-hidden="true"><img src="logo-18h01.png" alt="18h01 — Talents et compétences" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.resulta-formation.fr/" target="_blank" rel="noopener" title="Résult'A Formation" tabindex="-1" aria-hidden="true"><img src="logo-resulta-formation.png" alt="Résult'A Formation" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.rouge-hexagone.com/" target="_blank" rel="noopener" title="Rouge Hexagone" tabindex="-1" aria-hidden="true"><img src="logo-rouge-hexagone.png" alt="Rouge Hexagone" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.boreales-creations.fr/" target="_blank" rel="noopener" title="Boréales Créations" tabindex="-1" aria-hidden="true"><img src="logo-boreales-creations.png" alt="Boréales Créations" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.empreinteverticale.fr/" target="_blank" rel="noopener" title="Empreinte Verticale" tabindex="-1" aria-hidden="true"><img src="logo-Empreinte-Verticale.png" alt="Empreinte Verticale" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.prospectives-rh.fr/" target="_blank" rel="noopener" title="Prospectives RH — Recrutement · Formation · Accompagnement" tabindex="-1" aria-hidden="true"><img src="logo-prospectives-rh.png" alt="Prospectives RH — Recrutement · Formation · Accompagnement" loading="lazy"></a>
-      <a class="partner-logo" href="partenaire-en-construction.html" target="_blank" rel="noopener" title="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" tabindex="-1" aria-hidden="true"><img src="logo-CS-Sensylis.png" alt="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" loading="lazy"></a>
-    </div>
-    <!-- Ligne 2 → gauche -->
-    <div class="partners-track partners-track-left">
-      <a class="partner-logo" href="partenaire-en-construction.html" target="_blank" rel="noopener" title="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)"><img src="logo-CS-Sensylis.png" alt="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.empreinteverticale.fr/" target="_blank" rel="noopener" title="Empreinte Verticale"><img src="logo-Empreinte-Verticale.png" alt="Empreinte Verticale" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.prospectives-rh.fr/" target="_blank" rel="noopener" title="Prospectives RH — Recrutement · Formation · Accompagnement"><img src="logo-prospectives-rh.png" alt="Prospectives RH — Recrutement · Formation · Accompagnement" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.boreales-creations.fr/" target="_blank" rel="noopener" title="Boréales Créations"><img src="logo-boreales-creations.png" alt="Boréales Créations" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.rouge-hexagone.com/" target="_blank" rel="noopener" title="Rouge Hexagone"><img src="logo-rouge-hexagone.png" alt="Rouge Hexagone" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.resulta-formation.fr/" target="_blank" rel="noopener" title="Résult'A Formation"><img src="logo-resulta-formation.png" alt="Résult'A Formation" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.18h01.fr/" target="_blank" rel="noopener" title="18h01 — Talents et compétences"><img src="logo-18h01.png" alt="18h01 — Talents et compétences" loading="lazy"></a>
-      <a class="partner-logo" href="partenaire-en-construction.html" target="_blank" rel="noopener" title="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" tabindex="-1" aria-hidden="true"><img src="logo-CS-Sensylis.png" alt="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.empreinteverticale.fr/" target="_blank" rel="noopener" title="Empreinte Verticale" tabindex="-1" aria-hidden="true"><img src="logo-Empreinte-Verticale.png" alt="Empreinte Verticale" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.prospectives-rh.fr/" target="_blank" rel="noopener" title="Prospectives RH — Recrutement · Formation · Accompagnement" tabindex="-1" aria-hidden="true"><img src="logo-prospectives-rh.png" alt="Prospectives RH — Recrutement · Formation · Accompagnement" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.boreales-creations.fr/" target="_blank" rel="noopener" title="Boréales Créations" tabindex="-1" aria-hidden="true"><img src="logo-boreales-creations.png" alt="Boréales Créations" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.rouge-hexagone.com/" target="_blank" rel="noopener" title="Rouge Hexagone" tabindex="-1" aria-hidden="true"><img src="logo-rouge-hexagone.png" alt="Rouge Hexagone" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.resulta-formation.fr/" target="_blank" rel="noopener" title="Résult'A Formation" tabindex="-1" aria-hidden="true"><img src="logo-resulta-formation.png" alt="Résult'A Formation" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.18h01.fr/" target="_blank" rel="noopener" title="18h01 — Talents et compétences" tabindex="-1" aria-hidden="true"><img src="logo-18h01.png" alt="18h01 — Talents et compétences" loading="lazy"></a>
-      <!-- Doublon pour boucle infinie -->
-      <a class="partner-logo" href="partenaire-en-construction.html" target="_blank" rel="noopener" title="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" tabindex="-1" aria-hidden="true"><img src="logo-CS-Sensylis.png" alt="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.empreinteverticale.fr/" target="_blank" rel="noopener" title="Empreinte Verticale" tabindex="-1" aria-hidden="true"><img src="logo-Empreinte-Verticale.png" alt="Empreinte Verticale" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.prospectives-rh.fr/" target="_blank" rel="noopener" title="Prospectives RH — Recrutement · Formation · Accompagnement" tabindex="-1" aria-hidden="true"><img src="logo-prospectives-rh.png" alt="Prospectives RH — Recrutement · Formation · Accompagnement" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.boreales-creations.fr/" target="_blank" rel="noopener" title="Boréales Créations" tabindex="-1" aria-hidden="true"><img src="logo-boreales-creations.png" alt="Boréales Créations" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.rouge-hexagone.com/" target="_blank" rel="noopener" title="Rouge Hexagone" tabindex="-1" aria-hidden="true"><img src="logo-rouge-hexagone.png" alt="Rouge Hexagone" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.resulta-formation.fr/" target="_blank" rel="noopener" title="Résult'A Formation" tabindex="-1" aria-hidden="true"><img src="logo-resulta-formation.png" alt="Résult'A Formation" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.18h01.fr/" target="_blank" rel="noopener" title="18h01 — Talents et compétences" tabindex="-1" aria-hidden="true"><img src="logo-18h01.png" alt="18h01 — Talents et compétences" loading="lazy"></a>
-      <a class="partner-logo" href="partenaire-en-construction.html" target="_blank" rel="noopener" title="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" tabindex="-1" aria-hidden="true"><img src="logo-CS-Sensylis.png" alt="CS Sensylis — Architecte des apprentissages (site bientôt en ligne)" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.empreinteverticale.fr/" target="_blank" rel="noopener" title="Empreinte Verticale" tabindex="-1" aria-hidden="true"><img src="logo-Empreinte-Verticale.png" alt="Empreinte Verticale" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.prospectives-rh.fr/" target="_blank" rel="noopener" title="Prospectives RH — Recrutement · Formation · Accompagnement" tabindex="-1" aria-hidden="true"><img src="logo-prospectives-rh.png" alt="Prospectives RH — Recrutement · Formation · Accompagnement" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.boreales-creations.fr/" target="_blank" rel="noopener" title="Boréales Créations" tabindex="-1" aria-hidden="true"><img src="logo-boreales-creations.png" alt="Boréales Créations" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.rouge-hexagone.com/" target="_blank" rel="noopener" title="Rouge Hexagone" tabindex="-1" aria-hidden="true"><img src="logo-rouge-hexagone.png" alt="Rouge Hexagone" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.resulta-formation.fr/" target="_blank" rel="noopener" title="Résult'A Formation" tabindex="-1" aria-hidden="true"><img src="logo-resulta-formation.png" alt="Résult'A Formation" loading="lazy"></a>
-      <a class="partner-logo" href="https://www.18h01.fr/" target="_blank" rel="noopener" title="18h01 — Talents et compétences" tabindex="-1" aria-hidden="true"><img src="logo-18h01.png" alt="18h01 — Talents et compétences" loading="lazy"></a>
-    </div>
-  </div>
-
-  <p class="partner-note">Rejoindre l'écosystème ? <a href="#contact" style="color:var(--copper);text-decoration:none;">Parlons-en →</a></p>
-</section>
 
 <!-- SERVICE OVERLAY -->
 <div class="service-overlay" id="serviceOverlay" onclick="if(event.target===this)closeService()">
@@ -1125,11 +911,10 @@
   </div>
   <ul class="footer-links">
     <li><a href="#equipe">Experts</a></li>
-    <li><a href="#mission">Mission</a></li>
-    <li><a href="#valeurs">Valeurs</a></li>
-    <li><a href="#tarifs">Continuum</a></li>
+    <li><a href="#continuum">Continuum</a></li>
     <li><a href="#partenaires">Partenaires</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#rejoindre">Rejoindre le collectif</a></li>
   </ul>
   <span class="footer-copy">© 2026 — NORIA HORIZON · Tous droits réservés<br>
     <a href="mentions-legales.html" class="footer-legal" target="_blank" rel="opener">Mentions légales</a> · <a href="confidentialite.html" class="footer-legal" target="_blank" rel="opener">Confidentialité</a> · <a href="cgv.html" class="footer-legal" target="_blank" rel="opener">CGV</a>
@@ -1195,5 +980,6 @@
   document.querySelectorAll('#prisme .prisme-cta-row').forEach(function(el){ rowIo.observe(el); });
 })();
 </script>
+<script src="accueil.js"></script>
 </body>
 </html>
