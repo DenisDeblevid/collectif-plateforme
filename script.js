@@ -148,6 +148,20 @@ const experts = {
     ],
     tags:['Web','IA','Agentique','Formation']
   },
+  dorothee: {
+    photo:'Dorothee-Lalisse.webp',
+    name:'Dorothée Lalisse',
+    role:'Formatrice et coach des solopreneurs, TPE et dirigeants',
+    location:'Lille (Hauts-de-France) · et en visio',
+    bio:[
+      "Pendant 17 ans, Dorothée a été commerciale, manager puis directrice commerciale. Elle a dirigé des points de vente en réseau, notamment dans la beauté et le bien-être (Groupe Relooking beauté minceur), puis une société de services à la personne au sein du réseau VivaServices. Elle crée sa première entreprise en 2008, en partenariat avec des freelances de l'île Maurice, et fait vivre des réseaux d'affaires depuis 2010 : elle est la créatrice de Cambrésis Business. Depuis 10 ans, elle accompagne les indépendant·e·s, les franchisé·e·s et les dirigeant·e·s.",
+      "Elle connaît bien la réalité des solopreneurs qui se diversifient : un nouvel outil, une nouvelle activité, une formation repérée sur les réseaux sociaux… Peu à peu, on s'y perd. On travaille énormément pour un résultat qui ne suit pas, on accepte des conditions qui profitent surtout aux autres, on achète des formations qui ne correspondent pas à son vrai besoin. Son rôle : aider à faire le tri, à se recentrer sur ce qui compte et à reprendre la main sur son activité.",
+      "Aujourd'hui, elle conçoit et anime des formations en direct, à distance, en petit groupe (en individuel sur demande). Son approche est concrète : chaque formation part de la situation réelle de la personne, et chacun·e repart avec un livrable utilisable tout de suite.",
+      "Ses domaines d'expertise : lever les freins qui ralentissent l'activité (confiance, légitimité, passage à l'action) ; organiser son temps, ses priorités et son énergie (connaître la valeur de son temps, vendre ses offres sans peur) ; recentrer les solopreneurs qui se dispersent entre trop d'outils, d'activités et de formations ; développement commercial et prospection ; identité professionnelle et visibilité avec l'IA ; management de petits groupes (salariés, freelances ou prestataires) ; développement durable des métiers de l'accompagnement, en franchise ou en indépendant.",
+      "« Je fais briller les talents cachés des solopreneurs et TPE : moins se disperser, mieux avancer. Pas de miracle : des outils, du résultat. »"
+    ],
+    tags:['Solopreneurs & TPE','Confiance & légitimité','Temps & priorités','Développement commercial','Prospection','Visibilité avec l\'IA','Management de petits groupes','Franchise & réseaux','Formation à distance']
+  },
   vivitra: {
     photo:'Vivitra-Kirouba.png',
     name:'Vivitra Kirouba',
@@ -268,7 +282,8 @@ var expertsGeo = {
   floriang: { lat: 42.6887, lon: 2.8948,  zoom: 9,  ville: "Perpignan" },
   remi:     { lat: 43.2965, lon: 5.3898,  zoom: 9,  ville: "Marseille (Empreinte Verticale)" },
   melaniea: { lat: 45.8992, lon: 6.1294,  zoom: 9,  ville: "Haute-Savoie" },
-  vivitra:  { lat: 48.7016, lon: 2.4163,  zoom: 10, ville: "Vigneux-sur-Seine (Essonne)" }
+  vivitra:  { lat: 48.7016, lon: 2.4163,  zoom: 10, ville: "Vigneux-sur-Seine (Essonne)" },
+  dorothee: { lat: 50.6365, lon: 3.0700,  zoom: 8,  ville: "Lille (Hauts-de-France) · et en visio" }
 };
 
 var expertsMap = null;
