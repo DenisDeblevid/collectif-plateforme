@@ -145,3 +145,99 @@
   .porte-btn { font-size:.9rem; padding:15px 18px; letter-spacing:.03em; }
   .premier-pas-actions a { font-size:.86rem; padding:13px 18px; }
 }
+
+/* ===== 26 nov. 2026 — mobile Instant Horizon, animations de lecture ===== */
+
+/* --- Instant Horizon : plus de débordement à droite sur téléphone --- */
+.tunnel-grid { grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); }
+.tunnel-form, .tunnel-image-wrap { min-width:0; }
+.tunnel-form input:not([type=checkbox]), .tunnel-form select { width:100%; max-width:100%; min-width:0; box-sizing:border-box; }
+.tunnel-image { max-width:100%; }
+@media (max-width:900px){ .tunnel-grid { grid-template-columns:minmax(0,1fr); gap:32px; } }
+@media (max-width:520px){
+  #tunnel { padding-left:14px; padding-right:14px; }
+  .tunnel-image-wrap { padding:10px; border-radius:16px; }
+  .tunnel-form { padding:34px 18px; }
+  .tunnel-form h3 { font-size:1.4rem; }
+  #ih-btn { white-space:normal; line-height:1.4; }
+}
+
+/* --- Héros : les 3 boutons deviennent de vrais boutons, reflet + pulsation lente --- */
+#accueil .nh-cta { position:relative; overflow:hidden; background:#B86F4C; color:#fff; border:0; border-radius:999px; padding:10px 16px; box-shadow:0 0 0 0 rgba(184,111,76,.55); animation:ctaPulse 3.6s ease-in-out infinite; }
+#accueil .nh-path:nth-child(2) .nh-cta { animation-delay:1.2s; }
+#accueil .nh-path:nth-child(3) .nh-cta { animation-delay:2.4s; }
+#accueil .nh-path:hover .nh-cta { color:#fff; background:#A45B38; }
+#accueil .nh-cta::before { content:''; position:absolute; top:0; left:-60%; width:45%; height:100%; background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.6),rgba(255,255,255,0)); transform:skewX(-20deg); animation:btnShine 3.2s ease-in-out infinite; pointer-events:none; }
+@keyframes ctaPulse { 0%,100% { box-shadow:0 0 0 0 rgba(184,111,76,.0), 0 4px 12px rgba(184,111,76,.25); transform:scale(1); } 50% { box-shadow:0 0 0 7px rgba(184,111,76,.16), 0 6px 22px rgba(184,111,76,.45); transform:scale(1.03); } }
+
+/* --- Lecture guidée : les mots s'allument un par un en bronze --- */
+.lire .rw, .lire .rg { transition:color .28s ease, text-shadow .28s ease; }
+.lire .on { color:#E8A87F !important; text-shadow:0 0 14px rgba(232,168,127,.75); }
+.lire strong.on, .lire .on strong { color:#F0B48A !important; }
+
+/* --- Agir : sur-titre qui s'allume mot après mot et reste bronze --- */
+.noria-p4 .np-seq .sq { color:rgba(255,255,255,.5); transition:color .5s, text-shadow .5s; }
+.noria-p4 .np-seq.go .sq { animation:sqOn .9s ease forwards; animation-delay:calc(var(--i) * .55s); }
+@keyframes sqOn { 0% { color:rgba(255,255,255,.5); text-shadow:none; } 45% { color:#FFD9BC; text-shadow:0 0 16px rgba(244,185,143,.95); } 100% { color:#F4B98F; text-shadow:0 0 6px rgba(244,185,143,.35); } }
+.noria-p4 .np-hero p { font-size:1.18rem; }
+/* Mots qui arrivent de la droite, s'allument et pulsent */
+.noria-p4 .np-defile { display:flex; flex-wrap:wrap; gap:10px 14px; margin-top:20px; }
+.noria-p4 .np-defile span { font-family:Georgia,serif; font-size:1.15rem; color:#fff; border:1px solid rgba(244,185,143,.45); border-radius:999px; padding:7px 16px; opacity:0; transform:translateX(120px); background:rgba(11,53,68,.35); }
+.noria-p4 .np-defile.go span { animation:dfIn .8s cubic-bezier(.2,.8,.3,1.15) forwards, dfGlow 7.5s ease-in-out infinite; animation-delay:calc(var(--i) * .3s), calc(1.8s + var(--i) * 1.5s); }
+@keyframes dfIn { to { opacity:1; transform:translateX(0); } }
+@keyframes dfGlow { 0%,22%,100% { color:#fff; border-color:rgba(244,185,143,.45); box-shadow:none; scale:1; } 9% { color:#FFD9BC; border-color:#F4B98F; box-shadow:0 0 18px rgba(244,185,143,.55); scale:1.06; } }
+
+/* --- Panneaux Accompagnements / Savoir-faire : chaque mot pulse puis revient --- */
+.noria-p4 .np-mini-tags.np-pulse { font-size:1.02rem; font-weight:700; color:#edc2a6; letter-spacing:.01em; }
+.noria-p4 .np-pulse span { display:inline-block; animation:tagPulse 6s ease-in-out infinite; animation-delay:calc(var(--i) * 1.5s); }
+@keyframes tagPulse { 0%,26%,100% { transform:scale(1); color:#edc2a6; text-shadow:none; } 11% { transform:scale(1.22); color:#fff; text-shadow:0 0 14px rgba(244,185,143,.85); } }
+
+/* --- CONTINUUM : reflet qui parcourt les lettres, le 2e U reste bronze --- */
+.ct-title .cl { display:inline-block; animation:clShine 3.2s ease-in-out infinite; animation-delay:calc(var(--i) * .09s); }
+.ct-title .cl.u2 { color:#E3A47F; animation-name:clShineU; }
+@keyframes clShine { 0%,30%,100% { color:#fff; text-shadow:none; } 12% { color:#fff; text-shadow:0 0 18px rgba(255,255,255,.95), 0 0 4px #fff; } }
+@keyframes clShineU { 0%,30%,100% { color:#E3A47F; text-shadow:0 0 6px rgba(227,164,127,.35); } 12% { color:#FFC9A3; text-shadow:0 0 22px rgba(227,164,127,1), 0 0 6px #FFC9A3; } }
+.ct-sub { margin:-4px 0 0; font-size:1.05rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; animation:ctSub 4s ease-in-out infinite; }
+@keyframes ctSub { 0%,100% { color:#fff; text-shadow:none; } 45%,55% { color:#E8A87F; text-shadow:0 0 14px rgba(232,168,127,.7); } }
+
+/* --- Rejoindre : bandeau resserré --- */
+#rejoindre.rejoindre-compact { background:var(--sand); padding:36px 24px; }
+.rj-box { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); gap:28px; align-items:center; border:1px solid rgba(184,111,76,.25); border-radius:18px; padding:24px 30px; background:rgba(255,255,255,.45); }
+.rj-label { font-size:.68rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#B86F4C; }
+.rj-title { font-family:var(--font-display); font-weight:400; font-size:clamp(1.3rem,2.2vw,1.65rem); margin:4px 0 8px; color:var(--deep,#123); }
+.rj-text p { font-size:.84rem; line-height:1.55; margin:0 0 6px; }
+.rj-action { text-align:center; }
+.rj-btn { position:relative; overflow:hidden; display:inline-block; white-space:nowrap; text-decoration:none; background:#B86F4C; color:#fff; font-weight:700; font-size:.82rem; letter-spacing:.08em; padding:12px 24px; border-radius:999px; }
+.rj-btn:hover { background:#A45B38; }
+.rj-note { font-size:.68rem; line-height:1.5; opacity:.6; margin:10px 0 0; }
+@media (max-width:760px){ .rj-box { grid-template-columns:1fr; gap:14px; padding:20px 18px; } #rejoindre.rejoindre-compact { padding:28px 14px; } }
+
+/* --- Votre premier pas : phrase au-dessus de chaque bouton, apparition en séquence --- */
+.pp-steps { max-width:1120px; margin:30px auto 0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; text-align:left; }
+.pp-step { display:flex; flex-direction:column; justify-content:space-between; align-items:center; gap:18px; padding:22px 20px; border:1px solid rgba(232,220,201,.25); border-radius:18px; background:rgba(255,255,255,.04); }
+.premier-pas .pp-phrase { margin:0; max-width:none; font-size:.98rem; line-height:1.6; color:rgba(255,255,255,.9); }
+.pp-phrase strong { color:#F0C6A6; }
+.pp-btn { position:relative; overflow:hidden; text-decoration:none; font-weight:700; letter-spacing:.04em; padding:14px 22px; border-radius:999px; white-space:nowrap; font-size:.92rem; }
+.pp-btn.p1 { background:#B86F4C; color:#fff; }
+.pp-btn.p1::after { content:''; position:absolute; top:0; left:-60%; width:45%; height:100%; background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0)); transform:skewX(-20deg); animation:btnShine 3.2s ease-in-out infinite; }
+.pp-btn.p2 { border:1px solid rgba(232,220,201,.6); color:#fff; }
+.pp-btn.p2:hover { background:rgba(255,255,255,.08); }
+.js-anim .pp-seq .pp-step { opacity:0; }
+.js-anim .pp-seq .pp-step .pp-btn { opacity:0; transform:scale(.85); }
+.js-anim .pp-seq .pp-step .pp-phrase { opacity:0; transform:translateX(60px); }
+.pp-seq .pp-step.vu { opacity:1; transition:opacity .4s; }
+.pp-seq .pp-step.vu .pp-btn { opacity:1; transform:none; transition:opacity .5s, transform .6s cubic-bezier(.2,.8,.3,1.3); }
+.pp-seq .pp-step.vu .pp-btn.p1 { animation:ppGlow 1.4s ease .2s 1; }
+.pp-seq .pp-step.vu .pp-phrase { opacity:1; transform:none; transition:opacity .6s .35s, transform .7s .35s cubic-bezier(.2,.8,.3,1); }
+@keyframes ppGlow { 0%,100% { box-shadow:none; } 50% { box-shadow:0 0 0 8px rgba(184,111,76,.2), 0 0 26px rgba(232,168,127,.8); } }
+@media (max-width:860px){ .pp-steps { grid-template-columns:1fr; max-width:520px; gap:16px; } }
+@media (max-width:400px){ .pp-btn { font-size:.84rem; padding:13px 16px; } }
+
+@media (prefers-reduced-motion:reduce){
+  #accueil .nh-cta, #accueil .nh-cta::before, .ct-title .cl, .ct-sub, .noria-p4 .np-pulse span, .pp-btn.p1::after { animation:none !important; }
+  #accueil .nh-cta::before, .pp-btn.p1::after { display:none; }
+  .noria-p4 .np-seq .sq { color:#F4B98F; animation:none !important; }
+  .noria-p4 .np-defile span { opacity:1; transform:none; animation:none !important; }
+  .js-anim .pp-seq .pp-step, .js-anim .pp-seq .pp-step .pp-btn, .js-anim .pp-seq .pp-step .pp-phrase { opacity:1; transform:none; }
+}
+#premier-pas.pp-seq, .noria-p4 .np-hero { overflow-x:clip; }

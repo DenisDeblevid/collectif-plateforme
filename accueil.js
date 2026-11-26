@@ -126,3 +126,85 @@
     if(p) openPorte(p, (id === 'tarifs' || id === 'prisme' || id === 'equipe') ? null : id);
   });
 })();
+
+/* ===== 26 nov. 2026 — lecture guidée et apparitions en séquence ===== */
+(function(){
+  var calme = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!calme) document.documentElement.classList.add('js-anim');
+  function attendre(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+
+  // Découpe un paragraphe en mots (les groupes .rg restent entiers)
+  function preparer(el){
+    var unites = [];
+    (function parcourir(n){
+      [].slice.call(n.childNodes).forEach(function(c){
+        if(c.nodeType === 3){
+          var f = document.createDocumentFragment();
+          c.textContent.split(/(\s+)/).forEach(function(m){
+            if(!m) return;
+            if(/^\s+$/.test(m)){ f.appendChild(document.createTextNode(m)); return; }
+            var sp = document.createElement('span'); sp.className = 'rw'; sp.textContent = m; f.appendChild(sp); unites.push(sp);
+          });
+          n.replaceChild(f, c);
+        } else if(c.nodeType === 1){
+          if(c.classList.contains('rg')) unites.push(c); else parcourir(c);
+        }
+      });
+    })(el);
+    return unites;
+  }
+  // Allume chaque mot puis l'éteint, l'un après l'autre
+  function lire(unites, visible){
+    return unites.reduce(function(p, u){
+      return p.then(function(){
+        return (function guetter(){ return visible() ? Promise.resolve() : attendre(400).then(guetter); })();
+      }).then(function(){
+        u.classList.add('on');
+        return attendre(230 + (+u.dataset.hold || 0));
+      }).then(function(){ u.classList.remove('on'); return attendre(40); });
+    }, Promise.resolve());
+  }
+  function observer(el, cb, seuil){
+    var etat = { vu:false };
+    if(!('IntersectionObserver' in window)){ etat.vu = true; cb && cb(); return etat; }
+    var lance = false;
+    new IntersectionObserver(function(es){ es.forEach(function(e){ etat.vu = e.isIntersecting; if(e.isIntersecting && !lance){ lance = true; cb && cb(); } }); }, { threshold: seuil || .35 }).observe(el);
+    return etat;
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    // Agir : sur-titre et mots qui défilent
+    ['.noria-p4 .np-seq', '.noria-p4 .np-defile'].forEach(function(s){
+      var el = document.querySelector(s); if(el) observer(el, function(){ el.classList.add('go'); }, .5);
+    });
+
+    if(calme) return;
+
+    // NORIA Prisme : lecture en boucle, pause de 1,5 s entre deux cycles
+    var pr = document.querySelector('#noria-prisme .lire');
+    if(pr){
+      var up = preparer(pr), ep = observer(pr, function(){
+        (function cycle(){ lire(up, function(){ return ep.vu; }).then(function(){ return attendre(1500); }).then(cycle); })();
+      }, .5);
+    }
+
+    // Votre premier pas : Instant Horizon, puis Cartographie, puis Contact, puis la lecture reprend
+    var pp = document.querySelector('#premier-pas.pp-seq');
+    if(pp){
+      var etapes = [].slice.call(pp.querySelectorAll('.pp-step'));
+      var mots = etapes.map(function(e){ return preparer(e.querySelector('.lire')); });
+      var ev = observer(pp, function(){
+        var vis = function(){ return ev.vu; };
+        var p = Promise.resolve();
+        etapes.forEach(function(e, i){
+          p = p.then(function(){ e.classList.add('vu'); return attendre(i ? 600 : 1100); }).then(function(){ return lire(mots[i], vis); }).then(function(){ return attendre(250); });
+        });
+        p.then(function boucle(){
+          return attendre(1500).then(function(){
+            return mots.reduce(function(q, m){ return q.then(function(){ return lire(m, vis); }).then(function(){ return attendre(250); }); }, Promise.resolve());
+          }).then(boucle);
+        });
+      }, .3);
+    }
+  });
+})();
