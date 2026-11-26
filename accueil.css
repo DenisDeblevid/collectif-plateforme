@@ -241,3 +241,27 @@
   .js-anim .pp-seq .pp-step, .js-anim .pp-seq .pp-step .pp-btn, .js-anim .pp-seq .pp-step .pp-phrase { opacity:1; transform:none; }
 }
 #premier-pas.pp-seq, .noria-p4 .np-hero { overflow-x:clip; }
+
+/* ===== 26 nov. (2) — héros : boutons de même taille, apparition en séquence, « ? » qui pulse ===== */
+#accueil .nh-cta { align-self:stretch; justify-content:center; text-align:center; min-height:52px; font-size:12.5px; line-height:1.3; padding:8px 14px; box-sizing:border-box; }
+#accueil .nh-cta::after { flex-shrink:0; }
+#accueil .nh-path { justify-content:flex-start; }
+#accueil .nh-path .nh-cta { margin-top:auto; }
+#accueil .nh-help-q { font-family:Georgia,serif; font-size:24px; font-weight:700; line-height:1; animation:ctaPulse 3.6s ease-in-out infinite; }
+/* Apparition : Agir, puis CONTINUUM, puis Prisme (3,6 s), puis « Vous ne savez pas par où commencer ? » */
+.js-anim #accueil .nh-path, .js-anim #accueil .nh-bottom { opacity:0; transform:translateY(22px); }
+.js-anim #accueil.nh-go .nh-path, .js-anim #accueil.nh-go .nh-bottom { animation:nhIn .8s cubic-bezier(.2,.8,.3,1) forwards; }
+.js-anim #accueil.nh-go .nh-path:nth-child(1) { animation-delay:.3s; }
+.js-anim #accueil.nh-go .nh-path:nth-child(2) { animation-delay:1.3s; }
+.js-anim #accueil.nh-go .nh-path:nth-child(3) { animation-delay:2.3s; }
+.js-anim #accueil.nh-go .nh-bottom { animation-delay:3.4s; }
+@keyframes nhIn { to { opacity:1; transform:none; } }
+/* Le bandeau du bas s'illumine, reste allumé quelques secondes, s'éteint (toutes les 10 s environ) */
+#accueil .nh-bottom { transition:box-shadow .9s ease, border-color .9s ease, background .9s ease; }
+#accueil .nh-bottom.allume { border-color:rgba(232,168,127,.9); box-shadow:0 0 0 3px rgba(184,111,76,.22), 0 0 34px rgba(232,168,127,.55); background:rgba(35,75,94,.82); }
+#accueil .nh-bottom.allume .nh-help-copy strong { color:#F4C09A; }
+@media (max-width:780px){ #accueil .nh-cta { min-height:46px; font-size:12.5px; } }
+@media (prefers-reduced-motion:reduce){
+  #accueil .nh-help-q { animation:none; }
+  .js-anim #accueil .nh-path, .js-anim #accueil .nh-bottom { opacity:1; transform:none; animation:none !important; }
+}

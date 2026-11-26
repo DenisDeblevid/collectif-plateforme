@@ -208,3 +208,21 @@
     }
   });
 })();
+
+/* ===== 26 nov. (2) — héros en séquence ===== */
+(function(){
+  var calme = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.addEventListener('DOMContentLoaded', function(){
+    var h = document.getElementById('accueil'); if(!h) return;
+    var b = h.querySelector('.nh-bottom'), cartes = h.querySelector('.nh-paths');
+    function demarrer(){
+      h.classList.add('nh-go');
+      if(calme || !b) return;
+      function allumer(){ b.classList.add('allume'); setTimeout(function(){ b.classList.remove('allume'); }, 3500); }
+      setTimeout(function(){ allumer(); setInterval(function(){ if(!document.hidden) allumer(); }, 10000); }, 4300);
+    }
+    if(!cartes || !('IntersectionObserver' in window)){ demarrer(); return; }
+    var io = new IntersectionObserver(function(es){ if(es[0].isIntersecting){ io.disconnect(); demarrer(); } }, { threshold:.15 });
+    io.observe(cartes);
+  });
+})();
