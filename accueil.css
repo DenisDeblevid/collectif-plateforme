@@ -265,3 +265,18 @@
   #accueil .nh-help-q { animation:none; }
   .js-anim #accueil .nh-path, .js-anim #accueil .nh-bottom { opacity:1; transform:none; animation:none !important; }
 }
+
+/* ===== 26 nov. (3) — Contact en 3 cartes carrées, premier pas plus rapide ===== */
+#contact .contact-levels.contact-3 { grid-template-columns:repeat(3,minmax(0,1fr)); max-width:1000px; align-items:stretch; gap:22px; }
+#contact .contact-3 .contact-level { aspect-ratio:1/1; display:flex; flex-direction:column; justify-content:center; padding:30px 26px; }
+#contact .contact-3 .contact-level p { flex-grow:0; margin-bottom:24px; }
+#contact .contact-3 .btn-copper-full { display:block; width:100%; text-align:center; text-decoration:none; margin-top:0; white-space:nowrap; font-size:.72rem; letter-spacing:.1em; padding:16px 10px; box-sizing:border-box; min-height:52px; line-height:1.4; font-family:inherit; font-weight:600; }
+#contact .contact-3 .contact-level.highlight { box-shadow:0 0 0 1px rgba(184,111,76,.5), 0 0 36px rgba(184,111,76,.28); }
+@media (max-width:900px){
+  #contact .contact-levels.contact-3 { grid-template-columns:1fr !important; max-width:420px; }
+  #contact .contact-3 .contact-level { aspect-ratio:auto; min-height:230px; }
+}
+.pp-seq .pp-step.vu .pp-phrase { transition:opacity .45s .15s, transform .5s .15s cubic-bezier(.2,.8,.3,1); }
+.pp-seq .pp-step.vu .pp-btn { transition:opacity .35s, transform .45s cubic-bezier(.2,.8,.3,1.3); }
+#contact .contact-3 .contact-level p { min-height:3.3em; }
+#contact .contact-3 .btn-copper-full { font-size:.68rem; letter-spacing:.06em; padding-left:8px; padding-right:8px; }

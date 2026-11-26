@@ -196,9 +196,10 @@
       var ev = observer(pp, function(){
         var vis = function(){ return ev.vu; };
         var p = Promise.resolve();
-        etapes.forEach(function(e, i){
-          p = p.then(function(){ e.classList.add('vu'); return attendre(i ? 600 : 1100); }).then(function(){ return lire(mots[i], vis); }).then(function(){ return attendre(250); });
-        });
+        // Les 3 cartes arrivent rapidement l'une après l'autre, puis la lecture guidée démarre
+        etapes.forEach(function(e, i){ setTimeout(function(){ e.classList.add('vu'); }, 150 + i * 450); });
+        p = attendre(1500);
+        mots.forEach(function(m){ p = p.then(function(){ return lire(m, vis); }).then(function(){ return attendre(200); }); });
         p.then(function boucle(){
           return attendre(1500).then(function(){
             return mots.reduce(function(q, m){ return q.then(function(){ return lire(m, vis); }).then(function(){ return attendre(250); }); }, Promise.resolve());
